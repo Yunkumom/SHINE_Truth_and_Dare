@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <title>SHINE AI OS — Agent Handoff v18</title>
+  <style>
+    :root {
+      --bg: #08131d;
+      --panel: rgba(15, 31, 45, 0.92);
+      --panel-2: #10283a;
+      --text: #f4efe4;
+      --muted: #a9b7c4;
+      --gold: #e8c578;
+      --gold-2: #fff0bd;
+      --teal: #60d4c1;
+      --line: rgba(232, 197, 120, 0.28);
+      --danger: #ff9f93;
+      --radius: 20px;
+      --base-size: 16px;
+      --shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 90% 0%, rgba(39, 111, 118, 0.22), transparent 32rem),
+        radial-gradient(circle at 0% 45%, rgba(197, 149, 62, 0.12), transparent 28rem),
+        var(--bg);
+      font: var(--base-size)/1.7 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", "Noto Sans TC", sans-serif;
+    }
+
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    a { color: var(--gold-2); }
+
+    .shell {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 72px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 12px;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 22px;
+      padding: 11px 12px 11px 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(8, 19, 29, 0.82);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 30px;
+      height: 30px;
+      flex: 0 0 auto;
+      place-items: center;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      color: var(--gold);
+    }
+
+    .version {
+      color: var(--gold);
+      font: 700 0.72rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .tools { display: flex; gap: 6px; }
+
+    .tool-btn,
+    .copy-btn {
+      min-height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.04);
+      cursor: pointer;
+      font: inherit;
+      font-weight: 750;
+    }
+
+    .tool-btn { min-width: 42px; padding: 0 12px; }
+
+    .tool-btn:hover,
+    .copy-btn:hover { border-color: var(--gold); color: var(--gold-2); }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(28px, 5vw, 62px);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: linear-gradient(140deg, rgba(20, 49, 68, 0.95), rgba(8, 22, 34, 0.98));
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      position: absolute;
+      right: -90px;
+      bottom: -140px;
+      width: 420px;
+      height: 420px;
+      border: 1px solid rgba(232, 197, 120, 0.18);
+      border-radius: 50%;
+      box-shadow: 0 0 0 42px rgba(232, 197, 120, 0.025),
+        0 0 0 86px rgba(232, 197, 120, 0.02);
+      content: "";
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--gold);
+      font: 750 0.76rem/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 { line-height: 1.22; }
+
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(2.15rem, 6vw, 4.7rem);
+      letter-spacing: -0.045em;
+    }
+
+    h1 span { color: var(--gold); }
+
+    .lead {
+      max-width: 780px;
+      margin: 22px 0 0;
+      color: #d4dde4;
+      font-size: clamp(1.02rem, 2vw, 1.25rem);
+    }
+
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .principle {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .principle strong { display: block; color: var(--gold-2); }
+    .principle small { display: block; margin-top: 4px; color: var(--muted); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .card {
+      padding: clamp(20px, 3.2vw, 34px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .card.full { margin-top: 18px; }
+
+    .section-number {
+      display: inline-grid;
+      width: 31px;
+      height: 31px;
+      margin-right: 8px;
+      place-items: center;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      color: var(--gold);
+      font: 800 0.78rem/1 ui-monospace, monospace;
+      vertical-align: 5px;
+    }
+
+    h2 { margin: 0 0 18px; font-size: clamp(1.45rem, 3vw, 2rem); }
+    h3 { margin: 26px 0 10px; color: var(--gold-2); font-size: 1.04rem; }
+
+    .sub { color: var(--muted); font-size: 0.92rem; }
+
+    pre {
+      position: relative;
+      overflow: auto;
+      margin: 14px 0 0;
+      padding: 18px;
+      border: 1px solid rgba(96, 212, 193, 0.18);
+      border-radius: 14px;
+      color: #d8f6ef;
+      background: #061018;
+      font: 0.83rem/1.65 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      white-space: pre;
+    }
+
+    .file-map { display: grid; gap: 10px; }
+
+    .file-row {
+      display: grid;
+      grid-template-columns: minmax(175px, 0.58fr) 1fr;
+      gap: 14px;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .file-row:last-child { border-bottom: 0; }
+
+    code {
+      color: var(--teal);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .rule-list,
+    .steps { margin: 0; padding-left: 1.2rem; }
+
+    .rule-list li,
+    .steps li { margin: 9px 0; padding-left: 4px; }
+
+    .warning {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-left: 3px solid var(--danger);
+      border-radius: 4px 12px 12px 4px;
+      color: #ffd6d1;
+      background: rgba(255, 111, 97, 0.08);
+    }
+
+    .good {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-left: 3px solid var(--teal);
+      border-radius: 4px 12px 12px 4px;
+      color: #d5fff8;
+      background: rgba(96, 212, 193, 0.08);
+    }
+
+    .prompt-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .copy-btn { padding: 8px 14px; }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .flow-step {
+      position: relative;
+      padding: 16px 14px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--panel-2);
+    }
+
+    .flow-step:not(:last-child)::after {
+      position: absolute;
+      top: 50%;
+      right: -9px;
+      z-index: 2;
+      color: var(--gold);
+      content: "→";
+      transform: translateY(-50%);
+    }
+
+    .flow-step b { display: block; color: var(--gold-2); }
+    .flow-step span { display: block; margin-top: 4px; color: var(--muted); font-size: 0.85rem; }
+
+    details {
+      border-top: 1px solid rgba(255, 255, 255, 0.09);
+      padding: 14px 0;
+    }
+
+    details:last-child { padding-bottom: 0; }
+    summary { cursor: pointer; color: var(--gold-2); font-weight: 800; }
+    details p { margin-bottom: 0; color: var(--muted); }
+
+    footer {
+      padding: 30px 6px 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.82rem;
+    }
+
+    .toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 50;
+      padding: 12px 16px;
+      border: 1px solid var(--gold);
+      border-radius: 999px;
+      color: #071019;
+      background: var(--gold-2);
+      box-shadow: var(--shadow);
+      font-weight: 850;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: 180ms ease;
+    }
+
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 780px) {
+      .shell { width: min(100% - 20px, 1120px); padding-top: 10px; }
+      .topbar { top: 6px; border-radius: 17px; }
+      .brand-text { overflow: hidden; max-width: 43vw; text-overflow: ellipsis; white-space: nowrap; }
+      .hero { border-radius: 22px; }
+      .principles, .grid, .flow { grid-template-columns: 1fr; }
+      .flow-step:not(:last-child)::after { top: auto; right: 18px; bottom: -14px; content: "↓"; }
+      .file-row { grid-template-columns: 1fr; gap: 3px; }
+      .card { border-radius: 17px; }
+      pre { font-size: 0.76rem; }
+    }
+
+    @media print {
+      :root { --bg: #fff; --panel: #fff; --text: #13212d; --muted: #4c5b66; --line: #cbb06c; }
+      body { background: #fff; }
+      .topbar, .copy-btn, .toast { display: none !important; }
+      .shell { width: 100%; padding: 0; }
+      .hero, .card { break-inside: avoid; box-shadow: none; }
+      pre { color: #15252f; background: #f4f6f7; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <nav class="topbar" aria-label="Guide controls">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">✦</span>
+        <span class="brand-text">SHINE AI OS · Agent Handoff</span>
+        <span class="version">v18</span>
+      </div>
+      <div class="tools" aria-label="Text size controls">
+        <button class="tool-btn" type="button" data-size="down" aria-label="Decrease text size">A−</button>
+        <button class="tool-btn" type="button" data-size="reset" aria-label="Reset text size">A</button>
+        <button class="tool-btn" type="button" data-size="up" aria-label="Increase text size">A+</button>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <p class="eyebrow">Project architecture standard · v18</p>
+      <h1>Give every Agent a <span>clear path</span>, not one enormous prompt.</h1>
+      <p class="lead">
+        A bilingual, repository-ready guide for handing project architecture, special rules,
+        safety boundaries, and current progress to Codex or other coding Agents.<br>
+        將專案架構、特殊規則、安全邊界與最新進度，清楚交接給 Codex 或其他 Coding Agents。
+      </p>
+      <div class="principles">
+        <div class="principle"><strong>Core governance</strong><small>必要治理檔案保持穩定</small></div>
+        <div class="principle"><strong>Project-specific structure</strong><small>依專案真實功能設計</small></div>
+        <div class="principle"><strong>No empty folders</strong><small>沒有實際內容就不建立</small></div>
+      </div>
+    </header>
+
+    <section class="grid" aria-label="Architecture overview">
+      <article class="card">
+        <h2><span class="section-number">01</span>Repository architecture</h2>
+        <p class="sub">Recommended baseline · 建議的基礎架構</p>
+        <pre id="tree">project_name/
+├── README.md                    # Human entry point / 人類入口
+├── AGENTS.md                    # Agent rules / Agent 操作規則
+├── .gitignore                   # Privacy boundary / Git 隱私防線
+├── .env.example                # Only when environment variables are needed
+│
+├── _meta/
+│   ├── purpose.md              # Purpose and scope / 目的與範圍
+│   ├── roadmap.md              # Priorities / 優先順序
+│   ├── handoff.md              # Current status / 最新交接
+│   ├── private_blueprint.md    # Local only; never commit
+│   ├── public_blueprint.md     # Share-safe reconstruction blueprint
+│   └── changelog.md            # Append-only change history
+│
+├── _agent/
+│   └── README.md               # Active prompts, context and workflows index
+│
+├── skills/
+│   └── README.md               # Active skills index
+│
+├── _human/
+│   └── README.md               # Human-facing outputs index
+│
+├── _pending/
+│   └── index.md                # Human review buffer
+│
+└── &lt;project-specific-folders&gt;/ # app/, src/, public/, tests/, docs/, etc.</pre>
+      </article>
+
+      <aside class="card">
+        <h2><span class="section-number">02</span>Reading order</h2>
+        <ol class="steps">
+          <li><code>README.md</code></li>
+          <li><code>AGENTS.md</code></li>
+          <li><code>_meta/purpose.md</code></li>
+          <li><code>_meta/handoff.md</code></li>
+          <li><code>_meta/roadmap.md</code></li>
+          <li><code>_meta/public_blueprint.md</code></li>
+          <li><code>_agent/README.md</code></li>
+          <li>Relevant workflows and Skills</li>
+          <li>Existing source code</li>
+        </ol>
+        <div class="warning">
+          <strong>Private boundary / 私密邊界</strong><br>
+          External Agents must not receive <code>.env</code>, Secrets, personal data, private memory,
+          or <code>_meta/private_blueprint.md</code>.
+        </div>
+      </aside>
+    </section>
+
+    <section class="card full">
+      <h2><span class="section-number">03</span>What belongs in each file?</h2>
+      <div class="file-map">
+        <div class="file-row"><code>README.md</code><span>Purpose, status, quick start, major functions, and folder guide.<br>專案用途、狀態、快速開始、主要功能與資料夾導覽。</span></div>
+        <div class="file-row"><code>AGENTS.md</code><span>Mandatory operating rules, testing requirements, privacy limits, and prohibited actions.<br>Agent 必須遵守的操作規則、測試要求、隱私限制與禁止事項。</span></div>
+        <div class="file-row"><code>_meta/public_blueprint.md</code><span>Share-safe architecture, data flow, environment variable names, and reconstruction steps.<br>可安全分享的架構、資料流、環境變數名稱及重建步驟。</span></div>
+        <div class="file-row"><code>_meta/handoff.md</code><span>Latest verified state, completed work, current issues, and exact next action.<br>最新確認狀態、完成事項、目前問題與明確下一步。</span></div>
+        <div class="file-row"><code>_agent/workflows/</code><span>Reusable multi-step procedures only when the project truly needs them.<br>只有專案確實需要時，才建立可重複使用的多步驟流程。</span></div>
+        <div class="file-row"><code>skills/</code><span>Project-specific reusable capabilities; store each Skill directly under this folder.<br>專案專用能力模組；每個 Skill 直接放在此資料夾下。</span></div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2><span class="section-number">04</span>Mandatory Agent rules</h2>
+        <ul class="rule-list">
+          <li>Preserve useful existing files and project-specific structures.</li>
+          <li>Never permanently delete project content.</li>
+          <li>Move uncertain items to <code>_pending/</code> and update its index.</li>
+          <li>Never read, print, copy, expose, or commit Secrets.</li>
+          <li>Never commit <code>_meta/private_blueprint.md</code>.</li>
+          <li>Never overwrite generated outputs; create the next version.</li>
+          <li>Keep canonical governance filenames unchanged.</li>
+          <li>Do not create optional folders without actual work.</li>
+          <li>Run relevant tests and production builds before completion.</li>
+          <li>Update <code>handoff.md</code> and <code>changelog.md</code>.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2><span class="section-number">05</span>Version policy</h2>
+        <h3>Fixed governance filenames</h3>
+        <pre>README.md
+AGENTS.md
+_meta/handoff.md
+_meta/changelog.md</pre>
+        <h3>Versioned generated outputs</h3>
+        <pre>report_v1.md → report_v2.md
+dashboard_v1.html → dashboard_v2.html
+presentation_v1.pptx → presentation_v2.pptx</pre>
+        <div class="good">
+          Use Git history for fixed governance files. Use incremental filenames for generated artifacts.<br>
+          固定治理檔案使用 Git 保留歷史；生成產物使用遞增版本檔名。
+        </div>
+      </article>
+    </section>
+
+    <section class="card full">
+      <h2><span class="section-number">06</span>Agent workflow</h2>
+      <div class="flow" aria-label="Agent workflow">
+        <div class="flow-step"><b>1. Read</b><span>讀取治理與交接文件</span></div>
+        <div class="flow-step"><b>2. Inspect</b><span>檢查現有結構與原始碼</span></div>
+        <div class="flow-step"><b>3. Implement</b><span>依確認架構執行修改</span></div>
+        <div class="flow-step"><b>4. Verify</b><span>測試、更新紀錄、交接</span></div>
+      </div>
+    </section>
+
+    <section class="card full">
+      <div class="prompt-head">
+        <h2><span class="section-number">07</span>Copy-ready Codex prompt</h2>
+        <button class="copy-btn" type="button" data-copy="handoffPrompt">Copy prompt</button>
+      </div>
+      <pre id="handoffPrompt">Create or reorganize this repository according to the provided
+SHINE_AI_OS Project Architecture Standard.
+
+Before implementation, read in this order:
+
+1. README.md
+2. AGENTS.md
+3. _meta/purpose.md
+4. _meta/handoff.md
+5. _meta/roadmap.md
+6. _meta/public_blueprint.md
+7. Relevant workflows and Skills
+8. Existing source code
+
+Rules:
+
+- Preserve useful existing files and project-specific structures.
+- Do not permanently delete files.
+- Move uncertain items into _pending/ and update _pending/index.md.
+- Do not create optional folders unless they contain real work.
+- Never read, copy, expose, or commit Secrets.
+- Never commit _meta/private_blueprint.md.
+- Never overwrite generated outputs.
+- Use incremental version numbers for generated artifacts.
+- Keep canonical governance filenames unchanged.
+- Run relevant tests and production builds.
+- Update _meta/handoff.md and _meta/changelog.md after completion.
+- Report changed files, verification results, and remaining issues.
+
+First inspect the repository and propose the final project-specific
+architecture. Do not modify files until the architecture is confirmed.</pre>
+    </section>
+
+    <section class="card full">
+      <h2><span class="section-number">08</span>Q&amp;A</h2>
+      <details open>
+        <summary>Should I paste the complete architecture into every task?</summary>
+        <p>No. Store the stable rules in the repository. The task prompt should contain only the current objective, acceptance criteria, and special exceptions.<br>不需要。穩定規則保存在 Repository；任務 Prompt 只放目前目標、驗收標準與特殊例外。</p>
+      </details>
+      <details>
+        <summary>Where should a unique rule for one folder go?</summary>
+        <p>Use a nested <code>AGENTS.md</code> only when that folder genuinely needs different rules. Keep the root file concise.<br>只有特定資料夾真的需要不同規則時，才使用巢狀 <code>AGENTS.md</code>。</p>
+      </details>
+      <details>
+        <summary>Should private_blueprint.md be sent to Codex?</summary>
+        <p>Only when Codex is operating locally, access is explicitly authorized, and the information is genuinely necessary. Never commit or send it to an external service.<br>只有 Codex 在本機操作、已明確授權且確實需要時才可讀取；絕不可提交 Git 或傳送給外部服務。</p>
+      </details>
+    </section>
+
+    <footer>
+      SHINE AI OS · Agent Handoff Guide v18 · Standalone HTML · No external dependencies
+    </footer>
+  </main>
+
+  <div class="toast" role="status" aria-live="polite">Copied · 已複製</div>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const toast = document.querySelector('.toast');
+      const savedSize = Number(localStorage.getItem('shine-guide-font-size')) || 16;
+      let size = Math.min(21, Math.max(14, savedSize));
+
+      const applySize = () => {
+        root.style.setProperty('--base-size', `${size}px`);
+        localStorage.setItem('shine-guide-font-size', String(size));
+      };
+
+      applySize();
+
+      document.querySelectorAll('[data-size]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const action = button.dataset.size;
+          if (action === 'up') size = Math.min(21, size + 1);
+          if (action === 'down') size = Math.max(14, size - 1);
+          if (action === 'reset') size = 16;
+          applySize();
+        });
+      });
+
+      document.querySelectorAll('[data-copy]').forEach((button) => {
+        button.addEventListener('click', async () => {
+          const target = document.getElementById(button.dataset.copy);
+          if (!target) return;
+          try {
+            await navigator.clipboard.writeText(target.innerText);
+          } catch (_) {
+            const range = document.createRange();
+            range.selectNodeContents(target);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            document.execCommand('copy');
+            selection.removeAllRanges();
+          }
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 1600);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
