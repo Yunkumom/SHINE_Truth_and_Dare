@@ -44,3 +44,5 @@ Drawing a card should feel like pulling a physical collectible card from a deck 
 This document records confirmed product intent. v16 browser testing verified language, level, mode, and Begin interactions plus responsive geometry. The complete drag, flip, discard, PNG, and physical-iPhone sequence has not yet been interactively regression-tested.
 
 v17 implements a pointer-distance draw threshold, automatic card flip, keyboard/button draw alternative, and reduced-motion fade. Automated tests cover setup entry and policy functions; physical pointer feel and continuous discard behavior still require browser and device evidence.
+
+v18 preserves these interaction rules and adds whole-shell desktop fitting. Its source remains active under `Development/Source/Main-App-v18/`; physical pointer feel, discard, PNG, and iPhone Share Sheet behavior still require device regression.

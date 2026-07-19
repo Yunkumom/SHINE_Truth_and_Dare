@@ -26,19 +26,19 @@ The baseline is one approximately 11.7 MB HTML document. It contains:
 
 ## v16 Runtime Correction / v16 Runtime 修正
 
-The original `data:text/javascript` modules had a non-hierarchical base URL, so nested `/assets/` imports could not resolve and React did not hydrate. v16 extracts all five modules to `Apps/Standalone/v16-assets/` and maps the original specifiers to normal HTTP-relative files. The launcher supplies the required loopback HTTP origin.
+The original `data:text/javascript` modules had a non-hierarchical base URL, so nested `/assets/` imports could not resolve and React did not hydrate. v16 extracts all five modules to `Apps/Standalone/v16-assets/` and maps the original specifiers to normal HTTP-relative files. The preserved v16 artifact still requires a hierarchical HTTP origin, but the current launcher opens v18. Legacy v16 reconstruction tooling is archived under `_pending/Development-simplification_2026-07-19/`.
 
 React hydrates the entire document. For compatibility, v16 does not add pre-hydration head/body nodes; it appends layout rules inside the existing style node and updates both visible HTML and embedded RSC viewport metadata.
 
-Desktop data flow:
+Current desktop data flow:
 
 ```text
 Open Truth and Dare.cmd
   -> Development/Automation/Tools/serve_truth_and_dare.ps1
   -> python http.server on 127.0.0.1:8765
-  -> Apps/Standalone/encounter_cards_v16.html
-  -> Apps/Standalone/v16-assets/*.js
-  -> React hydration and interactive game
+  -> Apps/Standalone/encounter_cards_v18.html
+  -> embedded React/CSS runtime
+  -> interactive game
 ```
 
 ## Security and Privacy Surface / 安全與隱私面
@@ -68,6 +68,12 @@ v15 must remain unchanged as the regression oracle during extraction.
 
 ## v17 Modular Architecture / v17 模組化架構
 
-v17 implements that extraction under `Development/Source/Main-App/src/` using React, TypeScript, and Vite. `App.tsx` owns session UI state; `data/cards.ts` contains 60 bilingual cards; `lib/age-gate.ts`, `game.ts`, `preferences.ts`, and `share.ts` isolate testable policies. Vite creates `Development/Source/Main-App/dist/`; scripts under `Development/Automation/Scripts/` finalize its complete precache and inline the same production JavaScript and CSS into the immutable v17 standalone release under `Apps/Standalone/`.
+v17 implemented the first modular extraction with React, TypeScript, and Vite. Its source and build pipeline are now inactive history under `_pending/Development-simplification_2026-07-19/Development/Source/Main-App/`; the immutable v17 standalone remains under `Apps/Standalone/`.
 
 Personal fields and birthdays are component memory only. Language and font scale retain the existing localStorage keys. No backend, analytics, account, or network data transmission is introduced.
+
+## Current v18 Modular Architecture / 目前 v18 模組化架構
+
+The only active source line is `Development/Source/Main-App-v18/`. `src/App.tsx` owns session UI state and the responsive phone shell; `src/data/cards.ts` contains 60 bilingual cards; `src/lib/` isolates age gating, selection, preferences, sharing, and viewport scaling. `public/` contains authored PWA resources, while the verified generated PWA is preserved under `dist/`. The two retained v18 automation scripts finalize that PWA and export the standalone release.
+
+`src/` is the authored maintenance boundary. Existing `dist/` and `Apps/Standalone/encounter_cards_v18.html` are immutable; future product behavior requires a new numbered release.

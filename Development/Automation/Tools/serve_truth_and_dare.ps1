@@ -5,13 +5,13 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot))
-$relativeProductUrl = '/Apps/Standalone/encounter_cards_v16.html'
-$productPath = Join-Path $projectRoot 'Apps/Standalone/encounter_cards_v16.html'
+$relativeProductUrl = '/Apps/Standalone/encounter_cards_v19.html'
+$productPath = Join-Path $projectRoot 'Apps/Standalone/encounter_cards_v19.html'
 $productUrl = "http://127.0.0.1:$Port$relativeProductUrl"
-$healthMarker = 'data-encounter-v16-iphone-pro-max'
+$healthMarker = 'encounter-release" content="V19"'
 
 if (-not (Test-Path -LiteralPath $productPath -PathType Leaf)) {
-    throw 'Encounter Cards v16 is missing. Run Development/Automation/Tools/build_v16.ps1 first.'
+    throw 'Encounter Cards v19 is missing. Restore the verified standalone release before starting the launcher.'
 }
 
 function Test-TruthAndDareServer {

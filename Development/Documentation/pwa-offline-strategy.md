@@ -1,8 +1,8 @@
 # PWA Offline Strategy / PWA 離線策略
 
-Encounter Cards v17 requires one successful online visit. Its build-finalization script inventories every generated application file and inserts the complete list into a release-hashed service-worker cache. Only after registration and successful precaching does the interface report offline readiness.
+Encounter Cards v18 requires one successful online visit for its PWA behavior. Its retained v18 build-finalization script inventories every generated application file and inserts the complete list into a release-hashed service-worker cache. Only after registration and successful precaching does the interface report offline readiness.
 
-相遇卡 v17 首次使用需要成功連線一次。Build finalizer 會列出全部生成檔案，寫入含 release hash 的 service-worker cache；完成註冊與預快取後，介面才顯示可離線使用。
+相遇卡 v18 的 PWA 行為首次使用需要成功連線一次。v18 build finalizer 會列出全部生成檔案，寫入含 release hash 的 service-worker cache；完成註冊與預快取後，介面才顯示可離線使用。
 
 - Production requires HTTPS; localhost is allowed for development.
 - All generated JavaScript, CSS, card data, manifest, and owned icons are precached.

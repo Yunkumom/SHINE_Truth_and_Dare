@@ -16,17 +16,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 22, cache: npm, cache-dependency-path: Development/Source/Public-Web/v1/package-lock.json }
+        with: { node-version: 22, cache: npm, cache-dependency-path: Development/Source/Main-App-v19/package-lock.json }
       - run: npm ci
-        working-directory: Development/Source/Public-Web/v1
+        working-directory: Development/Source/Main-App-v19
       - run: npm test && npm run typecheck && npm run build
-        working-directory: Development/Source/Public-Web/v1
-      - name: Verify committed immutable v1 output
-        run: |
-          node Development/Automation/Scripts/finalize-public-v1.mjs
-          git diff --exit-code -- Apps/Public-Web
+        working-directory: Development/Source/Main-App-v19
+      - name: Verify committed immutable v2 output
+        run: git diff --exit-code -- Apps/Public-Web/v2
       - uses: actions/upload-pages-artifact@v3
-        with: { path: Apps/Public-Web }
+        with: { path: Apps/Public-Web/v2 }
   deploy:
     environment:
       name: github-pages

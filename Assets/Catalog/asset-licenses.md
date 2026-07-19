@@ -1,8 +1,8 @@
 # Public v1 Asset Record / 公開 v1 素材紀錄
 
-The 12 Taiwan and Australia card illustrations in `Development/Source/Public-Web/v1/public/assets/cards/` are original AI-generated project assets created with OpenAI image generation on 2026-07-19. They use the approved dark-navy and antique-gold engraved-storybook direction. No third-party artwork was copied.
+The 12 Taiwan and Australia card illustrations archived under `_pending/Development-simplification_2026-07-19/Development/Source/Public-Web/v1/public/assets/cards/` are original AI-generated project assets created with OpenAI image generation on 2026-07-19. They use the approved dark-navy and antique-gold engraved-storybook direction. No third-party artwork was copied.
 
-`Development/Source/Public-Web/v1/public/assets/cards/` 內的 12 張台灣與澳洲卡圖，是於 2026-07-19 使用 OpenAI 圖像生成建立的原創專案素材，採核准的深海軍藍、古金色雕版故事書方向；未複製第三方作品。
+封存於 `_pending/Development-simplification_2026-07-19/Development/Source/Public-Web/v1/public/assets/cards/` 的 12 張台灣與澳洲卡圖，是於 2026-07-19 使用 OpenAI 圖像生成建立的原創專案素材；未複製第三方作品。
 
 ## Cultural safety / 文化安全
 

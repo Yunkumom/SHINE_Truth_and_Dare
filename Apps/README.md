@@ -1,5 +1,9 @@
-# Apps / 可用成品
+# Apps / 應用成品
 
-This directory contains completed HTML applications and deployable websites. `Standalone/` preserves self-contained releases; `Public-Web/` contains the GitHub Pages-ready site. Existing numbered releases are immutable and must be rebuilt through their approved pipelines or superseded by a new version.
+`Standalone/` contains the completed immutable v15–v19 HTML releases and v16 runtime assets. The current desktop launcher opens v19. `Public-Web/v2/` is the immutable GitHub Pages artifact generated from v19. Do not overwrite existing numbered outputs; later product changes require a new version.
 
-本目錄保存完成且可使用的 HTML 應用與可部署網站。`Standalone/` 保存獨立版本，`Public-Web/` 保存 GitHub Pages 成品。既有編號版本不可覆寫；只能透過核准流程重建或建立下一版本。
+`Standalone/` 保存完成且不可變的 v15–v19 HTML releases 與 v16 runtime assets。目前桌面啟動器開啟 v19；`Public-Web/v2/` 是 v19 生成的 GitHub Pages 成品。後續產品修改必須建立新版本，不得覆寫既有編號成品。
+
+The earlier unpublished Public Web v1 source remains recoverable under `_pending/Development-simplification_2026-07-19/`; Public Web v2 is active.
+
+先前未發布的 Public Web v1 source 可由 `_pending/Development-simplification_2026-07-19/` 回復；Public Web v2 已啟用。

@@ -3,114 +3,92 @@ $ErrorActionPreference = 'Stop'
 $cursor = (Resolve-Path -LiteralPath $PSScriptRoot).Path
 while (-not (Test-Path -LiteralPath (Join-Path $cursor 'AGENTS.md') -PathType Leaf)) {
     $parent = Split-Path -Parent $cursor
-    if ([string]::IsNullOrWhiteSpace($parent) -or $parent -eq $cursor) {
-        throw 'Could not locate the project root from the validator directory.'
-    }
+    if ([string]::IsNullOrWhiteSpace($parent) -or $parent -eq $cursor) { throw 'Could not locate the project root.' }
     $cursor = $parent
 }
 $projectRoot = $cursor
 $failures = [System.Collections.Generic.List[string]]::new()
 
 function Assert-StructureCondition {
-    param(
-        [Parameter(Mandatory = $true)][bool]$Condition,
-        [Parameter(Mandatory = $true)][string]$Message
-    )
-
-    if ($Condition) {
-        Write-Host "PASS: $Message" -ForegroundColor Green
-        return
-    }
-
+    param([bool]$Condition, [string]$Message)
+    if ($Condition) { Write-Host "PASS: $Message" -ForegroundColor Green; return }
     $failures.Add($Message)
     Write-Host "FAIL: $Message" -ForegroundColor Red
 }
 
-$allowedRootEntries = @(
-    '.git',
-    '.github',
-    '.gitignore',
-    'AGENTS.md',
-    'Apps',
-    'Assets',
-    'Development',
-    'GUIDE.md',
-    'Open Truth and Dare.cmd',
-    'README.md'
-)
-
-$unexpectedRootEntries = Get-ChildItem -LiteralPath $projectRoot -Force |
-    Where-Object { $_.Name -notin $allowedRootEntries } |
-    Select-Object -ExpandProperty Name
-Assert-StructureCondition -Condition ($unexpectedRootEntries.Count -eq 0) -Message 'Root contains only the three primary categories and required project/platform entries'
+$allowedRootEntries = @('.git', '.github', '.gitignore', 'AGENTS.md', 'Apps', 'Assets', 'Development', '_agent', '_human', '_meta', '_pending', 'GUIDE.md', 'Open Truth and Dare.cmd', 'README.md')
+$unexpectedRootEntries = Get-ChildItem -LiteralPath $projectRoot -Force | Where-Object { $_.Name -notin $allowedRootEntries } | Select-Object -ExpandProperty Name
+Assert-StructureCondition ($unexpectedRootEntries.Count -eq 0) 'Root contains only approved product, governance, and platform entries'
 
 $requiredDirectories = @(
-    'Apps/Standalone',
-    'Apps/Public-Web',
-    'Assets/Catalog',
-    'Development/Source/Main-App',
-    'Development/Source/Public-Web',
-    'Development/Automation/Scripts',
-    'Development/Automation/Tools',
-    'Development/Tests',
-    'Development/Documentation',
-    'Development/Governance/Meta',
-    'Development/Governance/Agent',
-    'Development/Governance/Skills',
-    'Development/Human-References',
-    'Development/Pending'
+    'Apps/Standalone', 'Apps/Public-Web/v2', 'Assets/Catalog', 'Assets/Deities',
+    'Development/Source/Main-App-v18', 'Development/Source/Main-App-v19', 'Development/Source/Public-Web/v2', 'Development/Automation/Scripts', 'Development/Automation/Tools',
+    'Development/Tests', 'Development/Documentation',
+    '_meta', '_agent', '_agent/Skills', '_human', '_pending',
+    '_pending/Development-simplification_2026-07-19'
 )
-
 foreach ($relativePath in $requiredDirectories) {
-    Assert-StructureCondition -Condition (Test-Path -LiteralPath (Join-Path $projectRoot $relativePath) -PathType Container) -Message "Required directory exists: $relativePath"
+    Assert-StructureCondition (Test-Path -LiteralPath (Join-Path $projectRoot $relativePath) -PathType Container) "Required directory exists: $relativePath"
 }
 
 $requiredFiles = @(
-    'GUIDE.md',
-    'Apps/README.md',
-    'Apps/Standalone/encounter_cards_v15.html',
-    'Apps/Standalone/encounter_cards_v16.html',
-    'Apps/Standalone/encounter_cards_v17.html',
-    'Apps/Public-Web/index.html',
-    'Assets/README.md',
-    'Assets/Catalog/README.md',
-    'Assets/Catalog/asset-licenses.md',
-    'Assets/Catalog/content-sources.json',
-    'Development/README.md',
-    'Development/Source/README.md',
-    'Development/Source/Main-App/README.md',
-    'Development/Source/Public-Web/README.md',
-    'Development/Automation/README.md',
-    'Development/Automation/Scripts/README.md',
-    'Development/Automation/Tools/README.md',
-    'Development/Tests/README.md',
-    'Development/Documentation/README.md',
-    'Development/Documentation/designs/README.md',
-    'Development/Documentation/plans/README.md',
-    'Development/Governance/README.md',
-    'Development/Governance/Meta/README.md',
-    'Development/Human-References/README.md',
-    'Development/Pending/README.md',
-    'Development/Pending/index.md'
+    'GUIDE.md', 'Apps/README.md', 'Assets/README.md', 'Assets/Catalog/README.md',
+    'Development/README.md', 'Development/Documentation/README.md',
+    'Development/Source/Main-App-v18/package.json', 'Development/Source/Main-App-v19/package.json', 'Development/Source/Public-Web/v2/README.md', 'Development/Automation/Tools/serve_truth_and_dare.ps1',
+    'Development/Tests/validate_clean_structure.ps1', 'Development/Tests/validate_v18.ps1', 'Development/Tests/validate_v19.ps1', 'Development/Tests/validate_repository.ps1',
+    '_meta/README.md', '_agent/README.md', '_agent/Skills/README.md', '_human/README.md',
+    '_pending/README.md', '_pending/index.md', '_pending/Development-simplification_2026-07-19/README.md'
 )
-
 foreach ($relativePath in $requiredFiles) {
-    Assert-StructureCondition -Condition (Test-Path -LiteralPath (Join-Path $projectRoot $relativePath) -PathType Leaf) -Message "Required file exists: $relativePath"
+    Assert-StructureCondition (Test-Path -LiteralPath (Join-Path $projectRoot $relativePath) -PathType Leaf) "Required file exists: $relativePath"
+}
+
+$developmentRoot = Join-Path $projectRoot 'Development'
+$expectedDevelopmentEntries = @('Automation', 'Documentation', 'README.md', 'Source', 'Tests')
+$actualDevelopmentEntries = Get-ChildItem -LiteralPath $developmentRoot -Force | Select-Object -ExpandProperty Name
+$unexpectedDevelopmentEntries = $actualDevelopmentEntries | Where-Object { $_ -notin $expectedDevelopmentEntries }
+$missingDevelopmentEntries = $expectedDevelopmentEntries | Where-Object { $_ -notin $actualDevelopmentEntries }
+Assert-StructureCondition ($unexpectedDevelopmentEntries.Count -eq 0 -and $missingDevelopmentEntries.Count -eq 0) 'Development has only the simplified current-source, automation, tests, documentation, and README surface'
+
+$sourceEntries = @(Get-ChildItem -LiteralPath (Join-Path $developmentRoot 'Source') -Force | Select-Object -ExpandProperty Name)
+$expectedSourceEntries = @('Main-App-v18','Main-App-v19','Public-Web')
+Assert-StructureCondition ($sourceEntries.Count -eq $expectedSourceEntries.Count -and @($sourceEntries | Where-Object { $_ -notin $expectedSourceEntries }).Count -eq 0) 'Development Source contains preserved v18, active v19, and the Public Web recipe'
+
+$generatedClutter = Get-ChildItem -LiteralPath $developmentRoot -Recurse -Force | Where-Object {
+    $_.Name -eq 'node_modules' -or $_.Name -eq 'coverage' -or $_.Name -like '*.tsbuildinfo'
+}
+Assert-StructureCondition ($generatedClutter.Count -eq 0) 'Active Development contains no generated dependency, coverage, or TypeScript cache clutter'
+
+$developmentReadmePath = Join-Path $developmentRoot 'README.md'
+if (Test-Path -LiteralPath $developmentReadmePath -PathType Leaf) {
+    $developmentReadme = Get-Content -Raw -Encoding UTF8 -LiteralPath $developmentReadmePath
+    $retainedFiles = Get-ChildItem -LiteralPath $developmentRoot -Recurse -Force -File | Where-Object {
+        $_.FullName -notmatch '[\\/](node_modules|dist|coverage)[\\/]' -and
+        $_.Extension -ne '.tsbuildinfo' -and
+        $_.FullName -notmatch '[\\/]src[\\/]assets[\\/]deities[\\/]' -and
+        $_.FullName -notmatch '[\\/]Source[\\/]Main-App-v19[\\/]' -and
+        $_.FullName -notmatch '[\\/]Source[\\/]Public-Web[\\/]v2[\\/]'
+    }
+    foreach ($file in $retainedFiles) {
+        $relativePath = $file.FullName.Substring($developmentRoot.Length + 1).Replace('\', '/')
+        Assert-StructureCondition ($developmentReadme.Contains($relativePath)) "Development README explains retained file: $relativePath"
+    }
+    foreach ($annotation in @('Source/Main-App-v19/','Source/Main-App-v19/src/','Source/Main-App-v19/src/assets/deities/','Source/Public-Web/v2/','Automation/Scripts/export-standalone-v19.mjs','Automation/Scripts/finalize-pwa-v19.mjs','Automation/Scripts/finalize-public-v2.mjs','Tests/validate_v19.ps1')) {
+        Assert-StructureCondition ($developmentReadme.Contains($annotation)) "Development README annotates v19 path: $annotation"
+    }
 }
 
 $guidePath = Join-Path $projectRoot 'GUIDE.md'
 if (Test-Path -LiteralPath $guidePath -PathType Leaf) {
     $guide = Get-Content -Raw -Encoding UTF8 -LiteralPath $guidePath
     foreach ($relativePath in $requiredDirectories) {
-        $escapedPath = [regex]::Escape($relativePath)
-        Assert-StructureCondition -Condition ($guide -match $escapedPath) -Message "GUIDE annotates: $relativePath"
+        Assert-StructureCondition ($guide.Contains($relativePath)) "GUIDE annotates: $relativePath"
     }
 }
 
-if ($failures.Count -gt 0) {
+if ($failures.Count) {
     Write-Host "Clean-structure validation failed with $($failures.Count) issue(s)." -ForegroundColor Red
     exit 1
 }
-
-Write-Host 'Clean three-category structure validation passed.' -ForegroundColor Cyan
+Write-Host 'Clean simplified structure validation passed.' -ForegroundColor Cyan
 exit 0

@@ -75,3 +75,13 @@ v15 remains the immutable source reference after SHA-256 verification. v16 has v
 ## v17 Modular Release / v17 模組化 Release
 
 v17 reconstructs the governed product as React/TypeScript source with 60 reviewed bilingual prompts, all three modes, five levels, a memory-only birthday gate, accessible draw control, drag threshold, automatic flip, font controls, PNG/Web Share fallback, a complete-build PWA precache, and a generated standalone HTML. Existing v15/v16 artifacts remain unchanged. Physical iPhone installation, gesture feel, offline replay, and Share Sheet verification remain required before public deployment.
+
+The preserved v17 source is inactive history under `_pending/Development-simplification_2026-07-19/`; its standalone release remains immutable under `Apps/Standalone/`.
+
+## Current v18 Release / 目前 v18 Release
+
+v18 is the only active source line. It preserves the v17 modular policies and 430 × 932 mobile contract, then uniformly scales the whole phone shell down on desktop so the complete interface fits without document scrolling. The current launcher serves the self-contained v18 standalone release over loopback HTTP. Existing v18 generated outputs are immutable; later product changes require a new numbered release.
+
+## Current v19 Release / 目前 v19 Release
+
+v19 supersedes v18 without modifying it. It adds nine project-owned Taiwanese deity portraits, a full artwork panel followed by a separate question panel, a 1080 × 1620 keepsake PNG with the same non-overlapping structure, embedded standalone artwork, and Public Web v2. The desktop frame remains centered and shrink-to-fit; personal inputs remain client-side only.

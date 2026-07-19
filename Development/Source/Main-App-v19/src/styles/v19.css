@@ -1,0 +1,11 @@
+.encounter-card{width:min(344px,88vw);aspect-ratio:.62}
+.card-back,.card-front{border-radius:22px;overflow:hidden}
+.card-front{display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:7px;padding:9px;background:linear-gradient(160deg,#d7a366,#82452f);color:#171513;text-align:left}
+.card-title{width:100%;min-height:59px;padding:5px 10px;background:#f2d9a7;display:grid;grid-template-columns:1fr auto;align-items:end}
+.card-title span{grid-column:1/-1;color:#876743;font-size:.58em;letter-spacing:.12em}
+.card-title strong{font:700 1.45em Georgia,serif}
+.card-title small{color:#7b4b2c;font-size:.56em}
+.deity-art{display:block;width:100%;height:100%;min-height:0;object-fit:contain;object-position:center;background:#07151d;border:2px solid #3c261b}
+.question-panel{width:100%;min-height:120px;padding:10px 12px;background:#f5e4c2;border:1px solid #8f643d}
+.question-panel .card-meta{display:block;padding-bottom:5px;border-bottom:1px solid #b9976b;font-size:.58em;letter-spacing:.12em;color:#8d4d32}
+.question-panel p{font-family:Georgia,serif;font-size:.9em;line-height:1.2;margin:7px 0 0}

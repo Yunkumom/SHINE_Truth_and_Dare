@@ -1,5 +1,9 @@
 # Documentation / 文件
 
-Contains current product specifications, architecture, interaction contracts, approved designs, and implementation plans. Historical documents may describe former paths; current operational instructions must follow the root `GUIDE.md`.
+This directory contains only current product and interaction contracts. Completed designs, implementation plans, and publication history are recoverable under `_pending/Development-simplification_2026-07-19/Development/Documentation/`.
 
-保存目前產品規格、架構、互動合約、核准設計與實作計畫。歷史文件可描述舊路徑；目前操作指令必須依根目錄 `GUIDE.md`。
+此處只保留目前仍有效的產品與互動合約。已完成設計、實作計畫及發布歷史可在 `_pending/Development-simplification_2026-07-19/Development/Documentation/` 回復。
+
+The purpose of every retained document is listed in `Development/README.md`.
+
+每份保留文件的用途均列於 `Development/README.md`。
