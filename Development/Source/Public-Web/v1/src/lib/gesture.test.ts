@@ -1,0 +1,2 @@
+import {describe,it,expect} from 'vitest'; import {releaseAction} from './gesture'
+describe('v16 gesture thresholds',()=>{it('draws at 58px',()=>expect(releaseAction(false,{x:58,y:0,speed:0})).toBe('draw'));it('changes at 68px',()=>expect(releaseAction(true,{x:-68,y:0,speed:0})).toBe('previous'));it('uses velocity only after 30px',()=>{expect(releaseAction(true,{x:29,y:0,speed:.8})).toBe('snap');expect(releaseAction(true,{x:30,y:0,speed:.65})).toBe('next')})})
