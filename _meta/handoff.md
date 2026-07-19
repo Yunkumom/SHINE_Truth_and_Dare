@@ -1,30 +1,40 @@
 # Handoff / 交接
 
-## Verified State / 已驗證狀態
+## Current State / 目前狀態
 
-- Project: Truth and Dare / Encounter Cards
-- Product baseline: `app/encounter_cards_v15.html`
-- Baseline SHA-256: `C7619A49ED761E6A5552F46CB020ED1726F17FFCF305563B7403906149C4E9B0`
-- Packaging: standalone ViNext HTML with five embedded import-map JavaScript modules, React runtime, card data, styles, and images
-- Network surface: no external JavaScript and no `fetch()` calls found by static inspection
-- Repository: local Git `main`; no commit, remote, or deployment
+- Active authored source: `Development/Source/Main-App-v19/src/`
+- Verified PWA output: `Development/Source/Main-App-v19/dist/`
+- Current standalone release: `Apps/Standalone/encounter_cards_v19.html`
+- Public release: `Apps/Public-Web/v2/`
+- Desktop entry: `Open Truth and Dare.cmd`
+- Desktop URL: `http://127.0.0.1:8765/Apps/Standalone/encounter_cards_v19.html`
+- Layout contract: 430 × 932 on mobile; whole-shell shrink-to-fit on desktop.
+- v15–v17 standalone releases remain preserved and immutable.
+- Development history and inactive product lines are recoverable at `_pending/Development-simplification_2026-07-19/`.
+- Nothing was pushed, published, or deployed.
 
-## Completed / 已完成
+## Simplified Development / 精簡後 Development
 
-- Corrected the repository identity from handoff-guide-only to the Encounter Cards product.
-- Preserved the supplied v15 artifact byte-for-byte.
-- Added product, architecture, animation, and card-content specifications.
-- Kept `_human/dashboards/agent-handoff_v18.html` as a supporting Agent reference.
-- Expanded deterministic structure, integrity, and privacy validation.
+Active Development has four responsibility directories only: `Source`, `Automation`, `Tests`, and `Documentation`. `Development/README.md` explains every meaningful retained file. v17 source, unpublished Public Web work, old-version tools/tests, completed designs/plans, dependencies, and caches were moved—not deleted—to the indexed pending archive.
 
-## Known Issues and Limits / 已知問題與限制
+## Verification / 驗證
 
-- v15 is a packaged executable, not the original modular React/TypeScript source tree.
-- Static inspection does not prove full drag, flip, discard, PNG, Web Share, iPhone, or responsive behavior.
-- The v18 handoff reference uses historical `_meta/private_blueprint.md` terminology; the active repository uses `_meta/owner_private_blueprint.md`.
-- Artwork provenance and licensing have not been documented.
+Before the dependency archive move, v18 typecheck, lint, and all 12 automated tests passed. Current deterministic verification is:
 
-## Exact Next Action / 明確下一步
+```powershell
+powershell -ExecutionPolicy Bypass -File Development/Tests/validate_v18.ps1
+powershell -ExecutionPolicy Bypass -File Development/Tests/validate_repository.ps1
+```
 
-Run a human-guided mobile browser regression of `app/encounter_cards_v15.html`, recording pass/fail evidence for bilingual layout, all levels and modes, drag-to-draw, automatic flip, discard, PNG export, and iPhone sharing.
+For future source work, restore dependencies with `npm ci` inside `Development/Source/Main-App-v18/`. Do not overwrite verified v18 outputs for product changes; create the next numbered source/output release.
 
+## Known Limits / 已知限制
+
+- Physical iPhone Safari install, offline update, gesture feel, PNG, and Share Sheet behavior still need full device regression.
+- Packaged v15/v16 artwork provenance remains incomplete.
+- Material in `_pending/` requires explicit human approval before permanent disposal or reactivation.
+- The owner-private blueprint was not inspected or updated during this simplification.
+
+## Exact Next Action / 下一步
+
+Run physical iPhone regression for v18. Any later product modification should begin as a new numbered release rather than changing verified v18 output.

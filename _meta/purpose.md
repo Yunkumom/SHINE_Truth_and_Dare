@@ -18,6 +18,7 @@ People meeting for the first time, acquaintances, friends, close partners, and S
 - Chinese, English, and bilingual card experiences
 - Levels 1–5, card modes, mobile gestures, export, and sharing
 - Product governance, privacy, reconstruction, and verification documentation
+- Root-level `_meta/`, `_agent/`, `_human/`, and `_pending/` governance and review entry points
 
 ## Out of Scope / 範圍外
 
@@ -25,4 +26,3 @@ People meeting for the first time, acquaintances, friends, close partners, and S
 - Accounts, analytics, backend transmission, or cloud storage of personal fields
 - Unreviewed expansion of 18+ content or third-party artwork
 - Claiming the v15 packaged artifact is the unavailable original TypeScript source
-

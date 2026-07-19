@@ -1,20 +1,5 @@
-# Human-Facing Outputs / 人類可讀成果
+# Human References / 人類參考
 
-The primary product entry point is `../app/encounter_cards_v15.html`. Files here are supporting human-facing references, not the game runtime.
+The primary desktop entry is `Open Truth and Dare.cmd`, which serves the current `Apps/Standalone/encounter_cards_v18.html` release through loopback HTTP. Files here are supporting human-facing references, not product runtime files.
 
-主要產品入口為 `../app/encounter_cards_v15.html`。本區檔案是人類可讀支援參考，不是遊戲 runtime。
-
-## References / 參考頁面
-
-| File | Purpose | Status | Version |
-|---|---|---|---|
-| `dashboards/agent-handoff_v18.html` | Bilingual SHINE AI OS Agent handoff and repository architecture reference | Preserved supporting artifact | v18 |
-
-## Reports / 報告
-
-No reports have been created. / 尚未建立報告。
-
-## Presentations / 簡報
-
-No presentations have been created. / 尚未建立簡報。
-
+主要電腦入口為 `Open Truth and Dare.cmd`，它會透過 loopback HTTP 開啟目前 `Apps/Standalone/encounter_cards_v18.html`。本區檔案是人類可讀參考，不是產品 runtime。

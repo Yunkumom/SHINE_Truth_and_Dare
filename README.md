@@ -1,63 +1,65 @@
 # Truth and Dare
 
-Truth and Dare is the governed repository for **Encounter Cards**, a bilingual mobile-first conversation card game. The current executable baseline is Encounter Cards v15, preserved as a standalone packaged HTML application.
+Truth and Dare is the governed repository for **Encounter Cards**, a bilingual, iPhone-first conversation card game. Encounter Cards v19 is the current maintained release; v15–v18 remain immutable standalone references.
 
-Truth and Dare 是雙語、行動裝置優先的對話卡牌遊戲 **相遇卡 Encounter Cards** 的治理型 repository。目前可執行基準為 Encounter Cards v15，並以獨立封裝 HTML 完整保存。
+Truth and Dare 是雙語、iPhone 優先的對話卡牌遊戲 **相遇卡 Encounter Cards**。v19 是目前維護版本；v15–v18 保留為不可變 standalone 參考版本。
 
-## Status / 狀態
+## Start / 開始
 
-- Product baseline: `app/encounter_cards_v15.html`
-- Baseline integrity: byte-identical to the supplied v15 artifact
-- Source form: packaged ViNext/React HTML, not the original modular TypeScript source tree
-- Repository: local Git on `main`; no commit, remote, or deployment
+- Double-click `Open Truth and Dare.cmd`; it serves and opens the current v19 release at `127.0.0.1:8765`.
+- Public site: `https://yunkumom.github.io/SHINE_Truth_and_Dare/` (available after the Pages workflow completes).
+- Current authored source: `Development/Source/Main-App-v19/src/`
+- Current verified PWA build: `Development/Source/Main-App-v19/dist/`
+- Current standalone release: `Apps/Standalone/encounter_cards_v19.html`
+- Deity source artwork: `Assets/Deities/`.
+- Complete Development file guide: `Development/README.md`
+- Recoverable retired development material: `_pending/Development-simplification_2026-07-19/`
 
-- 產品基準：`app/encounter_cards_v15.html`
-- 基準完整性：與提供的 v15 檔案逐位元相同
-- 原始碼形式：ViNext／React 封裝 HTML，不是原始模組化 TypeScript source tree
-- Repository：本機 Git `main`；尚無 commit、remote 或部署
+## Repository / Repository 結構
 
-## Quick Start / 快速開始
-
-Open `app/encounter_cards_v15.html` in a modern browser. The application contains its runtime, card data, styles, and images in one file; no package installation or environment variable is required.
-
-使用現代瀏覽器開啟 `app/encounter_cards_v15.html`。應用程式的 runtime、卡牌資料、樣式與圖片都包含在單一檔案中，不需安裝套件或設定環境變數。
-
-Validate the repository from PowerShell:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File tests/validate_repository.ps1
+```text
+Truth and Dare/
+├── Apps/          # Preserved runnable releases
+├── Assets/        # Reusable assets and provenance
+├── Development/   # Current v18 source, tools, tests, and contracts only
+├── _meta/         # Purpose, roadmap, handoff, changelog, blueprints
+├── _agent/        # Agent guidance
+├── _human/        # Human-facing support references
+├── _pending/      # Recoverable retired or undecided material
+├── GUIDE.md
+├── AGENTS.md
+└── Open Truth and Dare.cmd
 ```
 
-## Product Features / 產品功能
+Development was conservatively simplified on 2026-07-19. v17 source, unpublished Public Web work, old-version tooling, historical designs/plans, and generated dependencies were moved—not deleted—to `_pending/Development-simplification_2026-07-19/`.
 
-- Chinese, English, and bilingual presentation / 中文、英文與雙語顯示
-- Truth, Dare, and Surprise card modes / 真心話、小挑戰與隨機抽卡
-- Five familiarity levels, including an 18+ Level 5 / 五個熟識等級，包含 18+ Level 5
-- Player names and optional contact fields / 玩家姓名與選填聯絡方式
-- Mobile drag, flip, and discard-oriented card experience / 行動裝置拖曳、翻牌與丟棄導向的卡牌體驗
-- Adjustable text size and language preferences / 可調整文字大小與語言偏好
-- PNG card creation with Web Share and download fallback / PNG 卡片生成、Web Share 與下載備援
+Development 已於 2026-07-19 保守精簡。v17 source、未發布 Public Web、舊版工具、歷史 designs/plans 與生成依賴均移入 `_pending/Development-simplification_2026-07-19/`，沒有永久刪除。
 
-## Folder Guide / 資料夾導覽
+## Development / 開發
 
-- `app/`: immutable versioned executable product baselines / 不可覆寫的版本化產品執行基準
-- `docs/`: product, architecture, animation, card-content, design, and implementation documentation / 產品、架構、動畫、卡牌內容、設計與執行文件
-- `_meta/`: purpose, roadmap, handoff, reconstruction blueprints, and change history / 目的、路線圖、交接、重建藍圖與變更紀錄
-- `_agent/`: Agent workspace index / Agent 工作區索引
-- `skills/`: project Skill index; no active project Skills yet / 專案 Skill 索引，目前沒有作用中 Skill
-- `_human/`: human-facing supporting outputs, including the Agent handoff reference / 人類可讀支援成果，包含 Agent 交接參考
-- `_pending/`: human-review buffer; Agents never permanently delete project content / 人工審查緩衝區，Agent 不得永久刪除專案內容
-- `tests/`: deterministic repository validation / 可重複執行的 repository 驗證
+```powershell
+Set-Location Development/Source/Main-App-v18
+npm ci
+npm run dev
+npm run typecheck
+npm run lint
+npm test
+```
 
-## Privacy / 隱私
+Existing v18 outputs are immutable. Product changes after v18 require a new numbered source/output version rather than overwriting v18.
 
-The packaged application contains no backend or account integration. Static inspection found browser-local preference keys for language and font scale. Names, contact fields, and notes must not be transmitted or added to public documentation. `_meta/owner_private_blueprint.md` is local-only and excluded from Git.
+完整 repository 驗證：
 
-封裝應用程式沒有後端或帳號整合。靜態檢查發現語言與字體比例的瀏覽器本機偏好 key。姓名、聯絡欄位與留言不得傳輸或加入公開文件。`_meta/owner_private_blueprint.md` 僅供本機使用並由 Git 排除。
+```powershell
+powershell -ExecutionPolicy Bypass -File Development/Tests/validate_repository.ps1
+```
 
-## Important Source Limitation / 重要原始碼限制
+## Product and Privacy Contract / 產品與隱私合約
 
-v15 is a reproducible executable artifact, but maintainable feature development requires recovery or reconstruction of modular React/TypeScript source. Do not edit the 11.7 MB packaged file in place; create a new version or an approved modular-source migration.
+- Chinese, English, and bilingual modes; Levels 1–5; Truth, Dare, and Surprise.
+- 430 × 932 iPhone Pro Max frame; v18 uniformly shrinks the complete frame on desktop when required.
+- Names, contacts, birthdays, notes, answers, and adult-content choices remain privacy-sensitive and client-side.
+- No analytics, backend, accounts, or personal-data transmission without explicit approval and privacy review.
+- Only language and font-scale preferences may persist locally.
 
-v15 是可重現的執行產物，但可維護的功能開發仍需取回或重建模組化 React／TypeScript 原始碼。不要直接修改 11.7 MB 封裝檔；應建立新版本或經核准的模組化 source migration。
-
+The owner-private blueprint remains local-only and excluded from Git.

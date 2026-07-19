@@ -1,0 +1,18 @@
+{
+  "version": "v1",
+  "policy": "Public, named institutional sources only; no sacred or restricted story detail is reproduced.",
+  "cards": [
+    {"id":"tw-mazu","source":"Taiwan Bureau of Cultural Heritage","url":"https://twh.boch.gov.tw/non_material/intro.aspx?id=751"},
+    {"id":"tw-tiger-aunt","source":"National Museum of Taiwan Literature","url":"https://tlvm.nmtl.gov.tw/zh/Theme/ExhibitionArticleCont?Exbid=196"},
+    {"id":"tw-lintou","source":"National Museum of Taiwan Literature","url":"https://tlvm.nmtl.gov.tw/zh/Theme/ExhibitionArticleCont?Exbid=205"},
+    {"id":"tw-wangye","source":"Taiwan Bureau of Cultural Heritage","url":"https://twh.boch.gov.tw/non_material/intro.aspx?id=750"},
+    {"id":"tw-serpent","source":"National Museum of Taiwan Literature","url":"https://db.nmtl.gov.tw/site2/dictionary?id=Dictionary02092"},
+    {"id":"tw-mosina","source":"National Museum of Taiwan Literature","url":"https://tlvm.nmtl.gov.tw/zh/Theme/ExhibitionArticleCont?Exbid=278"},
+    {"id":"au-rainbow-serpent","source":"Australian Museum","url":"https://australian.museum/about/history/exhibitions/indigenous-australians/"},
+    {"id":"au-seven-sisters","source":"National Museum of Australia","url":"https://www.nma.gov.au/exhibitions/songlines/about"},
+    {"id":"au-bunyip","source":"National Museum of Australia","url":"https://www.nma.gov.au/whats-on/fairfax-discovery-centre/expansion/bunyips-and-billabongs"},
+    {"id":"au-minmin","source":"Boulia Shire Council","url":"https://www.boulia.qld.gov.au/Tourism/Min-Min-Encounter-Visitor-Information-Centre"},
+    {"id":"au-dropbear","source":"Australian Museum","url":"https://australian.museum/learn/animals/mammals/drop-bear/"},
+    {"id":"au-nedkelly","source":"National Museum of Australia","url":"https://www.nma.gov.au/defining-moments/resources/ned-kelly"}
+  ]
+}

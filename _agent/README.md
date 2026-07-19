@@ -1,10 +1,9 @@
 # Agent Workspace / Agent 工作區
 
-No reusable project prompts, stored context, long-term memory, or formal workflows are active yet.
+Before meaningful changes, Agents read the root `README.md`, `GUIDE.md`, `AGENTS.md`, current `_meta/` state, `Development/README.md`, and relevant current product contracts under `Development/Documentation/`.
 
-目前沒有作用中的可重用專案 prompt、儲存脈絡、長期記憶或正式 workflow。
+Agent 進行實質修改前，應閱讀上述現行治理與產品文件。
 
-Agents must follow the root `AGENTS.md`, the project `AGENTS.md`, and the approved files under `docs/` before meaningful changes.
+Project-specific reusable Skills live under `_agent/Skills/`. Completed designs and plans are inactive history under `_pending/Development-simplification_2026-07-19/Development/Documentation/`; consult them only when historical decisions are relevant.
 
-Agent 進行實質修改前，必須遵循根目錄 `AGENTS.md`、專案 `AGENTS.md` 與 `docs/` 下已核准文件。
-
+專案專用 Skills 位於 `_agent/Skills/`。已完成 designs/plans 已封存；只有歷史決策相關時才查閱。

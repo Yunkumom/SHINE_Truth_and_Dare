@@ -1,0 +1,37 @@
+name: Verify and deploy Truth and Dare Pages
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm, cache-dependency-path: Development/Source/Main-App-v19/package-lock.json }
+      - run: npm ci
+        working-directory: Development/Source/Main-App-v19
+      - run: npm test && npm run typecheck && npm run build
+        working-directory: Development/Source/Main-App-v19
+      - name: Verify committed immutable v2 output
+        run: git diff --exit-code -- Apps/Public-Web/v2
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: Apps/Public-Web/v2 }
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

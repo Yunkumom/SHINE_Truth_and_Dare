@@ -2,16 +2,38 @@
 .env
 .env.*
 !.env.example
+!.env.sample
+*.local
+*.local.*
 
 # Private local-only blueprint
 _meta/owner_private_blueprint.md
 _meta/private_blueprint.md
+_meta/*private*blueprint*.md
 
 # Secrets and credentials
 secrets/
 credentials/
+credentials.json
+service-account*.json
 *.pem
 *.key
+*.p12
+*.pfx
+*.jks
+id_rsa
+id_rsa.*
+id_ed25519
+id_ed25519.*
+
+# Local databases and runtime data
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.sqlite-*
+*.mdb
+*.accdb
 
 # Private local data
 _private/
@@ -21,8 +43,41 @@ _local/
 _agent/memory/private/
 
 # Temporary files
+*.log
+logs/
+.cache/
+tmp/
+temp/
 .DS_Store
 Thumbs.db
+desktop.ini
 *.tmp
 *.temp
+*.tsbuildinfo
 
+# Web build caches and generated output
+Development/Source/Main-App-v18/node_modules/
+Development/Source/Main-App-v18/coverage/
+Development/Source/Main-App-v18/*.tsbuildinfo
+Development/Source/Main-App-v18/vite.config.js
+Development/Source/Main-App-v18/vite.config.d.ts
+Development/Source/Main-App-v19/node_modules/
+Development/Source/Main-App-v19/coverage/
+Development/Source/Main-App-v19/*.tsbuildinfo
+Development/Source/Main-App-v19/vite.config.js
+Development/Source/Main-App-v19/vite.config.d.ts
+Development/Source/Main-App-v19/public/assets/deities/
+
+# Editors, dependencies, tests, and generated builds
+.idea/
+.vscode/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+node_modules/
+.npm/
+.pnpm-store/
+dist/
+build/
+coverage/
