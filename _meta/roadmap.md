@@ -72,3 +72,13 @@
 - [x] Add desktop PNG download fallback and Public Web v2 output.
 - [x] Publish Public Web v2 through GitHub Pages and verify HTTP 200.
 - [ ] Complete physical iPhone Share Sheet and PWA installation regression.
+
+## Phase 9 — v20 v16 visual restoration / v20 v16 視覺回歸
+
+- [x] Create v20 without modifying v15–v19.
+- [x] Restore the v16 entrance hierarchy and premium navy/gold/ivory presentation.
+- [x] Add nine alternate deity poses for 18 total, with Taiwan motifs hidden in physical details.
+- [x] Independently compose question, deity image, and blessing while requiring every keepsake to include a blessing.
+- [x] Verify exact horizontal/vertical desktop centering at 1920×826, 1440×900, 1280×720, and 1024×768; verify 430×932 mobile geometry.
+- [x] Add explicit desktop PNG download fallback coverage and Public Web v3.
+- [ ] Complete physical iPhone Share Sheet, PWA install, offline-update, and gesture regression.

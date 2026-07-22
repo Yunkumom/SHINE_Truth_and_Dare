@@ -19,3 +19,9 @@ Original PNG generations remain in the local Codex generated-images directory. W
 The legacy 12 embedded v16 card images were statically extracted from the preserved supplied artifact for structural fidelity. Their external provenance is not asserted by this record; do not reuse them outside this governed release without a separate rights review.
 
 舊有 12 張內嵌 v16 卡圖由使用者提供且保存的產物中靜態抽取，以維持原始卡片一致性。本紀錄不主張其外部權利來源；未另行完成權利審查前，不得在此治理版以外重用。
+
+## Encounter Cards v19/v20 deity artwork / v19／v20 神祇圖
+
+The 18 PNG deity sources under `Assets/Deities/` are project-owned AI generations created with OpenAI image generation. The original nine were generated on 2026-07-19; the nine `v20-variants/` were generated on 2026-07-22 from project-owned identity references and new prompts. No third-party artwork was copied. The v20 prompt set requested respectful Taiwanese mythic painterly realism, new poses/actions, no text or watermark, and one hidden Taiwan motif in a physical object or pattern for each image.
+
+`Assets/Deities/` 的 18 張 PNG 神祇原圖為本專案使用 OpenAI 圖像生成建立的自有素材。原始九張建立於 2026-07-19；`v20-variants/` 九張於 2026-07-22 以專案自有角色參考與新提示生成。提示要求尊重神祇、台灣神話繪畫寫實、新姿勢／動作、無文字與浮水印，並在每張圖的器物或紋樣中藏入一個台灣意象。

@@ -43,3 +43,13 @@ Git 歷史中提及的其他舊 pending 項目在本次精簡前即不在 workin
 
 - `_pending/legacy-index-snapshot_2026-07-19/index.md` preserves the older, narrower pending register that appeared locally after publication. The canonical active register remains this file.
 - 此快照保留較舊且範圍較窄的 pending 清單；正式索引仍是本檔。
+
+## v20 pre-release centering failure / v20 發布前置中失敗產物
+
+- `_pending/v20-pre-release-centering-failure_2026-07-22/` preserves unpublished v20 standalone and Public Web v3 checkpoints from before the centering fix and before the explicit desktop-download contract test. These files are evidence only and are not release candidates.
+- 此目錄保留 v20／Public Web v3 在置中修正前、以及桌機下載合約測試補齊前的未發布檢查點；僅作為驗證紀錄，不可發布。
+
+## v20 generated development state / v20 生成開發狀態
+
+- `_pending/v20-generated-development-state_2026-07-22/` retains the reproducible v20 `node_modules` directory and TypeScript build caches after final verification so active Development remains uncluttered. Restore with `npm ci` instead of treating these files as authored source.
+- 此目錄保留 v20 最終驗證後可重建的依賴與 TypeScript cache，讓作用中的 Development 維持簡潔；正常情況請用 `npm ci` 還原。
