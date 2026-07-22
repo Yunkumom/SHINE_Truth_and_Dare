@@ -36,7 +36,7 @@ Current desktop data flow:
 Open Truth and Dare.cmd
   -> Development/Automation/Tools/serve_truth_and_dare.ps1
   -> python http.server on 127.0.0.1:8765
-  -> Apps/Standalone/encounter_cards_v19.html
+  -> Apps/Standalone/encounter_cards_v21.html
   -> embedded React/CSS runtime
   -> interactive game
 ```
@@ -80,6 +80,10 @@ v18 introduced the modular session UI, 60 bilingual cards, policy libraries, PWA
 
 `Development/Source/Main-App-v19/src/` preserves the first deity-card source boundary. Its verified `dist/`, standalone v19, and Public Web v2 remain immutable.
 
-## Current v20 Modular Architecture / 目前 v20 模組化架構
+## Preserved v20 Modular Architecture / 保留的 v20 模組化架構
 
-`Development/Source/Main-App-v20/src/` is the current authored boundary. `App.tsx` owns the v16-inspired setup and session composition; `lib/viewport-scale.ts` owns the 430 × 932 fit; `styles/app.css` anchors the scaled shell at the exact viewport center; `lib/deity-art.ts` registers 18 bundled WebP variants and separate export regions; `lib/encounter.ts` independently selects artwork and blessing; `data/blessings.ts` stores bilingual blessings; and `lib/share.ts` renders and delivers the 1080 × 1620 PNG. Verified `dist/`, standalone v20, and Public Web v3 are immutable; later behavior requires v21.
+`Development/Source/Main-App-v20/src/` preserves the visual and composition baseline. `App.tsx` owns the v16-inspired setup and session composition; `lib/viewport-scale.ts` owns the 430 × 932 fit; `styles/app.css` anchors the scaled shell at the exact viewport center; `lib/deity-art.ts` registers 18 bundled WebP variants and separate export regions; `lib/encounter.ts` independently selects artwork and blessing; `data/blessings.ts` stores bilingual blessings; and `lib/share.ts` renders and delivers the 1080 × 1620 PNG. Verified `dist/`, standalone v20, and Public Web v3 are immutable.
+
+## Current v21 Modular Architecture / 目前 v21 模組化架構
+
+`Development/Source/Main-App-v21/src/` is the current authored boundary. It copies the verified v20 architecture and adds `TaiwanHotspot` data to every `ArtworkVariant`. `components/TaiwanReveal.tsx` owns pointer and keyboard timing, movement cancellation, propagation isolation, visibility state, and inline SVG locator rendering. Hotspots use percentages relative to `.mythic-art-frame`; `styles/taiwan-reveal.css` owns positioning, gold pulse/halo motion, touch-callout suppression, focus treatment, and the reduced-motion fallback. `App.tsx` composes this runtime-only layer around the selected image. `lib/share.ts` still renders directly from the stored artwork and deliberately has no locator dependency. Verified `dist/`, standalone v21, and Public Web v4 are immutable; later behavior requires v22.

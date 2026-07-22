@@ -1,8 +1,8 @@
 # Development / 開發資料
 
-This directory contains preserved v18/v19 source lines and the current Encounter Cards v20 source line. Historical v17 source, older completed plans, old-version builders, and generated dependencies remain recoverable under `../_pending/`.
+This directory contains preserved v18–v20 source lines and the current Encounter Cards v21 source line. Historical v17 source, older completed plans, old-version builders, and generated dependencies remain recoverable under `../_pending/`.
 
-此目錄保留 v18／v19 source 與目前作用中的 Encounter Cards v20 source。v17 歷史 source、舊版計畫、builder 與可重建依賴仍可由 `../_pending/` 回復。
+此目錄保留 v18–v20 source 與目前作用中的 Encounter Cards v21 source。v17 歷史 source、舊版計畫、builder 與可重建依賴仍可由 `../_pending/` 回復。
 
 ## Structure / 結構
 
@@ -11,10 +11,12 @@ Development/
 ├── README.md
 ├── Source/Main-App-v18/       # Preserved v18 React/TypeScript application
 ├── Source/Main-App-v19/       # Preserved first deity-card source line
-├── Source/Main-App-v20/       # Current v16-inspired deity-card application
+├── Source/Main-App-v20/       # Preserved v16-inspired deity-card application
+├── Source/Main-App-v21/       # Current hidden-Taiwan reveal application
 ├── Source/Public-Web/v2/      # Preserved Public v2 source recipe
-├── Source/Public-Web/v3/      # Current Public v3 source recipe
-├── Automation/Scripts/        # Versioned v18-v20 builders and exporters
+├── Source/Public-Web/v3/      # Preserved Public v3 source recipe
+├── Source/Public-Web/v4/      # Current Public v4 source recipe
+├── Automation/Scripts/        # Versioned v18-v21 builders and exporters
 ├── Automation/Tools/          # Local desktop launcher server
 ├── Tests/                     # Current structure and release contracts
 └── Documentation/             # Current product and interaction contracts
@@ -33,6 +35,8 @@ Development/
 | `Documentation/pwa-offline-strategy.md` | PWA precache, offline readiness, update, and fallback policy. / PWA 預快取、離線狀態、更新與備援政策。 |
 | `Documentation/V20_VISUAL_DESIGN.md` | Approved v16-inspired entrance, card, artwork, and centering design contract. / 已核准的 v20 視覺合約。 |
 | `Documentation/V20_IMPLEMENTATION_PLAN.md` | Testable v20 source, asset, release, and validation plan. / 可驗證的 v20 實作計畫。 |
+| `Documentation/V21_TAIWAN_REVEAL_DESIGN.md` | Approved long-press timing, locator, hotspot, motion, and accessibility contract. / 已核准的 v21 長按、定位、動畫與無障礙合約。 |
+| `Documentation/V21_TAIWAN_REVEAL_PLAN.md` | Test-first v21 source, release, documentation, and regression plan. / 測試優先的 v21 實作與驗證計畫。 |
 
 ## Automation and Validation / 自動化與驗證
 
@@ -46,16 +50,26 @@ Development/
 | `Automation/Scripts/export-standalone-v20.mjs` | Produces the artwork-embedded v20 standalone without overwriting an existing release. / 產生內嵌 18 張神祇圖的 v20 單檔版。 |
 | `Automation/Scripts/finalize-pwa-v20.mjs` | Finalizes the v20 offline precache. / 完成 v20 離線快取。 |
 | `Automation/Scripts/finalize-public-v3.mjs` | Creates immutable Public Web v3 from the verified v20 build. / 從 v20 建立不可變 Public Web v3。 |
-| `Automation/Tools/serve_truth_and_dare.ps1` | Starts a loopback-only HTTP server and opens current v20. / 啟動僅限本機的 HTTP server 並開啟目前 v20。 |
+| `Automation/Scripts/export-standalone-v21.mjs` | Produces immutable standalone v21 with artwork and reveal runtime embedded. / 產生內嵌圖像與揭示互動的 v21 單檔版。 |
+| `Automation/Scripts/finalize-pwa-v21.mjs` | Finalizes the v21 offline precache. / 完成 v21 離線快取。 |
+| `Automation/Scripts/finalize-public-v4.mjs` | Creates immutable Public Web v4 from the verified v21 build. / 從 v21 建立不可變 Public Web v4。 |
+| `Automation/Tools/serve_truth_and_dare.ps1` | Starts a loopback-only HTTP server and opens current v21. / 啟動僅限本機的 HTTP server 並開啟目前 v21。 |
 | `Tests/validate_v18.ps1` | Verifies preserved v18 contracts and release hashes. / 驗證保留的 v18 合約與 release 雜湊。 |
 | `Tests/validate_v19.ps1` | Verifies preserved v19 artwork, standalone embedding, hash, and Public Web v2 output. / 驗證保留的 v19 圖像、單檔、雜湊與公開 v2。 |
 | `Tests/validate_v20.ps1` | Verifies v20 visual markers, 18 artworks, blessing/download contracts, hashes, public output, and launcher target. / 驗證 v20 視覺、18 張圖、祝福／下載、雜湊、公開輸出與啟動器。 |
+| `Tests/validate_v21.ps1` | Verifies all 18 hotspots, long-press timing, animation, keyboard parity, release hash, Public Web v4, and launcher target. / 驗證 18 個熱點、長按時序、動畫、鍵盤、雜湊、公開 v4 與啟動器。 |
 | `Tests/validate_clean_structure.ps1` | Verifies the simplified directory contract. / 驗證精簡後的目錄合約。 |
-| `Tests/validate_repository.ps1` | Runs the complete v18–v20 and structure contract. / 執行完整 v18–v20 與結構驗證。 |
+| `Tests/validate_repository.ps1` | Runs the complete v18–v21 and structure contract. / 執行完整 v18–v21 與結構驗證。 |
+
+## Main-App-v21 additions / v21 新增內容
+
+`Source/Main-App-v21/` is the current authored application, with its maintained code under `Source/Main-App-v21/src/`. `Source/Main-App-v21/src/components/TaiwanReveal.tsx` owns the 600 ms press-and-hold controller, 3-second post-release timer, movement cancellation, gesture isolation, and Enter/Space parity. `Source/Main-App-v21/src/lib/deity-art.ts` maps all 18 artworks to independent percentage-based hotspots, and `Source/Main-App-v21/src/styles/taiwan-reveal.css` owns the gold Taiwan outline, blinking halo, focus treatment, and reduced-motion fallback. The overlay remains runtime-only and is not part of `Source/Main-App-v21/src/lib/share.ts` PNG export.
+
+`Source/Main-App-v21/dist/`, `Apps/Standalone/encounter_cards_v21.html`, and `Apps/Public-Web/v4/` are generated verified release outputs; never hand-edit them. `Tests/validate_v21.ps1` verifies the release contract.
 
 ## Main-App-v20 additions / v20 新增內容
 
-`Source/Main-App-v20/` is the current authored application. `Source/Main-App-v20/src/` restores the v16 entrance hierarchy, keeps the 430 × 932 mobile contract, anchors the scaled shell to the exact desktop center, independently composes question/artwork/blessing, and exports a separate-panel 1080 × 1620 PNG. `Source/Main-App-v20/src/assets/deities/` contains 18 optimized local artworks. `Source/Main-App-v20/src/styles/v20.css` owns the v16-inspired presentation, `src/lib/encounter.ts` owns independent selection, `src/data/blessings.ts` owns bilingual blessings, and `src/lib/share.ts` owns PNG, Web Share, and desktop download fallback. `Source/Public-Web/v3/README.md` documents the matching public recipe.
+`Source/Main-App-v20/` is the preserved visual baseline. `Source/Main-App-v20/src/` restores the v16 entrance hierarchy, keeps the 430 × 932 mobile contract, anchors the scaled shell to the exact desktop center, independently composes question/artwork/blessing, and exports a separate-panel 1080 × 1620 PNG. `Source/Main-App-v20/src/assets/deities/` contains 18 optimized local artworks. `Source/Main-App-v20/src/styles/v20.css` owns the v16-inspired presentation, `src/lib/encounter.ts` owns independent selection, `src/data/blessings.ts` owns bilingual blessings, and `src/lib/share.ts` owns PNG, Web Share, and desktop download fallback. `Source/Public-Web/v3/README.md` documents the matching preserved public recipe.
 
 `Source/Main-App-v20/dist/` and `Apps/Standalone/encounter_cards_v20.html` are generated verified release outputs; never hand-edit them. `Tests/validate_v20.ps1` verifies the release contract.
 
@@ -121,7 +135,7 @@ Development/
 `node_modules/` 與 `*.tsbuildinfo` 是生成內容，因此不留在作用中 Development。需要開發時才還原依賴：
 
 ```powershell
-Set-Location "Development/Source/Main-App-v20"
+Set-Location "Development/Source/Main-App-v21"
 npm ci
 ```
 
@@ -129,20 +143,20 @@ npm ci
 
 ```powershell
 # Restore dependencies, then develop and verify source
-Set-Location "Development/Source/Main-App-v20"
+Set-Location "Development/Source/Main-App-v21"
 npm ci
 npm run dev
 npm run typecheck
 npm run lint
 npm test
 
-# Released v20 outputs are immutable; use these checks for maintenance
+# Released v21 outputs are immutable; use these checks for maintenance
 npm run build
 
 # Repository validation from the project root
 powershell -ExecutionPolicy Bypass -File Development/Tests/validate_repository.ps1
 ```
 
-Existing v15–v20 generated outputs are preserved. Do not rerun an exporter to overwrite v20; create v21 source/output artifacts for new behavior. Direct `file://` execution is unsupported for the complete contract; use `Open Truth and Dare.cmd`.
+Existing v15–v21 generated outputs are preserved. Do not rerun an exporter to overwrite v21; create v22 source/output artifacts for new behavior. Direct `file://` execution is unsupported for the complete contract; use `Open Truth and Dare.cmd`.
 
-既有 v15–v20 生成成品已保存。不得覆寫 v20；新行為必須建立 v21 source/output。完整合約不支援直接使用 `file://`，請使用根目錄的 `Open Truth and Dare.cmd`。
+既有 v15–v21 生成成品已保存。不得覆寫 v21；新行為必須建立 v22 source/output。完整合約不支援直接使用 `file://`，請使用根目錄的 `Open Truth and Dare.cmd`。

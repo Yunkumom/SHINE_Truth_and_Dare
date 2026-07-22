@@ -1,16 +1,16 @@
 # Truth and Dare
 
-Truth and Dare is the governed repository for **Encounter Cards**, a bilingual, iPhone-first conversation card game. Encounter Cards v20 is the current maintained release; v15–v19 remain immutable standalone references.
+Truth and Dare is the governed repository for **Encounter Cards**, a bilingual, iPhone-first conversation card game. Encounter Cards v21 is the current maintained release; v15–v20 remain immutable standalone references.
 
-Truth and Dare 是雙語、iPhone 優先的對話卡牌遊戲 **相遇卡 Encounter Cards**。v20 是目前維護版本；v15–v19 保留為不可變 standalone 參考版本。
+Truth and Dare 是雙語、iPhone 優先的對話卡牌遊戲 **相遇卡 Encounter Cards**。v21 是目前維護版本；v15–v20 保留為不可變 standalone 參考版本。
 
 ## Start / 開始
 
-- Double-click `Open Truth and Dare.cmd`; it serves and opens the current v20 release at `127.0.0.1:8765`.
+- Double-click `Open Truth and Dare.cmd`; it serves and opens the current v21 release at `127.0.0.1:8765`.
 - Public site: `https://yunkumom.github.io/SHINE_Truth_and_Dare/` (available after the Pages workflow completes).
-- Current authored source: `Development/Source/Main-App-v20/src/`
-- Current verified PWA build: `Development/Source/Main-App-v20/dist/`
-- Current standalone release: `Apps/Standalone/encounter_cards_v20.html`
+- Current authored source: `Development/Source/Main-App-v21/src/`
+- Current verified PWA build: `Development/Source/Main-App-v21/dist/`
+- Current standalone release: `Apps/Standalone/encounter_cards_v21.html`
 - Deity source artwork: `Assets/Deities/`.
 - Complete Development file guide: `Development/README.md`
 - Recoverable retired development material: `_pending/Development-simplification_2026-07-19/`
@@ -21,7 +21,7 @@ Truth and Dare 是雙語、iPhone 優先的對話卡牌遊戲 **相遇卡 Encoun
 Truth and Dare/
 ├── Apps/          # Preserved runnable releases
 ├── Assets/        # Reusable assets and provenance
-├── Development/   # Preserved v18/v19 plus current v20 source, tools, tests, and contracts
+├── Development/   # Preserved earlier lines plus current v21 source, tools, tests, and contracts
 ├── _meta/         # Purpose, roadmap, handoff, changelog, blueprints
 ├── _agent/        # Agent guidance
 ├── _human/        # Human-facing support references
@@ -38,7 +38,7 @@ Development 已於 2026-07-19 保守精簡。v17 source、未發布 Public Web�
 ## Development / 開發
 
 ```powershell
-Set-Location Development/Source/Main-App-v20
+Set-Location Development/Source/Main-App-v21
 npm ci
 npm run dev
 npm run typecheck
@@ -46,7 +46,7 @@ npm run lint
 npm test
 ```
 
-Existing v15–v20 outputs are immutable. Product changes after v20 require v21 rather than overwriting a released version.
+Existing v15–v21 outputs are immutable. Product changes after v21 require v22 rather than overwriting a released version.
 
 完整 repository 驗證：
 
@@ -57,8 +57,9 @@ powershell -ExecutionPolicy Bypass -File Development/Tests/validate_repository.p
 ## Product and Privacy Contract / 產品與隱私合約
 
 - Chinese, English, and bilingual modes; Levels 1–5; Truth, Dare, and Surprise.
-- 430 × 932 iPhone Pro Max frame; v20 restores the v16 visual hierarchy and uniformly shrinks the complete frame around the exact desktop center.
-- Eighteen deity artworks, independent question/artwork pairing, and a required blessing on every commemorative PNG.
+- 430 × 932 iPhone Pro Max frame; v21 preserves the v16-inspired hierarchy and uniformly shrinks the complete frame around the exact desktop center.
+- Eighteen deity artworks with independent hidden-Taiwan hotspots; hold an artwork for 600 ms to reveal a blinking locator that remains for 3 seconds after release.
+- Independent question/artwork pairing and a required blessing on every commemorative PNG; the runtime locator is not exported.
 - Names, contacts, birthdays, notes, answers, and adult-content choices remain privacy-sensitive and client-side.
 - No analytics, backend, accounts, or personal-data transmission without explicit approval and privacy review.
 - Only language and font-scale preferences may persist locally.

@@ -53,9 +53,6 @@ Assert-V20Condition ($shareSource -match 'BLESSING' -and $shareSource -match 'an
 $layoutSource = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot 'Development/Source/Main-App-v20/src/styles/app.css')
 Assert-V20Condition ($layoutSource -match 'translate\(-50%, -50%\).*scale' -and $layoutSource -match 'left: 50%' -and $layoutSource -match 'top: 50%') 'Scaled desktop phone is anchored to the exact viewport center'
 
-$server = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot 'Development/Automation/Tools/serve_truth_and_dare.ps1')
-Assert-V20Condition ($server -match 'encounter_cards_v20\.html' -and $server -match 'encounter-release.*V20') 'Desktop launcher serves and verifies v20'
-
 if ($failures.Count) {
     Write-Host "v20 validation failed with $($failures.Count) issue(s)." -ForegroundColor Red
     exit 1

@@ -46,3 +46,13 @@ This document records confirmed product intent. v16 browser testing verified lan
 v17 implements a pointer-distance draw threshold, automatic card flip, keyboard/button draw alternative, and reduced-motion fade. Automated tests cover setup entry and policy functions; physical pointer feel and continuous discard behavior still require browser and device evidence.
 
 v18 introduced whole-shell desktop fitting. v19 preserved that interaction contract and added the first deity artwork/question layout. v20 keeps automatic flip and drag-to-next behavior, adds a stable button alternative, and pins the complete scaled phone to the exact desktop center. Automated browser verification covers entrance, Begin, draw, flip, and non-overlapping art/question/blessing geometry; physical pointer feel and iPhone Share Sheet behavior still require device regression.
+
+## v21 Hidden-Taiwan Reveal / v21 藏台灣揭示
+
+- Pointer down on the artwork starts a 600 ms hold timer without starting the parent card drag.
+- Moving more than 12 CSS pixels before commitment cancels the pending reveal.
+- At commitment, a gold Taiwan outline and expanding halo pulse at the selected artwork's independent percentage hotspot.
+- Pointer release or cancellation after commitment starts a 3-second visibility timer; early release shows nothing.
+- Enter and Space trigger the same locator for 3 seconds when the artwork is focused.
+- Native image drag, selection, touch callout, and context menu are disabled only inside the artwork target.
+- `prefers-reduced-motion: reduce` removes continuous animation while retaining a clearly visible steady outline.

@@ -16,7 +16,8 @@ $requiredFiles = @(
     '_agent/README.md', '_agent/Skills/README.md', '_human/README.md', '_human/code-learning-tool.html', '_pending/README.md', '_pending/index.md',
     'Apps/Standalone/encounter_cards_v15.html', 'Apps/Standalone/encounter_cards_v16.html',
     'Apps/Standalone/encounter_cards_v17.html', 'Apps/Standalone/encounter_cards_v18.html', 'Apps/Standalone/encounter_cards_v19.html',
-    'Apps/Standalone/encounter_cards_v20.html', 'Apps/Public-Web/v2/index.html', 'Apps/Public-Web/v3/index.html',
+    'Apps/Standalone/encounter_cards_v20.html', 'Apps/Standalone/encounter_cards_v21.html',
+    'Apps/Public-Web/v2/index.html', 'Apps/Public-Web/v3/index.html', 'Apps/Public-Web/v4/index.html',
     'Apps/Standalone/v16-assets/rolldown-runtime-S-ySWqyJ.js', 'Apps/Standalone/v16-assets/framework-DjPHiq1u.js',
     'Apps/Standalone/v16-assets/index-CePrWcV7.js', 'Apps/Standalone/v16-assets/layout-segment-context-Bb-kZqck.js',
     'Apps/Standalone/v16-assets/page-B3j9dtoA.js',
@@ -30,9 +31,12 @@ $requiredFiles = @(
     'Development/Source/Main-App-v20/package.json', 'Development/Source/Main-App-v20/package-lock.json',
     'Development/Source/Main-App-v20/src/App.tsx', 'Development/Source/Main-App-v20/src/data/blessings.ts',
     'Development/Source/Main-App-v20/src/lib/encounter.ts', 'Development/Source/Main-App-v20/dist/index.html',
+    'Development/Source/Main-App-v21/package.json', 'Development/Source/Main-App-v21/package-lock.json',
+    'Development/Source/Main-App-v21/src/App.tsx', 'Development/Source/Main-App-v21/src/components/TaiwanReveal.tsx',
+    'Development/Source/Main-App-v21/src/lib/deity-art.ts', 'Development/Source/Main-App-v21/dist/index.html',
     'Development/Automation/Scripts/finalize-pwa-v18.mjs', 'Development/Automation/Scripts/export-standalone-v18.mjs',
     'Development/Automation/Tools/serve_truth_and_dare.ps1',
-    'Development/Tests/validate_clean_structure.ps1', 'Development/Tests/validate_v18.ps1', 'Development/Tests/validate_v19.ps1', 'Development/Tests/validate_v20.ps1', 'Development/Tests/validate_repository.ps1',
+    'Development/Tests/validate_clean_structure.ps1', 'Development/Tests/validate_v18.ps1', 'Development/Tests/validate_v19.ps1', 'Development/Tests/validate_v20.ps1', 'Development/Tests/validate_v21.ps1', 'Development/Tests/validate_repository.ps1',
     'Assets/Catalog/asset-licenses.md', 'Assets/Catalog/content-sources.json',
     '_pending/Development-simplification_2026-07-19/README.md'
 )
@@ -83,6 +87,11 @@ $v20ValidationOutput = & powershell -NoProfile -ExecutionPolicy Bypass -File (Jo
 $v20ValidationExit = $LASTEXITCODE
 $v20ValidationOutput | ForEach-Object { Write-Host $_ }
 Assert-RepositoryCondition ($v20ValidationExit -eq 0) 'Focused v20 contract validation passes'
+
+$v21ValidationOutput = & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'validate_v21.ps1') 2>&1
+$v21ValidationExit = $LASTEXITCODE
+$v21ValidationOutput | ForEach-Object { Write-Host $_ }
+Assert-RepositoryCondition ($v21ValidationExit -eq 0) 'Focused v21 contract validation passes'
 
 $cleanStructureOutput = & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'validate_clean_structure.ps1') 2>&1
 $cleanStructureExit = $LASTEXITCODE

@@ -86,6 +86,10 @@ v18 introduced whole-shell desktop fitting while preserving the 430 × 932 mobil
 
 v19 supersedes v18 without modifying it. It adds nine project-owned Taiwanese deity portraits, a full artwork panel followed by a separate question panel, a 1080 × 1620 keepsake PNG with the same non-overlapping structure, embedded standalone artwork, and Public Web v2. The desktop frame remains centered and shrink-to-fit; personal inputs remain client-side only.
 
-## Current v20 Release / 目前 v20 Release
+## Preserved v20 Release / 保留的 v20 Release
 
 v20 restores the v16 entrance composition: branded header and language switch, large bilingual invitation, ivory two-column setup sheet, Levels 1–5, three card modes, and bottom Begin action. It adds nine alternate deity poses for 18 total artworks, independently randomizes artwork/question/blessing, requires a blessing on every commemorative card, and keeps artwork separate from both question and blessing panels. The 430 × 932 phone is mathematically centered and shrink-to-fit on desktop without clipping or page scroll.
+
+## Current v21 Release / 目前 v21 Release
+
+v21 preserves the complete v20 visual, language, card, blessing, export, privacy, and 430 × 932 desktop-centering contracts. Every one of the 18 deity artworks has a distinct hidden-Taiwan hotspot. Holding the artwork for 600 ms reveals a blinking gold Taiwan outline at that location; after release it remains for 3 seconds and fades. Pointer movement cancels an uncommitted reveal, artwork events do not bubble into card drawing, Enter and Space provide keyboard parity, and reduced-motion users receive a steady locator. The runtime annotation never enters the commemorative PNG.

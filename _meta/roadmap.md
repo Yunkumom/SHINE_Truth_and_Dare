@@ -82,3 +82,13 @@
 - [x] Verify exact horizontal/vertical desktop centering at 1920×826, 1440×900, 1280×720, and 1024×768; verify 430×932 mobile geometry.
 - [x] Add explicit desktop PNG download fallback coverage and Public Web v3.
 - [ ] Complete physical iPhone Share Sheet, PWA install, offline-update, and gesture regression.
+
+## Phase 10 — v21 hidden Taiwan reveal / v21 藏台灣揭示
+
+- [x] Create v21 without modifying immutable v15–v20 releases.
+- [x] Register a distinct, bounded Taiwan hotspot for all 18 deity artworks.
+- [x] Reveal the location after a 600 ms artwork hold and retain the blinking gold locator for 3 seconds after release.
+- [x] Add Enter/Space parity, movement cancellation, gesture isolation, and reduced-motion fallback.
+- [x] Keep the reveal overlay out of commemorative PNG export and preserve mandatory blessings.
+- [x] Build standalone v21, Public Web v4, versioned automation, and deterministic release validation.
+- [ ] Complete physical iPhone hotspot-alignment, long-press, Share Sheet, PWA install, and offline-update regression.

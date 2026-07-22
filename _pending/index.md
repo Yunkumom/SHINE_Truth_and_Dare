@@ -53,3 +53,8 @@ Git 歷史中提及的其他舊 pending 項目在本次精簡前即不在 workin
 
 - `_pending/v20-generated-development-state_2026-07-22/` retains the reproducible v20 `node_modules` directory and TypeScript build caches after final verification so active Development remains uncluttered. Restore with `npm ci` instead of treating these files as authored source.
 - 此目錄保留 v20 最終驗證後可重建的依賴與 TypeScript cache，讓作用中的 Development 維持簡潔；正常情況請用 `npm ci` 還原。
+
+## v21 generated development state / v21 生成開發狀態
+
+- `_pending/v21-generated-development-state_2026-07-22/` retains the reproducible v21 `node_modules` directory and TypeScript build caches after final verification so active Development remains uncluttered. Restore with `npm ci` instead of treating these files as authored source.
+- 此目錄保留 v21 最終驗證後可重建的依賴與 TypeScript cache，讓作用中的 Development 維持簡潔；正常情況請用 `npm ci` 還原。

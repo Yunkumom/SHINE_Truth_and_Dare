@@ -1,5 +1,13 @@
 # Changelog / 變更紀錄
 
+## 2026-07-22 — v21 hidden Taiwan reveal / v21 藏台灣揭示
+
+- Created v21 without modifying immutable v15–v20 releases and preserved the v16-inspired v20 visual hierarchy.
+- Added distinct hotspot metadata to all 18 deity artworks so every hidden Taiwan motif has its own reveal location.
+- Added a 600 ms press-and-hold interaction, blinking gold Taiwan outline and halo, 3-second post-release visibility, pointer-movement cancellation, and Enter/Space keyboard parity.
+- Isolated artwork long press from card-draw gestures, respected reduced-motion preferences, and excluded the runtime locator from commemorative PNG export.
+- Added 32 automated tests, v21/PWA/standalone/Public Web v4 automation, immutable release hash validation, and updated the Windows launcher and GitHub Pages workflow.
+
 ## 2026-07-22 — v20 v16 visual restoration / v20 v16 視覺回歸
 
 - Created new immutable v20 source and outputs without modifying v15–v19.
