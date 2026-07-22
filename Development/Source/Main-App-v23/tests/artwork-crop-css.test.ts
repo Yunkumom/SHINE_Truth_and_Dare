@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest'
 import { readFileSync } from 'node:fs'
+import { describe, expect, it } from 'vitest'
 
 const appCss = readFileSync('src/styles/v23.css', 'utf8')
 const layoutCss = readFileSync('src/styles/v23-layout.css', 'utf8')

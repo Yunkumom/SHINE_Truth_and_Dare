@@ -17,7 +17,7 @@ $required = @(
     'Development/Source/Main-App-v23/src/lib/deity-art.ts',
     'Development/Source/Main-App-v23/src/lib/taiwan-shape.ts',
     'Development/Source/Main-App-v23/src/styles/taiwan-reveal.css',
-    'Development/Source/Main-App-v23/src/tests/artwork-crop-css.test.ts',
+    'Development/Source/Main-App-v23/tests/artwork-crop-css.test.ts',
     'Development/Automation/Scripts/finalize-pwa-v23.mjs',
     'Development/Automation/Scripts/export-standalone-v23.mjs',
     'Development/Automation/Scripts/finalize-public-v6.mjs',
