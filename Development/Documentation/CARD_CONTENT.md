@@ -50,3 +50,5 @@ This is a future source schema, not a claim about the minified v15 internal obje
 The v15 package states that it contains 60 levelled prompts. A structured extraction, translation audit, content-safety review, and image-license inventory remain future tasks.
 
 v18 retains the 60 newly authored, structured bilingual cards introduced by v17: six Truth and six Dare cards for each Level 1–5. These are a safe governed reconstruction, not a claim of verbatim recovery from the minified v15 bundle. Level 5 focuses on consent, boundaries, and respectful adult intimacy.
+
+v20 keeps those 60 prompts but no longer permanently binds a prompt to one deity image. A session independently selects one eligible question, one of 18 deity artworks, and one of 12 bilingual blessings; the chosen trio remains stable for the visible card and its exported PNG. Every final commemorative card must contain a blessing.

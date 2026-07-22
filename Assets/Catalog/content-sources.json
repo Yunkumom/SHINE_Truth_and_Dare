@@ -1,6 +1,15 @@
 {
   "version": "v1",
   "policy": "Public, named institutional sources only; no sacred or restricted story detail is reproduced.",
+  "deity_art": {
+    "generator": "OpenAI built-in image generation",
+    "original_batch": "2026-07-19",
+    "v20_variant_batch": "2026-07-22",
+    "source_path": "Assets/Deities/",
+    "variant_path": "Assets/Deities/v20-variants/",
+    "count": 18,
+    "note": "Project-owned AI generations; v20 variants hide Taiwan motifs in physical details and contain no text or watermark."
+  },
   "cards": [
     {"id":"tw-mazu","source":"Taiwan Bureau of Cultural Heritage","url":"https://twh.boch.gov.tw/non_material/intro.aspx?id=751"},
     {"id":"tw-tiger-aunt","source":"National Museum of Taiwan Literature","url":"https://tlvm.nmtl.gov.tw/zh/Theme/ExhibitionArticleCont?Exbid=196"},

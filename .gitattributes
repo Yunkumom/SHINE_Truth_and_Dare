@@ -2,5 +2,7 @@
 Apps/Standalone/encounter_cards_v*.html -text
 Apps/Standalone/v16-assets/*.js -text
 Apps/Public-Web/v2/** -text
+Apps/Public-Web/v3/** -text
 Development/Source/Main-App-v18/dist/** -text
 Development/Source/Main-App-v19/dist/** -text
+Development/Source/Main-App-v20/dist/** -text

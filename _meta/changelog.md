@@ -1,5 +1,14 @@
 # Changelog / 變更紀錄
 
+## 2026-07-22 — v20 v16 visual restoration / v20 v16 視覺回歸
+
+- Created new immutable v20 source and outputs without modifying v15–v19.
+- Restored the v16-style entrance hierarchy, premium navy/gold/ivory setup sheet, and mythic collectible-card presentation.
+- Added nine new deity action/pose artworks for 18 total; each variant hides a Taiwan motif in a physical detail.
+- Made question, artwork, and blessing independent random selections while guaranteeing a blessing on every visible and exported keepsake.
+- Corrected desktop scaling to anchor the complete phone frame at the exact viewport center and verified four desktop sizes plus 430×932 mobile.
+- Added Public Web v3, v20 automation/validation, desktop PNG-download regression coverage, and indexed recoverable pre-release checkpoints.
+
 ## 2026-07-22 — v19 publication handoff completion / v19 發布交接完成
 
 - Corrected active documentation, human references, reconstruction paths, and normal commands from v18/unpublished wording to the verified v19 release.

@@ -82,6 +82,10 @@ The preserved v17 source is inactive history under `_pending/Development-simplif
 
 v18 introduced whole-shell desktop fitting while preserving the 430 × 932 mobile contract. Its source and outputs remain preserved and immutable; the current launcher now serves v19.
 
-## Current v19 Release / 目前 v19 Release
+## Preserved v19 Release / 保留的 v19 Release
 
 v19 supersedes v18 without modifying it. It adds nine project-owned Taiwanese deity portraits, a full artwork panel followed by a separate question panel, a 1080 × 1620 keepsake PNG with the same non-overlapping structure, embedded standalone artwork, and Public Web v2. The desktop frame remains centered and shrink-to-fit; personal inputs remain client-side only.
+
+## Current v20 Release / 目前 v20 Release
+
+v20 restores the v16 entrance composition: branded header and language switch, large bilingual invitation, ivory two-column setup sheet, Levels 1–5, three card modes, and bottom Begin action. It adds nine alternate deity poses for 18 total artworks, independently randomizes artwork/question/blessing, requires a blessing on every commemorative card, and keeps artwork separate from both question and blessing panels. The 430 × 932 phone is mathematically centered and shrink-to-fit on desktop without clipping or page scroll.

@@ -76,6 +76,10 @@ Personal fields and birthdays are component memory only. Language and font scale
 
 v18 introduced the modular session UI, 60 bilingual cards, policy libraries, PWA resources, and desktop viewport scaling. Its source and generated outputs remain preserved and immutable.
 
-## Current v19 Modular Architecture / 目前 v19 模組化架構
+## Preserved v19 Modular Architecture / 保留的 v19 模組化架構
 
-`Development/Source/Main-App-v19/src/` is the current authored maintenance boundary. It preserves v18 state and viewport policies, adds `lib/deity-art.ts`, optimized deity sources under `src/assets/deities/`, and a separate artwork/question export layout in `lib/share.ts`. Its verified `dist/`, `Apps/Standalone/encounter_cards_v19.html`, and `Apps/Public-Web/v2/` are immutable; future product behavior requires v20.
+`Development/Source/Main-App-v19/src/` preserves the first deity-card source boundary. Its verified `dist/`, standalone v19, and Public Web v2 remain immutable.
+
+## Current v20 Modular Architecture / 目前 v20 模組化架構
+
+`Development/Source/Main-App-v20/src/` is the current authored boundary. `App.tsx` owns the v16-inspired setup and session composition; `lib/viewport-scale.ts` owns the 430 × 932 fit; `styles/app.css` anchors the scaled shell at the exact viewport center; `lib/deity-art.ts` registers 18 bundled WebP variants and separate export regions; `lib/encounter.ts` independently selects artwork and blessing; `data/blessings.ts` stores bilingual blessings; and `lib/share.ts` renders and delivers the 1080 × 1620 PNG. Verified `dist/`, standalone v20, and Public Web v3 are immutable; later behavior requires v21.
