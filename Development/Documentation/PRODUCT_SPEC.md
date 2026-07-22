@@ -78,9 +78,9 @@ v17 reconstructs the governed product as React/TypeScript source with 60 reviewe
 
 The preserved v17 source is inactive history under `_pending/Development-simplification_2026-07-19/`; its standalone release remains immutable under `Apps/Standalone/`.
 
-## Current v18 Release / 目前 v18 Release
+## Preserved v18 Release / 保留的 v18 Release
 
-v18 is the only active source line. It preserves the v17 modular policies and 430 × 932 mobile contract, then uniformly scales the whole phone shell down on desktop so the complete interface fits without document scrolling. The current launcher serves the self-contained v18 standalone release over loopback HTTP. Existing v18 generated outputs are immutable; later product changes require a new numbered release.
+v18 introduced whole-shell desktop fitting while preserving the 430 × 932 mobile contract. Its source and outputs remain preserved and immutable; the current launcher now serves v19.
 
 ## Current v19 Release / 目前 v19 Release
 

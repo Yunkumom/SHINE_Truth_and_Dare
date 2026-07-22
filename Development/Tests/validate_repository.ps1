@@ -13,7 +13,7 @@ function Assert-RepositoryCondition {
 $requiredFiles = @(
     'README.md', 'GUIDE.md', 'AGENTS.md', '.gitignore', 'Open Truth and Dare.cmd',
     '_meta/purpose.md', '_meta/roadmap.md', '_meta/handoff.md', '_meta/owner_private_blueprint.md', '_meta/public_blueprint.md', '_meta/changelog.md',
-    '_agent/README.md', '_agent/Skills/README.md', '_human/README.md', '_pending/README.md', '_pending/index.md',
+    '_agent/README.md', '_agent/Skills/README.md', '_human/README.md', '_human/code-learning-tool.html', '_pending/README.md', '_pending/index.md',
     'Apps/Standalone/encounter_cards_v15.html', 'Apps/Standalone/encounter_cards_v16.html',
     'Apps/Standalone/encounter_cards_v17.html', 'Apps/Standalone/encounter_cards_v18.html', 'Apps/Standalone/encounter_cards_v19.html',
     'Apps/Public-Web/v2/index.html',

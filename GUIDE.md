@@ -19,6 +19,7 @@ This is the canonical repository map. Active Development contains the preserved 
 | `_agent/` | Agent workspace guidance. / Agent 工作指引。 |
 | `_agent/Skills/` | Optional project-specific reusable Skills; currently only its index. / 專案 Skills，目前只有索引。 |
 | `_human/` | Human-facing support artifacts. / 人類使用的支援資料。 |
+| `_human/code-learning-tool.html` | Interactive v19 code-learning academy for human maintainers. / 給維護者使用的 v19 互動程式學院。 |
 | `_pending/` | Recoverable retired or undecided material; no permanent deletion without approval. / 可回復的退出使用或待決資料。 |
 | `_pending/Development-simplification_2026-07-19/` | Original-path archive of retired Development content. / 依原路徑保存的 Development 退出使用資料。 |
 | `.github/` | GitHub-required workflow configuration. / GitHub workflow 設定。 |
@@ -38,8 +39,8 @@ This is the canonical repository map. Active Development contains the preserved 
 | `Development/Source/Main-App-v18/src/` | Authored UI, policies, data, styles, and tests. / 人工維護 UI、政策、資料、樣式與測試。 |
 | `Development/Source/Main-App-v18/public/` | PWA manifest, worker template, and owned icons. / PWA manifest、worker template 與自有 icons。 |
 | `Development/Source/Main-App-v18/dist/` | Verified generated v18 PWA output; never hand-edit. / 已驗證 v18 PWA 輸出，不可手改。 |
-| `Development/Automation/Scripts/` | v18 PWA finalizer and standalone exporter. / v18 PWA finalizer 與 standalone exporter。 |
-| `Development/Automation/Tools/` | Loopback-only v18 desktop server helper. / 僅限本機的 v18 desktop server。 |
+| `Development/Automation/Scripts/` | Versioned v18/v19 PWA, standalone, and public-release builders. / 版本化 v18／v19 PWA、standalone 與公開版建置器。 |
+| `Development/Automation/Tools/` | Loopback-only v19 desktop server helper. / 僅限本機的 v19 desktop server。 |
 | `Development/Tests/` | Current v18/v19, structure, and repository validators. / 目前 v18／v19、結構與 repository 驗證。 |
 | `Development/Documentation/` | Current product, architecture, animation, content, and PWA contracts. / 目前產品、架構、動畫、內容與 PWA 合約。 |
 
@@ -59,8 +60,8 @@ The following are recoverable under `_pending/Development-simplification_2026-07
 # Run current desktop release
 .\Open Truth and Dare.cmd
 
-# Restore dependencies and work on v18 source
-Set-Location Development/Source/Main-App-v18
+# Restore dependencies and work on current v19 source
+Set-Location Development/Source/Main-App-v19
 npm ci
 npm run dev
 npm run typecheck
@@ -71,4 +72,4 @@ npm test
 powershell -ExecutionPolicy Bypass -File Development/Tests/validate_repository.ps1
 ```
 
-Existing release outputs are immutable. New product behavior after v18 requires the next numbered version. Uncertain or proposed-deletion content must move to `_pending/` and be indexed; never permanently delete it without explicit human approval.
+Existing release outputs are immutable. New product behavior after v19 requires v20. Uncertain or proposed-deletion content must move to `_pending/` and be indexed; never permanently delete it without explicit human approval.

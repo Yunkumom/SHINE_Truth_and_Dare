@@ -47,15 +47,16 @@
 - [x] Organize the root around `Apps/`, `Assets/`, and `Development/`.
 - [x] Add the canonical annotated `GUIDE.md` and local organizational README files.
 - [x] Move preserved releases byte-for-byte and update executable/build/test paths.
-- [ ] Complete final full-build regression and physical-device testing from the new paths.
+- [x] Complete final full-build and desktop-browser regression from the new paths.
+- [ ] Complete physical-device testing from the new paths.
 
 ## Phase 6.1 — Simplified Active Development / 精簡作用中開發
 
-- [x] Keep only the current v18 source line active under Development.
+- [x] Preserve the v18 source line and maintain v19 as the current active source under Development.
 - [x] Move v17, unpublished Public Web, legacy tooling/tests, completed designs/plans, and generated dependencies to one indexed recoverable archive.
 - [x] Make `Development/README.md` explain every meaningful retained file.
 - [x] Point the desktop launcher and current validation contract to v18.
-- [ ] Complete physical-device regression; product changes after v18 require a new numbered release.
+- [ ] Complete physical-device regression; product changes after v19 require v20.
 
 ## Phase 7 — Root Governance Contract / 根層治理合約
 
@@ -69,4 +70,5 @@
 - [x] Add nine high-resolution AI-generated Taiwanese deity portraits with integrated Taiwan motifs.
 - [x] Keep artwork and question panels separate on-screen and in 1080 × 1620 PNG exports.
 - [x] Add desktop PNG download fallback and Public Web v2 output.
+- [x] Publish Public Web v2 through GitHub Pages and verify HTTP 200.
 - [ ] Complete physical iPhone Share Sheet and PWA installation regression.
