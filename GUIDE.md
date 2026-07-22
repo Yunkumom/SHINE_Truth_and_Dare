@@ -23,6 +23,7 @@ This is the canonical repository map. Active Development contains the preserved 
 | `_pending/` | Recoverable retired or undecided material; no permanent deletion without approval. / 可回復的退出使用或待決資料。 |
 | `_pending/Development-simplification_2026-07-19/` | Original-path archive of retired Development content. / 依原路徑保存的 Development 退出使用資料。 |
 | `.github/` | GitHub-required workflow configuration. / GitHub workflow 設定。 |
+| `.gitattributes` | Cross-platform byte-preservation rules for immutable releases and generated outputs. / 跨平台保留不可變 release 與生成輸出的原始位元組。 |
 | `README.md` | Product summary and quick start. / 產品簡介與快速開始。 |
 | `GUIDE.md` | This canonical directory map. / 本正式目錄地圖。 |
 | `AGENTS.md` | Automated-contributor rules. / 自動化協作者規則。 |

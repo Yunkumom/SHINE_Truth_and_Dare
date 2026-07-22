@@ -16,7 +16,7 @@ function Assert-StructureCondition {
     Write-Host "FAIL: $Message" -ForegroundColor Red
 }
 
-$allowedRootEntries = @('.git', '.github', '.gitignore', 'AGENTS.md', 'Apps', 'Assets', 'Development', '_agent', '_human', '_meta', '_pending', 'GUIDE.md', 'Open Truth and Dare.cmd', 'README.md')
+$allowedRootEntries = @('.git', '.github', '.gitattributes', '.gitignore', 'AGENTS.md', 'Apps', 'Assets', 'Development', '_agent', '_human', '_meta', '_pending', 'GUIDE.md', 'Open Truth and Dare.cmd', 'README.md')
 $unexpectedRootEntries = Get-ChildItem -LiteralPath $projectRoot -Force | Where-Object { $_.Name -notin $allowedRootEntries } | Select-Object -ExpandProperty Name
 Assert-StructureCondition ($unexpectedRootEntries.Count -eq 0) 'Root contains only approved product, governance, and platform entries'
 

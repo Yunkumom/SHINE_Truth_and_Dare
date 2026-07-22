@@ -1,0 +1,6 @@
+# Preserve immutable releases and verified generated output byte-for-byte on every platform.
+Apps/Standalone/encounter_cards_v*.html -text
+Apps/Standalone/v16-assets/*.js -text
+Apps/Public-Web/v2/** -text
+Development/Source/Main-App-v18/dist/** -text
+Development/Source/Main-App-v19/dist/** -text
