@@ -45,4 +45,4 @@ This document records confirmed product intent. v16 browser testing verified lan
 
 v17 implements a pointer-distance draw threshold, automatic card flip, keyboard/button draw alternative, and reduced-motion fade. Automated tests cover setup entry and policy functions; physical pointer feel and continuous discard behavior still require browser and device evidence.
 
-v18 preserves these interaction rules and adds whole-shell desktop fitting. Its source remains active under `Development/Source/Main-App-v18/`; physical pointer feel, discard, PNG, and iPhone Share Sheet behavior still require device regression.
+v18 introduced whole-shell desktop fitting. v19 preserves that interaction contract and adds the deity artwork/question layout; physical pointer feel, discard, PNG, and iPhone Share Sheet behavior still require device regression.

@@ -2,20 +2,23 @@
 
 ## Purpose / 目的
 
-Reconstruct the repository around the active v18 source while preserving standalone v15–v18 releases and keeping retired development material recoverable.
+Reconstruct the repository around the active v19 source while preserving standalone v15–v19 releases and keeping retired development material recoverable.
 
-以作用中 v18 source 重建 repository，同時保留 standalone v15–v18，並讓退出使用的開發資料可回復。
+以作用中 v19 source 重建 repository，同時保留 standalone v15–v19，並讓退出使用的開發資料可回復。
 
 ## Canonical Structure / 正式結構
 
 ```text
 Truth and Dare/
-├── Apps/Standalone/                         # immutable v15–v18 releases
-├── Assets/Catalog/                          # licences and provenance
+├── Apps/Standalone/                         # immutable v15–v19 releases
+├── Apps/Public-Web/v2/                      # published immutable web release
+├── Assets/Catalog/  Assets/Deities/         # licences, provenance, deity sources
 ├── Development/
-│   ├── Source/Main-App-v18/                 # only active source line
-│   ├── Automation/Scripts/                  # v18 exporters
-│   ├── Automation/Tools/                    # v18 loopback launcher helper
+│   ├── Source/Main-App-v18/                 # preserved source line
+│   ├── Source/Main-App-v19/                 # current authored source line
+│   ├── Source/Public-Web/v2/                # public-release recipe
+│   ├── Automation/Scripts/                  # v18/v19 builders and exporters
+│   ├── Automation/Tools/                    # v19 loopback launcher helper
 │   ├── Tests/                               # current validators
 │   ├── Documentation/                       # current product contracts
 │   └── README.md                            # every meaningful retained file
@@ -41,12 +44,12 @@ v19 is the current self-contained standalone release. Its nine deity images are 
 ## Reconstruction / 重建
 
 1. Restore the canonical root entries and paths documented in `GUIDE.md`.
-2. Restore immutable standalone v15–v18 plus `Apps/Standalone/v16-assets/`.
-3. Restore `Development/Source/Main-App-v18/`, the two v18 automation scripts, the server helper, current validators, and product-contract documents.
+2. Restore immutable standalone v15–v19, `Apps/Standalone/v16-assets/`, and `Apps/Public-Web/v2/`.
+3. Restore `Development/Source/Main-App-v19/`, its versioned automation scripts, the server helper, current validators, deity assets, and product-contract documents; retain v18 as a preserved source line.
 4. Restore `_pending/Development-simplification_2026-07-19/` when historical v17, Public Web, old tooling, or completed design/plan evidence is required.
 5. Use `Open Truth and Dare.cmd` for the current desktop release.
 6. Run `powershell -ExecutionPolicy Bypass -File Development/Tests/validate_repository.ps1`.
-7. For future source development, run `npm ci` in `Development/Source/Main-App-v18/`; create a new numbered release for product changes rather than overwriting v18.
-8. Publish or deploy only after separate explicit approval and fresh privacy/accessibility/device review.
+7. For future source development, run `npm ci` in `Development/Source/Main-App-v19/`; create v20 for product changes rather than overwriting v19.
+8. The approved public deployment is `https://yunkumom.github.io/SHINE_Truth_and_Dare/`; later deployments still require verification and explicit publication scope.
 
-Canonical public repository: `https://github.com/Yunkumom/SHINE_Truth_and_Dare`. Publication remains a separate decision.
+Canonical public repository: `https://github.com/Yunkumom/SHINE_Truth_and_Dare`.

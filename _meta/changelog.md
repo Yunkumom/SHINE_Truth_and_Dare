@@ -1,5 +1,11 @@
 # Changelog / 變更紀錄
 
+## 2026-07-22 — v19 publication handoff completion / v19 發布交接完成
+
+- Corrected active documentation, human references, reconstruction paths, and normal commands from v18/unpublished wording to the verified v19 release.
+- Recorded the successful GitHub Pages deployment and canonical public URL.
+- Added the human-authored v19 Developer Academy reference and retained the duplicate legacy pending index as a clearly named historical snapshot.
+
 ## 2026-07-19 — v19 Taiwan deity card release / v19 台灣神祇相遇卡
 
 - Added nine project-owned high-resolution deity portraits under `Assets/Deities/`, each integrating Taiwan's silhouette into the scene.

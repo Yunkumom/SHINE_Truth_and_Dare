@@ -1,0 +1,3376 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Truth & Dare v19 Developer Academy / 開發者學習與維護指南</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Theme defaults: Dark mode */
+    body.theme-dark {
+      --bg-dark: #030a0f;
+      --bg-sidebar: #06111a;
+      --bg-card: #091a27;
+      --border-color: #152d3e;
+      --gold: #caa75d;
+      --terracotta: #8d4d32;
+      --text-main: #f5f8fa;
+      --text-muted: #a5c1d1;
+      --code-bg: #040e15;
+      --highlight-bg: rgba(202, 167, 93, 0.15);
+      --highlight-border: #caa75d;
+      --scrollbar-thumb: #1b3d54;
+    }
+
+    /* Eye-comfort mode (Warm Sepia/Paper) */
+    body.theme-comfort {
+      --bg-dark: #fcf8f2;
+      --bg-sidebar: #f4ead5;
+      --bg-card: #eedcb5;
+      --border-color: #d7bfa5;
+      --gold: #8d4d32;
+      --terracotta: #caa75d;
+      --text-main: #241a15;
+      --text-muted: #6b5247;
+      --code-bg: #f9f4e9;
+      --highlight-bg: rgba(141, 77, 50, 0.12);
+      --highlight-border: #8d4d32;
+      --scrollbar-thumb: #dcd0bc;
+    }
+
+    /* Global Font Scale Factor */
+    :root {
+      --global-font-scale: 1.0;
+    }
+
+    /* Language display system */
+    body.lang-zh .lang-en { display: none !important; }
+    body.lang-en .lang-zh { display: none !important; }
+    body.lang-bilingual .lang-zh, body.lang-bilingual .lang-en { display: block; }
+    
+    body.lang-zh span.lang-en { display: none !important; }
+    body.lang-en span.lang-zh { display: none !important; }
+    body.lang-bilingual span.lang-zh, body.lang-bilingual span.lang-en { display: inline; }
+    
+    body.lang-bilingual .lang-en {
+      margin-top: 6px;
+      opacity: 0.85;
+      font-size: 0.95em;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      height: 100vh;
+      height: 100svh; /* Stable viewport height constraint */
+      display: grid;
+      grid-template-rows: 44px 1fr;
+      overflow: hidden;
+      transition: background-color 0.2s, color 0.2s;
+      font-size: calc(0.92rem * var(--global-font-scale));
+    }
+
+    /* Compact Header */
+    header {
+      grid-row: 1;
+      background-color: var(--bg-sidebar);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      z-index: 10;
+    }
+
+    header h1 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    header h1 span.badge {
+      font-size: 0.65rem;
+      background: var(--gold);
+      color: var(--bg-dark);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Selectors Styling */
+    .selector-group {
+      display: flex;
+      gap: 2px;
+      background-color: var(--bg-dark);
+      padding: 2px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+    }
+
+    .selector-btn {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.72rem;
+      background-color: transparent;
+      color: var(--text-muted);
+      border: 0;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .selector-btn:hover {
+      color: var(--text-main);
+    }
+
+    .selector-btn.active {
+      background-color: var(--gold);
+      color: var(--bg-dark);
+      font-weight: 600;
+    }
+
+    /* Language Dropdown Select */
+    .lang-select {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.75rem;
+      background-color: var(--bg-dark);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+      padding: 4px 28px 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23caa75d'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 8px center;
+      background-size: 12px;
+      transition: all 0.2s;
+    }
+
+    .lang-select:hover {
+      color: var(--text-main);
+      border-color: var(--gold);
+    }
+
+    .lang-select:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    header nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: color 0.2s;
+    }
+
+    header nav a:hover {
+      color: var(--gold);
+    }
+
+    /* Main Flex Layout */
+    .app-container {
+      grid-row: 2;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar {
+      width: 240px;
+      background-color: var(--bg-sidebar);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      font-family: 'Outfit', sans-serif;
+      flex-shrink: 0;
+    }
+
+    .nav-section {
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(21, 45, 62, 0.3);
+    }
+
+    .nav-section h2 {
+      font-size: 0.75rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0 16px 8px;
+      font-weight: 600;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      border-left: 3px solid transparent;
+    }
+
+    .nav-item:hover {
+      background-color: rgba(202, 167, 93, 0.05);
+      color: var(--text-main);
+    }
+
+    .nav-item.active {
+      background-color: rgba(202, 167, 93, 0.08);
+      color: var(--text-main);
+      border-left-color: var(--gold);
+      font-weight: 500;
+    }
+
+    .nav-item span.icon {
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+
+    /* Main View Panel */
+    .main-content {
+      flex: 1;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .view-content {
+      width: 100%;
+      height: 100%;
+      display: none;
+      overflow: hidden;
+    }
+
+    .view-content.active {
+      display: flex;
+    }
+
+    /* Resizer Splitter styling */
+    .resizer {
+      width: 4px;
+      background-color: var(--border-color);
+      cursor: col-resize;
+      transition: background-color 0.2s, width 0.2s;
+      user-select: none;
+      flex-shrink: 0;
+      z-index: 5;
+    }
+
+    .resizer:hover, .resizer.dragging {
+      background-color: var(--gold);
+      width: 6px;
+    }
+
+    /* Code Viewer Panel */
+    .code-panel {
+      flex: 1;
+      background-color: var(--code-bg);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .panel-header {
+      background-color: rgba(6, 17, 26, 0.3);
+      border-bottom: 1px solid var(--border-color);
+      padding: 8px 16px;
+      font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .panel-header-controls {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .panel-control-btn {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.72rem;
+      background-color: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+      padding: 2px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .panel-control-btn:hover {
+      color: var(--text-main);
+      border-color: var(--gold);
+    }
+
+    .panel-control-btn.active {
+      background-color: rgba(202, 167, 93, 0.1);
+      border-color: var(--gold);
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .code-container {
+      flex: 1;
+      overflow: auto;
+      position: relative;
+    }
+
+    .code-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: calc(0.85rem * var(--global-font-scale));
+      line-height: 1.5;
+      table-layout: fixed; /* Keep layout widths stable */
+    }
+
+    .code-line-tr {
+      transition: background-color 0.15s;
+    }
+
+    .code-line-tr:hover {
+      background-color: rgba(255, 255, 255, 0.03);
+    }
+
+    .code-line-tr.highlighted {
+      background-color: var(--highlight-bg);
+    }
+
+    .line-number {
+      width: 45px;
+      text-align: right;
+      padding-right: 12px;
+      color: rgba(165, 193, 209, 0.25);
+      user-select: none;
+      border-right: 1px solid rgba(21, 45, 62, 0.2);
+      vertical-align: top;
+      padding-top: 1px;
+    }
+
+    .code-content {
+      width: 55%;
+      padding-left: 16px;
+      vertical-align: top;
+      transition: width 0.2s;
+    }
+
+    .code-content > div {
+      overflow-x: auto;
+      white-space: pre;
+      padding-bottom: 2px;
+    }
+
+    /* Syntax Annotations Column style */
+    .code-comment-col {
+      width: 40%;
+      padding-left: 16px;
+      color: #6e8494;
+      font-style: italic;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: calc(0.78rem * var(--global-font-scale));
+      vertical-align: top;
+      border-left: 1px dashed rgba(21, 45, 62, 0.3);
+      white-space: normal;
+      word-wrap: break-word;
+      padding-right: 8px;
+      cursor: pointer;
+    }
+
+    body.theme-comfort .code-comment-col {
+      color: #8a7368;
+      border-left-color: rgba(215, 191, 165, 0.4);
+    }
+
+    /* Syntax Highlighting */
+    .comment { color: #6e8494; font-style: italic; }
+    .keyword { color: #f97583; font-weight: 500; }
+    .string { color: #9ecbff; }
+    .type { color: #79b8ff; }
+    .number { color: #ffab70; }
+
+    /* Syntax Highlighting overrides for Comfort Theme */
+    body.theme-comfort .comment { color: #8a7368; font-style: italic; }
+    body.theme-comfort .keyword { color: #b83a38; font-weight: 600; }
+    body.theme-comfort .string { color: #1a6596; }
+    body.theme-comfort .type { color: #2e6f40; }
+    body.theme-comfort .number { color: #a35d00; }
+    body.theme-comfort .code-content { color: #201816; }
+
+    /* Annotations Pane */
+    .annotations-panel {
+      width: 300px;
+      background-color: var(--bg-sidebar);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      flex-shrink: 0;
+    }
+
+    .annotations-panel h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: calc(0.95rem * var(--global-font-scale));
+      color: var(--gold);
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .file-summary {
+      font-size: calc(0.8rem * var(--global-font-scale));
+      line-height: 1.45;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      background-color: rgba(9, 26, 39, 0.3);
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(21, 45, 62, 0.4);
+    }
+
+    body.theme-comfort .file-summary {
+      background-color: rgba(244, 234, 213, 0.5);
+      border-color: rgba(215, 191, 165, 0.6);
+    }
+
+    .annotation-item {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+      transition: all 0.2s;
+    }
+
+    .annotation-item:hover {
+      border-color: var(--gold);
+    }
+
+    .annotation-item.active {
+      border-color: var(--gold);
+      box-shadow: 0 0 10px rgba(202, 167, 93, 0.1);
+      background-color: rgba(9, 26, 39, 0.5);
+    }
+
+    body.theme-comfort .annotation-item.active {
+      background-color: rgba(238, 220, 181, 0.6);
+    }
+
+    .annotation-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .annotation-lines {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      background-color: rgba(202, 167, 93, 0.12);
+      color: var(--gold);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .annotation-title {
+      font-size: calc(0.82rem * var(--global-font-scale));
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .annotation-desc {
+      font-size: calc(0.78rem * var(--global-font-scale));
+      line-height: 1.45;
+      color: var(--text-muted);
+    }
+
+    /* Annotation Card Edit Form Styling */
+    .anno-edit-form {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background-color: var(--bg-dark);
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+
+    .anno-edit-form label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--gold);
+      display: block;
+      margin-top: 4px;
+    }
+
+    .anno-edit-form input, .anno-edit-form textarea {
+      background-color: var(--bg-sidebar);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      border-radius: 4px;
+      padding: 6px 10px;
+      font-family: inherit;
+      font-size: 0.8rem;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .anno-edit-form input:focus, .anno-edit-form textarea:focus {
+      border-color: var(--gold);
+    }
+
+    .anno-edit-form textarea {
+      height: 64px;
+      resize: vertical;
+    }
+
+    .anno-edit-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    /* Glossary Card Styling */
+    .glossary-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .glossary-card h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: calc(1.1rem * var(--global-font-scale));
+      color: var(--gold);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .glossary-card p {
+      font-size: calc(0.85rem * var(--global-font-scale));
+      line-height: 1.5;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    .glossary-card .novice-explanation {
+      font-size: calc(0.82rem * var(--global-font-scale));
+      line-height: 1.45;
+      color: var(--text-muted);
+      background-color: rgba(9, 26, 39, 0.4);
+      padding: 10px 12px;
+      border-left: 3px solid var(--gold);
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 10px;
+    }
+
+    body.theme-comfort .glossary-card .novice-explanation {
+      background-color: rgba(244, 234, 213, 0.4);
+    }
+
+    /* Guides Panel Split Views */
+    .guide-panel {
+      flex: 1;
+      background-color: var(--bg-card);
+      padding: 24px 32px;
+      overflow-y: auto;
+      line-height: 1.65;
+      font-size: calc(0.92rem * var(--global-font-scale));
+      transition: background-color 0.2s;
+    }
+
+    .guide-panel h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: calc(1.6rem * var(--global-font-scale));
+      color: var(--gold);
+      margin-bottom: 16px;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 8px;
+    }
+
+    .guide-panel h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: calc(1.15rem * var(--global-font-scale));
+      color: var(--text-main);
+      margin: 24px 0 12px;
+    }
+
+    .guide-panel p {
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .guide-panel ul, .guide-panel ol {
+      margin-left: 20px;
+      margin-bottom: 14px;
+      color: var(--text-muted);
+    }
+
+    .guide-panel li {
+      margin-bottom: 6px;
+    }
+
+    .guide-panel code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      background-color: var(--code-bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      color: var(--gold);
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    .guide-panel pre {
+      background-color: var(--code-bg);
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      overflow-x: auto;
+      margin-bottom: 16px;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    .guide-panel pre code {
+      background-color: transparent;
+      padding: 0;
+      border: 0;
+      color: var(--text-main);
+    }
+
+    .callout {
+      background-color: rgba(141, 77, 50, 0.1);
+      border-left: 4px solid var(--gold);
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 16px 0;
+    }
+
+    .callout-title {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--gold);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .callout p {
+      margin-bottom: 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .guide-sidebar {
+      width: 300px;
+      background-color: var(--bg-sidebar);
+      overflow-y: auto;
+      flex-shrink: 0;
+    }
+
+    .guide-sidebar h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .guide-toc-item {
+      display: block;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      text-decoration: none;
+      margin-bottom: 8px;
+      transition: color 0.2s;
+    }
+
+    .guide-toc-item:hover {
+      color: var(--gold);
+    }
+
+    /* Q&A Section Styling */
+    .qa-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .qa-question-text {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 12px;
+      line-height: 1.45;
+    }
+
+    .qa-options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .qa-option-btn {
+      text-align: left;
+      background-color: var(--bg-sidebar);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 0.82rem;
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.2s;
+      width: 100%;
+    }
+
+    .qa-option-btn:hover {
+      border-color: var(--gold);
+      background-color: rgba(202, 167, 93, 0.05);
+    }
+
+    .qa-option-btn.correct {
+      background-color: rgba(46, 111, 64, 0.15) !important;
+      border-color: #2e6f40 !important;
+      color: #c3e6cb !important;
+      font-weight: 600;
+    }
+
+    body.theme-comfort .qa-option-btn.correct {
+      background-color: rgba(46, 111, 64, 0.12) !important;
+      color: #1b5e20 !important;
+    }
+
+    .qa-option-btn.incorrect {
+      background-color: rgba(184, 58, 56, 0.15) !important;
+      border-color: #b83a38 !important;
+      color: #f5c6cb !important;
+    }
+
+    body.theme-comfort .qa-option-btn.incorrect {
+      background-color: rgba(184, 58, 56, 0.12) !important;
+      color: #b71c1c !important;
+    }
+
+    .qa-explanation-box {
+      margin-top: 14px;
+      padding: 12px;
+      background-color: rgba(9, 26, 39, 0.4);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 6px 6px 0;
+      font-size: 0.8rem;
+      line-height: 1.45;
+      color: var(--text-muted);
+      display: none; /* hidden by default */
+    }
+
+    body.theme-comfort .qa-explanation-box {
+      background-color: rgba(244, 234, 213, 0.4);
+    }
+
+    /* High-Visibility Custom Scrollbars */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+      display: block !important;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--scrollbar-thumb);
+      background-clip: padding-box;
+      border: 2px solid transparent;
+      border-radius: 6px;
+      display: block !important;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: var(--gold);
+    }
+
+    .sidebar, .guide-panel, .guide-sidebar, .code-container, .annotations-panel {
+      overflow-y: auto !important;
+      scrollbar-width: thin;
+      scrollbar-color: var(--scrollbar-thumb) transparent;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      body {
+        grid-template-rows: auto 1fr;
+      }
+      header {
+        height: auto;
+        padding: 8px 16px;
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+      }
+      .header-controls {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .app-container {
+        flex-direction: column;
+        height: auto;
+      }
+      .sidebar {
+        width: 100% !important;
+        height: auto;
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        border-right: 0;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .nav-section {
+        display: flex;
+        align-items: center;
+        padding: 0;
+        border-bottom: 0;
+      }
+      .nav-section h2 {
+        display: none;
+      }
+      .nav-item {
+        border-left: 0;
+        border-bottom: 3px solid transparent;
+        padding: 12px 16px;
+      }
+      .nav-item.active {
+        border-left-color: transparent;
+        border-bottom-color: var(--gold);
+      }
+      .main-content {
+        height: calc(100vh - 78px - 50px);
+      }
+      .view-content.active {
+        flex-direction: column;
+      }
+      .resizer {
+        width: 100% !important;
+        height: 6px !important;
+        cursor: row-resize !important;
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+      }
+      .resizer:hover, .resizer.dragging {
+        height: 8px !important;
+      }
+      .guide-sidebar, .annotations-panel {
+        width: 100% !important;
+        height: 180px;
+      }
+      .code-panel, .guide-panel {
+        height: 60%;
+      }
+    }
+  </style>
+</head>
+<body class="theme-dark lang-en">
+
+  <!-- Header -->
+  <header>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <!-- Left Sidebar Toggle (placed above Left Sidebar / Front) -->
+      <button class="selector-btn active" id="toggle-left-btn" onclick="toggleLeftSidebar()" title="Toggle Navigation Sidebar">📁</button>
+      <h1>Encounter Cards v19 Developer Academy <span class="badge">V19</span></h1>
+    </div>
+    <div class="header-controls">
+      <!-- Language Dropdown -->
+      <select class="lang-select" onchange="setLanguage(this.value)" id="lang-select-box">
+        <option value="en">English (Default)</option>
+        <option value="zh">繁體中文</option>
+        <option value="bilingual">Bilingual (中/EN)</option>
+      </select>
+
+      <!-- Font Sizer (A- / A+) -->
+      <div class="selector-group">
+        <button class="selector-btn" onclick="changeGlobalFont(-0.05)" title="Decrease Text Sizing">A−</button>
+        <button class="selector-btn" onclick="changeGlobalFont(0.05)" title="Increase Text Sizing">A＋</button>
+      </div>
+
+      <!-- Theme Switcher Icons (🌙 Moon and ☀️ Sun icons) -->
+      <div class="selector-group">
+        <button id="theme-btn-dark" class="selector-btn active" onclick="setTheme('dark')" title="Dark Mode">🌙</button>
+        <button id="theme-btn-comfort" class="selector-btn" onclick="setTheme('comfort')" title="Eye-Comfort Mode">☀️</button>
+      </div>
+
+      <a href="file:///d:/Sharing/SHINE_AI_OS/Truth%20and%20Dare/GUIDE.md">← <span class="lang-en">Open Guide</span><span class="lang-zh">開啟指南</span></a>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="app-container">
+    
+    <!-- Collapsed Left Sidebar bar (appears when front panel is hidden) -->
+    <div id="sidebar-collapsed-bar" style="display: none; width: 36px; background-color: var(--bg-sidebar); border-right: 1px solid var(--border-color); flex-direction: column; align-items: center; padding-top: 12px; cursor: pointer; flex-shrink: 0;" onclick="toggleLeftSidebar()">
+      <span style="writing-mode: vertical-lr; text-orientation: mixed; font-size: 0.72rem; color: var(--gold); font-family: 'Outfit', sans-serif; letter-spacing: 2px; transform: rotate(180deg);">NAVIGATION</span>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar-pane">
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--border-color); background-color: rgba(6, 17, 26, 0.2);">
+        <span style="font-weight: 600; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;"><span class="lang-en">Academy</span><span class="lang-zh">學習模組</span></span>
+        <button class="selector-btn" onclick="toggleLeftSidebar()" title="Collapse Sidebar" style="border: 1px solid var(--border-color); padding: 2px 6px;">◀</button>
+      </div>
+
+      <div class="nav-section">
+        <h2><span class="lang-en">Guides</span><span class="lang-zh">學習手冊</span></h2>
+        <a class="nav-item active" onclick="switchTab('expert-learn')">
+          <span class="icon">📖</span> <span class="lang-en">How Experts Learn</span><span class="lang-zh">專家學習法</span>
+        </a>
+        <a class="nav-item" onclick="switchTab('recreation')">
+          <span class="icon">🛠️</span> <span class="lang-en">Recreation Playbook</span><span class="lang-zh">重建指南</span>
+        </a>
+        <a class="nav-item" onclick="switchTab('syntax-glossary')">
+          <span class="icon">📚</span> <span class="lang-en">Syntax Glossary</span><span class="lang-zh">語法字典</span>
+        </a>
+        <a class="nav-item" onclick="switchTab('interactive-qa')">
+          <span class="icon">❓</span> <span class="lang-en">Interactive Q&A</span><span class="lang-zh">互動問答</span>
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <h2><span class="lang-en">Core Logic</span><span class="lang-zh">核心流程</span></h2>
+        <a class="nav-item" onclick="switchFile('App.tsx')">
+          <span class="icon">⚛️</span> App.tsx
+        </a>
+        <a class="nav-item" onclick="switchFile('types.ts')">
+          <span class="icon">🏷️</span> types.ts
+        </a>
+        <a class="nav-item" onclick="switchFile('cards.ts', 'data/cards.ts')">
+          <span class="icon">🗃️</span> data/cards.ts
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <h2><span class="lang-en">Domain Modules</span><span class="lang-zh">邏輯模組</span></h2>
+        <a class="nav-item" onclick="switchFile('game.ts', 'lib/game.ts')">
+          <span class="icon">⚙️</span> lib/game.ts
+        </a>
+        <a class="nav-item" onclick="switchFile('age-gate.ts', 'lib/age-gate.ts')">
+          <span class="icon">🔞</span> lib/age-gate.ts
+        </a>
+        <a class="nav-item" onclick="switchFile('preferences.ts', 'lib/preferences.ts')">
+          <span class="icon">💾</span> lib/preferences.ts
+        </a>
+        <a class="nav-item" onclick="switchFile('deity-art.ts', 'lib/deity-art.ts')">
+          <span class="icon">⛩️</span> lib/deity-art.ts
+        </a>
+        <a class="nav-item" onclick="switchFile('share.ts', 'lib/share.ts')">
+          <span class="icon">🎨</span> lib/share.ts
+        </a>
+        <a class="nav-item" onclick="switchFile('viewport-scale.ts', 'lib/viewport-scale.ts')">
+          <span class="icon">📐</span> lib/viewport-scale.ts
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <h2><span class="lang-en">Styling</span><span class="lang-zh">視覺樣式</span></h2>
+        <a class="nav-item" onclick="switchFile('app.css', 'styles/app.css')">
+          <span class="icon">💅</span> styles/app.css
+        </a>
+        <a class="nav-item" onclick="switchFile('v19.css', 'styles/v19.css')">
+          <span class="icon">🎴</span> styles/v19.css
+        </a>
+      </div>
+    </aside>
+
+    <!-- Sidebar Navigation Resizer Splitter -->
+    <div class="resizer" id="sidebar-resizer"></div>
+
+    <!-- main content area -->
+    <main class="main-content" id="main-pane">
+      
+      <!-- 1. Expert Learn Guide View -->
+      <div id="view-expert-learn" class="view-content active" style="flex-direction: column;">
+        <div style="display: flex; flex: 1; width: 100%; overflow: hidden;">
+          
+          <!-- Middle Pane -->
+          <section class="guide-panel" id="guide-text-pane" style="padding: 0; display: flex; flex-direction: column;">
+            <div class="panel-header">
+              <span>📖 Guide Text</span>
+              <button onclick="toggleMiddleGuide('guide-text-pane', 'btn-toggle-guide-text', 'guide-resizer', 'guide-sidebar-pane')" id="btn-toggle-guide-text" class="panel-control-btn active" title="Collapse Text">◀ Hide Text</button>
+            </div>
+            <div style="padding: 24px 32px; flex: 1; overflow-y: auto;">
+              <h2>
+                <span class="lang-en">How Expert Programmers Learn Code</span>
+                <span class="lang-zh">專家學習法</span>
+              </h2>
+              
+              <p class="lang-en">
+                Many novice programmers default to reading source code as if it were a novel, or relying on AI generation to bypass the process of understanding. When faced with a complex system, they copy-paste snippets until it "works," leaving them unable to fix issues when the code breaks.
+              </p>
+              <p class="lang-zh">
+                許多新手工程師在閱讀程式碼時，常像讀小說般一掃而過，或過度依賴 AI 生成來規避理解的過程。當面對複雜系統時，他們盲目複製貼上程式碼直到「可行」為止，一旦系統損壞便束手無策。
+              </p>
+
+              <p class="lang-en">
+                Expert programmers approach code with a completely different mindset. They prioritize building stable mental models, tracing flow manually, and treating libraries or runtimes as transparent tools. Here is how they master code autonomously:
+              </p>
+              <p class="lang-zh">
+                專家級工程師則以截然不同的思維看待程式碼。他們優先建立穩固的心理模型、手動追蹤流程，並將函式庫或執行期環境視為透明的工具。以下是他們自主掌握程式碼的方法：
+              </p>
+
+              <h3>
+                <span class="lang-en">1. Tracing the Lifecycle of State (Mental CPU Execution)</span>
+                <span class="lang-zh">1. 追蹤狀態生命週期（大腦模擬 CPU 執行）</span>
+              </h3>
+              <p class="lang-en">
+                Instead of just looking at functions in isolation, experts trace code by acting as the interpreter. In reactive UI systems (like React), this means tracing the lifecycle of state updates and matching them to rendering boundaries.
+              </p>
+              <p class="lang-zh">
+                專家不會孤立地看各個函式，而是扮演直譯器來追蹤程式碼。在響應式 UI 系統（如 React）中，這意味著追蹤狀態更新的生命週期，並將其與渲染邊界進行對應。
+              </p>
+
+              <div class="callout">
+                <div class="callout-title">
+                  <span class="lang-en">Mental Trace Example: Language Switching</span>
+                  <span class="lang-zh">狀態追蹤範例：切換語言</span>
+                </div>
+                <p class="lang-en">
+                  Let's trace how Encounter Cards switches language from Chinese to Bilingual:
+                  <br>1. User clicks the "中/EN" button in the Setup screen.
+                  <br>2. This triggers the <code>chooseLanguage('bilingual')</code> callback in <code>App.tsx</code>.
+                  <br>3. Inside this callback, <code>setLanguage('bilingual')</code> is called, scheduling a React state update, and <code>saveLanguage('bilingual')</code> is called, writing the key <code>encounter-language</code> to LocalStorage.
+                  <br>4. On the next render pass, <code>language</code> resolves to <code>'bilingual'</code>.
+                  <br>5. <code>CardText</code> receives <code>language="bilingual"</code>. Its logic runs: <code>language !== 'en'</code> renders Chinese, and <code>language !== 'zh'</code> renders English. Both are rendered on screen simultaneously!
+                </p>
+                <p class="lang-zh">
+                  讓我們追蹤相遇卡如何將語言設定從中文切換為雙語：
+                  <br>1. 使用者在設定面板點擊「中/EN」按鈕。
+                  <br>2. 這觸發了 <code>App.tsx</code> 中的 <code>chooseLanguage('bilingual')</code> 回呼函式。
+                  <br>3. 在該函式中，呼叫 <code>setLanguage('bilingual')</code> 安排 React 狀態更新，並呼叫 <code>saveLanguage('bilingual')</code> 將值寫入 LocalStorage。
+                  <br>4. 在下一次渲染時，<code>language</code> 解析為 <code>'bilingual'</code>。
+                  <br>5. <code>CardText</code> 接收到 <code>language="bilingual"</code>。其邏輯開始運算：<code>language !== 'en'</code> 渲染中文段落，且 <code>language !== 'zh'</code> 渲染英文段落。中英雙語段落因此同時呈現在螢幕上！
+                </p>
+              </div>
+
+              <h3>
+                <span class="lang-en">2. Deconstruction and Reconstruction (The MVP Method)</span>
+                <span class="lang-zh">2. 解構與重構（最小可行性產品法）</span>
+              </h3>
+              <p class="lang-en">
+                Experts never try to write a complex 10-module system all at once. They split the target into its absolute minimum functional components, verify each block, and grow it step-by-step.
+              </p>
+              <p class="lang-zh">
+                專家絕不會試圖一次寫完包含 10 個模組的複雜系統。他們會將目標拆解為最基礎的功能組件，驗證每個區塊，並逐步擴展。
+              </p>
+              <ol>
+                <li class="lang-en"><strong>Step 1: Raw Data & Filtering:</strong> Create an array of cards and write a clean function (like <code>eligibleCards</code>) to filter them.</li>
+                <li class="lang-zh"><strong>步驟 1：原始資料與篩選：</strong> 建立卡牌陣列並寫一個乾淨的篩選函式（如 <code>eligibleCards</code>）來過濾它們。</li>
+                
+                <li class="lang-en"><strong>Step 2: Simple Rendering:</strong> Build a basic HTML container that renders the active card's text.</li>
+                <li class="lang-zh"><strong>步驟 2：簡單渲染：</strong> 建立一個基本的 HTML 容器，將當前選中卡牌的文字渲染出來。</li>
+                
+                <li class="lang-en"><strong>Step 3: State & Actions:</strong> Add a "Draw" button. Implement <code>nextCard</code> logic to pick cards randomly while avoiding direct repetitions.</li>
+                <li class="lang-zh"><strong>步驟 3：狀態與動作：</strong> 加入「抽卡」按鈕。實作 <code>nextCard</code> 邏輯以隨機選取卡牌且不重複。</li>
+                
+                <li class="lang-en"><strong>Step 4: Layout & Emulation:</strong> Implement the 430 × 932 container scaling rules in CSS and JS to ensure mobile proportions work correctly on desktop.</li>
+                <li class="lang-zh"><strong>步驟 4：佈局與模擬：</strong> 在 CSS 和 JS 中實作 430 × 932 容器縮放規則，確保行動端比例在桌面上正確顯示。</li>
+                
+                <li class="lang-en"><strong>Step 5: Gestures & Refinement:</strong> Layer on pointer drag listeners to trigger the draw step, and write canvas drawers to assemble exportable files.</li>
+                <li class="lang-zh"><strong>步驟 5：手勢與細節：</strong> 疊加指標拖曳監聽器來觸發抽卡動作，並撰寫 canvas 繪圖程式來輸出圖檔。</li>
+              </ol>
+
+              <h3>
+                <span class="lang-en">3. Rubber Duck Debugging (Feynman Technique)</span>
+                <span class="lang-zh">3. 小黃鴨除錯法（費曼學習法）</span>
+              </h3>
+              <p class="lang-en">
+                When a bug appears, experts do not blindly guess fixes. They explain the code out loud line-by-line to a colleague, a rubber duck, or themselves.
+                For example, explaining the hash-mapping function in <code>deity-art.ts</code>:
+              </p>
+              <p class="lang-zh">
+                當遇到 Bug 時，專家不會盲目猜測修復方案。他們會對著同事、一隻小黃鴨或自己，逐行大聲解釋程式碼運作邏輯。例如，解釋 <code>deity-art.ts</code> 中的雜湊對應：
+              </p>
+              <pre><code>// We want cards to always show the same deity artwork without storing a database relationship.
+// To do this, we treat the card's ID string as a seed.
+// We map over every character, multiplying the accumulated hash by 31 and adding character codes.
+// Modulo the hash against the count of deity artworks. This yields a deterministic, offline index!</code></pre>
+              <p class="lang-en">
+                By describing *why* a function operates rather than *what syntax* it uses, developers expose logical assumptions and find the exact boundary where reality diverges from expectation.
+              </p>
+              <p class="lang-zh">
+                藉由描述函式運作的「原因」而非「語法」，開發者能暴露其邏輯假設，並找出程式行為偏離預期的確切邊界。
+              </p>
+
+              <h3>
+                <span class="lang-en">4. Deep Autonomy from AI</span>
+                <span class="lang-zh">4. 培養脫離 AI 的自主能力</span>
+              </h3>
+              <p class="lang-en">
+                AI is a useful autocomplete, but a terrible architect. Relying on AI prevents a developer from forming the cognitive pathways required to hold code structures in memory.
+              </p>
+              <p class="lang-zh">
+                AI 是好用的自動完成工具，但卻是個糟糕的架構師。過度依賴 AI 會阻止開發者建立在記憶中建構程式碼結構所需的認知路徑。
+              </p>
+              <ul>
+                <li class="lang-en"><strong>Read the errors:</strong> When compilation fails, read the stack trace. The compiler is telling you the exact syntax rule or type contract that was violated.</li>
+                <li class="lang-zh"><strong>閱讀錯誤：</strong> 追蹤日誌報錯。</li>
+                
+                <li class="lang-en"><strong>Verify boundaries:</strong> Write unit tests. Codebases like Encounter Cards include automated tests for age gates, scaling math, and random selection. Running these tests verifies modifications instantly without spinning up a browser.</li>
+                <li class="lang-zh"><strong>驗證邊界：</strong> 撰寫單元測試。像相遇卡這樣的程式庫包含年齡門檻、縮放計算和隨機抽選的測試。執行測試可直接驗證變更，而不需要開啟瀏覽器。</li>
+                
+                <li class="lang-en"><strong>Inspect with developer tools:</strong> Use the browser's <code>Inspect Element</code> and console logger (F12) to audit layout scaling and local storage keys instead of guessing why styling fails.</li>
+                <li class="lang-zh"><strong>利用開發者工具檢查：</strong> 使用瀏覽器的「檢查元素」與主控台日誌（F12）來稽核縮放比例與本地儲存鍵，而不是瞎猜樣式失效的原因。</li>
+              </ul>
+            </div>
+          </section>
+          
+          <!-- Guide Resizer Splitter -->
+          <div class="resizer" id="guide-resizer"></div>
+          
+          <!-- Right Pane (Back / TOC) -->
+          <aside class="guide-sidebar" id="guide-sidebar-pane" style="display: flex; flex-direction: column;">
+            <div class="panel-header" style="border-bottom: 1px solid var(--border-color); background-color: rgba(6, 17, 26, 0.3);">
+              <span>📋 Contents</span>
+              <div style="display: flex; gap: 6px;">
+                <button onclick="toggleMiddleGuide('guide-text-pane', 'btn-toggle-guide-text', 'guide-resizer', 'guide-sidebar-pane')" id="btn-restore-guide-text" class="panel-control-btn" style="display: none;" title="Restore Text">◀ Show Text</button>
+                <button onclick="toggleRightTOC('guide-sidebar-pane', 'btn-toggle-guide-toc', 'guide-resizer', 'guide-text-pane')" id="btn-toggle-guide-toc" class="panel-control-btn" title="Collapse TOC">Hide TOC ▶</button>
+              </div>
+            </div>
+            <div style="padding: 16px; flex: 1; overflow-y: auto;">
+              <h3><span class="lang-en">Table of Contents</span><span class="lang-zh">目錄</span></h3>
+              <a href="#" class="guide-toc-item" style="margin-top: 12px;"><span class="lang-en">1. State Lifecycles</span><span class="lang-zh">1. 狀態生命週期</span></a>
+              <a href="#" class="guide-toc-item"><span class="lang-en">2. MVP Reconstruction</span><span class="lang-zh">2. MVP 逐步重構</span></a>
+              <a href="#" class="guide-toc-item"><span class="lang-en">3. Rubber Duck Technique</span><span class="lang-zh">3. 小黃鴨技術</span></a>
+              <a href="#" class="guide-toc-item"><span class="lang-en">4. Code Autonomy</span><span class="lang-zh">4. 脫離 AI 自主</span></a>
+            </div>
+          </aside>
+
+          <!-- Collapsed TOC Bar (appears when TOC is hidden) -->
+          <div id="guide-toc-collapsed-bar" style="display: none; width: 36px; background-color: var(--bg-sidebar); border-left: 1px solid var(--border-color); flex-direction: column; align-items: center; padding-top: 12px; cursor: pointer; flex-shrink: 0;" onclick="toggleRightTOC('guide-sidebar-pane', 'btn-toggle-guide-toc', 'guide-resizer', 'guide-text-pane')">
+            <span style="writing-mode: vertical-lr; text-orientation: mixed; font-size: 0.72rem; color: var(--gold); font-family: 'Outfit', sans-serif; letter-spacing: 2px;">CONTENTS</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 2. Recreation Playbook View -->
+      <div id="view-recreation" class="view-content" style="flex-direction: column;">
+        <div style="display: flex; flex: 1; width: 100%; overflow: hidden;">
+          
+          <!-- Middle Pane -->
+          <section class="guide-panel" id="recreation-text-pane" style="padding: 0; display: flex; flex-direction: column;">
+            <div class="panel-header">
+              <span>🛠️ Recreation Playbook</span>
+              <button onclick="toggleMiddleGuide('recreation-text-pane', 'btn-toggle-rec-text', 'recreation-resizer', 'recreation-sidebar-pane')" id="btn-toggle-rec-text" class="panel-control-btn active" title="Collapse Playbook">◀ Hide Playbook</button>
+            </div>
+            <div style="padding: 24px 32px; flex: 1; overflow-y: auto;">
+              <h2>
+                <span class="lang-en">Recreation & Maintenance Playbook</span>
+                <span class="lang-zh">項目重構與維護指南</span>
+              </h2>
+              <p class="lang-en">
+                This playbook outlines how a human developer can manually recreate the Encounter Cards v19 application from scratch, compile it into a single portable HTML release, and run regression tests.
+              </p>
+              <p class="lang-zh">
+                本指南概述了開發人員如何從頭手動重建相遇卡 v19 應用程式、將其編譯為單個獨立 HTML 釋出版，並執行迴歸測試。
+              </p>
+
+              <h3>
+                <span class="lang-en">1. Project Initialization</span>
+                <span class="lang-zh">1. 專案初始化</span>
+              </h3>
+              <p class="lang-en">
+                Encounter Cards is built using **React**, **TypeScript**, and **Vite**. Initialize the workspace by executing:
+              </p>
+              <p class="lang-zh">
+                相遇卡使用 **React**、**TypeScript** 與 **Vite** 建置。在工作區執行以下指令初始化專案：
+              </p>
+              <pre><code># Create a standard Vite React-TypeScript project
+npx -y create-vite@latest encounter-cards --template react-ts
+cd encounter-cards
+npm install</code></pre>
+
+              <h3>
+                <span class="lang-en">2. Source Directory Structure</span>
+                <span class="lang-zh">2. 原始碼目錄結構</span>
+              </h3>
+              <p class="lang-en">
+                Create the modular directories under the <code>src/</code> path to match our governed architecture:
+              </p>
+              <p class="lang-zh">
+                在 <code>src/</code> 目錄下建立符合我們規範架構的資料夾：
+              </p>
+              <pre><code>src/
+├── main.tsx             # Root mounting script
+├── App.tsx              # Application shell UI
+├── types.ts             # TypeScript definitions
+├── data/
+│   └── cards.ts         # Card prompts database
+├── lib/
+│   ├── age-gate.ts      # Level 5 safety checks
+│   ├── game.ts          # Selection & filtering algorithms
+│   ├── preferences.ts   # LocalStorage preferences
+│   ├── deity-art.ts     # String hashing & artwork layout
+│   └── share.ts         # Canvas drawing & PNG exporter
+└── styles/
+    ├── app.css          # Core layouts & mobile shell variables
+    └── v19.css          # Deity cards visual overrides</code></pre>
+
+              <h3>
+                <span class="lang-en">3. Testing Locally</span>
+                <span class="lang-zh">3. 本機測試</span>
+              </h3>
+              <p class="lang-en">
+                We use **Vitest** for running unit tests. Install the test runner and verify files inside the application folder:
+              </p>
+              <p class="lang-zh">
+                我們使用 **Vitest** 執行單元測試。安裝測試執行器並在專案資料夾下進行驗證：
+              </p>
+              <pre><code>npm install -D vitest @testing-library/react @testing-library/jest-dom jsdom
+npm run dev           # Runs local dev server on http://localhost:5173
+npm run typecheck     # Validates TS types
+npm test              # Executes test suite (age-gate, game, viewport tests)</code></pre>
+
+              <h3>
+                <span class="lang-en">4. Standalone Export Compilation</span>
+                <span class="lang-zh">4. 獨立單檔編譯匯出</span>
+              </h3>
+              <p class="lang-en">
+                To compile the modular React source code into a self-contained, single-file HTML release (like <code>encounter_cards_v19.html</code>), we use a custom NodeJS build finalizer script:
+              </p>
+              <p class="lang-zh">
+                若要將模組化 React 原始碼編譯為獨立的單一 HTML 檔案（如 <code>encounter_cards_v19.html</code>），我們使用自訂的 NodeJS 建置處理器腳本：
+              </p>
+              <div class="callout">
+                <div class="callout-title">
+                  <span class="lang-en">The Standalone Exporter Workflow</span>
+                  <span class="lang-zh">獨立單檔匯出工作流</span>
+                </div>
+                <p class="lang-en">
+                  1. Vite compiles the typescript code and styles into single JavaScript and CSS bundles.
+                  <br>2. A Node build script (<code>export-standalone-v19.mjs</code>) reads the compiled <code>dist/index.html</code>.
+                  <br>3. It replaces references to external script and stylesheet files, embedding their text directly inside inline <code>&lt;script&gt;</code> and <code>&lt;style&gt;</code> tags.
+                  <br>4. Deity WebP images are converted to Base64 data URLs and inline-embedded into the script dictionary.
+                  <br>5. The result is a single self-contained HTML file that runs offline anywhere.
+                </p>
+                <p class="lang-zh">
+                  1. Vite 將 TypeScript 程式碼與樣式編譯為單一的 JS 與 CSS 軟體包。
+                  <br>2. Node 建置腳本（<code>export-standalone-v19.mjs</code>）讀取編譯好的 <code>dist/index.html</code>。
+                  <br>3. 腳本會替換外部 script 和 stylesheet 檔案連結，將內容直接嵌入 <code>&lt;script&gt;</code> 與 <code>&lt;style&gt;</code> 標籤中。
+                  <br>4. 神祇 WebP 影像會轉換為 Base64 Data URL 並直接寫入程式中。
+                  <br>5. 產出單一的 HTML 檔案，能在任何地方離線啟動。
+                </p>
+              </div>
+
+              <h3>
+                <span class="lang-en">5. Verification checklist</span>
+                <span class="lang-zh">5. 驗證清單</span>
+              </h3>
+              <p class="lang-en">
+                Before declaring a change complete, always execute the validation suite from the project root directory:
+              </p>
+              <p class="lang-zh">
+                在宣佈修改完成前，請務必在專案根目錄下執行完整的驗證套件：
+              </p>
+              <pre><code>powershell -ExecutionPolicy Bypass -File Development/Tests/validate_repository.ps1</code></pre>
+            </div>
+          </section>
+          
+          <!-- Resizer Splitter -->
+          <div class="resizer" id="recreation-resizer"></div>
+          
+          <!-- Right Pane (Back / Playbook TOC) -->
+          <aside class="guide-sidebar" id="recreation-sidebar-pane" style="display: flex; flex-direction: column;">
+            <div class="panel-header" style="border-bottom: 1px solid var(--border-color); background-color: rgba(6, 17, 26, 0.3);">
+              <span>📋 Contents</span>
+              <div style="display: flex; gap: 6px;">
+                <button onclick="toggleMiddleGuide('recreation-text-pane', 'btn-toggle-rec-text', 'recreation-resizer', 'recreation-sidebar-pane')" id="btn-restore-rec-text" class="panel-control-btn" style="display: none;" title="Restore Playbook">◀ Show Playbook</button>
+                <button onclick="toggleRightTOC('recreation-sidebar-pane', 'btn-toggle-rec-toc', 'recreation-resizer', 'recreation-text-pane')" id="btn-toggle-rec-toc" class="panel-control-btn" title="Collapse TOC">Hide TOC ▶</button>
+              </div>
+            </div>
+            <div style="padding: 16px; flex: 1; overflow-y: auto;">
+              <h3>TOC</h3>
+              <a href="#" class="guide-toc-item" style="margin-top: 12px;"><span class="lang-en">1. Init Project</span><span class="lang-zh">1. 專案初始化</span></a>
+              <a href="#" class="guide-toc-item"><span class="lang-en">2. Directory Map</span><span class="lang-zh">2. 目錄地圖</span></a>
+              <a href="#" class="guide-toc-item"><span class="lang-en">3. Running Tests</span><span class="lang-zh">3. 執行測試</span></a>
+              <a href="#" class="guide-toc-item"><span class="lang-en">4. Packaging Exporter</span><span class="lang-zh">4. 單檔打包匯出</span></a>
+              <a href="#" class="guide-toc-item"><span class="lang-en">5. Repository Checks</span><span class="lang-zh">5. 專案驗證</span></a>
+            </div>
+          </aside>
+
+          <!-- Collapsed Recreation TOC Bar -->
+          <div id="recreation-toc-collapsed-bar" style="display: none; width: 36px; background-color: var(--bg-sidebar); border-left: 1px solid var(--border-color); flex-direction: column; align-items: center; padding-top: 12px; cursor: pointer; flex-shrink: 0;" onclick="toggleRightTOC('recreation-sidebar-pane', 'btn-toggle-rec-toc', 'recreation-resizer', 'recreation-text-pane')">
+            <span style="writing-mode: vertical-lr; text-orientation: mixed; font-size: 0.72rem; color: var(--gold); font-family: 'Outfit', sans-serif; letter-spacing: 2px;">PLAYBOOK TOC</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 3. Syntax Glossary View (Fully Detailed Beginner Reference) -->
+      <div id="view-syntax-glossary" class="view-content">
+        <section class="guide-panel" style="width: 100%;">
+          <h2>
+            <span class="lang-en">Bilingual Syntax & Concept Dictionary</span>
+            <span class="lang-zh">中英雙語語法與程式概念字典</span>
+          </h2>
+          <p class="lang-en" style="margin-bottom: 20px;">
+            A complete reference guide explaining programming syntax, React hooks, TypeScript configurations, browser interfaces, and CSS 3D rendering structures for beginner developers.
+          </p>
+          <p class="lang-zh" style="margin-bottom: 20px;">
+            為初學者設計的完整參考手冊，詳細解釋程式語法、React hooks 鉤子、TypeScript 設定、瀏覽器 API 以及 CSS 3D 渲染結構。
+          </p>
+
+          <!-- 1. ES6 Modules -->
+          <div class="glossary-card">
+            <h3><span>📦</span> <span class="lang-en">ES6 Modules (import & export)</span><span class="lang-zh">ES6 模組機制 (import 與 export)</span></h3>
+            <p class="lang-en">
+              In JavaScript and TypeScript, code is modularized into files. Modules let you share code between files using <code>import</code> and <code>export</code>.
+            </p>
+            <p class="lang-zh">
+              在現代 JavaScript 和 TypeScript 中，程式碼會被拆分到不同的檔案中（稱為模組）。我們使用 <code>import</code> 與 <code>export</code> 來共享程式碼。
+            </p>
+            <div class="novice-explanation">
+              <strong><span class="lang-en">What is "import { ... }" (Curly Braces)?</span><span class="lang-zh">什麼是「import { ... }」（花括號）？</span></strong>
+              <p class="lang-en">
+                When you see curly braces like <code>import { useEffect, useState } from 'react'</code>, it is called a <strong>Named Import</strong> (具名導入). It means we are extracting only specific tools from the 'react' package. If a package has a <strong>Default Export</strong> (預設匯出), like <code>import App from './App'</code>, we do not use curly braces.
+              </p>
+              <p class="lang-zh">
+                當您看到帶有花括號的 <code>import { useEffect, useState } from 'react'</code> 時，這稱為 <strong>具名導入 (Named Import)</strong>。這代表我們僅從 'react' 套件中提取特定的工具。如果是 <strong>預設匯出 (Default Export)</strong>，例如 <code>import App from './App'</code>，則不需要加花括號。
+              </p>
+            </div>
+            <pre><code>// 1. Named Export (in lib/game.ts)
+export function eligibleCards(...) { ... }
+// Imported elsewhere as:
+import { eligibleCards } from './lib/game'
+
+// 2. Default Export (in App.tsx)
+export default function App() { ... }
+// Imported elsewhere as:
+import App from './App'</code></pre>
+          </div>
+
+          <!-- 2. React Core Concepts -->
+          <div class="glossary-card">
+            <h3><span>⚛️</span> <span class="lang-en">React Components & JSX/TSX</span><span class="lang-zh">React 元件與 JSX/TSX 語法</span></h3>
+            <p class="lang-en">
+              React builds user interfaces by combining small, reusable building blocks called <strong>Components</strong>.
+            </p>
+            <p class="lang-zh">
+              React 藉由組合微小且可重複使用的建置區塊（稱為 <strong>元件 Component</strong>）來開發使用者介面。
+            </p>
+            <div class="novice-explanation">
+              <strong><span class="lang-en">Understanding JSX/TSX Expressions:</span><span class="lang-zh">理解 JSX/TSX 表達式：</span></strong>
+              <p class="lang-en">
+                JSX (JavaScript XML) allows us to write HTML-like tags directly inside JavaScript. A TSX file is simply a JSX file containing TypeScript types. Inside JSX, any code wrapped in single curly braces <code>{ ... }</code> is evaluated as active JavaScript. For example: <code>&lt;p&gt;{card.zh}&lt;/p&gt;</code> prints the Chinese text of the card.
+              </p>
+              <p class="lang-zh">
+                JSX 允許我們直接在 JavaScript 中撰寫類似 HTML 的標籤。而 TSX 則是加上了 TypeScript 型別標記的 JSX 檔案。在 JSX 中，被單花括號 <code>{ ... }</code> 包裹的內容會被當作 JavaScript 運算。例如：<code>&lt;p&gt;{card.zh}&lt;/p&gt;</code> 會輸出卡牌的中文問題。
+              </p>
+            </div>
+            <pre><code>// A basic React component returning JSX
+function CardText({ card, language }) {
+  // Curly braces evaluate conditional logic inside the layout!
+  return (
+    &lt;div&gt;
+      {language === 'zh' ? &lt;p&gt;{card.zh}&lt;/p&gt; : &lt;p&gt;{card.en}&lt;/p&gt;}
+    &lt;/div&gt;
+  )
+}</code></pre>
+          </div>
+
+          <!-- 3. useState -->
+          <div class="glossary-card">
+            <h3><span>💾</span> <span class="lang-en">useState (State Management)</span><span class="lang-zh">useState (元件狀態管理)</span></h3>
+            <p class="lang-en">
+              <code>useState</code> is a React Hook that lets a component "remember" changing data (state). When state changes, React automatically redraws (re-renders) the screen.
+            </p>
+            <p class="lang-zh">
+              <code>useState</code> 是一個 React Hook，用來讓元件「記住」會改變的資料（狀態）。當狀態改變時，React 會自動重新繪製（重新渲染）畫面。
+            </p>
+            <div class="novice-explanation">
+              <strong><span class="lang-en">Syntax Breakdown:</span><span class="lang-zh">語法拆解說明：</span></strong>
+              <p class="lang-en">
+                <code>const [language, setLanguage] = useState('zh')</code>
+                <br>• <code>language</code>: The read-only state variable.
+                <br>• <code>setLanguage</code>: The setter function. To change the state, you must call this function: <code>setLanguage('en')</code>.
+                <br>• <code>'zh'</code>: The default starting value.
+                <br>• <strong>Updater Initializer</strong>: If you pass a function to <code>useState(() => loadLanguage())</code>, React runs this function only once when the page loads, which is extremely useful to avoid reading LocalStorage repeatedly.
+              </p>
+              <p class="lang-zh">
+                <code>const [language, setLanguage] = useState('zh')</code>
+                <br>• <code>language</code>：唯讀的狀態變數。
+                <br>• <code>setLanguage</code>：變更狀態的設定函數。您必須呼叫此函數如 <code>setLanguage('en')</code> 來改變狀態。
+                <br>• <code>'zh'</code>：初始預設值。
+                <br>• <strong>狀態初始化器 (Lazy Initializer)</strong>：若傳入函式例如 <code>useState(() => loadLanguage())</code>，React 只會在初次加載時執行它一次，這能避免元件重複讀取 LocalStorage 造成效能開銷。
+              </p>
+            </div>
+          </div>
+
+          <!-- 4. useEffect -->
+          <div class="glossary-card">
+            <h3><span>⚡</span> <span class="lang-en">useEffect (Side-Effects Lifecycle)</span><span class="lang-zh">useEffect (處理生命週期與副效能)</span></h3>
+            <p class="lang-en">
+              <code>useEffect</code> lets you synchronize your component with external systems (like listening to viewport resize, registering browser events, or checking service workers).
+            </p>
+            <p class="lang-zh">
+              <code>useEffect</code> 讓元件能夠與外部系統進行同步（例如監聽螢幕寬高、註冊鍵盤事件、或與 Service Worker 離線快取同步）。
+            </p>
+            <div class="novice-explanation">
+              <strong><span class="lang-en">Syntax Breakdown:</span><span class="lang-zh">語法拆解說明：</span></strong>
+              <p class="lang-en">
+                <code>useEffect(() => { ... return () => { ... } }, [dep])</code>
+                <br>• <strong>The Callback</strong>: The code inside the arrow function runs after the render is painted to the screen.
+                <br>• <strong>Cleanup Function</strong>: The returned function <code>return () => { ... }</code> runs when the component is removed, preventing memory leaks (e.g. removing window event listeners).
+                <br>• <strong>Dependency Array <code>[dep]</code></strong>: Tells React when to run this effect. If empty <code>[]</code>, the code runs exactly once when the page is loaded (mounted) and the cleanup runs once when the page is closed (unmounted).
+              </p>
+              <p class="lang-zh">
+                <code>useEffect(() => { ... return () => { ... } }, [dep])</code>
+                <br>• <strong>回呼函式</strong>：在大括號內編寫的程式碼，會在瀏覽器繪製畫面後執行。
+                <br>• <strong>清除函式 (Cleanup)</strong>：<code>return () => { ... }</code> 內寫的程式碼會在元件被銷毀時執行，用來移除監聽以防記憶體洩漏。
+                <br>• <strong>依賴陣列 <code>[]</code></strong>：控制何時重新執行。傳入空陣列 <code>[]</code> 代表僅在網頁初次加載（掛載）時執行一次，網頁關閉時執行一次清除。
+              </p>
+            </div>
+          </div>
+
+          <!-- 5. useMemo -->
+          <div class="glossary-card">
+            <h3><span>🧠</span> <span class="lang-en">useMemo (Performance Caching)</span><span class="lang-zh">useMemo (快取昂貴的計算結果)</span></h3>
+            <p class="lang-en">
+              React components re-run from top-to-bottom on every render. If you have a list-filtering calculation, it will re-run constantly. <code>useMemo</code> caches the calculated result.
+            </p>
+            <p class="lang-zh">
+              React 的元件函數在每次重新渲染時，都會從頭到尾重新執行。如果裡面有迴圈篩選，效能會大打折扣。<code>useMemo</code> 用於快取計算結果。
+            </p>
+            <div class="novice-explanation">
+              <strong><span class="lang-en">Syntax Breakdown:</span><span class="lang-zh">語法拆解說明：</span></strong>
+              <p class="lang-en">
+                <code>const pool = useMemo(() => eligibleCards(cards, level, mode), [level, mode])</code>
+                <br>• <strong>The Formula</strong>: Calculates the initial filtered cards array.
+                <br>• <strong>The Dependencies <code>[level, mode]</code></strong>: React checks if either variable changed. If not, it skips recalculation and immediately returns the cached array!
+              </p>
+              <p class="lang-zh">
+                <code>const pool = useMemo(() => eligibleCards(cards, level, mode), [level, mode])</code>
+                <br>• <strong>計算公式</strong>：執行卡牌篩選，回傳候選池。
+                <br>• <strong>依賴陣列 <code>[level, mode]</code></strong>：React 會檢查這兩個參數。如果使用者只是在輸入框打字而沒改等級或模式，React 就會跳過計算，直接從快取回傳上次排好的卡牌池！
+              </p>
+            </div>
+          </div>
+
+          <!-- 6. useRef -->
+          <div class="glossary-card">
+            <h3><span>📌</span> <span class="lang-en">useRef (Non-Reactive References)</span><span class="lang-zh">useRef (非響應式持久參照)</span></h3>
+            <p class="lang-en">
+              <code>useRef</code> lets you reference a value that persists across renders, but changing it does NOT force React to redraw the screen.
+            </p>
+            <p class="lang-zh">
+              <code>useRef</code> 用於保存一個在元件重新渲染時依然能持續存在的值，但變更它時「不會」觸發 React 重新繪製畫面。
+            </p>
+            <div class="novice-explanation">
+              <strong><span class="lang-en">Why not just use useState?</span><span class="lang-zh">為什麼不直接用 useState？</span></strong>
+              <p class="lang-en">
+                In Encounter Cards, <code>dragStart = useRef&lt;number | null&gt;(null)</code> tracks the horizontal pixel location where a user touches the screen to drag a card. If we used state for this, every single pixel movement during a swipe would trigger a screen redraw, causing terrible lag.
+              </p>
+              <p class="lang-zh">
+                在相遇卡中，<code>dragStart = useRef&lt;number | null&gt;(null)</code> 用於記錄使用者手指觸碰螢幕拉動卡牌時的起點像素。如果使用 state 紀錄，滑動時每移動一像素都會強迫螢幕重新渲染，導致嚴重的卡頓。
+              </p>
+            </div>
+          </div>
+
+          <!-- 7. TypeScript Generics & Unions -->
+          <div class="glossary-card">
+            <h3><span>🏷️</span> <span class="lang-en">TypeScript Union Types & Generics</span><span class="lang-zh">TypeScript 聯集型別與泛型</span></h3>
+            <p class="lang-en">
+              TypeScript extends JavaScript by adding strict compile-time types to prevent runtime crashes.
+            </p>
+            <p class="lang-zh">
+              TypeScript 藉由在編譯期加上嚴格的型別校驗來擴展 JavaScript，以避免執行期出錯。
+            </p>
+            <div class="novice-explanation">
+              <strong><span class="lang-en">Unions & Generics Explained:</span><span class="lang-zh">聯集型別與泛型解釋：</span></strong>
+              <p class="lang-en">
+                • <strong>Union Type (聯集型別)</strong>: <code>type Language = 'zh' | 'en' | 'bilingual'</code>. A variable of type <code>Language</code> can only hold one of these exact strings. Typos like <code>'chinese'</code> will trigger an error immediately!
+                <br>• <strong>Generics (泛型)</strong>: Represented by angle brackets <code>&lt;T&gt;</code>. In <code>useState&lt;Language&gt;()</code>, we tell React that this state is restricted to the <code>Language</code> type contract.
+              </p>
+              <p class="lang-zh">
+                • <strong>聯集型別 (Union Type)</strong>：<code>type Language = 'zh' | 'en' | 'bilingual'</code>。這限制變數只能存放這三種字串之一。拼寫錯誤如 <code>'chinese'</code> 會在編輯器中立刻標記為紅色報錯！
+                <br>• <strong>泛型 (Generics)</strong>：以角括號 <code>&lt;T&gt;</code> 表示。在 <code>useState&lt;Language&gt;()</code> 中，這告訴 React 此狀態被嚴格綁定在 <code>Language</code> 型別規範下。
+              </p>
+            </div>
+          </div>
+
+          <!-- 8. CSS Variables & 3D -->
+          <div class="glossary-card">
+            <h3><span>💅</span> <span class="lang-en">CSS Custom Properties & 3D Transforms</span><span class="lang-zh">CSS 變數與 3D 空間翻轉特效</span></h3>
+            <p class="lang-en">
+              Modern styles use CSS custom properties (variables) to enable runtime theme modifications and coordinate calculations.
+            </p>
+            <p class="lang-zh">
+              現代樣式表使用 CSS 自訂屬性（變數）來實現即時主題抽換與縮放坐標運算。
+            </p>
+            <div class="novice-explanation">
+              <strong><span class="lang-en">CSS Custom Variables & 3D Cards:</span><span class="lang-zh">CSS 變數與 3D 立體卡牌：</span></strong>
+              <p class="lang-en">
+                • <strong>CSS Variables</strong>: Defined with double hyphens like <code>--gold: #caa75d</code>. React dynamically updates <code>style={{ '--font-scale': fontScale }}</code> to scale text sizing instantly.
+                <br>• <strong>3D Flip Effect</strong>: <code>perspective: 1200px</code> defines 3D space depth. <code>transform: rotateY(180deg)</code> rotates card elements along the Y-axis. <code>backface-visibility: hidden</code> hides the backside of elements when flipped!
+              </p>
+              <p class="lang-zh">
+                • <strong>CSS 變數</strong>：以雙橫線開頭如 <code>--gold: #caa75d</code>。React 可動態修改 <code>style={{ '--font-scale': fontScale }}</code> 讓字型比例立刻全局生效。
+                <br>• <strong>3D 立體翻牌</strong>：<code>perspective: 1200px</code> 定義了 3D 空間景深。<code>transform: rotateY(180deg)</code> 沿 Y 軸旋轉卡牌。<code>backface-visibility: hidden</code> 則讓卡牌旋轉到背面時自動隱藏該面的圖文！
+              </p>
+            </div>
+          </div>
+
+        </section>
+      </div>
+
+      <!-- 4. Interactive Q&A Panel -->
+      <div id="view-interactive-qa" class="view-content">
+        <section class="guide-panel" style="width: 100%;">
+          <h2>
+            <span class="lang-en">Interactive Architecture Q&A</span>
+            <span class="lang-zh">架構與語法互動問答</span>
+          </h2>
+          <p class="lang-en" style="margin-bottom: 24px;">
+            Test your understanding of the Encounter Cards program's architecture, language constraints, and code patterns. Select the correct option for each question.
+          </p>
+          <p class="lang-zh" style="margin-bottom: 24px;">
+            測試您對相遇卡專案架構、強型別約束及程式設計模式的理解。在下方選擇正確的選項進行作答。
+          </p>
+
+          <!-- Question 1 -->
+          <div class="qa-card">
+            <div class="qa-question-text">
+              <span class="lang-en">Q1: Why is the age validation and birthday math extracted into a separate module (<code>age-gate.ts</code>)?</span>
+              <span class="lang-zh">問題 1：為什麼將生日與年齡驗證邏輯單獨拆分至獨立模組 (<code>age-gate.ts</code>)？</span>
+            </div>
+            <div class="qa-options-list" id="qa-options-1">
+              <button class="qa-option-btn" data-letter="A" onclick="checkAnswer(1, 'A', 'B')">
+                <strong>A. </strong>
+                <span class="lang-en">To reduce App.tsx file size so the browser parsing runtime loads faster.</span>
+                <span class="lang-zh">為了讓 App.tsx 原始碼變少，以加快瀏覽器的解析加載速度。</span>
+              </button>
+              <button class="qa-option-btn" data-letter="B" onclick="checkAnswer(1, 'B', 'B')">
+                <strong>B. </strong>
+                <span class="lang-en">It isolates side-effect free logic (Separation of Concerns), making it easily unit-testable without relying on React UI render states.</span>
+                <span class="lang-zh">符合關注點分離 (Separation of Concerns)，使無副作用邏輯易於編寫單元測試，不需與 React UI 渲染狀態混在一起。</span>
+              </button>
+              <button class="qa-option-btn" data-letter="C" onclick="checkAnswer(1, 'C', 'B')">
+                <strong>C. </strong>
+                <span class="lang-en">Because React compiler rules strictly forbid writing standard JavaScript date logic inside UI component files.</span>
+                <span class="lang-zh">因為 React 編譯器規則強制禁止在 UI 元件檔案內編寫一般的 JavaScript 日期計算邏輯。</span>
+              </button>
+            </div>
+            <div class="qa-explanation-box" id="qa-explanation-1">
+              <strong><span class="lang-en">Correct Answer is B.</span><span class="lang-zh">正確答案是 B。</span></strong>
+              <p class="lang-en">
+                Separating UI rendering from business rules is a key software engineering principle. By isolating the math in <code>age-gate.ts</code>, we can write automated CLI unit tests using Vitest to verify edge cases (like leap years and date format regex validation) without launching a web browser.
+              </p>
+              <p class="lang-zh">
+                將 UI 渲染與純運算規則進行解耦是關鍵的軟體工程實踐。把年齡算法提取到 <code>age-gate.ts</code> 後，我們就可以使用 Vitest 撰寫自動化測試來覆蓋閏年、無效日等邊界條件，而不必啟動瀏覽器手動點擊。
+              </p>
+            </div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="qa-card">
+            <div class="qa-question-text">
+              <span class="lang-en">Q2: How does Encounter Cards secure user name inputs and contact information from leakage?</span>
+              <span class="lang-zh">問題 2：相遇卡如何確保使用者輸入的姓名與聯絡方式不洩漏？</span>
+            </div>
+            <div class="qa-options-list" id="qa-options-2">
+              <button class="qa-option-btn" data-letter="A" onclick="checkAnswer(2, 'A', 'B')">
+                <strong>A. </strong>
+                <span class="lang-en">All personal input fields are automatically stored in the browser's LocalStorage database for user convenience.</span>
+                <span class="lang-zh">所有個人輸入欄位都會被自動儲存在瀏覽器的 LocalStorage 中以便下次使用。</span>
+              </button>
+              <button class="qa-option-btn" data-letter="B" onclick="checkAnswer(2, 'B', 'B')">
+                <strong>B. </strong>
+                <span class="lang-en">Personal inputs are kept in volatile React memory only; only non-sensitive language options and font scale multipliers are stored in LocalStorage.</span>
+                <span class="lang-zh">敏感個資僅保留在臨時的 React 狀態記憶體中，關閉分頁即消失；僅有非敏感的語言設定與字型縮放比例會被保存到 LocalStorage。</span>
+              </button>
+              <button class="qa-option-btn" data-letter="C" onclick="checkAnswer(2, 'C', 'B')">
+                <strong>C. </strong>
+                <span class="lang-en">Inputs are transmitted to an analytical backend server in an encrypted Base64 format.</span>
+                <span class="lang-zh">輸入的姓名與資訊會在背景以加密後的 Base64 格式，被傳送到分析用的後端伺服器。</span>
+              </button>
+            </div>
+            <div class="qa-explanation-box" id="qa-explanation-2">
+              <strong><span class="lang-en">Correct Answer is B.</span><span class="lang-zh">正確答案是 B。</span></strong>
+              <p class="lang-en">
+                Privacy protection is enforced by code constraints. The preferences manager in <code>preferences.ts</code> only references <code>encounter-language</code> and <code>encounter-font-scale</code>. Personal names and birthdays are transient, minimizing data leakage vectors.
+              </p>
+              <p class="lang-zh">
+                隱私安全是由程式約束所實施的。<code>preferences.ts</code> 唯獨讀寫 <code>encounter-language</code> 與 <code>encounter-font-scale</code>。使用者的個人姓名與生日資訊僅存在於執行期的 React 狀態記憶體中，不進行本機儲存或外部傳輸，以最小化隱私外洩風險。
+              </p>
+            </div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="qa-card">
+            <div class="qa-question-text">
+              <span class="lang-en">Q3: How does the application map cards to Taiwanese deity portraits consistently offline without a database relationship?</span>
+              <span class="lang-zh">問題 3：在離線且沒有資料庫對應關係時，程式如何確保同一張卡牌每次點開時都顯示「相同」的神祇肖像？</span>
+            </div>
+            <div class="qa-options-list" id="qa-options-3">
+              <button class="qa-option-btn" data-letter="A" onclick="checkAnswer(3, 'A', 'B')">
+                <strong>A. </strong>
+                <span class="lang-en">By calling a random index generator every time the card is drawn, meaning artwork is assigned randomly.</span>
+                <span class="lang-zh">在每次抽卡時由隨機數生成器隨機指派圖片，因此圖片顯示是隨機且不保證一致的。</span>
+              </button>
+              <button class="qa-option-btn" data-letter="B" onclick="checkAnswer(3, 'B', 'B')">
+                <strong>B. </strong>
+                <span class="lang-en">By using a multiplicative string hashing function that converts the card ID into a stable seed, modulo the count of deity artworks.</span>
+                <span class="lang-zh">使用多項式加權字串雜湊函數將卡牌的 ID 轉換為一個穩定的整數數值，並對神祇陣列長度求餘數，進行決定性的對應。</span>
+              </button>
+              <button class="qa-option-btn" data-letter="C" onclick="checkAnswer(3, 'C', 'B')">
+                <strong>C. </strong>
+                <span class="lang-en">By loading an external SQLite database file bundled inside the service worker cache scope.</span>
+                <span class="lang-zh">在 Service Worker 快取內包含並加載一個額外的 SQLite 資料庫映射關係檔案。</span>
+              </button>
+            </div>
+            <div class="qa-explanation-box" id="qa-explanation-3">
+              <strong><span class="lang-en">Correct Answer is B.</span><span class="lang-zh">正確答案是 B。</span></strong>
+              <p class="lang-en">
+                In <code>deity-art.ts</code>, <code>deityForCard()</code> uses polynomial rolling hash algorithm (multiplying seed by 31 and summing character codes). Because it computes a deterministic value from the card's ID string, the resulting index is identical on any runtime machine offline.
+              </p>
+              <p class="lang-zh">
+                在 <code>deity-art.ts</code> 中，<code>deityForCard()</code> 實作了多項式滾動雜湊演算法（將前次雜湊值乘上 31 並累加字元編碼）。因為卡牌 ID 是固定的，這個雜湊值在任何離線環境中皆會產出完全相同的神祇陣列索引值。
+              </p>
+            </div>
+          </div>
+
+          <!-- Question 4 -->
+          <div class="qa-card">
+            <div class="qa-question-text">
+              <span class="lang-en">Q4: Why does the program memoize the card pool in App.tsx (<code>const pool = useMemo(() => eligibleCards(cards, level, mode), [level, mode])</code>)?</span>
+              <span class="lang-zh">問題 4：為什麼程式使用 <code>useMemo</code> 來包裹卡牌候選池的運算？</span>
+            </div>
+            <div class="qa-options-list" id="qa-options-4">
+              <button class="qa-option-btn" data-letter="A" onclick="checkAnswer(4, 'A', 'A')">
+                <strong>A. </strong>
+                <span class="lang-en">To skip expensive list-filtering passes during unrelated React component renders (e.g. typing characters in text boxes or toggling font scale).</span>
+                <span class="lang-zh">避免在進行無關的 React 重新渲染（例如果輸入姓名、調整字型大小或展開控制面板）時重複對 60 張卡牌進行篩選運算。</span>
+              </button>
+              <button class="qa-option-btn" data-letter="B" onclick="checkAnswer(4, 'B', 'A')">
+                <strong>B. </strong>
+                <span class="lang-en">Because React hooks throw fatal compilation errors if state computations are not memoized.</span>
+                <span class="lang-zh">因為 React 編譯器規定，如果不使用 useMemo 緩存計算結果，會拋出致命的編譯期錯誤。</span>
+              </button>
+              <button class="qa-option-btn" data-letter="C" onclick="checkAnswer(4, 'C', 'A')">
+                <strong>C. </strong>
+                <span class="lang-en">To automatically write the filtered results to LocalStorage for later retrieve.</span>
+                <span class="lang-zh">用來自動將過濾後的卡牌候選清單寫入 LocalStorage 以便稍後讀取。</span>
+              </button>
+            </div>
+            <div class="qa-explanation-box" id="qa-explanation-4">
+              <strong><span class="lang-en">Correct Answer is A.</span><span class="lang-zh">正確答案是 A。</span></strong>
+              <p class="lang-en">
+                <code>useMemo</code> caches calculated values. React re-runs the component function from top to bottom on every state update (including text input). By declaring dependencies on <code>[level, mode]</code>, the card filtering function only executes when those parameters change, preserving performance.
+              </p>
+              <p class="lang-zh">
+                <code>useMemo</code> 具有緩存運算結果的功能。每當 React 的任何狀態（如輸入框文字）發生變更時，元件函數都會重新執行。藉由宣告 <code>[level, mode]</code> 依賴陣列，只有當這兩個參數實質改變時才會重新執行篩選邏輯，節省效能開銷。
+              </p>
+            </div>
+          </div>
+
+          <!-- Question 5 -->
+          <div class="qa-card">
+            <div class="qa-question-text">
+              <span class="lang-en">Q5: Why can the standalone single HTML release run and display deity artwork offline on any device?</span>
+              <span class="lang-zh">問題 5：為什麼 standalone 單一 HTML 版本可以在完全沒有網路的 iPhone 或是電腦中順利執行並正常顯示神祇插圖？</span>
+            </div>
+            <div class="qa-options-list" id="qa-options-5">
+              <button class="qa-option-btn" data-letter="A" onclick="checkAnswer(5, 'A', 'B')">
+                <strong>A. </strong>
+                <span class="lang-en">Because images are automatically fetched from the cloud via the system's Web Share API.</span>
+                <span class="lang-zh">因為圖片是透過系統的原生分享 API (Web Share API) 在背景自動從雲端抓取的。</span>
+              </button>
+              <button class="qa-option-btn" data-letter="B" onclick="checkAnswer(5, 'B', 'B')">
+                <strong>B. </strong>
+                <span class="lang-en">Because during bundling, all compiled JS/CSS bundles and WebP deity artworks (converted to Base64 data URLs) are embedded directly inside that single HTML file.</span>
+                <span class="lang-zh">因為在打包編譯時，所有的 CSS、JS 程式碼與 WebP 神祇圖片（均被編譯為 Base64 Data URL 格式）都已直接嵌入該單一 HTML 檔案中。</span>
+              </button>
+              <button class="qa-option-btn" data-letter="C" onclick="checkAnswer(5, 'C', 'B')">
+                <strong>C. </strong>
+                <span class="lang-en">Because the browser uses the PWA Service Worker to automatically pre-fetch external WebP assets from GitHub.</span>
+                <span class="lang-zh">因為瀏覽器會自動調用 PWA Service Worker 在背景從 GitHub 預先下載外部的 WebP 圖片檔案。</span>
+              </button>
+            </div>
+            <div class="qa-explanation-box" id="qa-explanation-5">
+              <strong><span class="lang-en">Correct Answer is B.</span><span class="lang-zh">正確答案是 B。</span></strong>
+              <p class="lang-en">
+                To achieve absolute portability, the exporter script (<code>export-standalone-v19.mjs</code>) reads the build directory and converts all external dependencies (styles, scripts, WebP pictures) into inline assets. This embeds them directly into the HTML markup so they work instantly without network connections.
+              </p>
+              <p class="lang-zh">
+                為了解決離線便攜性，導出打包腳本 (<code>export-standalone-v19.mjs</code>) 會讀取編譯好的輸出目錄，並將所有外部依賴項（樣式、腳本、WebP 插圖）轉換為 inline 內聯資源（包括將圖片轉為 Base64 字串）。這讓 HTML 檔案能夠在完全斷網的環境下正常渲染並呼叫。
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- 5. Interactive Code Explanations View -->
+      <div id="view-code" class="view-content" style="flex-direction: column;">
+        <div style="display: flex; flex: 1; width: 100%; overflow: hidden;">
+          
+          <!-- Code panel (Middle Column) -->
+          <div class="code-panel" id="code-text-pane">
+            <div class="panel-header">
+              <span>📄 Code: <span id="open-file-path">src/App.tsx</span></span>
+              <div style="display: flex; gap: 6px;">
+                <!-- Comments Column Toggle -->
+                <button onclick="toggleCommentsColumn()" id="btn-toggle-comments-col" class="panel-control-btn active" title="Toggle Comments Column">💬 Comments</button>
+                <button onclick="toggleMiddleCode()" id="btn-toggle-code" class="panel-control-btn" title="Collapse Code Viewer">◀ Hide Code</button>
+              </div>
+            </div>
+            <div class="code-container">
+              <table class="code-table" id="code-table-body">
+                <!-- Dynamic rows are inserted here -->
+              </table>
+            </div>
+          </div>
+
+          <!-- Code panel Resizer splitter -->
+          <div class="resizer" id="code-resizer"></div>
+
+          <!-- Annotations Panel (Right Column) -->
+          <div class="annotations-panel" id="annotations-pane">
+            <div class="panel-header" style="border-bottom: 1px solid var(--border-color); background-color: rgba(6, 17, 26, 0.3);">
+              <span id="annotation-file-title">App.tsx Annotations</span>
+              <div style="display: flex; gap: 6px;">
+                <!-- Add Annotation Button -->
+                <button onclick="addBlankAnnotation(activeFile)" class="panel-control-btn" title="Add New Annotation" style="border-color: var(--gold); color: var(--gold);">＋ Add</button>
+                <button onclick="toggleMiddleCode()" id="btn-restore-code" class="panel-control-btn" style="display: none;" title="Restore Code Viewer">◀ Show Code</button>
+                <button onclick="toggleRightAnnotations()" id="btn-toggle-ann" class="panel-control-btn" title="Collapse Annotations">Hide Annotations ▶</button>
+              </div>
+            </div>
+            <div style="padding: 16px; flex: 1; overflow-y: auto;">
+              <div class="file-summary" id="file-summary-content">
+                Loading file overview...
+              </div>
+              <div id="annotations-list">
+                <!-- Dynamic annotations are inserted here -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Collapsed Right Side Trigger bar (appears when annotations are hidden) -->
+          <div id="annotations-collapsed-bar" style="display: none; width: 36px; background-color: var(--bg-sidebar); border-left: 1px solid var(--border-color); flex-direction: column; align-items: center; padding-top: 12px; cursor: pointer; flex-shrink: 0;" onclick="toggleRightAnnotations()">
+            <span style="writing-mode: vertical-lr; text-orientation: mixed; font-size: 0.72rem; color: var(--gold); font-family: 'Outfit', sans-serif; letter-spacing: 2px;">ANNOTATIONS</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <!-- EMBEDDED CODE DATA TEMPLATES -->
+  <script type="text/plain" id="raw-App.tsx">import { useEffect, useMemo, useRef, useState } from 'react'
+import { cards } from './data/cards'
+import { isAdultOn } from './lib/age-gate'
+import { eligibleCards, nextCard } from './lib/game'
+import { loadFontScale, loadLanguage, saveFontScale, saveLanguage } from './lib/preferences'
+import { shareOrDownload } from './lib/share'
+import { deityForCard } from './lib/deity-art'
+import { calculatePhoneScale } from './lib/viewport-scale'
+import type { Card, Language, Level, Mode } from './types'
+import './styles/v19.css'
+
+const copy = {
+  zh: { heading: '讓一次相遇，成為一段故事', begin: '開始相遇', draw: '抽一張卡', next: '下一張', share: '製作紀念卡', install: 'iPhone：Safari → 分享 → 加入主畫面' },
+  en: { heading: 'Turn a meeting into a story', begin: 'Begin the encounter', draw: 'Draw a card', next: 'Next card', share: 'Create keepsake', install: 'iPhone: Safari → Share → Add to Home Screen' }
+}
+
+function CardText({ card, language }: { card: Card, language: Language }) {
+  return <>{language !== 'en' && <p lang="zh-Hant">{card.zh}</p>}{language !== 'zh' && <p lang="en">{card.en}</p>}</>
+}
+
+export default function App() {
+  const [language, setLanguage] = useState<Language>(() => loadLanguage())
+  const [fontScale, setFontScale] = useState(() => loadFontScale())
+  const [level, setLevel] = useState<Level>(1)
+  const [mode, setMode] = useState<Mode>('random')
+  const [birthdayOpen, setBirthdayOpen] = useState(false)
+  const [birthday, setBirthday] = useState('')
+  const [adult, setAdult] = useState(false)
+  const [playing, setPlaying] = useState(false)
+  const [current, setCurrent] = useState<Card | null>(null)
+  const [revealed, setRevealed] = useState(false)
+  const [controlsOpen, setControlsOpen] = useState(true)
+  const [status, setStatus] = useState('')
+  const [offlineReady, setOfflineReady] = useState(false)
+  const [phoneScale, setPhoneScale] = useState(1)
+  const dragStart = useRef<number | null>(null)
+  const t = language === 'zh' ? copy.zh : copy.en
+  const pool = useMemo(() => eligibleCards(cards, level, mode), [level, mode])
+  const artwork = current ? deityForCard(current.id) : null
+
+  useEffect(() => {
+    if ('serviceWorker' in navigator) navigator.serviceWorker.ready.then(() => setOfflineReady(true)).catch(() => undefined)
+  }, [])
+
+  useEffect(() => {
+    const updateScale = () => setPhoneScale(calculatePhoneScale({ width: window.innerWidth, height: window.innerHeight }))
+    const viewport = window.visualViewport
+    updateScale()
+    window.addEventListener('resize', updateScale)
+    viewport?.addEventListener('resize', updateScale)
+    return () => {
+      window.removeEventListener('resize', updateScale)
+      viewport?.removeEventListener('resize', updateScale)
+    }
+  }, [])
+
+  function chooseLanguage(value: Language) { setLanguage(value); saveLanguage(value) }
+  function chooseLevel(value: Level) {
+    if (value === 5 && !adult) { setBirthdayOpen(true); return }
+    setLevel(value)
+  }
+  function confirmAdult() {
+    if (isAdultOn(birthday)) { setAdult(true); setLevel(5); setBirthdayOpen(false); setBirthday('') }
+    else setStatus('Level 5 remains locked / Level 5 仍為鎖定')
+  }
+  function draw() { const card = nextCard(pool, current?.id); setCurrent(card); setRevealed(true); setStatus(language === 'en' ? `Revealed: ${card.en}` : `已翻開：${card.zh}`) }
+  function changeFont(delta: number) { const value = Math.max(.85, Math.min(1.35, fontScale + delta)); setFontScale(value); saveFontScale(value) }
+  async function share() { if (current) setStatus(await shareOrDownload(current, language)) }
+
+  return <div className="phone-fit-stage" style={{ '--phone-scale': phoneScale } as React.CSSProperties}>
+    <main className="app-shell" style={{ '--font-scale': fontScale } as React.CSSProperties}>
+    <header><span>ENCOUNTER CARDS</span><b>V19</b></header>
+    {!playing ? <section className="setup-screen">
+      <div className="halo" aria-hidden="true">✦</div>
+      <h1>{language === 'bilingual' ? <>{copy.zh.heading}<small>{copy.en.heading}</small></> : t.heading}</h1>
+      <div className="segmented" aria-label="Language">
+        {([['zh','中'],['en','EN'],['bilingual','中/EN']] as const).map(([value,label]) => <button key={value} aria-pressed={language === value} onClick={() => chooseLanguage(value)}>{label}</button>)}
+      </div>
+      <div className="fields"><label>你的名字 / Your name<input autoComplete="off" /></label><label>對方名字 / Their name<input autoComplete="off" /></label><label>選填聯絡方式 / Optional contact<input autoComplete="off" /></label></div>
+      <fieldset><legend>熟識程度 / Familiarity</legend><div className="level-grid">{([1,2,3,4,5] as Level[]).map(value => <button key={value} aria-pressed={level === value} onClick={() => chooseLevel(value)}>Level {value}{value === 5 ? ' · 18+' : ''}</button>)}</div></fieldset>
+      {birthdayOpen && <div className="age-gate" role="dialog" aria-label="Level 5 age gate"><label>Birthday<input aria-label="Birthday" type="date" value={birthday} onChange={event => setBirthday(event.target.value)} /></label><button onClick={confirmAdult}>Confirm 18+</button><button onClick={() => setBirthdayOpen(false)}>Cancel</button></div>}
+      <fieldset><legend>模式 / Mode</legend><div className="segmented">{(['truth','dare','random'] as Mode[]).map(value => <button key={value} aria-pressed={mode === value} onClick={() => setMode(value)}>{value === 'truth' ? 'Truth' : value === 'dare' ? 'Dare' : 'Random'}</button>)}</div></fieldset>
+      <button className="primary" onClick={() => setPlaying(true)}>{t.begin}</button>
+      <p className="install-note">{offlineReady ? '✓ Offline ready / 可離線使用' : t.install}</p>
+    </section> : <section className="game-screen">
+      <div className="toolbar"><button onClick={() => setPlaying(false)}>← Setup</button><button aria-expanded={controlsOpen} onClick={() => setControlsOpen(value => !value)}>Controls</button></div>
+      {controlsOpen && <div className="controls"><button onClick={() => changeFont(-.1)}>A−</button><button onClick={() => changeFont(.1)}>A＋</button><span>Level {level} · {mode}</span></div>}
+      <div className={`encounter-card ${revealed ? 'revealed' : ''}`} tabIndex={0}
+        onPointerDown={event => { dragStart.current = event.clientX }}
+        onPointerUp={event => { if (dragStart.current !== null && Math.abs(event.clientX - dragStart.current) > 60) draw(); dragStart.current = null }}>
+        <div className="card-back"><span>✦</span><p>DRAG TO DRAW</p></div>
+        <div className="card-front">{current && artwork && <>
+          <div className="card-title"><span>相遇之神</span><strong>{artwork.zhName}</strong><small>{artwork.enName}</small></div>
+          <img className="deity-art" src={artwork.src} alt={`${artwork.zhName}・台灣神祇圖`} />
+          <div className="question-panel"><span className="card-meta">LEVEL {current.level} · {current.mode.toUpperCase()}</span><CardText card={current} language={language} /></div>
+        </>}</div>
+      </div>
+      <button className="primary" onClick={draw}>{current ? t.next : t.draw}</button>
+      {current && <button className="secondary" onClick={share}>{t.share}</button>}
+    </section>}
+    <p className="sr-only" aria-live="polite">{status}</p>
+    </main>
+  </div>
+}</script>
+
+  <script type="text/plain" id="raw-types.ts">export type Language = 'zh' | 'en' | 'bilingual'
+export type Mode = 'truth' | 'dare' | 'random'
+export type CardMode = Exclude<Mode, 'random'>
+export type Level = 1 | 2 | 3 | 4 | 5
+
+export interface Card {
+  id: string
+  level: Level
+  mode: CardMode
+  zh: string
+  en: string
+}</script>
+
+  <script type="text/plain" id="raw-cards.ts">import type { Card } from '../types'
+
+export const cards: Card[] = [
+  { id: 'card-01', level: 1, mode: 'truth', zh: '今天有什麼小事讓你微笑？', en: 'What small thing made you smile today?' },
+  { id: 'card-02', level: 1, mode: 'truth', zh: '你最近最常聽哪一首歌？', en: 'What song have you played most recently?' },
+  { id: 'card-03', level: 1, mode: 'truth', zh: '你理想的週末早晨是什麼樣子？', en: 'What does your ideal weekend morning look like?' },
+  { id: 'card-04', level: 1, mode: 'truth', zh: '哪一種食物最能帶給你安慰？', en: 'Which food brings you the most comfort?' },
+  { id: 'card-05', level: 1, mode: 'truth', zh: '最近學到什麼有趣的新知？', en: 'What interesting thing did you learn recently?' },
+  { id: 'card-06', level: 1, mode: 'truth', zh: '如果今天多一小時，你會做什麼？', en: 'What would you do with one extra hour today?' },
+  { id: 'card-07', level: 1, mode: 'dare', zh: '用三個詞形容今天的自己。', en: 'Describe yourself today in three words.' },
+  { id: 'card-08', level: 1, mode: 'dare', zh: '分享一張最近讓你開心的照片。', en: 'Share a recent photo that made you happy.' },
+  { id: 'card-09', level: 1, mode: 'dare', zh: '為對方推薦一首適合現在的歌。', en: 'Recommend a song for this moment.' },
+  { id: 'card-10', level: 1, mode: 'dare', zh: '模仿你最常使用的表情符號。', en: 'Act out your most-used emoji.' },
+  { id: 'card-11', level: 1, mode: 'dare', zh: '給彼此一個真誠而具體的稱讚。', en: 'Give each other one sincere, specific compliment.' },
+  { id: 'card-12', level: 1, mode: 'dare', zh: '一起深呼吸三次，然後說出此刻的感受。', en: 'Take three breaths together, then name how you feel.' },
+  { id: 'card-13', level: 2, mode: 'truth', zh: '什麼興趣最容易讓你忘記時間？', en: 'Which interest makes you lose track of time?' },
+  { id: 'card-14', level: 2, mode: 'truth', zh: '你希望今年養成什麼習慣？', en: 'What habit do you hope to build this year?' },
+  { id: 'card-15', level: 2, mode: 'truth', zh: '哪個地方讓你感到特別自在？', en: 'Where do you feel especially at ease?' },
+  { id: 'card-16', level: 2, mode: 'truth', zh: '你最珍惜朋友的哪一種特質？', en: 'What quality do you value most in a friend?' },
+  { id: 'card-17', level: 2, mode: 'truth', zh: '最近有什麼決定讓你感到驕傲？', en: 'What recent decision made you proud?' },
+  { id: 'card-18', level: 2, mode: 'truth', zh: '哪一本書或作品改變過你的想法？', en: 'What book or work changed how you think?' },
+  { id: 'card-19', level: 2, mode: 'dare', zh: '用一分鐘教對方一件你擅長的事。', en: 'Teach the other person something in one minute.' },
+  { id: 'card-20', level: 2, mode: 'dare', zh: '一起為今天取一個電影片名。', en: 'Create a movie title for today together.' },
+  { id: 'card-21', level: 2, mode: 'dare', zh: '各自畫出此刻的心情符號。', en: 'Each draw a symbol for your current mood.' },
+  { id: 'card-22', level: 2, mode: 'dare', zh: '交換一個實用的小技巧。', en: 'Exchange one practical life tip.' },
+  { id: 'card-23', level: 2, mode: 'dare', zh: '選一個共同想完成的小目標。', en: 'Choose one small goal you would both enjoy.' },
+  { id: 'card-24', level: 2, mode: 'dare', zh: '用五秒鐘做一個勝利姿勢。', en: 'Strike a victory pose for five seconds.' },
+  { id: 'card-25', level: 3, mode: 'truth', zh: '哪段回憶總能讓你笑出來？', en: 'Which memory always makes you laugh?' },
+  { id: 'card-26', level: 3, mode: 'truth', zh: '你曾經改變過哪個重要觀點？', en: 'What important opinion have you changed?' },
+  { id: 'card-27', level: 3, mode: 'truth', zh: '什麼時候你最感覺像真正的自己？', en: 'When do you feel most like yourself?' },
+  { id: 'card-28', level: 3, mode: 'truth', zh: '你希望朋友在低潮時怎麼陪你？', en: 'How do you want friends to support you when you are low?' },
+  { id: 'card-29', level: 3, mode: 'truth', zh: '哪次冒險比預期更值得？', en: 'Which adventure was more worthwhile than expected?' },
+  { id: 'card-30', level: 3, mode: 'truth', zh: '你正在練習放下什麼？', en: 'What are you learning to let go of?' },
+  { id: 'card-31', level: 3, mode: 'dare', zh: '重現你們共同記憶中的一個瞬間。', en: 'Recreate a moment from a shared memory.' },
+  { id: 'card-32', level: 3, mode: 'dare', zh: '替對方設計一句鼓勵標語。', en: 'Create an encouraging motto for the other person.' },
+  { id: 'card-33', level: 3, mode: 'dare', zh: '分享一件你願意一起嘗試的新事物。', en: 'Share one new thing you would try together.' },
+  { id: 'card-34', level: 3, mode: 'dare', zh: '各自說出對方一個被低估的優點。', en: 'Name one underrated strength in each other.' },
+  { id: 'card-35', level: 3, mode: 'dare', zh: '一起排一張不露個資的創意合照。', en: 'Pose for a creative photo without private information.' },
+  { id: 'card-36', level: 3, mode: 'dare', zh: '用一句話為彼此今天的努力乾杯。', en: 'Toast each other’s effort today in one sentence.' },
+  { id: 'card-37', level: 4, mode: 'truth', zh: '哪一種理解讓你感到真正被看見？', en: 'What kind of understanding makes you feel truly seen?' },
+  { id: 'card-38', level: 4, mode: 'truth', zh: '你最害怕失去的是什麼，為什麼？', en: 'What are you most afraid of losing, and why?' },
+  { id: 'card-39', level: 4, mode: 'truth', zh: '最近哪個界線對你變得更重要？', en: 'Which boundary has become more important to you lately?' },
+  { id: 'card-40', level: 4, mode: 'truth', zh: '你希望被記得的是哪一部分？', en: 'What part of you do you hope people remember?' },
+  { id: 'card-41', level: 4, mode: 'truth', zh: '什麼道歉對你而言才是真誠的？', en: 'What makes an apology feel sincere to you?' },
+  { id: 'card-42', level: 4, mode: 'truth', zh: '你現在最需要給自己什麼允許？', en: 'What permission do you most need to give yourself?' },
+  { id: 'card-43', level: 4, mode: 'dare', zh: '安靜聽對方說一分鐘，不提供建議。', en: 'Listen for one minute without offering advice.' },
+  { id: 'card-44', level: 4, mode: 'dare', zh: '說出一件你感謝對方理解的事。', en: 'Name one thing you appreciate the other person understanding.' },
+  { id: 'card-45', level: 4, mode: 'dare', zh: '一起寫下一句未來需要時能看到的提醒。', en: 'Write a reminder you can revisit when needed.' },
+  { id: 'card-46', level: 4, mode: 'dare', zh: '徵得同意後，給對方一個擁抱或友善手勢。', en: 'With consent, offer a hug or a friendly gesture.' },
+  { id: 'card-47', level: 4, mode: 'dare', zh: '輪流完成：「我希望你知道……」', en: 'Take turns completing: “I want you to know…”' },
+  { id: 'card-48', level: 4, mode: 'dare', zh: '一起選一件想更誠實面對的小事。', en: 'Choose one small thing to face more honestly.' },
+  { id: 'card-49', level: 5, mode: 'truth', zh: '親密關係中，什麼讓你感到安全？', en: 'What helps you feel safe in intimacy?' },
+  { id: 'card-50', level: 5, mode: 'truth', zh: '你如何表達與接收同意？', en: 'How do you express and receive consent?' },
+  { id: 'card-51', level: 5, mode: 'truth', zh: '哪一種界線值得更清楚地說出來？', en: 'Which boundary deserves to be stated more clearly?' },
+  { id: 'card-52', level: 5, mode: 'truth', zh: '什麼樣 of 親密對話讓你感到被尊重？', en: 'What intimate conversation makes you feel respected?' },
+  { id: 'card-53', level: 5, mode: 'truth', zh: '你希望伴侶如何回應你的脆弱？', en: 'How would you want a partner to respond to vulnerability?' },
+  { id: 'card-54', level: 5, mode: 'truth', zh: '什麼訊號代表現在需要慢下來？', en: 'What signals that it is time to slow down?' },
+  { id: 'card-55', level: 5, mode: 'dare', zh: '輪流說出一個舒服的界線與一個停止訊號。', en: 'Each name one comfort boundary and one stop signal.' },
+  { id: 'card-56', level: 5, mode: 'dare', zh: '在雙方同意下，維持十秒鐘的眼神交流。', en: 'With mutual consent, hold eye contact for ten seconds.' },
+  { id: 'card-57', level: 5, mode: 'dare', zh: '說出一句讓親密交流更安心的確認。', en: 'Offer one reassurance that makes intimacy safer.' },
+  { id: 'card-58', level: 5, mode: 'dare', zh: '一起決定一個任何時候都能使用的暫停詞。', en: 'Choose a pause word either person can use anytime.' },
+  { id: 'card-59', level: 5, mode: 'dare', zh: '分享一種不涉及身體接觸的親密方式。', en: 'Share one form of intimacy without physical contact.' },
+  { id: 'card-60', level: 5, mode: 'dare', zh: '互相確認：任何挑戰都可以無條件拒絕。', en: 'Confirm together that any challenge may be declined.' }
+]
+</script>
+
+  <script type="text/plain" id="raw-game.ts">import type { Card, Level, Mode } from '../types'
+
+export function eligibleCards(cards: Card[], level: Level, mode: Mode): Card[] {
+  return cards.filter(card => card.level === level && (mode === 'random' || card.mode === mode))
+}
+
+export function nextCard(cards: Card[], currentId?: string, random: () => number = Math.random): Card {
+  if (!cards.length) throw new Error('No eligible cards')
+  const candidates = cards.length > 1 ? cards.filter(card => card.id !== currentId) : cards
+  return candidates[Math.min(candidates.length - 1, Math.floor(random() * candidates.length))]
+}</script>
+
+  <script type="text/plain" id="raw-age-gate.ts">export function isAdultOn(birthday: string, today = new Date()): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(birthday)) return false
+  const [year, month, day] = birthday.split('-').map(Number)
+  const birth = new Date(Date.UTC(year, month - 1, day))
+  if (Number.isNaN(birth.getTime()) || birth.getUTCFullYear() !== year || birth.getUTCMonth() !== month - 1 || birth.getUTCDate() !== day) return false
+  let age = today.getUTCFullYear() - year
+  const beforeBirthday = today.getUTCMonth() + 1 < month || (today.getUTCMonth() + 1 === month && today.getUTCDate() < day)
+  if (beforeBirthday) age--
+  return age >= 18
+}</script>
+
+  <script type="text/plain" id="raw-preferences.ts">import type { Language } from '../types'
+
+const LANGUAGE_KEY = 'encounter-language'
+const FONT_KEY = 'encounter-font-scale'
+
+export function loadLanguage(): Language {
+  const value = localStorage.getItem(LANGUAGE_KEY)
+  return value === 'en' || value === 'bilingual' ? value : 'zh'
+}
+export function saveLanguage(value: Language) { localStorage.setItem(LANGUAGE_KEY, value) }
+export function loadFontScale() { return Number(localStorage.getItem(FONT_KEY)) || 1 }
+export function saveFontScale(value: number) { localStorage.setItem(FONT_KEY, String(value)) }</script>
+
+  <script type="text/plain" id="raw-deity-art.ts">import mazuSrc from '../assets/deities/mazu-taiwan.webp'
+import guanyinSrc from '../assets/deities/guanyin-taiwan.webp'
+import guanshengSrc from '../assets/deities/guansheng-dijun-taiwan.webp'
+import xuantianSrc from '../assets/deities/xuantian-shangdi-taiwan.webp'
+import baoshengSrc from '../assets/deities/baosheng-dadi-taiwan.webp'
+import tudigongSrc from '../assets/deities/tudigong-taiwan.webp'
+import wenchangSrc from '../assets/deities/wenchang-dijun-taiwan.webp'
+import yueLaoSrc from '../assets/deities/yue-lao-taiwan.webp'
+import zhushengSrc from '../assets/deities/zhusheng-niangniang-taiwan.webp'
+
+export type DeityArt = { id: string; zhName: string; enName: string; src: string }
+
+export const DEITY_ART: readonly DeityArt[] = [
+  ['mazu', '媽祖', 'Mazu', mazuSrc], ['guanyin', '觀音', 'Guanyin', guanyinSrc],
+  ['guansheng-dijun', '關聖帝君', 'Guan Sheng Dijun', guanshengSrc], ['xuantian-shangdi', '玄天上帝', 'Xuantian Shangdi', xuantianSrc],
+  ['baosheng-dadi', '保生大帝', 'Baosheng Dadi', baoshengSrc], ['tudigong', '土地公', 'Tudigong', tudigongSrc],
+  ['wenchang-dijun', '文昌帝君', 'Wenchang Dijun', wenchangSrc], ['yue-lao', '月老', 'Yue Lao', yueLaoSrc],
+  ['zhusheng-niangniang', '註生娘娘', 'Zhusheng Niangniang', zhushengSrc],
+].map(([id, zhName, enName, src]) => ({ id, zhName, enName, src }))
+
+export const CARD_EXPORT_LAYOUT = {
+  header: { x: 42, y: 38, width: 996, height: 142 },
+  art: { x: 48, y: 202, width: 984, height: 918 },
+  question: { x: 48, y: 1144, width: 984, height: 426 },
+} as const
+
+export function deityForCard(cardId: string): DeityArt {
+  const hash = [...cardId].reduce((total, character) => ((total * 31) + character.charCodeAt(0)) >>> 0, 0)
+  return DEITY_ART[hash % DEITY_ART.length]
+}</script>
+
+  <script type="text/plain" id="raw-share.ts">import type { Card, Language } from '../types'
+import { CARD_EXPORT_LAYOUT, deityForCard } from './deity-art'
+
+function cardLines(card: Card, language: Language) {
+  return language === 'zh' ? [card.zh] : language === 'en' ? [card.en] : [card.zh, card.en]
+}
+
+function loadImage(src: string): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const image = new Image()
+    image.onload = () => resolve(image)
+    image.onerror = () => reject(new Error(`Artwork could not be loaded: ${src}`))
+    image.src = src
+  })
+}
+
+function drawImageContain(context: CanvasRenderingContext2D, image: HTMLImageElement, x: number, y: number, width: number, height: number) {
+  const scale = Math.min(width / image.naturalWidth, height / image.naturalHeight)
+  const drawWidth = image.naturalWidth * scale
+  const drawHeight = image.naturalHeight * scale
+  context.drawImage(image, x + (width - drawWidth) / 2, y + (height - drawHeight) / 2, drawWidth, drawHeight)
+}
+
+function wrapText(context: CanvasRenderingContext2D, text: string, maxWidth: number) {
+  const lines: string[] = []
+  let line = ''
+  for (const character of [...text]) {
+    const next = line + character
+    if (line && context.measureText(next).width > maxWidth) { lines.push(line); line = character }
+    else line = next
+  }
+  if (line) lines.push(line)
+  return lines
+}
+
+export async function createCardPng(card: Card, language: Language): Promise<File> {
+  const artwork = deityForCard(card.id)
+  const image = await loadImage(artwork.src)
+  const canvas = document.createElement('canvas')
+  canvas.width = 1080; canvas.height = 1620
+  const context = canvas.getContext('2d')
+  if (!context) throw new Error('Canvas is unavailable')
+
+  const background = context.createLinearGradient(0, 0, 1080, 1620)
+  background.addColorStop(0, '#e6bd7c'); background.addColorStop(1, '#8d4d32')
+  context.fillStyle = background; context.fillRect(0, 0, 1080, 1620)
+  context.fillStyle = '#f4dfb6'; context.fillRect(CARD_EXPORT_LAYOUT.header.x, CARD_EXPORT_LAYOUT.header.y, CARD_EXPORT_LAYOUT.header.width, CARD_EXPORT_LAYOUT.header.height)
+  context.fillStyle = '#141517'; context.font = '700 62px serif'; context.fillText(artwork.zhName, 74, 136)
+  context.fillStyle = '#8d4d32'; context.font = '500 25px system-ui'; context.fillText('相遇之神 · ENCOUNTER DEITY', 76, 76)
+  context.textAlign = 'right'; context.fillStyle = '#7b4b2c'; context.font = '600 26px system-ui'; context.fillText(artwork.enName, 1004, 126); context.textAlign = 'left'
+
+  context.fillStyle = '#07151d'; context.fillRect(CARD_EXPORT_LAYOUT.art.x, CARD_EXPORT_LAYOUT.art.y, CARD_EXPORT_LAYOUT.art.width, CARD_EXPORT_LAYOUT.art.height)
+  drawImageContain(context, image, CARD_EXPORT_LAYOUT.art.x, CARD_EXPORT_LAYOUT.art.y, CARD_EXPORT_LAYOUT.art.width, CARD_EXPORT_LAYOUT.art.height)
+  context.strokeStyle = '#3c261b'; context.lineWidth = 8; context.strokeRect(CARD_EXPORT_LAYOUT.art.x, CARD_EXPORT_LAYOUT.art.y, CARD_EXPORT_LAYOUT.art.width, CARD_EXPORT_LAYOUT.art.height)
+
+  const panel = CARD_EXPORT_LAYOUT.question
+  context.fillStyle = '#f7e7c5'; context.fillRect(panel.x, panel.y, panel.width, panel.height)
+  context.fillStyle = '#241a15'; context.font = '700 31px system-ui'; context.fillText('真正的你 · THE REAL YOU', panel.x + 42, panel.y + 58)
+  context.textAlign = 'right'; context.fillStyle = '#8d4d32'; context.font = '600 24px system-ui'; context.fillText(`LEVEL ${card.level} · ${card.mode.toUpperCase()} · V19`, panel.x + panel.width - 38, panel.y + 58); context.textAlign = 'left'
+  context.strokeStyle = '#b58a55'; context.lineWidth = 2; context.beginPath(); context.moveTo(panel.x + 38, panel.y + 80); context.lineTo(panel.x + panel.width - 38, panel.y + 80); context.stroke()
+  context.fillStyle = '#201816'; context.font = '600 44px serif'
+  let cursorY = panel.y + 142
+  for (const paragraph of cardLines(card, language)) {
+    for (const line of wrapText(context, paragraph, panel.width - 84)) { context.fillText(line, panel.x + 42, cursorY); cursorY += 58 }
+    cursorY += 18
+  }
+  context.fillStyle = '#9a4a3b'; context.font = '600 23px system-ui'; context.fillText('守護這次相遇 · KEEP THE ENCOUNTER', panel.x + 42, panel.y + panel.height - 35)
+
+  const blob = await new Promise<Blob>((resolve, reject) => canvas.toBlob(value => value ? resolve(value) : reject(new Error('PNG creation failed')), 'image/png'))
+  return new File([blob], `encounter-card-v19-${card.id}.png`, { type: 'image/png' })
+}
+
+export async function shareOrDownload(card: Card, language: Language): Promise<'shared' | 'downloaded' | 'cancelled'> {
+  const file = await createCardPng(card, language)
+  if (navigator.share && (!navigator.canShare || navigator.canShare({ files: [file] }))) {
+    try { await navigator.share({ files: [file], title: 'Encounter Cards v19' }); return 'shared' }
+    catch (error) { if (error instanceof DOMException && error.name === 'AbortError') return 'cancelled' }
+  }
+  const url = URL.createObjectURL(file)
+  const anchor = document.createElement('a'); anchor.href = url; anchor.download = file.name; anchor.click()
+  window.setTimeout(() => URL.revokeObjectURL(url), 1000)
+  return 'downloaded'
+}</script>
+
+  <script type="text/plain" id="raw-viewport-scale.ts">export const PHONE_WIDTH = 430
+export const PHONE_HEIGHT = 932
+export const DESKTOP_BREAKPOINT = 561
+export const DESKTOP_SAFE_MARGIN = 48
+
+export type ViewportSize = { width: number, height: number }
+
+export function calculatePhoneScale({ width, height }: ViewportSize): number {
+  if (width < DESKTOP_BREAKPOINT) return 1
+  const availableWidth = Math.max(0, width - DESKTOP_SAFE_MARGIN)
+  const availableHeight = Math.max(0, height - DESKTOP_SAFE_MARGIN)
+  return Math.min(1, availableWidth / PHONE_WIDTH, availableHeight / PHONE_HEIGHT)
+}</script>
+
+  <script type="text/plain" id="raw-app.css">:root{font-family:Inter,ui-sans-serif,system-ui...
+@media(min-width:561px){html,body,#root...</script>
+
+  <script type="text/plain" id="raw-v19.css">.encounter-card{width:min(344px,88vw);aspect-ratio:.62}
+.card-back,.card-front{border-radius:22px;overflow:hidden}
+.card-front{display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:7px;padding:9px;background:linear-gradient(160deg,#d7a366,#82452f);color:#171513;text-align:left}
+.card-title{width:100%;min-height:59px;padding:5px 10px;background:#f2d9a7;display:grid;grid-template-columns:1fr auto;align-items:end}
+.card-title span{grid-column:1/-1;color:#876743;font-size:.58em;letter-spacing:.12em}
+.card-title strong{font:700 1.45em Georgia,serif}
+.card-title small{color:#7b4b2c;font-size:.56em}
+.deity-art{display:block;width:100%;height:100%;min-height:0;object-fit:contain;object-position:center;background:#07151d;border:2px solid #3c261b}
+.question-panel{width:100%;min-height:120px;padding:10px 12px;background:#f5e4c2;border:1px solid #8f643d}
+.question-panel .card-meta{display:block;padding-bottom:5px;border-bottom:1px solid #b9976b;font-size:.58em;letter-spacing:.12em;color:#8d4d32}
+.question-panel p{font-family:Georgia,serif;font-size:.9em;line-height:1.2;margin:7px 0 0}</script>
+
+  <!-- SCRIPT FOR ANNOTATION DATA & INTERACTIVITY -->
+  <script>
+    const annotationsData = {
+      'App.tsx': [
+        { lines: '1-10', title: { zh: '模組化導入與樣式', en: 'Modular Imports & Styles' }, desc: { zh: '載入 React hooks、TypeScript 介面、卡牌資料庫與公用邏輯。保持 UI 渲染與計算邏輯解耦。', en: 'Imports core React hooks (useState, useEffect, useMemo, useRef), typescript interfaces, cards dataset, and utility logic. Keeps UI rendering decoupled from calculation helpers.' } },
+        { lines: '12-15', title: { zh: '在地化 UI 文字字典', en: 'Localized UI Copy Dictionary' }, desc: { zh: '收納結構性按鈕與註記的在地化譯文，避免引入外部語系包。', en: 'Houses localized copy for structural buttons and notes. Avoids bloating external packages by loading translations inline.' } },
+        { lines: '21-36', title: { zh: 'React UI 狀態集', en: 'React UI States' }, desc: { zh: '宣告狀態變數。注意 loadLanguage() 與 loadFontScale() 是在初始化器中以函數形式傳入，只在掛載時讀取一次，避免重複讀取快取。', en: 'Declares state variables. Notice loadLanguage() and loadFontScale() are passed inside initializers to read local values once on hydration, avoiding expensive state refetches.' } },
+        { lines: '41-43', title: { zh: 'Service Worker 離線快取就緒', en: 'Service Worker Cache Event' }, desc: { zh: '監聽 Service Worker 註冊狀態。當快取成功完成時，更新 UI 狀態以顯示離線就緒標誌。', en: 'Monitors service worker registration status. Updates UI state to display offline readiness indicator when caching completes successfully.' } },
+        { lines: '45-55', title: { zh: '視窗縮放監聽', en: 'VisualViewport Resizing Hook' }, desc: { zh: '監聽視窗與虛擬視窗尺寸。當虛擬鍵盤彈出或螢幕旋轉時，重新計算手機外框的縮放比例。', en: 'Attaches listeners to window and visualViewport. Recalculates the phone shell scale factors when virtual keyboards open or screen rotates.' } },
+        { lines: '57-65', title: { zh: '熟識度與年齡驗證動作', en: 'Familiarity Level & Age Gate Action' }, desc: { zh: '攔截 Level 5 點擊。優先開啟生日驗證抽屜。使用 isAdultOn() 判定年齡，隨後清空輸入欄位以保護隱私。', en: 'Intercepts Level 5 clicks. Opens birthday validation drawer first. Confirms age boundary using isAdultOn(), resetting input fields immediately to protect user privacy.' } },
+        { lines: '66-69', title: { zh: '遊戲抽卡與合成圖檔導出', en: 'Gameplay Drawing and Export Handlers' }, desc: { zh: '觸發隨機不重複選卡 (nextCard) 並執行畫布合成與分享，同時更新無障礙朗讀文字。', en: 'Triggers random deduplicated cards selection (nextCard) and runs canvas shareOrDownload, updating screen read-out status strings for screen readers (aria-live).' } },
+        { lines: '70-84', title: { zh: '設定畫面佈局', en: 'Setup Screen Layout' }, desc: { zh: '渲染在地化標題、姓名輸入與網格選單。若離線快取未完成，則顯示 PWA 安裝引導。', en: 'Renders localized title, name inputs, and grid menus. Displays PWA installation prompts if offline caching is not yet completed.' } },
+        { lines: '85-103', title: { zh: '遊戲互動主畫面', en: 'Interactive Game Interface' }, desc: { zh: '記錄滑鼠/觸控起點與終點以模擬拖曳抽卡。在 3D 翻轉卡牌內繪製神祇、WebP 肖像、分級標籤與雙語問題。', en: 'Emulates physical drag mechanics by recording pointers (event.clientX) on down/up. Draws deity titles, loaded WebP illustration, meta tags, and bilingual questions inside the 3D-flipping card shell.' } }
+      ],
+      'types.ts': [
+        { lines: '1-4', title: { zh: '聯集型別定義', en: 'Union Type Definitions' }, desc: { zh: '限制語系、模式與等級只能是指定的值，在編譯期攔截拼寫錯誤。', en: 'Restricts language inputs, card modes, and level indices (1..5) to exact literal values. Catches misspelt property strings at compile time.' } },
+        { lines: '6-12', title: { zh: '卡牌資料結構合約', en: 'Card Schema Contract' }, desc: { zh: '定義卡牌資料庫綱要，規範每張卡牌必須包含編號、等級、模式及中英雙語文字。', en: 'Defines the schema of the cards database, stating that every prompt contains id, level, mode, and bilingual translation strings (zh, en).' } }
+      ],
+      'cards.ts': [
+        { lines: '3-15', title: { zh: 'Level 1：初見破冰', en: 'Level 1: Icebreakers' }, desc: { zh: '低壓力的破冰問題與簡單小挑戰，用來建立彼此的安全感。', en: 'Low-pressure questions (smiling, comfort food, weekend morning) and basic challenges to establish mutual safety.' } },
+        { lines: '16-27', title: { zh: 'Level 2：尋求共鳴', en: 'Level 2: Commonalities' }, desc: { zh: '涵蓋個人目標、習慣、共同興趣與小技巧，藉此拉近關係。', en: 'Prompts covering personal goals, habits, shared movie titles, and skills to highlight common grounds.' } },
+        { lines: '28-39', title: { zh: 'Level 3：朋友默契', en: 'Level 3: Friends' }, desc: { zh: '探索回憶、價值觀、底線與互動性肢體挑戰。', en: 'Explores memories, values, limits, and playful creative physical interactions (posing for a creative photo).' } },
+        { lines: '40-51', title: { zh: 'Level 4：深度親近', en: 'Level 4: Close Reflection' }, desc: { zh: '著重於彼此的感謝、道歉、人際界線與深度的情感支持。', en: 'Focuses on appreciation, boundaries, apologies, and close mutual support prompts.' } },
+        { lines: '52-63', title: { zh: 'Level 5：親密挑戰 (18+)', en: 'Level 5: Gated Intimate 18+' }, desc: { zh: '探討親密關係、身體界線、同意權與暫停詞，設有嚴格的年齡防線。', en: 'Prompts addressing intimacy, consent, signals, and pause words. Built with strict safety guards.' } }
+      ],
+      'game.ts': [
+        { lines: '3-5', title: { zh: '篩選候選卡牌池', en: 'Filter Candidates Pool' }, desc: { zh: '篩選出符合當前等級與模式的卡牌。若模式為 random 則僅篩選等級。', en: 'Filters cards matching chosen level and mode. If mode is "random", skips mode checks and filters by level only.' } },
+        { lines: '7-11', title: { zh: '隨機去重抽卡', en: 'Deduplicated Random Picker' }, desc: { zh: '若候選池大於一，隨機抽卡時會自動排除上一張卡牌，防止連續重複出現。', en: 'Excludes current card ID from the random candidate list (if pool size > 1). Prevents consecutive duplicates.' } }
+      ],
+      'age-gate.ts': [
+        { lines: '2-2', title: { zh: 'Regex 格式校驗', en: 'Regex Formatting Check' }, desc: { zh: '若生日格式不符合 YYYY-MM-DD 則直接判定無效。', en: 'Rejects birthday input immediately if string does not match YYYY-MM-DD structure.' } },
+        { lines: '3-5', title: { zh: '日曆溢位保護', en: 'Calendar Overflow Guard' }, desc: { zh: '建立 UTC 日期，藉由比對還原後的年月日是否與原輸入一致，來擋掉如 11月31日 或非閏年2月29日 等溢位日期。', en: 'Constructs UTC date objects. Detects invalid dates (e.g. November 31, February 29 on non-leap years) by checking if year/month/date match original input values.' } },
+        { lines: '6-9', title: { zh: '年齡判定運算', en: 'Age Comparison Math' }, desc: { zh: '用今年年份減去出生年，若今天日期在生日之前則減 1 歲，藉此確認是否滿 18 歲。', en: 'Subtracts birth year from current year. Deducts 1 year if current date is before user birthday in current year, enforcing 18+ restriction.' } }
+      ],
+      'preferences.ts': [
+        { lines: '3-4', title: { zh: 'LocalStorage 鍵值常數', en: 'LocalStorage Key Constants' }, desc: { zh: '設定本機快取的鍵名，僅存放語系與字級等非敏感偏好。', en: 'Sets keys to store configurations in browser memory. Limits storage to styling and language selections.' } },
+        { lines: '6-13', title: { zh: '偏好讀寫輔助函數', en: 'Preference Load & Save Helpers' }, desc: { zh: '安全讀寫語系與字級設定，本機無快取時預設回傳中文/1.0。', en: 'Safely reads and writes language preferences and typography font scales, defaulting back to Chinese if storage is empty.' } }
+      ],
+      'deity-art.ts': [
+        { lines: '1-9', title: { zh: 'WebP 靜態圖片載入', en: 'Vite Asset WebP Imports' }, desc: { zh: '載入 9 張優化後的 WebP 神祇圖片，利於打包工具在建置時追蹤與編譯。', en: 'Imports nine optimized deity WebP files. Allows bundle tools to trace and package them during builds.' } },
+        { lines: '13-19', title: { zh: '神祇資料字典', en: 'Deity Portraits Array' }, desc: { zh: '映射神祇 ID、中文名、英文名與圖片路徑的結構化陣列。', en: 'Structured dictionary mapping deity keys to localized names and WebP file references.' } },
+        { lines: '21-25', title: { zh: '畫布匯出坐標配置', en: 'Image Canvas Coordinate Grid' }, desc: { zh: '定義合圖導出時，標頭、插畫、問題框在 Canvas 上的繪製偏移量與寬高。', en: 'Layout offsets (x, y, width, height) of the header, artwork bounding box, and question panel used during PNG exports.' } },
+        { lines: '27-30', title: { zh: '多項式字串雜湊對應', en: 'Multiplicative String Hashing' }, desc: { zh: '對卡牌 ID 計算多項式滾動雜湊並對神祇陣列求餘數，實現離線且決定性的圖片配對。', en: 'Sums characters charCode multiplied by 31. Deterministically maps card IDs to deity artworks. Works offline without databases.' } }
+      ],
+      'share.ts': [
+        { lines: '8-15', title: { zh: '圖片載入 Promise 包裝', en: 'loadImage Promisifier' }, desc: { zh: '將 Image 的載入與報錯事件轉換為 Promise，確保繪圖前圖片已完整載入記憶體。', en: 'Converts Image onload and onerror events into a Promise, ensuring WebP resources are fully loaded in memory before canvas drawing starts.' } },
+        { lines: '17-22', title: { zh: '等比例縮放計算', en: 'Contain Bounding Box Math' }, desc: { zh: '比照 CSS contain 運算，在指定寬高矩形內置中且不變形地縮放渲染神祇肖像。', en: 'CSS-equivalent contain calculations. Scales and centers deity portraits inside the target rectangle while preserving artwork ratios.' } },
+        { lines: '24-34', title: { zh: '畫布文字自動斷行', en: 'HTML5 Canvas Word Wrapper' }, desc: { zh: '依字元拆解文字並調用 measureText() 計算累積寬度，自動切分成多行以防止文字重疊。', en: 'Splits text into paragraph strings, measures character widths using measureText(), and inserts line breaks to prevent text overlaps.' } },
+        { lines: '36-71', title: { zh: 'PNG 紀念卡合圖管線', en: 'PNG Composition Pipeline' }, desc: { zh: '在記憶體中建立 1080x1620 畫布，繪製漸層、金色標頭、神祇 WebP、中英問題與分級資訊，最後輸出為 PNG 二進位 Blob 並包裝成 File 物件。', en: 'Builds a 1080x1620 canvas. Paints background gradients, golden headers, deity WebP, card metadata, and wraps bilingual questions. Converts canvas output to an image Blob and builds a PNG File.' } },
+        { lines: '73-83', title: { zh: '社群分享與備援下載', en: 'Web Share / Download Fallback Handler' }, desc: { zh: '將 Image 的載入與報錯事件轉換為 Promise，確保繪圖前圖片已完整載入記憶體。', en: 'Executes navigator.share. If unsupported, triggers a download anchor tag with object URL. Clears the URL after 1 second to prevent memory leaks.' } }
+      ],
+      'viewport-scale.ts': [
+        { lines: '8-13', title: { zh: '響應式縮放比運算', en: 'Responsive scale factor calculation' }, desc: { zh: '計算縮放比例。當桌上型螢幕可用寬高小於 430 × 932 時，等比例縮減手機外殼。', en: 'Computes scale ratio. Shrinks virtual 430 × 932 layout if desktop width/height are smaller than target proportions.' } }
+      ],
+      'app.css': [
+        { lines: '1-1', title: { zh: '全域樣式重設、變數與舞台', en: 'Variables, Reset & Stage' }, desc: { zh: '定義樣式變數、全域 Reset、背景徑向漸層與手機容器。', en: 'Defines root variables, styling resets, radial background gradients, and sets up viewport containers.' } },
+        { lines: '2-2', title: { zh: '桌面端模擬器與動畫規範', en: 'Responsive emulators & motion rules' }, desc: { zh: '實作電腦版手機外框置中、卡牌 3D 翻轉視角與無障礙減低動態支援。', en: 'Implements desktop centering wrappers, aspect ratios, 3D transform perspectives (1200px), card backface visibility rules, and overrides transitions for users who prefer reduced motion.' } }
+      ],
+      'v19.css': [
+        { lines: '1-3', title: { zh: '網格卡牌結構', en: 'Grid-Rows Card structure' }, desc: { zh: '定義 v19 卡牌比例為 0.62 並採用三層垂直 Grid 結構。', en: 'Overrides card layout for version 19. Sets deity cards aspect ratio to 0.62 and structures cards inside grid systems.' } },
+        { lines: '4-12', title: { zh: '圖片與文字面板配置', en: 'Art & Text panel positioning' }, desc: { zh: '微調金色標頭列、肖像外邊框與下方問題面板樣式。', en: 'Formats gold headers, border outlines for deity art boxes, and question panels.' } }
+      ]
+    };
+
+    const fileSummaryData = {
+      'App.tsx': {
+        zh: '這是相遇卡的主容器。它協調使用者選項（語言、姓名、熟識程度、模式選擇）、縮放手機外殼、觸發選卡邏輯，並設定觸控／指標監聽器來模擬實體抽卡。',
+        en: 'This is the main container of Encounter Cards. It orchestrates user options (language, names, familiarity levels, mode Selection), scales the phone viewport shell, triggers card selection logic, and sets up touch/pointer listeners to emulate physical card draws.'
+      },
+      'types.ts': {
+        zh: '定義遊戲的 TypeScript 介面與型別範圍。使用強型別可確保無效的配置在編譯期即被攔截，保持程式穩定。',
+        en: 'Defines the TypeScript interfaces and type bounds for the game. Using strong types ensures that invalid configurations fail at compilation time.'
+      },
+      'cards.ts': {
+        zh: '收納包含所有 60 張雙語問題與小挑戰的資料庫。依熟識度 Level 1–5 分類，能從簡單的破冰問題安全漸進至設有年齡檢查的 Level 5 成人親密對話。',
+        en: 'Houses the database containing all 60 bilingual questions and challenges, organized by familiarity levels 1–5.'
+      },
+      'game.ts': {
+        zh: '實作遊戲流程的狀態運算。根據所選等級與模式篩選出可用的卡牌池，隨機抽選卡牌並防止當前卡牌連續重複出現。',
+        en: 'Filters the available cards pool by familiarity level and mode, and shuffles cards randomly while preventing the active card from showing twice in a row.'
+      },
+      'age-gate.ts': {
+        zh: '執行 Level 5 存取權限限制。驗證使用者輸入的生日字串（YYYY-MM-DD），偵測月日溢位日期（如 11 月 31 日），並根據當前 UTC 時間判定是否滿 18 歲。',
+        en: 'Enforces Level 5 access restrictions. Validates user-entered birthday strings (YYYY-MM-DD), guarding against overflow dates.'
+      },
+      'preferences.ts': {
+        zh: '在瀏覽器本機快取中存取偏好設定（包含選擇的語言與字級縮放比例）。儲存範圍僅限於這些非敏感設定，嚴格保護使用者隱私。',
+        en: 'Saves and loads user configurations (chosen language and font size multiplier) from LocalStorage.'
+      },
+      'deity-art.ts': {
+        zh: '配置高解析度台灣神祇肖像圖片的資料。實作字串雜湊演算法（多項式滾動雜湊），將卡牌 ID 定向對應至神祇肖像，保證在離線狀態下圖片關聯依然一致。',
+        en: 'Configures the deity illustration metadata. Implements a string-hashing function to deterministically map card IDs to deities.'
+      },
+      'share.ts': {
+        zh: '主要的 PNG 圖檔合繪與分享模組。將卡牌金黃背景漸層、神祇 WebP 圖片、分級標籤以及中英文問題繪製在 1080x1620 的 HTML5 畫布上，並調用 Web Share 分享或超連結下載。',
+        en: 'Main PNG rendering and sharing utility. Paints elements onto a 1080x1620 HTML5 Canvas.'
+      },
+      'viewport-scale.ts': {
+        zh: '計算在桌上型電腦顯示器中的網頁縮放比例，以完美適配並置中顯示 430 × 932 的虛擬手機框，且保證網頁視窗不會產生外部捲軸。',
+        en: 'Ensures mobile aspect ratios (430 × 932) scale down on desktop monitors to fit without document scrollbars.'
+      },
+      'app.css': {
+        zh: '設定 PWA 行動版框架的樣式、漸層色彩、卡牌透視度、3D 旋轉動畫、桌上型電腦框架縮放與無障礙縮減動態樣式。',
+        en: 'Styles the mobile PWA shell, linear gradients, layout alignment, cards perspective, and accessibility rules.'
+      },
+      'v19.css': {
+        zh: '針對 v19 進行的卡牌肖像樣式微調，定義卡牌正面網格佈局、神祇肖像邊框樣式以及底部的問題文字框樣式。',
+        en: 'Provides structural overrides specifically for Version 19, detailing the grid-rows on the card front.'
+      }
+    };
+
+    // Every Single Line Comments Registry
+    const lineCommentsData = {
+      'types.ts': {
+        1: { zh: '宣告 Language 聯集型別 / Declares Language union type', en: 'Declares Language union type' },
+        2: { zh: '宣告遊戲模式聯集型別 / Declares game Mode union type', en: 'Declares game Mode union type' },
+        3: { zh: '從 Mode 中排除 random 以便卡牌宣告 / Excludes "random" from Mode', en: 'Excludes "random" from Mode' },
+        4: { zh: '限制等級只能是 1 至 5 之間的整數 / Limits Level to integers 1 to 5', en: 'Limits Level to integers 1 to 5' },
+        5: { zh: '空行 / Empty line', en: 'Empty line' },
+        6: { zh: '宣告 Card 資料介面結構 / Declares Card interface structure', en: 'Declares Card interface structure' },
+        7: { zh: '定義 id 為字串型別 / Defines id as string type', en: 'Defines id as string type' },
+        8: { zh: '定義 level 為 Level 型別 / Defines level as Level type', en: 'Defines level as Level type' },
+        9: { zh: '定義 mode 為 CardMode 型別 / Defines mode as CardMode type', en: 'Defines mode as CardMode type' },
+        10: { zh: '定義 zh 為字串型別（繁體中文問題） / Defines zh as string type (Chinese)', en: 'Defines zh as string type (Chinese)' },
+        11: { zh: '定義 en 為字串型別（英文問題） / Defines en as string type (English)', en: 'Defines en as string type (English)' },
+        12: { zh: '關閉介面宣告 / Closes interface definition', en: 'Closes interface definition' }
+      },
+      'game.ts': {
+        1: { zh: '僅導入型別定義以減少打包大小 / Imports types only', en: 'Imports types only' },
+        2: { zh: '空行 / Empty line', en: 'Empty line' },
+        3: { zh: '宣告篩選卡牌函數 / Declares card filtering function', en: 'Declares card filtering function' },
+        4: { zh: '比對 level 與 mode 進行篩選 / Filters cards by level and mode', en: 'Filters cards by level and mode' },
+        5: { zh: '關閉函數 / Closes function', en: 'Closes function' },
+        6: { zh: '空行 / Empty line', en: 'Empty line' },
+        7: { zh: '宣告隨機抽卡函數，預設使用 Math.random / Declares random picker', en: 'Declares random picker' },
+        8: { zh: '防禦性檢查：若候選池為空則拋出錯誤 / Guards against empty pool', en: 'Guards against empty pool' },
+        9: { zh: '若卡牌數大於 1，則篩選排除當前卡牌以避免重複 / Excludes active card', en: 'Excludes active card' },
+        10: { zh: '隨機產生索引並回傳對應卡牌 / Calculates random index', en: 'Calculates random index' },
+        11: { zh: '關閉函數 / Closes function', en: 'Closes function' }
+      },
+      'age-gate.ts': {
+        1: { zh: '宣告年齡驗證函數，預設今天為 Date 實體 / Declares age check function', en: 'Declares age check function' },
+        2: { zh: '用 Regex 驗證 YYYY-MM-DD 格式 / Validates date pattern', en: 'Validates date pattern' },
+        3: { zh: '拆解年月日字串並轉為數字 / Parses date components', en: 'Parses date components' },
+        4: { zh: '用 UTC 時間建立生日日期 / Creates UTC Date', en: 'Creates UTC Date' },
+        5: { zh: '驗證日曆溢位（如 2 月 30 日） / Guards against calendar overflow', en: 'Guards against calendar overflow' },
+        6: { zh: '宣告 age 為年份差 / Calculates raw age difference', en: 'Calculates raw age difference' },
+        7: { zh: '判定今天是否還沒過今年的生日 / Checks if birthday has passed this year', en: 'Checks if birthday has passed this year' },
+        8: { zh: '若還沒過生日，則實質年齡減一 / Subtracts one year if birthday has not passed', en: 'Subtracts one year if birthday has not passed' },
+        9: { zh: '回傳是否滿 18 歲 / Returns true if age is 18 or older', en: 'Returns true if age is 18 or older' },
+        10: { zh: '關閉函數 / Closes function', en: 'Closes function' }
+      },
+      'preferences.ts': {
+        1: { zh: '導入 Language 型別定義 / Imports Language type', en: 'Imports Language type' },
+        2: { zh: '空行 / Empty line', en: 'Empty line' },
+        3: { zh: '宣告語系儲存鍵值名稱 / Key for language storage', en: 'Key for language storage' },
+        4: { zh: '宣告字型大小儲存鍵值名稱 / Key for font scale storage', en: 'Key for font scale storage' },
+        5: { zh: '空行 / Empty line', en: 'Empty line' },
+        6: { zh: '導出讀取語系函數 / Load language preference', en: 'Load language preference' },
+        7: { zh: '從 LocalStorage 讀取字串 / Fetches string from LocalStorage', en: 'Fetches string from LocalStorage' },
+        8: { zh: '若非 en 或 bilingual，預設回傳 zh / Fallback defaults to "zh"', en: 'Fallback defaults to "zh"' },
+        9: { zh: '關閉函數 / Closes function', en: 'Closes function' },
+        10: { zh: '儲存語系設定到 LocalStorage / Saves language choice', en: 'Saves language choice' },
+        11: { zh: '讀取字型比例，預設為 1 / Loads font scale, defaults to 1', en: 'Loads font scale, defaults to 1' },
+        12: { zh: '儲存字型比例 / Saves font scale', en: 'Saves font scale' }
+      },
+      'viewport-scale.ts': {
+        1: { zh: '定義虛擬 iPhone Pro Max 的寬度為 430 / iPhone virtual layout width', en: 'iPhone virtual layout width' },
+        2: { zh: '定義虛擬 iPhone Pro Max 的高度為 932 / iPhone virtual layout height', en: 'iPhone virtual layout height' },
+        3: { zh: '定義響應式寬度斷點為 561 / Layout breakpoint', en: 'Layout breakpoint' },
+        4: { zh: '定義電腦版安全邊界為 48 / Safe layout margins', en: 'Safe layout margins' },
+        5: { zh: '空行 / Empty line', en: 'Empty line' },
+        6: { zh: '定義視窗大小的 TypeScript 型別 / Viewport size schema', en: 'Viewport size schema' },
+        7: { zh: '空行 / Empty line', en: 'Empty line' },
+        8: { zh: '導出計算縮放比例函數 / Calculates scale ratio', en: 'Calculates scale ratio' },
+        9: { zh: '若為行動裝置，則不進行縮放（使用 100% 寬度） / Returns 1 for mobile', en: 'Returns 1 for mobile' },
+        10: { zh: '計算可用寬度 / Calculates available width', en: 'Calculates available width' },
+        11: { zh: '計算可用高度 / Calculates available height', en: 'Calculates available height' },
+        12: { zh: '取長寬比例小值作為縮放因子 / Caps scale at 1', en: 'Caps scale at 1' },
+        13: { zh: '關閉函數 / Closes function', en: 'Closes function' }
+      },
+      'deity-art.ts': {
+        1: { zh: '導入媽祖 WebP 圖檔 / Import Mazu image', en: 'Import Mazu image' },
+        2: { zh: '導入觀音 WebP 圖檔 / Import Guanyin image', en: 'Import Guanyin image' },
+        3: { zh: '導入關聖帝君 WebP 圖檔 / Import Guan Sheng Dijun image', en: 'Import Guan Sheng Dijun image' },
+        4: { zh: '導入玄天上帝 WebP 圖檔 / Import Xuantian Shangdi image', en: 'Import Xuantian Shangdi image' },
+        5: { zh: '導入保生大帝 WebP 圖檔 / Import Baosheng Dadi image', en: 'Import Baosheng Dadi image' },
+        6: { zh: '導入土地公 WebP 圖檔 / Import Tudigong image', en: 'Import Tudigong image' },
+        7: { zh: '導入文昌帝君 WebP 圖檔 / Import Wenchang Dijun image', en: 'Import Wenchang Dijun image' },
+        8: { zh: '導入月老 WebP 圖檔 / Import Yue Lao image', en: 'Import Yue Lao image' },
+        9: { zh: '導入註生娘娘 WebP 圖檔 / Import Zhusheng Niangniang image', en: 'Import Zhusheng Niangniang image' },
+        10: { zh: '空行 / Empty line', en: 'Empty line' },
+        11: { zh: '定義神祇肖像結構 / Deity metadata schema', en: 'Deity metadata schema' },
+        12: { zh: '空行 / Empty line', en: 'Empty line' },
+        13: { zh: '宣告唯讀的神祇陣列 / Read-only deity registry array', en: 'Read-only deity registry array' },
+        14: { zh: '媽祖與觀音的對應資料 / Mazu and Guanyin data', en: 'Mazu and Guanyin data' },
+        15: { zh: '關聖帝君與玄天上帝的對應資料 / Guan Sheng and Xuantian data', en: 'Guan Sheng and Xuantian data' },
+        16: { zh: '保生大帝與土地公的對應資料 / Baosheng and Tudigong data', en: 'Baosheng and Tudigong data' },
+        17: { zh: '文昌帝君與月老的對應資料 / Wenchang and Yue Lao data', en: 'Wenchang and Yue Lao data' },
+        18: { zh: '註生娘娘的對應資料 / Zhusheng Niangniang data', en: 'Zhusheng Niangniang data' },
+        19: { zh: '將陣列元素轉換為 DeityArt 結構 / Maps into structured objects', en: 'Maps into structured objects' },
+        20: { zh: '空行 / Empty line', en: 'Empty line' },
+        21: { zh: '宣告繪製 PNG 紀念卡時的區塊坐標常數 / Export canvas offsets', en: 'Export canvas offsets' },
+        22: { zh: '標頭區塊坐標與尺寸 / Header coordinates', en: 'Header coordinates' },
+        23: { zh: '神祇肖像區塊坐標與尺寸 / Deity artwork bounds', en: 'Deity artwork bounds' },
+        24: { zh: '問題面板區塊坐標與尺寸 / Question panel bounds', en: 'Question panel bounds' },
+        25: { zh: '將屬性設定為唯讀常數 / Casts properties as read-only constants', en: 'Casts properties as read-only constants' },
+        26: { zh: '空行 / Empty line', en: 'Empty line' },
+        27: { zh: '導出雜湊配對神祇的函數 / Deterministic card-to-deity hashing', en: 'Deterministic card-to-deity hashing' },
+        28: { zh: '實作多項式滾動雜湊演算法 / Multiplicative polynomial hash', en: 'Multiplicative polynomial hash' },
+        29: { zh: '將雜湊值餘數作為索引回傳神祇資料 / Returns matched deity', en: 'Returns matched deity' },
+        30: { zh: '關閉函數 / Closes function', en: 'Closes function' }
+      },
+      'v19.css': {
+        1: { zh: '設定卡牌寬度極限值與長寬比 0.62 / Card aspect ratio 0.62', en: 'Card aspect ratio 0.62' },
+        2: { zh: '設定卡牌正面與反面均為圓角 22px / Card corner roundings', en: 'Card corner roundings' },
+        3: { zh: '設定三層垂直網格，搭配卡牌背景漸層 / Grid-rows and gradients', en: 'Grid-rows and gradients' },
+        4: { zh: '標頭採左右網格分佈，並在底端對齊 / Deity title bar grid', en: 'Deity title bar grid' },
+        5: { zh: '設定小標跨越左右兩欄 / Small title span spanning columns', en: 'Small title span spanning columns' },
+        6: { zh: '設定神祇主標字體 / Deity main strong name font', en: 'Deity main strong name font' },
+        7: { zh: '設定英文神祇小標字體 / English deity name scale', en: 'English deity name scale' },
+        8: { zh: '神祇畫布置中包含且不變形 / Art containment object-fit', en: 'Art containment object-fit' },
+        9: { zh: '設定底端問題面板背景色與實線邊框 / Question text panel container', en: 'Question text panel container' },
+        10: { zh: '設定分級說明小標與底部分隔線 / Card level divider styling', en: 'Card level divider styling' },
+        11: { zh: '設定問題段落字型、大小與行高 / Question paragraph font-size', en: 'Question paragraph font-size' }
+      },
+      'app.css': {
+        1: { zh: '全域樣式重設、預設漸層背景與舞台佈局 / Global styles, resets, stage setup', en: 'Global styles, resets, stage setup' },
+        2: { zh: '桌面版手機外框與無障礙縮減動態支援 / Responsive desk shell & motions', en: 'Responsive desk shell & motions' }
+      },
+      'cards.ts': {
+        1: { zh: '導入 Card 介面型別 / Imports Card interface', en: 'Imports Card interface' },
+        2: { zh: '空行 / Empty line', en: 'Empty line' },
+        3: { zh: '導出卡牌資料庫陣列 / Exports cards array', en: 'Exports cards array' },
+        4: { zh: 'Level 1: 初見破冰問題 / Level 1 Icebreakers', en: 'Level 1 Icebreakers' },
+        15: { zh: 'Level 2: 尋求共鳴問題 / Level 2 Commonalities', en: 'Level 2 Commonalities' },
+        27: { zh: 'Level 3: 朋友默契問題 / Level 3 Friends', en: 'Level 3 Friends' },
+        39: { zh: 'Level 4: 親近對話問題 / Level 4 Close Reflection', en: 'Level 4 Close Reflection' },
+        51: { zh: 'Level 5: 親密 18+ 限制問題 / Level 5 Gated intimate 18+', en: 'Level 5 Gated intimate 18+' },
+        64: { zh: '結束卡牌資料庫陣列 / Close cards array', en: 'Close cards array' }
+      },
+      'share.ts': {
+        1: { zh: '導入 Card 與 Language 型別 / Imports types', en: 'Imports types' },
+        2: { zh: '導入輸出坐標與神祇雜湊配對函式 / Imports coordinates and hash matchers', en: 'Imports coordinates and hash matchers' },
+        3: { zh: '空行 / Empty line', en: 'Empty line' },
+        4: { zh: '宣告計算問題文字行數的輔助函式 / Evaluates line outputs', en: 'Evaluates line outputs' },
+        5: { zh: '根據選擇語系回傳中文、英文或雙語陣列 / Returns localized texts array', en: 'Returns localized texts array' },
+        6: { zh: '結束函數 / Closes function', en: 'Closes function' },
+        7: { zh: '空行 / Empty line', en: 'Empty line' },
+        8: { zh: '宣告 Promise 圖片加載函式 / Promisifies WebP loading', en: 'Promisifies WebP loading' },
+        9: { zh: '回傳 Promise 物件實體 / Instantiates Promise', en: 'Instantiates Promise' },
+        10: { zh: '宣告 HTML5 Image 圖片物件實體 / Instantiates HTML5 Image object', en: 'Instantiates HTML5 Image object' },
+        11: { zh: '載入成功時 resolve 圖片物件 / Resolves on load success', en: 'Resolves on load success' },
+        12: { zh: '載入失敗時 reject 錯誤訊息 / Rejects on load error', en: 'Rejects on load error' },
+        13: { zh: '將來源網址（WebP base64 或路徑）指派給 image.src / Binds source URL', en: 'Binds source URL' },
+        14: { zh: '關閉 Promise 宣告 / Close Promise', en: 'Close Promise' },
+        15: { zh: '結束函數 / Closes function', en: 'Closes function' },
+        16: { zh: '空行 / Empty line', en: 'Empty line' },
+        17: { zh: '宣告畫布影像裁切置中包含函式 / Canvas object-fit contain math', en: 'Canvas object-fit contain math' },
+        18: { zh: '計算長寬縮放比例極小值 / Calculates aspect scale ratio', en: 'Calculates aspect scale ratio' },
+        19: { zh: '以比例計算實際繪製寬度 / Calculates layout width', en: 'Calculates layout width' },
+        20: { zh: '以比例計算實際繪製高度 / Calculates layout height', en: 'Calculates layout height' },
+        21: { zh: '在 Canvas 上置中並渲染神祇肖像 / Paints image scaled', en: 'Paints image scaled' },
+        22: { zh: '結束函數 / Closes function', en: 'Closes function' },
+        23: { zh: '空行 / Empty line', en: 'Empty line' },
+        24: { zh: '宣告 Canvas 自動斷行計算函式 / Computes visual word wrapping', en: 'Computes visual word wrapping' },
+        25: { zh: '宣告 lines 陣列儲存分割後的行文字 / Output lines list', en: 'Output lines list' },
+        26: { zh: '宣告暫存行變數 / Temporary active line builder', en: 'Temporary active line builder' },
+        27: { zh: '將文字打散成字元陣列進行迴圈處理 / Iterates characters', en: 'Iterates characters' },
+        28: { zh: '拼接下一個字元 / Appends next character', en: 'Appends next character' },
+        29: { zh: '若寬度大於限制，將當前行推入陣列，並開啟新行 / Triggers word break', en: 'Triggers word break' },
+        30: { zh: '否則繼續累積拼接 / Appends within limit', en: 'Appends within limit' },
+        31: { zh: '結束迴圈 / Closes loop', en: 'Closes loop' },
+        32: { zh: '若最後有殘留文字，推入最後一行 / Pushes remaining line', en: 'Pushes remaining line' },
+        33: { zh: '回傳所有切割好的行文字 / Returns wrapped lines', en: 'Returns wrapped lines' },
+        34: { zh: '結束函數 / Closes function', en: 'Closes function' },
+        35: { zh: '空行 / Empty line', en: 'Empty line' },
+        36: { zh: '導出 PNG 合成管線函數 / Renders 1080x1620 card artwork', en: 'Renders 1080x1620 card artwork' },
+        37: { zh: '雜湊對應當前卡牌的神祇肖像 / Gets deity record', en: 'Gets deity record' },
+        38: { zh: '等待圖片載入完成 / Awaits WebP load', en: 'Awaits WebP load' },
+        39: { zh: '在瀏覽器記憶體中動態建立 Canvas 畫布 / Creates canvas', en: 'Creates canvas' },
+        40: { zh: '設定輸出 PNG 的高解析度尺寸為 1080x1620 / Fixed export canvas size', en: 'Fixed export canvas size' },
+        41: { zh: '取得 2D 渲染繪圖內容上下文 / Fetches 2D canvas context', en: 'Fetches 2D canvas context' },
+        42: { zh: '防禦拋錯：若瀏覽器不支援 Canvas 則中斷 / Guards context', en: 'Guards context' },
+        43: { zh: '空行 / Empty line', en: 'Empty line' },
+        44: { zh: '建立垂直線性漸層背景物件 / Creates vertical gradient', en: 'Creates vertical gradient' },
+        45: { zh: '設定漸層起點為金色，終點為紅土色 / Sets gradient stops', en: 'Sets gradient stops' },
+        46: { zh: '以漸層填滿畫布背景 / Paints background', en: 'Paints background' },
+        47: { zh: '繪製標頭的亮米色背景框 / Paints header box', en: 'Paints header box' },
+        48: { zh: '寫入神祇繁體中文名稱 / Paints deity Chinese name', en: 'Paints deity Chinese name' },
+        49: { zh: '寫入標頭的主題小標 / Paints sub-title label', en: 'Paints sub-title label' },
+        50: { zh: '對齊右側寫入英文神祇名稱並重設對齊方式為 left / Paints English deity name right-aligned', en: 'Paints English deity name right-aligned' },
+        51: { zh: '空行 / Empty line', en: 'Empty line' },
+        52: { zh: '繪製肖像區塊的深藍底色 / Paints deity art background', en: 'Paints deity art background' },
+        53: { zh: '將神祇插圖置中不變形渲染進肖像區 / Draws deity illustration contain', en: 'Draws deity illustration contain' },
+        54: { zh: '繪製肖像四周 8px 深褐色實線框線 / Paints border frame', en: 'Paints border frame' },
+        55: { zh: '空行 / Empty line', en: 'Empty line' },
+        56: { zh: '指派問題區塊坐標物件簡稱 / Question panel aliases', en: 'Question panel aliases' },
+        57: { zh: '繪製底部問題面板背景亮米色 / Paints question box background', en: 'Paints question box background' },
+        58: { zh: '寫入卡牌大標 / Paints header text', en: 'Paints header text' },
+        59: { zh: '靠右對齊寫入 LEVEL 與 MODE 資訊 / Paints level and mode specs', en: 'Paints level and mode specs' },
+        60: { zh: '繪製橫向細金黃分割線 / Paints decorative divider line', en: 'Paints decorative divider line' },
+        61: { zh: '設定問題文字字型為 Serif / Question text font styling', en: 'Question text font styling' },
+        62: { zh: '控制多行文字垂直換行坐標 / Multi-line cursor vertical tracker', en: 'Multi-line cursor vertical tracker' },
+        63: { zh: '輪流處理卡牌要渲染的問題段落 / Iterates question paragraphs', en: 'Iterates question paragraphs' },
+        64: { zh: '計算換行並繪入文字，遞增 cursorY 坐標換行 / Writes wrapped lines, incrementing cursor', en: 'Writes wrapped lines, incrementing cursor' },
+        65: { zh: '段落之間額外增加 18px 間距 / Extra padding between paragraphs', en: 'Extra padding between paragraphs' },
+        66: { zh: '結束迴圈 / Closes loops', en: 'Closes loops' },
+        67: { zh: '在問題板最底部繪入品牌小字 / Paints footer quote', en: 'Paints footer quote' },
+        68: { zh: '空行 / Empty line', en: 'Empty line' },
+        69: { zh: '將畫布內容轉換為二進位 PNG Blob / Converts canvas to PNG Blob', en: 'Converts canvas to PNG Blob' },
+        70: { zh: '包裝成 File 物件回傳供 Web Share 調用 / Returns PNG File object', en: 'Returns PNG File object' },
+        71: { zh: '關閉函數 / Closes function', en: 'Closes function' },
+        72: { zh: '空行 / Empty line', en: 'Empty line' },
+        73: { zh: '導出處理分享或下載備援的入口函數 / Exports share pipeline handler', en: 'Exports share pipeline handler' },
+        74: { zh: '合成 PNG 圖檔 File / Awaits PNG creation', en: 'Awaits PNG creation' },
+        75: { zh: '判定瀏覽器是否支援 Web Share API 分享二進位圖檔 / Checks navigator share support', en: 'Checks navigator share support' },
+        76: { zh: '調用原生分享面版分享圖檔 / Invokes OS share dialog', en: 'Invokes OS share dialog' },
+        77: { zh: '補獲取消分享錯誤並回傳 cancelled / Catches AbortError on cancellation', en: 'Catches AbortError on cancellation' },
+        78: { zh: '結束分享判定 / End share check', en: 'End share check' },
+        79: { zh: '建立本機臨時 URL 位址以供下載 / Creates temporary download link', en: 'Creates temporary download link' },
+        80: { zh: '動態建立超連結錨點、設定檔名並模擬點擊下載 / Triggers virtual anchor click', en: 'Triggers virtual anchor click' },
+        81: { zh: '1秒後回收臨時 URL 以免記憶體洩漏 / Revokes memory object URL', en: 'Revokes memory object URL' },
+        82: { zh: '回傳已下載標記 / Returns downloaded status', en: 'Returns downloaded status' },
+        83: { zh: '結束函數 / Closes function', en: 'Closes function' }
+      },
+      'App.tsx': {
+        1: { zh: '載入 React Hooks 核心元件 / Imports React core hooks', en: 'Imports React core hooks' },
+        2: { zh: '載入包含所有問題卡牌的資料庫 / Imports card dataset', en: 'Imports card dataset' },
+        3: { zh: '載入年齡檢查函式 / Imports age validation helper', en: 'Imports age validation helper' },
+        4: { zh: '載入篩選與隨機選卡函式 / Imports game algorithm helpers', en: 'Imports game algorithm helpers' },
+        5: { zh: '載入使用者偏好設定讀寫函式 / Imports storage helpers', en: 'Imports storage helpers' },
+        6: { zh: '載入 canvas PNG 圖檔匯出分享函式 / Imports image export share utility', en: 'Imports image export share utility' },
+        7: { zh: '載入雜湊計算神祇對應的函式 / Imports deity hash map helper', en: 'Imports deity hash map helper' },
+        8: { zh: '載入計算虛擬手機視窗縮放比的函式 / Imports viewport scaling helper', en: 'Imports viewport scaling helper' },
+        9: { zh: '載入型別定義 / Imports typescript type schemas', en: 'Imports typescript type schemas' },
+        10: { zh: '載入 v19 專屬樣式覆寫檔案 / Imports version 19 stylesheet', en: 'Imports version 19 stylesheet' },
+        11: { zh: '空行 / Empty line', en: 'Empty line' },
+        12: { zh: '宣告在地化靜態翻譯字典 / Localized UI copy dictionary', en: 'Localized UI copy dictionary' },
+        13: { zh: '繁體中文 UI 翻譯文字 / Chinese translation dictionary', en: 'Chinese translation dictionary' },
+        14: { zh: '英文 UI 翻譯文字 / English translation dictionary', en: 'English translation dictionary' },
+        15: { zh: '結束宣告 / Close copy dictionary', en: 'Close copy dictionary' },
+        16: { zh: '空行 / Empty line', en: 'Empty line' },
+        17: { zh: '宣告卡牌問題文字元件 / Card text renderer component', en: 'Card text renderer component' },
+        18: { zh: '根據語系條件決定渲染中文、英文或同時渲染 / Conditional rendering', en: 'Conditional rendering' },
+        19: { zh: '結束元件 / Close component', en: 'Close component' },
+        20: { zh: '空行 / Empty line', en: 'Empty line' },
+        21: { zh: '導出主 Application UI 元件 / Main application container', en: 'Main application container' },
+        22: { zh: '宣告語系狀態，初始值由 loadLanguage() 讀取 / App language state', en: 'App language state' },
+        23: { zh: '宣告字型大小縮放比例狀態 / Text sizing scale state', en: 'Text sizing scale state' },
+        24: { zh: '宣告熟識度等級狀態，預設為 Level 1 / Familiarity level state', en: 'Familiarity level state' },
+        25: { zh: '宣告模式狀態：真心話、小挑戰或隨選 / Game mode state', en: 'Game mode state' },
+        26: { zh: '宣告年齡限制輸入視窗顯示狀態 / Age-gate visibility state', en: 'Age-gate visibility state' },
+        27: { zh: '宣告生日字串輸入值狀態 / Birthday input value state', en: 'Birthday input value state' },
+        28: { zh: '宣告是否滿 18 歲的驗證旗標狀態 / Age check success state', en: 'Age check success state' },
+        29: { zh: '宣告是否進入抽卡遊戲畫面狀態 / Playing view visibility state', en: 'Playing view visibility state' },
+        30: { zh: '宣告當前抽中卡牌狀態 / Currently drawn card state', en: 'Currently drawn card state' },
+        31: { zh: '宣告卡牌是否已經翻開狀態 / Card 3D-flip reveal state', en: 'Card 3D-flip reveal state' },
+        32: { zh: '宣告控制板（調整字級）收合狀態 / Control toolbar visibility state', en: 'Control toolbar visibility state' },
+        33: { zh: '宣告螢幕閱讀器 status 讀報資訊 / Accessibility read-out state', en: 'Accessibility read-out state' },
+        34: { zh: '宣告 PWA 離線可用旗標狀態 / Service-worker offline ready state', en: 'Service-worker offline ready state' },
+        35: { zh: '宣告虛擬手機外殼的縮放比狀態 / CSS scale matrix factor state', en: 'CSS scale matrix factor state' },
+        36: { zh: '紀錄拖曳手勢起始 clientX 的 Mutable 參照 / Drag gesture start pointer', en: 'Drag gesture start pointer' },
+        37: { zh: '解析当前語系的靜態 UI 翻譯字典 / Evaluates active copy dictionary', en: 'Evaluates active copy dictionary' },
+        38: { zh: '快取經熟識度與模式過濾後的卡牌候選池 / Memoized active cards pool', en: 'Memoized active cards pool' },
+        39: { zh: '計算當前卡牌所對應的台灣神祇資料 / Hashed deity artwork reference', en: 'Hashed deity artwork reference' },
+        40: { zh: '空行 / Empty line', en: 'Empty line' },
+        41: { zh: '註冊 Service Worker 離線快取就緒事件監聽 / Runs on component mount', en: 'Runs on component mount' },
+        42: { zh: '若 Service Worker 就緒，將離線旗標設為 true / Updates PWA indicator', en: 'Updates PWA indicator' },
+        43: { zh: '空依賴陣列代表此 side-effect 僅在掛載時執行一次 / Run once on hydration', en: 'Run once on hydration' },
+        44: { zh: '空行 / Empty line', en: 'Empty line' },
+        45: { zh: '監聽視窗尺寸變動以重新計算縮放比 / Window resize scale observer', en: 'Window resize scale observer' },
+        46: { zh: '計算視窗縮放比並更新狀態 / Scale recalculation handler', en: 'Scale recalculation handler' },
+        47: { zh: '取得行動裝置 visualViewport 實體 / Reference to VisualViewport API', en: 'Reference to VisualViewport API' },
+        48: { zh: '初次執行以設定初始縮放比 / Initial invoke', en: 'Initial invoke' },
+        49: { zh: '註冊視窗尺寸變動監聽器 / Attaches window resize event', en: 'Attaches window resize event' },
+        50: { zh: '註冊視覺視窗變動監聽器（處理行動裝置虛擬鍵盤彈出） / Attaches virtual keyboard event', en: 'Attaches virtual keyboard event' },
+        51: { zh: '卸載時移除事件監聽器以防止記憶體洩漏 / Cleanup event listeners', en: 'Cleanup event listeners' },
+        52: { zh: '移除視窗變動監聽 / Detaches window resize event', en: 'Detaches window resize event' },
+        53: { zh: '移除視覺視窗變動監聽 / Detaches virtual keyboard event', en: 'Detaches virtual keyboard event' },
+        54: { zh: '結束 cleanup / End cleanup', en: 'End cleanup' },
+        55: { zh: '此 side-effect 僅在初次掛載時執行一次 / Runs once', en: 'Runs once' },
+        56: { zh: '空行 / Empty line', en: 'Empty line' },
+        57: { zh: '設定語系狀態並寫入本機快取 / Changes UI language and saves choice', en: 'Changes UI language and saves choice' },
+        58: { zh: '設定熟識度等級狀態，Level 5 需進行年齡檢查 / Selects familiarity level', en: 'Selects familiarity level' },
+        59: { zh: '若點選 Level 5 且未經驗證，彈出年齡確認面板 / Intercepts Level 5 if not adult', en: 'Intercepts Level 5 if not adult' },
+        60: { zh: '設定一般等級狀態 / Updates active level', en: 'Updates active level' },
+        61: { zh: '結束函數 / Close function', en: 'Close function' },
+        62: { zh: '確認生日輸入值 / Confirms birthday input', en: 'Confirms birthday input' },
+        63: { zh: '呼叫 isAdultOn。若通過則解鎖 Level 5，並清空生日值以防洩漏 / Unlocks L5, resets date', en: 'Unlocks L5, resets date' },
+        64: { zh: '若驗證未通過，則更新朗讀狀態字串 / Displays lock notification', en: 'Displays lock notification' },
+        65: { zh: '結束函數 / Close function', en: 'Close function' },
+        66: { zh: '抽選卡牌、更新隨機選卡狀態並設定 aria-live 朗讀文字 / Random draw logic', en: 'Random draw logic' },
+        67: { zh: '調整字級大小，並寫入本機 LocalStorage / Adjusts font scale', en: 'Adjusts font scale' },
+        68: { zh: '呼叫 canvas exporter 分享 PNG 紀念圖檔 / Triggers canvas graphic export', en: 'Triggers canvas graphic export' },
+        69: { zh: '空行 / Empty line', en: 'Empty line' },
+        70: { zh: '渲染桌面版虛擬手機置中舞台，綁定縮放因子 CSS 變數 / Outer scale container', en: 'Outer scale container' },
+        71: { zh: '渲染虛擬手機外框容器，綁定字級大小 CSS 變數 / App content shell', en: 'App content shell' },
+        72: { zh: '渲染 App 頂部 Logo 與版本標誌 / Logo header', en: 'Logo header' },
+        73: { zh: '若未開始遊戲，渲染設定與選項畫面 / Renders setup dashboard', en: 'Renders setup dashboard' },
+        74: { zh: '裝飾性金色光環圖示 / Decorative visual element', en: 'Decorative visual element' },
+        75: { zh: '渲染中／英／雙語標題 / Localized title banner', en: 'Localized title banner' },
+        76: { zh: '渲染語系切換分段按鈕 / Language segments', en: 'Language segments' },
+        77: { zh: '動態迴圈渲染語系按鈕並判定點選狀態 / Loops buttons', en: 'Loops buttons' },
+        78: { zh: '關閉語系按鈕區 / Close container', en: 'Close container' },
+        79: { zh: '渲染個人化資訊輸入欄位（純客戶端記憶，絕不存檔上傳） / Local privacy text inputs', en: 'Local privacy text inputs' },
+        80: { zh: '渲染熟識度等級選取網格，Level 5 註記 18+ 鎖定 / Familiarity selectors', en: 'Familiarity selectors' },
+        81: { zh: '彈出年齡驗證對話框，點選 Confirm 進行生日判定 / Render pop-up age gate', en: 'Render pop-up age gate' },
+        82: { zh: '渲染模式按鈕組：真心話、小挑戰或隨機混合模式 / Mode selectors', en: 'Mode selectors' },
+        83: { zh: '渲染主啟動按鈕「開始相遇」進入抽卡階段 / Setup confirmation button', en: 'Setup confirmation button' },
+        84: { zh: '顯示 PWA 離線快取狀態或 iOS 安裝引導 / Offline cache/install guidelines', en: 'Offline cache/install guidelines' },
+        85: { zh: '若已點選「開始」，渲染抽卡遊戲互動主頁面 / Renders active gameplay', en: 'Renders active gameplay' },
+        86: { zh: '渲染上方控制列（返回設定頁面與收合控制列按鈕） / Screen controls header', en: 'Screen controls header' },
+        87: { zh: '渲染字級大小微調按鈕與當前卡牌篩選指示 / Font scaling settings', en: 'Font scaling settings' },
+        88: { zh: '渲染主卡牌結構，revealed 為 true 時驅動 CSS 3D 旋轉 / Flip card canvas', en: 'Flip card canvas' },
+        89: { zh: '指標按下時，記錄 dragStart 起始 X 座標 / Capture touch-start X', en: 'Capture touch-start X' },
+        90: { zh: '指標拉開超過 60px 時觸發隨機選卡下一張 / Draw on drag swipe', en: 'Draw on drag swipe' },
+        91: { zh: '卡牌背面樣式（顯示黃金十字標記與拉動引導文字） / Card back layout', en: 'Card back layout' },
+        92: { zh: '卡牌正面樣式，渲染當前抽中卡與雜湊配對神祇 / Card front active render', en: 'Card front active render' },
+        93: { zh: '渲染守護神祇中英文標題 / Localized deity names', en: 'Localized deity names' },
+        94: { zh: '渲染守護神祇插畫 / Deity artwork illustration WebP', en: 'Deity artwork illustration WebP' },
+        95: { zh: '渲染問題面板與中英文對話內容 / Active question content', en: 'Active question content' },
+        96: { zh: '關閉正面區塊 / Close card front', en: 'Close card front' },
+        97: { zh: '關閉卡牌實體區塊 / Close card container', en: 'Close card container' },
+        98: { zh: '渲染抽卡動作按鈕，根據狀態顯示「抽一張卡」或「下一張」 / Draw next card button', en: 'Draw next card button' },
+        99: { zh: '渲染「製作紀念卡」PNG 匯出分享按鈕 / Keepsake PNG share button', en: 'Keepsake PNG share button' },
+        100: { zh: '關閉遊戲互動主區塊 / Close game view container', en: 'Close game view container' },
+        101: { zh: '渲染無障礙 aria-live 讀報內容，供視障者以語音朗讀卡牌問題 / Screen-reader dynamic announcement', en: 'Screen-reader dynamic announcement' },
+        102: { zh: '關閉 App 主框 / Close app shell', en: 'Close app shell' },
+        103: { zh: '關閉縮放舞台 / Close stage', en: 'Close stage' },
+        104: { zh: '關閉 React App 元件主體 / Close app function', en: 'Close app function' }
+      }
+    };
+
+    let activeTab = 'expert-learn';
+    let activeFile = 'App.tsx';
+    let activeLanguage = 'en'; // default English
+    let globalFontScale = 1.0;
+    let commentsColVisible = true;
+
+    // Load custom data from localStorage if exists
+    let savedLineComments = localStorage.getItem('academy-line-comments');
+    if (savedLineComments) {
+      try {
+        const parsed = JSON.parse(savedLineComments);
+        Object.assign(lineCommentsData, parsed);
+      } catch(e) {}
+    }
+
+    let savedFileAnnotations = localStorage.getItem('academy-file-annotations');
+    if (savedFileAnnotations) {
+      try {
+        const parsed = JSON.parse(savedFileAnnotations);
+        Object.assign(annotationsData, parsed);
+      } catch(e) {}
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    // Global Font Scaler
+    function changeGlobalFont(delta) {
+      globalFontScale = Math.max(0.75, Math.min(1.5, globalFontScale + delta));
+      document.documentElement.style.setProperty('--global-font-scale', globalFontScale);
+    }
+
+    // Toggle Comments Column in Table
+    function toggleCommentsColumn() {
+      commentsColVisible = !commentsColVisible;
+      const btn = document.getElementById('btn-toggle-comments-col');
+      const cols = document.querySelectorAll('.code-comment-col');
+      const contentCols = document.querySelectorAll('.code-content');
+      
+      if (commentsColVisible) {
+        btn.classList.add('active');
+        cols.forEach(c => c.style.display = '');
+        contentCols.forEach(c => c.style.width = '55%');
+      } else {
+        btn.classList.remove('active');
+        cols.forEach(c => c.style.display = 'none');
+        contentCols.forEach(c => c.style.width = '95%');
+      }
+    }
+
+    // Interactive Custom Syntax Highlighter
+    function highlightLine(line, isCss) {
+      if (line.trim().startsWith('//')) {
+        return `<span class="comment">${escapeHtml(line)}</span>`;
+      }
+      if (isCss && line.trim().startsWith('/*') && line.trim().endsWith('*/')) {
+        return `<span class="comment">${escapeHtml(line)}</span>`;
+      }
+
+      let text = line;
+      const strings = [];
+      text = text.replace(/(['"`])((?:\\.|[^\\])*?)\1/g, (match) => {
+        const placeholder = `___STR_PLACEHOLDER_${strings.length}___`;
+        strings.push(match);
+        return placeholder;
+      });
+
+      text = escapeHtml(text);
+
+      if (isCss) {
+        text = text.replace(/([\.#a-zA-Z0-9\-_,:*()\[\]="]+)\s*\{/g, '\u0001$1\u0002 {');
+        text = text.replace(/(:\s*[^;\}]+;)/g, '\u0007$1\u0008');
+        text = text.replace(/(@[a-z\-]+)/g, '\u0003$1\u0004');
+      } else {
+        const keywords = ['import', 'export', 'default', 'function', 'const', 'let', 'var', 'return', 'if', 'else', 'for', 'while', 'try', 'catch', 'async', 'await', 'new', 'typeof', 'instanceof', 'as', 'type', 'interface', 'from', 'class', 'extends', 'implements', 'switch', 'case', 'break'];
+        keywords.forEach(kw => {
+          const regex = new RegExp(`\\b${kw}\\b`, 'g');
+          text = text.replace(regex, `\u0001${kw}\u0002`);
+        });
+
+        const types = ['Language', 'Mode', 'CardMode', 'Level', 'Card', 'DeityArt', 'React', 'HTMLImageElement', 'CanvasRenderingContext2D', 'Blob', 'File', 'Promise', 'Date', 'Error', 'number', 'string', 'boolean', 'null', 'undefined', 'void', 'any', 'useState', 'useEffect', 'useMemo', 'useRef'];
+        types.forEach(t => {
+          const regex = new RegExp(`\\b${t}\\b`, 'g');
+          text = text.replace(regex, `\u0003${t}\u0004`);
+        });
+
+        text = text.replace(/\b(\d+)\b/g, '\u0005$1\u0006');
+      }
+
+      strings.forEach((str, i) => {
+        text = text.replace(`___STR_PLACEHOLDER_${i}___`, `\u0007${str}\u0008`);
+      });
+
+      // Map temporary control characters back to proper HTML tags
+      text = text.replace(/\u0001/g, '<span class="keyword">');
+      text = text.replace(/\u0002/g, '</span>');
+      text = text.replace(/\u0003/g, '<span class="type">');
+      text = text.replace(/\u0004/g, '</span>');
+      text = text.replace(/\u0005/g, '<span class="number">');
+      text = text.replace(/\u0006/g, '</span>');
+      text = text.replace(/\u0007/g, '<span class="string">');
+      text = text.replace(/\u0008/g, '</span>');
+
+      return text;
+    }
+
+    function renderCode(fileName, rawCode) {
+      const isCss = fileName.endsWith('.css');
+      const table = document.getElementById('code-table-body');
+      table.innerHTML = '';
+      
+      const lines = rawCode.split('\n');
+      lines.forEach((line, index) => {
+        const lineNum = index + 1;
+        const tr = document.createElement('tr');
+        tr.className = 'code-line-tr';
+        tr.id = `line-row-${lineNum}`;
+        
+        const tdNum = document.createElement('td');
+        tdNum.className = 'line-number';
+        tdNum.innerText = lineNum;
+        
+        const tdContent = document.createElement('td');
+        tdContent.className = 'code-content';
+        tdContent.innerHTML = `<div style="overflow-x: auto; white-space: pre;">${highlightLine(line, isCss)}</div>`;
+        
+        const tdComment = document.createElement('td');
+        tdComment.className = 'code-comment-col';
+        
+        // Find comment for this line
+        const commentObj = lineCommentsData[fileName] ? lineCommentsData[fileName][lineNum] : null;
+        if (commentObj) {
+          tdComment.innerHTML = `<span style="user-select: none;">// </span>${escapeHtml(getTranslatedText(commentObj))}`;
+        } else {
+          tdComment.innerHTML = '';
+        }
+        
+        tr.appendChild(tdNum);
+        tr.appendChild(tdContent);
+        tr.appendChild(tdComment);
+        
+        tr.onclick = () => highlightAnnotationForLine(lineNum);
+        
+        table.appendChild(tr);
+      });
+
+      // Apply initial comments column visibility
+      const cols = document.querySelectorAll('.code-comment-col');
+      const contentCols = document.querySelectorAll('.code-content');
+      if (commentsColVisible) {
+        cols.forEach(c => c.style.display = '');
+        contentCols.forEach(c => c.style.width = '55%');
+      } else {
+        cols.forEach(c => c.style.display = 'none');
+        contentCols.forEach(c => c.style.width = '95%');
+      }
+    }
+
+    function getTranslatedText(obj) {
+      if (!obj) return '';
+      if (typeof obj === 'string') return obj;
+      if (activeLanguage === 'zh') return obj.zh;
+      if (activeLanguage === 'en') return obj.en;
+      // Bilingual Mode
+      return `${obj.zh}<div class="lang-en" style="margin-top: 4px; opacity: 0.85; font-size: 0.95em;">${obj.en}</div>`;
+    }
+
+    function renderAnnotations(fileName) {
+      const summaryDiv = document.getElementById('file-summary-content');
+      summaryDiv.innerHTML = getTranslatedText(fileSummaryData[fileName]);
+
+      const listDiv = document.getElementById('annotations-list');
+      listDiv.innerHTML = '';
+
+      const annotations = annotationsData[fileName] || [];
+      if (annotations.length === 0) {
+        listDiv.innerHTML = '<div style="font-size:0.75rem; color:var(--text-muted); text-align:center; padding:12px; font-style:italic;">No annotations. Click ＋ Add to create one!</div>';
+        return;
+      }
+
+      annotations.forEach((anno, index) => {
+        const div = document.createElement('div');
+        div.className = 'annotation-item';
+        div.id = `anno-item-${index}`;
+        
+        const isCollapsed = anno.collapsed || false;
+        
+        div.innerHTML = `
+          <div class="annotation-meta" style="user-select: none;">
+            <div style="display: flex; align-items: center; gap: 4px; cursor: pointer; flex: 1;" onclick="toggleCardCollapse(event, '${fileName}', ${index})">
+              <span class="collapse-chevron" style="font-size: 0.65rem; color: var(--gold); transition: transform 0.2s; display: inline-block; transform: ${isCollapsed ? 'rotate(-90deg)' : 'rotate(0deg)'};">▼</span>
+              <span class="annotation-title">${getTranslatedText(anno.title)}</span>
+            </div>
+            <span class="annotation-lines" onclick="selectAnnotation(${index}, '${anno.lines}')">L${anno.lines}</span>
+          </div>
+          <p class="annotation-desc" style="display: ${isCollapsed ? 'none' : 'block'}; margin-top: 6px;">${getTranslatedText(anno.desc)}</p>
+        `;
+        
+        div.ondblclick = (e) => {
+          if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA' && !e.target.closest('button')) {
+            openAnnotationEditor(fileName, index);
+          }
+        };
+        
+        listDiv.appendChild(div);
+      });
+    }
+
+    function toggleCardCollapse(event, fileName, index) {
+      event.stopPropagation();
+      const anno = annotationsData[fileName][index];
+      anno.collapsed = !anno.collapsed;
+      localStorage.setItem('academy-file-annotations', JSON.stringify(annotationsData));
+      renderAnnotations(fileName);
+    }
+
+    function openAnnotationEditor(fileName, index) {
+      const anno = annotationsData[fileName][index];
+      const card = document.getElementById(`anno-item-${index}`);
+      if (!card) return;
+      
+      const titleValZh = typeof anno.title === 'object' ? (anno.title.zh || '') : anno.title;
+      const titleValEn = typeof anno.title === 'object' ? (anno.title.en || '') : '';
+      const descValZh = typeof anno.desc === 'object' ? (anno.desc.zh || '') : anno.desc;
+      const descValEn = typeof anno.desc === 'object' ? (anno.desc.en || '') : '';
+
+      card.innerHTML = `
+        <div class="anno-edit-form" onclick="event.stopPropagation();" ondblclick="event.stopPropagation();">
+          <label>Line Range (e.g. 1-10 or 15)</label>
+          <input type="text" id="edit-lines-${index}" value="${anno.lines}" placeholder="Lines" />
+          
+          <label>Title (ZH)</label>
+          <input type="text" id="edit-title-zh-${index}" value="${titleValZh}" placeholder="Title Chinese" />
+          
+          <label>Title (EN)</label>
+          <input type="text" id="edit-title-en-${index}" value="${titleValEn}" placeholder="Title English" />
+          
+          <label>Description (ZH)</label>
+          <textarea id="edit-desc-zh-${index}" placeholder="Description Chinese">${descValZh}</textarea>
+          
+          <label>Description (EN)</label>
+          <textarea id="edit-desc-en-${index}" placeholder="Description English">${descValEn}</textarea>
+          
+          <div class="anno-edit-actions">
+            <button class="panel-control-btn" onclick="deleteAnnotation('${fileName}', ${index})" style="background: rgba(184,58,56,0.15); border-color:#b83a38; color:#f5c6cb; margin-right: auto;">Delete</button>
+            <button class="panel-control-btn" onclick="cancelAnnotationEdit('${fileName}')">Cancel</button>
+            <button class="panel-control-btn active" onclick="saveAnnotationEdit('${fileName}', ${index})">Save</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function cancelAnnotationEdit(fileName) {
+      renderAnnotations(fileName);
+    }
+
+    function saveAnnotationEdit(fileName, index) {
+      const lines = document.getElementById(`edit-lines-${index}`).value.trim();
+      const titleZh = document.getElementById(`edit-title-zh-${index}`).value.trim();
+      const titleEn = document.getElementById(`edit-title-en-${index}`).value.trim();
+      const descZh = document.getElementById(`edit-desc-zh-${index}`).value.trim();
+      const descEn = document.getElementById(`edit-desc-en-${index}`).value.trim();
+      
+      if (!lines) {
+        alert("Line range cannot be empty!");
+        return;
+      }
+
+      annotationsData[fileName][index] = {
+        lines: lines,
+        title: { zh: titleZh, en: titleEn || titleZh },
+        desc: { zh: descZh, en: descEn || descZh },
+        collapsed: false
+      };
+
+      localStorage.setItem('academy-file-annotations', JSON.stringify(annotationsData));
+      renderAnnotations(fileName);
+    }
+
+    function deleteAnnotation(fileName, index) {
+      if (confirm("Are you sure you want to delete this annotation?")) {
+        annotationsData[fileName].splice(index, 1);
+        localStorage.setItem('academy-file-annotations', JSON.stringify(annotationsData));
+        renderAnnotations(fileName);
+      }
+    }
+
+    function addBlankAnnotation(fileName) {
+      if (!annotationsData[fileName]) {
+        annotationsData[fileName] = [];
+      }
+      
+      annotationsData[fileName].push({
+        lines: '1',
+        title: { zh: '新註解區段', en: 'New Annotation Section' },
+        desc: { zh: '雙擊編輯此註解說明。', en: 'Double-click to edit this annotation description.' },
+        collapsed: false
+      });
+      
+      const newIndex = annotationsData[fileName].length - 1;
+      renderAnnotations(fileName);
+      openAnnotationEditor(fileName, newIndex);
+    }
+
+    function selectAnnotation(index, lineRange) {
+      const items = document.querySelectorAll('.annotation-item');
+      items.forEach(item => item.classList.remove('active'));
+      
+      const lines = document.querySelectorAll('.code-line-tr');
+      lines.forEach(line => line.classList.remove('highlighted'));
+
+      const activeItem = document.getElementById(`anno-item-${index}`);
+      if (activeItem) activeItem.classList.add('active');
+
+      const parts = lineRange.split('-');
+      const start = parseInt(parts[0], 10);
+      const end = parts.length > 1 ? parseInt(parts[1], 10) : start;
+
+      for (let i = start; i <= end; i++) {
+        const row = document.getElementById(`line-row-${i}`);
+        if (row) row.classList.add('highlighted');
+      }
+
+      const firstRow = document.getElementById(`line-row-${start}`);
+      if (firstRow) {
+        firstRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    function highlightAnnotationForLine(lineNum) {
+      const annotations = annotationsData[activeFile] || [];
+      let foundIndex = null;
+
+      for (let i = 0; i < annotations.length; i++) {
+        const parts = annotations[i].lines.split('-');
+        const start = parseInt(parts[0], 10);
+        const end = parts.length > 1 ? parseInt(parts[1], 10) : start;
+
+        if (lineNum >= start && lineNum <= end) {
+          foundIndex = i;
+          break;
+        }
+      }
+
+      if (foundIndex !== null) {
+        selectAnnotation(foundIndex, annotations[foundIndex].lines);
+        const item = document.getElementById(`anno-item-${foundIndex}`);
+        if (item) item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+
+    function switchTab(tabId) {
+      activeTab = tabId;
+      
+      const navItems = document.querySelectorAll('.nav-item');
+      navItems.forEach(item => item.classList.remove('active'));
+      
+      const links = Array.from(document.querySelectorAll('.nav-item'));
+      const activeLink = links.find(lnk => lnk.getAttribute('onclick')?.includes(tabId));
+      if (activeLink) activeLink.classList.add('active');
+
+      const contents = document.querySelectorAll('.view-content');
+      contents.forEach(cont => cont.classList.remove('active'));
+
+      const activePanel = document.getElementById(`view-${tabId}`);
+      if (activePanel) activePanel.classList.add('active');
+    }
+
+    function switchFile(fileName, displayPath) {
+      activeFile = fileName;
+      activeTab = 'code';
+      
+      const navItems = document.querySelectorAll('.nav-item');
+      navItems.forEach(item => item.classList.remove('active'));
+
+      const links = Array.from(document.querySelectorAll('.nav-item'));
+      const activeLink = links.find(lnk => lnk.getAttribute('onclick')?.includes(fileName));
+      if (activeLink) activeLink.classList.add('active');
+
+      const contents = document.querySelectorAll('.view-content');
+      contents.forEach(cont => cont.classList.remove('active'));
+      document.getElementById('view-code').classList.add('active');
+
+      document.getElementById('open-file-path').innerText = displayPath || `src/${fileName}`;
+      document.getElementById('annotation-file-title').innerText = `${fileName} Annotations`;
+
+      const template = document.getElementById(`raw-${fileName}`);
+      if (template) {
+        renderCode(fileName, template.textContent);
+        renderAnnotations(fileName);
+      }
+    }
+
+    // Set Theme Mode
+    function setTheme(theme) {
+      document.body.classList.remove('theme-dark', 'theme-comfort');
+      document.body.classList.add(`theme-${theme}`);
+      
+      // Update active state of theme buttons
+      document.getElementById('theme-btn-dark').classList.remove('active');
+      document.getElementById('theme-btn-comfort').classList.remove('active');
+      document.getElementById(`theme-btn-${theme}`).classList.add('active');
+    }
+
+    // Set Language Mode
+    function setLanguage(lang) {
+      activeLanguage = lang;
+      document.body.classList.remove('lang-zh', 'lang-en', 'lang-bilingual');
+      document.body.classList.add(`lang-${lang}`);
+      
+      // Update dropdown box value
+      document.getElementById('lang-select-box').value = lang;
+
+      // Re-render annotations if code pane is active
+      if (activeTab === 'code') {
+        renderCode(activeFile, document.getElementById(`raw-${activeFile}`).textContent);
+        renderAnnotations(activeFile);
+      }
+    }
+
+    // Collapsible Layout Toggles
+    let leftSidebarCollapsed = false;
+    let lastLeftWidth = '240px';
+
+    function toggleLeftSidebar() {
+      const pane = document.getElementById('sidebar-pane');
+      const btn = document.getElementById('toggle-left-btn');
+      const resizer = document.getElementById('sidebar-resizer');
+      const collapsedBar = document.getElementById('sidebar-collapsed-bar');
+      leftSidebarCollapsed = !leftSidebarCollapsed;
+      
+      if (leftSidebarCollapsed) {
+        lastLeftWidth = pane.style.width || '240px';
+        pane.style.display = 'none';
+        resizer.style.display = 'none';
+        btn.classList.remove('active');
+        if (collapsedBar) collapsedBar.style.display = 'flex';
+      } else {
+        pane.style.display = 'flex';
+        pane.style.width = lastLeftWidth;
+        resizer.style.display = 'block';
+        btn.classList.add('active');
+        if (collapsedBar) collapsedBar.style.display = 'none';
+      }
+    }
+
+    // Toggles for middle and right panels in Code View
+    let middleCodeVisible = true;
+    let rightAnnVisible = true;
+
+    function toggleMiddleCode() {
+      const pane = document.getElementById('code-text-pane');
+      const rightPane = document.getElementById('annotations-pane');
+      const btn = document.getElementById('btn-toggle-code');
+      const restoreBtn = document.getElementById('btn-restore-code');
+      const resizer = document.getElementById('code-resizer');
+      middleCodeVisible = !middleCodeVisible;
+      
+      if (middleCodeVisible) {
+        pane.style.display = 'flex';
+        btn.classList.add('active');
+        if (restoreBtn) restoreBtn.style.display = 'none';
+        rightPane.style.width = '300px';
+        rightPane.style.flex = '0 0 auto';
+        if (rightAnnVisible) resizer.style.display = 'block';
+      } else {
+        pane.style.display = 'none';
+        btn.classList.remove('active');
+        if (restoreBtn && rightAnnVisible) restoreBtn.style.display = 'block';
+        resizer.style.display = 'none';
+        if (rightAnnVisible) {
+          rightPane.style.width = '100%';
+          rightPane.style.flex = '1';
+        }
+      }
+    }
+
+    function toggleRightAnnotations() {
+      const pane = document.getElementById('annotations-pane');
+      const middlePane = document.getElementById('code-text-pane');
+      const btn = document.getElementById('btn-toggle-ann');
+      const resizer = document.getElementById('code-resizer');
+      const collapsedBar = document.getElementById('annotations-collapsed-bar');
+      rightAnnVisible = !rightAnnVisible;
+      
+      if (rightAnnVisible) {
+        pane.style.display = 'flex';
+        btn.classList.add('active');
+        if (collapsedBar) collapsedBar.style.display = 'none';
+        if (middleCodeVisible) {
+          resizer.style.display = 'block';
+          pane.style.width = '300px';
+          pane.style.flex = '0 0 auto';
+        } else {
+          pane.style.width = '100%';
+          pane.style.flex = '1';
+        }
+      } else {
+        pane.style.display = 'none';
+        btn.classList.remove('active');
+        resizer.style.display = 'none';
+        if (collapsedBar) collapsedBar.style.display = 'flex';
+      }
+    }
+
+    // Toggles for Guide panel sections (Middle Guide & Right TOC)
+    const panelStates = {
+      'guide-text-pane': true,
+      'guide-sidebar-pane': true,
+      'recreation-text-pane': true,
+      'recreation-sidebar-pane': true
+    };
+
+    function toggleMiddleGuide(paneId, btnId, resizerId, peerId) {
+      const pane = document.getElementById(paneId);
+      const peer = document.getElementById(peerId);
+      const btn = document.getElementById(btnId);
+      const resizer = document.getElementById(resizerId);
+      
+      // Determine restore button name
+      const restoreBtnId = paneId === 'guide-text-pane' ? 'btn-restore-guide-text' : 'btn-restore-rec-text';
+      const restoreBtn = document.getElementById(restoreBtnId);
+      
+      panelStates[paneId] = !panelStates[paneId];
+      
+      if (panelStates[paneId]) {
+        pane.style.display = 'block';
+        btn.classList.add('active');
+        if (restoreBtn) restoreBtn.style.display = 'none';
+        if (panelStates[peerId]) {
+          resizer.style.display = 'block';
+          peer.style.width = '300px';
+          peer.style.flex = '0 0 auto';
+        }
+      } else {
+        pane.style.display = 'none';
+        btn.classList.remove('active');
+        if (restoreBtn && panelStates[peerId]) restoreBtn.style.display = 'block';
+        resizer.style.display = 'none';
+        if (panelStates[peerId]) {
+          peer.style.width = '100%';
+          peer.style.flex = '1';
+        }
+      }
+    }
+
+    function toggleRightTOC(paneId, btnId, resizerId, peerId) {
+      const pane = document.getElementById(paneId);
+      const peer = document.getElementById(peerId);
+      const btn = document.getElementById(btnId);
+      const resizer = document.getElementById(resizerId);
+      
+      // Determine collapsed bar name
+      const collapsedBarId = paneId === 'guide-sidebar-pane' ? 'guide-toc-collapsed-bar' : 'recreation-toc-collapsed-bar';
+      const collapsedBar = document.getElementById(collapsedBarId);
+      
+      panelStates[paneId] = !panelStates[paneId];
+      
+      if (panelStates[paneId]) {
+        pane.style.display = 'block';
+        btn.classList.add('active');
+        if (collapsedBar) collapsedBar.style.display = 'none';
+        if (panelStates[peerId]) {
+          resizer.style.display = 'block';
+          pane.style.width = '300px';
+          pane.style.flex = '0 0 auto';
+        } else {
+          pane.style.width = '100%';
+          pane.style.flex = '1';
+        }
+      } else {
+        pane.style.display = 'none';
+        btn.classList.remove('active');
+        resizer.style.display = 'none';
+        if (collapsedBar) collapsedBar.style.display = 'flex';
+      }
+    }
+
+    // Double click to edit inline comments in code table
+    document.addEventListener('dblclick', function(e) {
+      const commentCol = e.target.closest('.code-comment-col');
+      if (!commentCol) return;
+      
+      // Prevent recursion if already editing
+      if (commentCol.querySelector('input')) return;
+      
+      const tr = commentCol.closest('.code-line-tr');
+      if (!tr) return;
+      
+      const lineNum = parseInt(tr.id.replace('line-row-', ''), 10);
+      if (isNaN(lineNum)) return;
+      
+      // Get current comment text
+      const commentObj = lineCommentsData[activeFile] ? lineCommentsData[activeFile][lineNum] : null;
+      let rawText = '';
+      if (commentObj) {
+        rawText = typeof commentObj === 'object' ? (commentObj.zh || commentObj.en || '') : commentObj;
+      }
+      
+      // Replace with input box
+      commentCol.innerHTML = `
+        <input type="text" id="inline-comment-input-${lineNum}" value="${escapeHtml(rawText)}" style="width: 95%; background: var(--bg-dark); color: var(--text-main); border: 1px solid var(--gold); padding: 2px 4px; font-family: inherit; font-size: inherit; outline: none;" />
+      `;
+      
+      const input = document.getElementById(`inline-comment-input-${lineNum}`);
+      input.focus();
+      input.select();
+      
+      // Save handler
+      const saveInlineComment = () => {
+        const val = input.value.trim();
+        if (!lineCommentsData[activeFile]) {
+          lineCommentsData[activeFile] = {};
+        }
+        
+        if (val === '') {
+          delete lineCommentsData[activeFile][lineNum];
+        } else {
+          lineCommentsData[activeFile][lineNum] = val;
+        }
+        
+        // Save to localStorage
+        localStorage.setItem('academy-line-comments', JSON.stringify(lineCommentsData));
+        
+        // Restore rendering
+        const updatedObj = lineCommentsData[activeFile] ? lineCommentsData[activeFile][lineNum] : null;
+        if (updatedObj) {
+          commentCol.innerHTML = `<span style="user-select: none;">// </span>${escapeHtml(getTranslatedText(updatedObj))}`;
+        } else {
+          commentCol.innerHTML = '';
+        }
+      };
+      
+      // Handle enter key
+      input.onkeydown = (ev) => {
+        if (ev.key === 'Enter') {
+          saveInlineComment();
+        } else if (ev.key === 'Escape') {
+          // Cancel
+          if (commentObj) {
+            commentCol.innerHTML = `<span style="user-select: none;">// </span>${escapeHtml(getTranslatedText(commentObj))}`;
+          } else {
+            commentCol.innerHTML = '';
+          }
+        }
+      };
+      
+      // Handle blur
+      input.onblur = saveInlineComment;
+    });
+
+    // Interactive Quiz checks
+    function checkAnswer(qIdx, optionLetter, correctLetter) {
+      const container = document.getElementById(`qa-options-${qIdx}`);
+      const buttons = container.querySelectorAll('.qa-option-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('correct', 'incorrect');
+        const letter = btn.getAttribute('data-letter');
+        if (letter === correctLetter) {
+          btn.classList.add('correct');
+        } else if (letter === optionLetter) {
+          btn.classList.add('incorrect');
+        }
+      });
+
+      const expBox = document.getElementById(`qa-explanation-${qIdx}`);
+      expBox.style.display = 'block';
+    }
+
+    // Resizable Splitter Logic
+    function makeResizable(resizerId, firstPaneId) {
+      const resizer = document.getElementById(resizerId);
+      const firstPane = document.getElementById(firstPaneId);
+      if (!resizer || !firstPane) return;
+
+      const startDrag = (clientX, clientY) => {
+        resizer.classList.add('dragging');
+        
+        const isMobile = window.innerWidth <= 900;
+        document.body.style.cursor = isMobile ? 'row-resize' : 'col-resize';
+
+        const startWidth = firstPane.getBoundingClientRect().width;
+        const startHeight = firstPane.getBoundingClientRect().height;
+        const startX = clientX;
+        const startY = clientY;
+
+        const onMove = (moveX, moveY) => {
+          const isCurrentlyMobile = window.innerWidth <= 900;
+          if (isCurrentlyMobile) {
+            const deltaY = moveY - startY;
+            const newHeight = Math.max(100, startHeight + deltaY);
+            firstPane.style.height = `${newHeight}px`;
+            firstPane.style.width = '';
+            firstPane.style.flex = 'none';
+          } else {
+            const deltaX = moveX - startX;
+            const newWidth = Math.max(150, startWidth + deltaX);
+            firstPane.style.width = `${newWidth}px`;
+            firstPane.style.height = '';
+            firstPane.style.flex = 'none';
+          }
+        };
+
+        const onMouseMove = (e) => onMove(e.clientX, e.clientY);
+        const onMouseUp = () => {
+          resizer.classList.remove('dragging');
+          document.body.style.cursor = '';
+          document.removeEventListener('mousemove', onMouseMove);
+          document.removeEventListener('mouseup', onMouseUp);
+        };
+
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', onMouseUp);
+        
+        const onTouchMove = (e) => {
+          const touch = e.touches[0];
+          onMove(touch.clientX, touch.clientY);
+        };
+        const onTouchEnd = () => {
+          resizer.classList.remove('dragging');
+          document.removeEventListener('touchmove', onTouchMove);
+          document.removeEventListener('touchend', onTouchEnd);
+        };
+        document.addEventListener('touchmove', onTouchMove);
+        document.addEventListener('touchend', onTouchEnd);
+      };
+
+      resizer.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        startDrag(e.clientX, e.clientY);
+      });
+
+      resizer.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        const touch = e.touches[0];
+        startDrag(touch.clientX, touch.clientY);
+      });
+    }
+
+    // On Load
+    window.addEventListener('load', () => {
+      // Default load: App.tsx
+      const template = document.getElementById('raw-App.tsx');
+      if (template) {
+        renderCode('App.tsx', template.textContent);
+        renderAnnotations('App.tsx');
+      }
+
+      // Initialize Resizers
+      makeResizable('sidebar-resizer', 'sidebar-pane');
+      makeResizable('guide-resizer', 'guide-text-pane');
+      makeResizable('recreation-resizer', 'recreation-text-pane');
+      makeResizable('code-resizer', 'code-text-pane');
+
+      // Clear styles on switching mobile / desktop boundary
+      const desktopMedia = window.matchMedia('(min-width: 901px)');
+      desktopMedia.addEventListener('change', () => {
+        document.querySelectorAll('#sidebar-pane, #code-text-pane, #guide-text-pane, #recreation-text-pane').forEach(el => {
+          el.style.width = '';
+          el.style.height = '';
+          el.style.flex = '';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

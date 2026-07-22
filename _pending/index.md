@@ -8,7 +8,7 @@ Moved here intact during the approved conservative Development simplification. T
 
 | Archived item | Reason / 原因 |
 | --- | --- |
-| `Development/Source/Main-App/` | Preserved v17 source, dependencies, and generated build; v18 is the only active source line. / v17 source、依賴與 build；目前只維護 v18。 |
+| `Development/Source/Main-App/` | Preserved v17 source, dependencies, and generated build; v19 is the active source line. / v17 source、依賴與 build；目前維護 v19。 |
 | `Development/Source/Public-Web/` | Unpublished Public Web v1 source and dependencies; publication is not active. / 未發布的 Public Web v1 source 與依賴；目前無發布作業。 |
 | `Development/Source/Main-App-v18/node_modules/` | Generated dependencies recoverable with `npm ci`. / 可用 `npm ci` 重建的依賴。 |
 | `Development/Source/Main-App-v18/*.tsbuildinfo` | Generated TypeScript build caches. / TypeScript 生成 cache。 |
@@ -38,3 +38,8 @@ Git 歷史中提及的其他舊 pending 項目在本次精簡前即不在 workin
 
 - `_pending/v19-generated-development-state_2026-07-19/` retains the reproducible `node_modules` directory and TypeScript build caches after verification so active Development stays uncluttered.
 - 此目錄保留可重建的依賴與 TypeScript cache，讓作用中的 Development 維持簡潔。
+
+## Legacy pending-index snapshot / 舊 pending 索引快照
+
+- `_pending/legacy-index-snapshot_2026-07-19/index.md` preserves the older, narrower pending register that appeared locally after publication. The canonical active register remains this file.
+- 此快照保留較舊且範圍較窄的 pending 清單；正式索引仍是本檔。
