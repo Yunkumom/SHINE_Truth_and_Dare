@@ -60,3 +60,27 @@ powershell -ExecutionPolicy Bypass -File Development/Tests/validate_repository.p
 2. Review Level 5 age/content safety and artwork provenance.
 3. Create a new numbered release for any later product change.
 4. Review `_pending/index.md`; permanent disposal requires explicit human approval.
+
+---
+
+## Main Program Change & Working Version Preservation Rules / 主程式變更與工作版本留存規則
+
+Any change or adjustment that affects how the main program works must be committed to Git.
+任何影響主程式運作的變更或微調，都必須 commit 到 Git。
+
+This includes changes to:
+包含對以下項目的任何調整與變更：
+- Game content / 遊戲內容
+- Images / 圖片
+- Animations or interactions / 動畫或互動效果
+- Commands / 指令
+- Program logic / 程式邏輯
+- Any behavior that could affect whether the game works correctly / 任何可能影響遊戲或程式是否正常運作的行為
+
+Rules for Working Versions & Archiving / 工作版本留存與封存規則：
+1. **Preserve Working Versions / 留存工作版本**: Before making changes, always preserve at least three working versions (e.g. `game_v1`, `game_v2`, `game_v3`). This prevents the program from becoming unusable after an incorrect modification.
+   修改前務必保留至少 3 個可用工作版本（例如：`game_v1`、`game_v2`、`game_v3`），防止錯誤修改導致程式無法運作。
+2. **Automatic Versioning / 版本號碼自動更新**: The version number should update automatically (e.g. auto-incrementing versioning).
+   版本號碼應自動更新升級。
+3. **Archive Older Versions / 封存過舊版本**: When there are more than three old versions, move the older versions into `_pending`.
+   當存在超過 3 個舊版本時，將較舊的版本移入 `_pending` 資料夾。
