@@ -36,7 +36,7 @@ Current desktop data flow:
 Open Truth and Dare.cmd
   -> Development/Automation/Tools/serve_truth_and_dare.ps1
   -> python http.server on 127.0.0.1:8765
-  -> Apps/Standalone/encounter_cards_v21.html
+  -> Apps/Standalone/encounter_cards_v22.html
   -> embedded React/CSS runtime
   -> interactive game
 ```
@@ -44,8 +44,17 @@ Open Truth and Dare.cmd
 ## Security and Privacy Surface / 安全與隱私面
 
 - No environment variables, API credentials, backend, or account session are required.
-- The only verified persistent keys are language and font scale preferences.
+- Verified persistent keys are language, font scale, and the non-personal v22 layout document.
 - User-entered names, contacts, birthdays, notes, and responses must remain client-side unless a future design explicitly changes the boundary.
+
+## v22 Layout and Gesture Architecture / v22 版面與手勢架構
+
+- `src/layout/layout-model.ts` owns a schema-versioned 430 × 932 document, normalization, twenty-step history, reset, local persistence, and privacy-safe JSON exchange.
+- `src/components/EditableBlock.tsx` applies block geometry in player and editor modes; editing adds bounded drag and corner resize.
+- `src/components/LayoutEditor.tsx` owns setup/game/keepsake preview selection, precise fields, undo/redo, reset, and JSON UI.
+- `src/lib/swipe-deck.ts` owns pure 22% threshold, pose, tilt, and duplicate-commit decisions; `src/components/SwipeDeck.tsx` owns pointer capture and card presentation.
+- Artwork uses `data-card-artwork` as a gesture boundary so the v21 600 ms Taiwan hold remains isolated from deck motion.
+- `src/lib/share.ts` maps editable keepsake blocks into a 1260 × 1760 canvas, filters participant rows by in-memory opt-in, draws a mandatory blessing, and invokes share/download fallback.
 - The large packaged module must be treated as generated code; direct edits are fragile and difficult to review.
 
 ## Source Boundary / 原始碼邊界

@@ -68,9 +68,6 @@ Assert-V21Condition ($shareSource -notmatch 'taiwan-locator' -and $shareSource -
 $layoutSource = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot 'Development/Source/Main-App-v21/src/styles/app.css')
 Assert-V21Condition ($layoutSource -match 'translate\(-50%, -50%\).*scale' -and $layoutSource -match 'left: 50%' -and $layoutSource -match 'top: 50%') 'Scaled desktop phone remains anchored to the exact viewport center'
 
-$server = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot 'Development/Automation/Tools/serve_truth_and_dare.ps1')
-Assert-V21Condition ($server -match 'encounter_cards_v21\.html' -and $server -match 'encounter-release.*V21') 'Desktop launcher serves and verifies v21'
-
 if ($failures.Count) {
     Write-Host "v21 validation failed with $($failures.Count) issue(s)." -ForegroundColor Red
     exit 1

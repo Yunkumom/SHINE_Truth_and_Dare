@@ -32,6 +32,16 @@ Drawing a card should feel like pulling a physical collectible card from a deck 
 - Image loading failure must preserve readable text and a stable card frame.
 - Share cancellation is not an error; share failure falls back to download when safe.
 
+## v22 Swipe-and-Flip Contract / v22 滑動翻牌合約
+
+- The top card follows pointer X/Y one-to-one and tilts by horizontal displacement, clamped to ±12 degrees.
+- Upward travel commits at 22% of current card height; shorter travel returns with a spring curve.
+- One pointer sequence can commit only once, including duplicate pointer-up events.
+- A newly selected card remounts at the centered origin and displays the front automatically.
+- Gestures beginning inside the artwork are ignored by the deck and remain available to the hidden-Taiwan hold controller.
+- The fallback Draw/Next control stays at the bottom of the canvas and never shares the setup mode-selection grid.
+- Reduced-motion mode removes spring, displacement, parallax, and 3D motion in favor of a short state fade.
+
 ## Accessibility Requirements for v16
 
 - Provide a reduced-motion path with a short fade/replace transition.

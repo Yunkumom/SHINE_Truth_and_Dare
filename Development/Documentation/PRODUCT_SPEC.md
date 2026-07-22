@@ -46,7 +46,7 @@ Static inspection of the supplied artifact confirms:
 3. Select familiarity Level 1–5; Level 5 is marked intimate and 18+.
 4. Choose Truth, Dare, or Surprise.
 5. Begin the card interaction, draw and reveal a prompt, then answer or complete it.
-6. Optionally create and share or download a PNG card.
+6. Optionally preview a 63:88 keepsake, choose which participant rows to include, then share or download the PNG.
 
 ## Interaction Requirements / 互動需求
 
@@ -58,6 +58,8 @@ Static inspection of the supplied artifact confirms:
 - Front artwork and text remain visible after the flip; back content never overlays them.
 - Used cards can be dismissed with an intentional swipe.
 - PNG export and iPhone sharing provide clear success or fallback behavior.
+- v22 keeps the primary draw gesture on the deck, moves the fallback button to the bottom, and lets the card use 402 × 562 pixels of the 430 × 932 canvas.
+- v22 editor mode exposes setup, game, and keepsake blocks for drag, resize, numeric adjustment, undo/redo, reset, and privacy-safe JSON exchange.
 
 Detailed gesture behavior is defined in `ANIMATION_SPEC.md`.
 
@@ -65,8 +67,12 @@ Detailed gesture behavior is defined in `ANIMATION_SPEC.md`.
 
 - Names, contacts, birthdays, notes, answers, and adult-content choices are private user input.
 - v15 contains no backend or account integration.
-- Static inspection found persistent preference keys only for language and font scale.
+- Persistent state is limited to language, font scale, and v22 layout numbers. Layout JSON must reject personal-field keys.
 - Future versions must not introduce telemetry or personal-data transmission without explicit approval, disclosure, and review.
+
+## v22 Editable Layout and Keepsake / v22 可編輯版面與紀念卡
+
+v22 preserves all v21 card content and hidden-Taiwan behavior while adding three editable 430 × 932 screen documents. Setup places Begin at the bottom independently of mode selection. Game uses a 402 × 562 layered deck with a 22% upward commitment threshold, automatic flip, and a bottom fallback control. Keepsake preview and 1260 × 1760 PNG export follow the 63:88 reference, always include a blessing, and include each participant row only when explicitly selected.
 
 ## v15 Acceptance Boundary / v15 驗收邊界
 

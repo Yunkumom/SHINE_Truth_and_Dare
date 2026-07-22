@@ -1,5 +1,14 @@
 # Changelog / 變更紀錄
 
+## 2026-07-22 — v22 editable layout and swipe deck / v22 可編輯版面與滑動牌堆
+
+- Created v22 without modifying immutable v15–v21 releases.
+- Added setup/game/keepsake direct layout editing with drag, resize, precise numeric controls, grid snapping, twenty-step undo/redo, reset, and privacy-safe JSON import/export.
+- Moved Begin to the setup bottom, enlarged the mobile card to 402 × 562, and implemented thresholded swipe-up draw, spring return, automatic flip, duplicate prevention, and bottom fallback controls.
+- Added a 63:88 keepsake preview and 1260 × 1760 PNG with mandatory blessing and independently optional participant rows.
+- Preserved the 18 hidden-Taiwan hotspots, artwork hold isolation, independent encounter composition, privacy boundary, and centered desktop frame.
+- Added 59 automated tests, v22/PWA/standalone/Public Web v5 automation, immutable release hash validation, and updated launcher/Pages contracts.
+
 ## 2026-07-22 — v21 hidden Taiwan reveal / v21 藏台灣揭示
 
 - Created v21 without modifying immutable v15–v20 releases and preserved the v16-inspired v20 visual hierarchy.
