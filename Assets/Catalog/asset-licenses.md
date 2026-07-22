@@ -25,3 +25,9 @@ The legacy 12 embedded v16 card images were statically extracted from the preser
 The 18 PNG deity sources under `Assets/Deities/` are project-owned AI generations created with OpenAI image generation. The original nine were generated on 2026-07-19; the nine `v20-variants/` were generated on 2026-07-22 from project-owned identity references and new prompts. No third-party artwork was copied. The v20 prompt set requested respectful Taiwanese mythic painterly realism, new poses/actions, no text or watermark, and one hidden Taiwan motif in a physical object or pattern for each image.
 
 `Assets/Deities/` 的 18 張 PNG 神祇原圖為本專案使用 OpenAI 圖像生成建立的自有素材。原始九張建立於 2026-07-19；`v20-variants/` 九張於 2026-07-22 以專案自有角色參考與新提示生成。提示要求尊重神祇、台灣神話繪畫寫實、新姿勢／動作、無文字與浮水印，並在每張圖的器物或紋樣中藏入一個台灣意象。
+
+## Encounter Cards v23 Taiwan-safe artwork / v23 台灣安全區圖像
+
+The 18 PNG files in `Assets/Deities/v23-taiwan-safe/` are project-owned AI edits generated with OpenAI built-in image generation on 2026-07-22 from the project-owned v19/v20 references. Each edit preserves the deity and composition while replacing any unsafe edge motif with a precise, coloured Taiwan silhouette in a visible garment, weapon, accessory, or prop. No third-party artwork, text, logo, or watermark was added. See the folder README for the complete mapping and prompt contract.
+
+`Assets/Deities/v23-taiwan-safe/` 中的 18 張 PNG，是 2026-07-22 使用 OpenAI 內建圖像生成，以專案自有 v19／v20 圖像為參考建立的專案自有編修。每張保留神祇與構圖，並將可能被切掉的邊緣圖案改為藏在服飾、兵器、配件或器物中、位置可見且形狀精確的彩色台灣輪廓。未加入第三方作品、文字、標誌或浮水印；完整對照與提示合約見該資料夾 README。

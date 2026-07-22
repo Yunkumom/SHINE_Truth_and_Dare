@@ -46,7 +46,7 @@ Static inspection of the supplied artifact confirms:
 3. Select familiarity Level 1–5; Level 5 is marked intimate and 18+.
 4. Choose Truth, Dare, or Surprise.
 5. Begin the card interaction, draw and reveal a prompt, then answer or complete it.
-6. Optionally create and share or download a PNG card.
+6. Optionally preview a 63:88 keepsake, choose which participant rows to include, then share or download the PNG.
 
 ## Interaction Requirements / 互動需求
 
@@ -58,6 +58,9 @@ Static inspection of the supplied artifact confirms:
 - Front artwork and text remain visible after the flip; back content never overlays them.
 - Used cards can be dismissed with an intentional swipe.
 - PNG export and iPhone sharing provide clear success or fallback behavior.
+- v22 keeps the primary draw gesture on the deck, moves the fallback button to the bottom, and lets the card use 402 × 562 pixels of the 430 × 932 canvas.
+- v22 editor mode exposes setup, game, and keepsake blocks for drag, resize, numeric adjustment, undo/redo, reset, and privacy-safe JSON exchange.
+- v23 keeps the full v22 interaction contract while replacing all 18 deity images with visible-crop-safe artwork and one precise canonical Taiwan reveal shape.
 
 Detailed gesture behavior is defined in `ANIMATION_SPEC.md`.
 
@@ -65,8 +68,16 @@ Detailed gesture behavior is defined in `ANIMATION_SPEC.md`.
 
 - Names, contacts, birthdays, notes, answers, and adult-content choices are private user input.
 - v15 contains no backend or account integration.
-- Static inspection found persistent preference keys only for language and font scale.
+- Persistent state is limited to language, font scale, and v22 layout numbers. Layout JSON must reject personal-field keys.
 - Future versions must not introduce telemetry or personal-data transmission without explicit approval, disclosure, and review.
+
+## v22 Editable Layout and Keepsake / v22 可編輯版面與紀念卡
+
+v22 preserves all v21 card content and hidden-Taiwan behavior while adding three editable 430 × 932 screen documents. Setup places Begin at the bottom independently of mode selection. Game uses a 402 × 562 layered deck with a 22% upward commitment threshold, automatic flip, and a bottom fallback control. Keepsake preview and 1260 × 1760 PNG export follow the 63:88 reference, always include a blessing, and include each participant row only when explicitly selected.
+
+## Current v23 Taiwan-safe Artwork / 目前 v23 台灣安全圖
+
+v23 preserves the v22 layout editor, swipe deck, privacy boundary, independent question/artwork/blessing selection, and commemorative-card export. All 18 deity images now contain a recognizable Taiwan silhouette inside the centred visible crop. Motifs use different high-contrast colour pairs and appear in garments, weapons, accessories, or props. Every 600 ms long-press reveal uses the same detailed geographic path and the matching artwork colour; reduced-motion users receive a steady outline. The reveal remains runtime-only and is never baked into the keepsake PNG.
 
 ## v15 Acceptance Boundary / v15 驗收邊界
 
@@ -90,6 +101,6 @@ v19 supersedes v18 without modifying it. It adds nine project-owned Taiwanese de
 
 v20 restores the v16 entrance composition: branded header and language switch, large bilingual invitation, ivory two-column setup sheet, Levels 1–5, three card modes, and bottom Begin action. It adds nine alternate deity poses for 18 total artworks, independently randomizes artwork/question/blessing, requires a blessing on every commemorative card, and keeps artwork separate from both question and blessing panels. The 430 × 932 phone is mathematically centered and shrink-to-fit on desktop without clipping or page scroll.
 
-## Current v21 Release / 目前 v21 Release
+## Preserved v21 Release / 保留的 v21 Release
 
 v21 preserves the complete v20 visual, language, card, blessing, export, privacy, and 430 × 932 desktop-centering contracts. Every one of the 18 deity artworks has a distinct hidden-Taiwan hotspot. Holding the artwork for 600 ms reveals a blinking gold Taiwan outline at that location; after release it remains for 3 seconds and fades. Pointer movement cancels an uncommitted reveal, artwork events do not bubble into card drawing, Enter and Space provide keyboard parity, and reduced-motion users receive a steady locator. The runtime annotation never enters the commemorative PNG.

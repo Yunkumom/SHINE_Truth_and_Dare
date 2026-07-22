@@ -32,6 +32,16 @@ Drawing a card should feel like pulling a physical collectible card from a deck 
 - Image loading failure must preserve readable text and a stable card frame.
 - Share cancellation is not an error; share failure falls back to download when safe.
 
+## v22 Swipe-and-Flip Contract / v22 滑動翻牌合約
+
+- The top card follows pointer X/Y one-to-one and tilts by horizontal displacement, clamped to ±12 degrees.
+- Upward travel commits at 22% of current card height; shorter travel returns with a spring curve.
+- One pointer sequence can commit only once, including duplicate pointer-up events.
+- A newly selected card remounts at the centered origin and displays the front automatically.
+- Gestures beginning inside the artwork are ignored by the deck and remain available to the hidden-Taiwan hold controller.
+- The fallback Draw/Next control stays at the bottom of the canvas and never shares the setup mode-selection grid.
+- Reduced-motion mode removes spring, displacement, parallax, and 3D motion in favor of a short state fade.
+
 ## Accessibility Requirements for v16
 
 - Provide a reduced-motion path with a short fade/replace transition.
@@ -56,3 +66,10 @@ v18 introduced whole-shell desktop fitting. v19 preserved that interaction contr
 - Enter and Space trigger the same locator for 3 seconds when the artwork is focused.
 - Native image drag, selection, touch callout, and context menu are disabled only inside the artwork target.
 - `prefers-reduced-motion: reduce` removes continuous animation while retaining a clearly visible steady outline.
+
+## v23 Precise Coloured Reveal / v23 精緻彩色揭示
+
+- v23 preserves the 600 ms hold, 12 px movement cancellation, 3-second post-release visibility, keyboard parity, and deck-gesture isolation.
+- Every locator uses one shared 39-segment geographic Taiwan path with a broad north, distinct east/west coasts, and pointed south.
+- The outline and halo use the artwork's own colour/accent pair and align with the baked motif inside a centred image crop.
+- Continuous flashing remains disabled under `prefers-reduced-motion: reduce`; the precise outline stays steadily visible.

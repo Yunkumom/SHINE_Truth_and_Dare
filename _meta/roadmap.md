@@ -92,3 +92,22 @@
 - [x] Keep the reveal overlay out of commemorative PNG export and preserve mandatory blessings.
 - [x] Build standalone v21, Public Web v4, versioned automation, and deterministic release validation.
 - [ ] Complete physical iPhone hotspot-alignment, long-press, Share Sheet, PWA install, and offline-update regression.
+
+## Phase 11 — v22 editable layout and swipe deck / v22 可編輯版面與滑動牌堆
+
+- [x] Create v22 without modifying immutable v15–v21 releases.
+- [x] Add direct drag/resize, exact fields, grid snapping, twenty-step history, reset, and privacy-safe layout JSON across setup, game, and keepsake previews.
+- [x] Separate Begin from card modes, enlarge the game card to 402 × 562, and move fallback Draw/Next controls to the bottom.
+- [x] Add a one-to-one swipe-up deck with 22% commitment, spring return, flip reveal, duplicate prevention, and artwork hold isolation.
+- [x] Add a 63:88 keepsake preview/export with mandatory blessing and separately optional participant rows.
+- [x] Build standalone v22, Public Web v5, versioned automation, and deterministic release validation.
+- [ ] Complete physical iPhone editor, swipe feel, Share Sheet, install, and offline-update regression.
+
+## Phase 12 — v23 precise Taiwan artwork / v23 精緻台灣圖像
+
+- [x] Create v23 without modifying immutable v15–v22 releases.
+- [x] Replace all 18 runtime images with high-resolution edits containing a recognizable, differently coloured Taiwan silhouette inside the card-safe crop.
+- [x] Replace per-image approximation shapes with one detailed canonical Taiwan path and artwork-specific reveal colours.
+- [x] Centre game and keepsake image crops so the baked motif and long-press locator stay visible and aligned.
+- [x] Build standalone v23, Public Web v6, versioned automation, asset provenance, and deterministic validation.
+- [ ] Complete physical iPhone checks for all 18 long-press alignments, Share Sheet, install, and offline update.
