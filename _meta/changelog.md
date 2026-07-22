@@ -6,6 +6,7 @@
 - Recorded the successful GitHub Pages deployment and canonical public URL.
 - Added the human-authored v19 Developer Academy reference and retained the duplicate legacy pending index as a clearly named historical snapshot.
 - Recorded the repository rule that main-program behavior changes must be committed, preserve at least three working versions, and archive older versions under `_pending/`.
+- Added cross-platform Git attributes so Windows checkouts preserve immutable release and generated-output hashes byte-for-byte.
 
 ## 2026-07-19 — v19 Taiwan deity card release / v19 台灣神祇相遇卡
 
