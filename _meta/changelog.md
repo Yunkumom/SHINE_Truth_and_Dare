@@ -1,5 +1,13 @@
 # Changelog / 變更紀錄
 
+## 2026-07-22 — v23 precise Taiwan artwork / v23 精緻台灣圖像
+
+- Created v23 without modifying immutable v15–v22 releases.
+- Generated 18 project-owned high-resolution deity edits with clear, differently coloured Taiwan silhouettes inside the centred card-safe crop.
+- Added one shared 39-segment Taiwan SVG path, per-artwork colour/accent metadata, aligned 600 ms long-press/keyboard reveal, pulse, and reduced-motion fallback.
+- Added governed PNG sources, optimized WebP runtime copies, complete artwork mapping/provenance, crop regression coverage, standalone v23, Public Web v6, and versioned automation.
+- Updated launcher, GitHub Pages workflow, product contracts, public reconstruction blueprint, v23 validator, and repository validator.
+
 ## 2026-07-22 — v22 editable layout and swipe deck / v22 可編輯版面與滑動牌堆
 
 - Created v22 without modifying immutable v15–v21 releases.

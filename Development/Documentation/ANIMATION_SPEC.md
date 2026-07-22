@@ -66,3 +66,10 @@ v18 introduced whole-shell desktop fitting. v19 preserved that interaction contr
 - Enter and Space trigger the same locator for 3 seconds when the artwork is focused.
 - Native image drag, selection, touch callout, and context menu are disabled only inside the artwork target.
 - `prefers-reduced-motion: reduce` removes continuous animation while retaining a clearly visible steady outline.
+
+## v23 Precise Coloured Reveal / v23 精緻彩色揭示
+
+- v23 preserves the 600 ms hold, 12 px movement cancellation, 3-second post-release visibility, keyboard parity, and deck-gesture isolation.
+- Every locator uses one shared 39-segment geographic Taiwan path with a broad north, distinct east/west coasts, and pointed south.
+- The outline and halo use the artwork's own colour/accent pair and align with the baked motif inside a centred image crop.
+- Continuous flashing remains disabled under `prefers-reduced-motion: reduce`; the precise outline stays steadily visible.

@@ -39,6 +39,18 @@ Preserves the unpublished v22 standalone and Public Web v5 candidate generated b
 Retains reproducible v22 `node_modules` and TypeScript build caches after final verification so active Development remains uncluttered. Restore dependencies with `npm ci` for later v23 work.
 
 保留最終驗證後可重建的 v22 `node_modules` 與 TypeScript cache，讓作用中的 Development 維持簡潔；日後建立 v23 時可用 `npm ci` 還原依賴。
+
+## `v23-preverification-build_2026-07-22/`
+
+Preserves the unpublished first v23 standalone and Public Web v6 outputs generated before the final centred artwork-crop correction. They are verification evidence only and must not be published.
+
+保留最終圖片置中裁切修正前產生的未發布 v23 單檔版與 Public Web v6；僅作為驗證紀錄，不可發布。
+
+## `v23-generated-development-state_2026-07-22/`
+
+Retains reproducible v23 `node_modules` and TypeScript build caches after final source verification so active Development remains uncluttered. Restore dependencies with `npm ci` for later v24 work.
+
+保留 v23 原始碼驗證後可重建的 `node_modules` 與 TypeScript cache，讓作用中的 Development 維持簡潔；日後建立 v24 時可用 `npm ci` 還原依賴。
 # Pending / 待處理
 
 ## v19 first-build artifacts / v19 首次建置產物

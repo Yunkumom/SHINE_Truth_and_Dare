@@ -102,3 +102,12 @@
 - [x] Add a 63:88 keepsake preview/export with mandatory blessing and separately optional participant rows.
 - [x] Build standalone v22, Public Web v5, versioned automation, and deterministic release validation.
 - [ ] Complete physical iPhone editor, swipe feel, Share Sheet, install, and offline-update regression.
+
+## Phase 12 — v23 precise Taiwan artwork / v23 精緻台灣圖像
+
+- [x] Create v23 without modifying immutable v15–v22 releases.
+- [x] Replace all 18 runtime images with high-resolution edits containing a recognizable, differently coloured Taiwan silhouette inside the card-safe crop.
+- [x] Replace per-image approximation shapes with one detailed canonical Taiwan path and artwork-specific reveal colours.
+- [x] Centre game and keepsake image crops so the baked motif and long-press locator stay visible and aligned.
+- [x] Build standalone v23, Public Web v6, versioned automation, asset provenance, and deterministic validation.
+- [ ] Complete physical iPhone checks for all 18 long-press alignments, Share Sheet, install, and offline update.

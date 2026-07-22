@@ -56,9 +56,6 @@ if (Test-Path -LiteralPath $standalonePath -PathType Leaf) {
 
 $v21Path = Join-Path $projectRoot 'Apps/Standalone/encounter_cards_v21.html'
 Assert-V22Condition ((Get-FileHash -Algorithm SHA256 -LiteralPath $v21Path).Hash -eq '500CA5492AD8BD90652818289D92E1FED132DFB3E599BB69E601E96412D10281') 'Standalone v21 remains immutable'
-$server = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot 'Development/Automation/Tools/serve_truth_and_dare.ps1')
-Assert-V22Condition ($server -match 'encounter_cards_v22\.html' -and $server -match 'encounter-release.*V22') 'Desktop launcher serves and verifies v22'
-
 if ($failures.Count) { Write-Host "v22 validation failed with $($failures.Count) issue(s)." -ForegroundColor Red; exit 1 }
 Write-Host 'v22 validation passed.' -ForegroundColor Cyan
 exit 0

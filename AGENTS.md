@@ -8,19 +8,19 @@ Before meaningful changes, read `README.md`, `GUIDE.md`, this file, `_meta/purpo
 
 ## Product Rules / 產品規則
 
-- Treat `Apps/Standalone/encounter_cards_v15.html` through `encounter_cards_v22.html` as immutable releases. Never overwrite or hand-edit them.
-- v22 authored source remains under `Development/Source/Main-App-v22/src/`; its verified `dist/` is generated and immutable.
-- Product behavior changes after v22 require v23 source and output artifacts.
-- The current Windows launcher must serve `Apps/Standalone/encounter_cards_v22.html` through `Development/Automation/Tools/serve_truth_and_dare.ps1`; direct `file://` execution is unsupported for the complete contract.
+- Treat `Apps/Standalone/encounter_cards_v15.html` through `encounter_cards_v23.html` as immutable releases. Never overwrite or hand-edit them.
+- v23 authored source remains under `Development/Source/Main-App-v23/src/`; its verified `dist/` is generated and immutable.
+- Product behavior changes after v23 require v24 source and output artifacts.
+- The current Windows launcher must serve `Apps/Standalone/encounter_cards_v23.html` through `Development/Automation/Tools/serve_truth_and_dare.ps1`; direct `file://` execution is unsupported for the complete contract.
 - Preserve the 430 × 932 iPhone Pro Max contract, centered desktop phone frame, Chinese/English/bilingual modes, Levels 1–5, Truth/Dare/Surprise modes, and mobile card interaction unless a new version is explicitly approved.
 - Treat names, optional contact information, birthdays, notes, answers, and 18+ choices as privacy-sensitive input.
 - Do not add analytics, backend transmission, accounts, or persistent personal-data storage without explicit approval and privacy review.
 - v17 source, unpublished Public Web work, legacy builders/tests, completed designs/plans, and failed v20 pre-release checkpoints are inactive but recoverable under `_pending/`. Do not restore or modify an archived product line without explicit reactivation scope.
 
-- 將 `Apps/Standalone/` 中 v15–v22 視為不可變 release，不得覆寫或手改。
-- v22 人工 source 位於 `Development/Source/Main-App-v22/src/`；已驗證 `dist/` 為不可變生成成品。
-- v22 後的產品行為修改必須建立 v23。
-- Windows 啟動器必須透過本機 server 開啟 v22；完整合約不支援直接 `file://`。
+- 將 `Apps/Standalone/` 中 v15–v23 視為不可變 release，不得覆寫或手改。
+- v23 人工 source 位於 `Development/Source/Main-App-v23/src/`；已驗證 `dist/` 為不可變生成成品。
+- v23 後的產品行為修改必須建立 v24。
+- Windows 啟動器必須透過本機 server 開啟 v23；完整合約不支援直接 `file://`。
 - 保留 430 × 932、中／英／雙語、Level 1–5、真心話／小挑戰／隨機及行動卡牌互動，除非明確核准新版本。
 - 隱私敏感輸入不得傳輸、記錄或持久保存；未經核准不得加入 analytics、backend 或帳號。
 
@@ -37,11 +37,11 @@ Before meaningful changes, read `README.md`, `GUIDE.md`, this file, `_meta/purpo
 ## Common Commands / 常用指令
 
 ```powershell
-# Current desktop v22
+# Current desktop v23
 .\Open Truth and Dare.cmd
 
 # Source work (restore generated dependencies first)
-Set-Location Development/Source/Main-App-v22
+Set-Location Development/Source/Main-App-v23
 npm ci
 npm run dev
 npm run typecheck
@@ -50,15 +50,15 @@ npm test
 
 # Current release/repository contracts
 Set-Location ../../..
-powershell -ExecutionPolicy Bypass -File Development/Tests/validate_v22.ps1
+powershell -ExecutionPolicy Bypass -File Development/Tests/validate_v23.ps1
 powershell -ExecutionPolicy Bypass -File Development/Tests/validate_repository.ps1
 ```
 
 ## Predicted Next Work / 預測下一步
 
-1. Complete physical iPhone v22 regression for layout editing, swipe/flip, hidden-Taiwan reveal, PNG, Share Sheet, installation, and offline update.
+1. Complete physical iPhone v23 regression for layout editing, swipe/flip, precise hidden-Taiwan reveal, PNG, Share Sheet, installation, and offline update.
 2. Review Level 5 age/content safety and artwork provenance.
-3. Create v23 for any later product change.
+3. Create v24 for any later product change.
 4. Review `_pending/index.md`; permanent disposal requires explicit human approval.
 
 ---

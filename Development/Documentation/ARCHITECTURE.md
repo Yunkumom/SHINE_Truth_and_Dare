@@ -36,7 +36,7 @@ Current desktop data flow:
 Open Truth and Dare.cmd
   -> Development/Automation/Tools/serve_truth_and_dare.ps1
   -> python http.server on 127.0.0.1:8765
-  -> Apps/Standalone/encounter_cards_v22.html
+  -> Apps/Standalone/encounter_cards_v23.html
   -> embedded React/CSS runtime
   -> interactive game
 ```
@@ -44,7 +44,7 @@ Open Truth and Dare.cmd
 ## Security and Privacy Surface / 安全與隱私面
 
 - No environment variables, API credentials, backend, or account session are required.
-- Verified persistent keys are language, font scale, and the non-personal v22 layout document.
+- Verified persistent keys are language, font scale, and the non-personal v23 layout document.
 - User-entered names, contacts, birthdays, notes, and responses must remain client-side unless a future design explicitly changes the boundary.
 
 ## v22 Layout and Gesture Architecture / v22 版面與手勢架構
@@ -56,6 +56,14 @@ Open Truth and Dare.cmd
 - Artwork uses `data-card-artwork` as a gesture boundary so the v21 600 ms Taiwan hold remains isolated from deck motion.
 - `src/lib/share.ts` maps editable keepsake blocks into a 1260 × 1760 canvas, filters participant rows by in-memory opt-in, draws a mandatory blessing, and invokes share/download fallback.
 - The large packaged module must be treated as generated code; direct edits are fragile and difficult to review.
+
+## v23 Taiwan Artwork Architecture / v23 台灣圖像架構
+
+- `Development/Source/Main-App-v23/src/assets/deities/` contains 18 version-bound WebP copies derived from the governed PNG sources in `Assets/Deities/v23-taiwan-safe/`.
+- `src/lib/deity-art.ts` maps every image to a safe percentage hotspot, rotation, scale, colour, and accent. Hotspots are constrained to the centred card crop.
+- `src/lib/taiwan-shape.ts` owns the single detailed 120 × 240 canonical geographic path. `TaiwanReveal.tsx` reuses it for all pointer and keyboard reveals instead of drawing per-image arcs or blobs.
+- `styles/taiwan-reveal.css` provides per-artwork fill/stroke, pulsing halo, focus treatment, and reduced-motion fallback. Game and keepsake image CSS use centred `object-position`.
+- Export continues to draw only the source artwork, question, selected participant rows, and required blessing; locator chrome remains excluded.
 
 ## Source Boundary / 原始碼邊界
 
@@ -93,6 +101,6 @@ v18 introduced the modular session UI, 60 bilingual cards, policy libraries, PWA
 
 `Development/Source/Main-App-v20/src/` preserves the visual and composition baseline. `App.tsx` owns the v16-inspired setup and session composition; `lib/viewport-scale.ts` owns the 430 × 932 fit; `styles/app.css` anchors the scaled shell at the exact viewport center; `lib/deity-art.ts` registers 18 bundled WebP variants and separate export regions; `lib/encounter.ts` independently selects artwork and blessing; `data/blessings.ts` stores bilingual blessings; and `lib/share.ts` renders and delivers the 1080 × 1620 PNG. Verified `dist/`, standalone v20, and Public Web v3 are immutable.
 
-## Current v21 Modular Architecture / 目前 v21 模組化架構
+## Preserved v21 Modular Architecture / 保留的 v21 模組化架構
 
-`Development/Source/Main-App-v21/src/` is the current authored boundary. It copies the verified v20 architecture and adds `TaiwanHotspot` data to every `ArtworkVariant`. `components/TaiwanReveal.tsx` owns pointer and keyboard timing, movement cancellation, propagation isolation, visibility state, and inline SVG locator rendering. Hotspots use percentages relative to `.mythic-art-frame`; `styles/taiwan-reveal.css` owns positioning, gold pulse/halo motion, touch-callout suppression, focus treatment, and the reduced-motion fallback. `App.tsx` composes this runtime-only layer around the selected image. `lib/share.ts` still renders directly from the stored artwork and deliberately has no locator dependency. Verified `dist/`, standalone v21, and Public Web v4 are immutable; later behavior requires v22.
+`Development/Source/Main-App-v21/src/` preserves the first `TaiwanHotspot` and long-press reveal implementation. Verified `dist/`, standalone v21, and Public Web v4 remain immutable.
