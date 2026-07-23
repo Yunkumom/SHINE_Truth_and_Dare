@@ -12,6 +12,12 @@
     "count": 18,
     "note": "Project-owned AI generations; v23 edits place a precise, coloured Taiwan silhouette in every visible card-safe crop and contain no text or watermark."
   },
+  "taiwan_outline_v24": {
+    "source": "Natural Earth 1:10m Admin 0 map units",
+    "url": "https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-countries/",
+    "license": "public domain",
+    "transformation": "Taiwan main-island polygon selected, simplified to 44 points, longitude-corrected, and normalized to a 120 by 240 SVG viewBox."
+  },
   "cards": [
     {"id":"tw-mazu","source":"Taiwan Bureau of Cultural Heritage","url":"https://twh.boch.gov.tw/non_material/intro.aspx?id=751"},
     {"id":"tw-tiger-aunt","source":"National Museum of Taiwan Literature","url":"https://tlvm.nmtl.gov.tw/zh/Theme/ExhibitionArticleCont?Exbid=196"},

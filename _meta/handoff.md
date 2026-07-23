@@ -2,17 +2,17 @@
 
 ## Current State / 目前狀態
 
-- Active authored source: `Development/Source/Main-App-v23/src/`
-- Verified PWA output: `Development/Source/Main-App-v23/dist/`
-- Current standalone release: `Apps/Standalone/encounter_cards_v23.html`
-- Public release artifact: `Apps/Public-Web/v6/`
+- Active authored source: `Development/Source/Main-App-v24/src/`
+- Verified PWA output: `Development/Source/Main-App-v24/dist/`
+- Current standalone release: `Apps/Standalone/encounter_cards_v24.html`
+- Public release artifact: `Apps/Public-Web/v7/`
 - Desktop entry: `Open Truth and Dare.cmd`
-- Desktop URL: `http://127.0.0.1:8765/Apps/Standalone/encounter_cards_v23.html`
+- Desktop URL: `http://127.0.0.1:8765/Apps/Standalone/encounter_cards_v24.html`
 - Layout contract: 430 × 932 on mobile; whole-shell shrink-to-fit on desktop.
-- v15–v23 standalone releases remain preserved and immutable.
+- v15–v24 standalone releases remain preserved and immutable.
 - Development history and inactive product lines are recoverable at `_pending/Development-simplification_2026-07-19/`.
 - GitHub repository: `https://github.com/Yunkumom/SHINE_Truth_and_Dare`.
-- Public GitHub Pages URL: `https://yunkumom.github.io/SHINE_Truth_and_Dare/`; the local v6 artifact requires a new explicitly authorized GitHub push/deployment before it replaces the currently published release.
+- Public GitHub Pages URL: `https://yunkumom.github.io/SHINE_Truth_and_Dare/`; the local v7 artifact requires a new explicitly authorized GitHub push/deployment before it replaces the currently published release.
 
 ## Simplified Development / 精簡後 Development
 
@@ -20,14 +20,14 @@ Active Development has four responsibility directories only: `Source`, `Automati
 
 ## Verification / 驗證
 
-v23 preserves the complete v22 editor/deck/keepsake behavior and replaces all 18 deity images with Taiwan-safe edits. Each coloured silhouette is inside the centred visible crop; a shared 39-segment geographic path provides correctly aligned pointer and keyboard reveal. Source typecheck, lint, automated tests, build, release validation, repository validation, and 430 × 932 browser regression are the deterministic verification boundary:
+v24 preserves the complete v23 editor/deck/keepsake behavior and replaces the old locator symbol with a Natural Earth-derived 44-point Taiwan coastline. Two transparent coincident strokes provide a broad glow and crisp shore, with no dot, oval halo, radial disc, or solid fill. Source typecheck, lint, 61 automated tests, build, release validation, repository validation, and 430 × 932 browser regression are the deterministic verification boundary:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File Development/Tests/validate_v23.ps1
+powershell -ExecutionPolicy Bypass -File Development/Tests/validate_v24.ps1
 powershell -ExecutionPolicy Bypass -File Development/Tests/validate_repository.ps1
 ```
 
-For future source work, restore dependencies with `npm ci` inside `Development/Source/Main-App-v23/`. Do not overwrite verified v23 outputs; create v24 for product behavior changes.
+For future source work, restore dependencies with `npm ci` inside `Development/Source/Main-App-v24/`. Do not overwrite verified v24 outputs; create v25 for product behavior changes.
 
 ## Known Limits / 已知限制
 
@@ -38,4 +38,4 @@ For future source work, restore dependencies with `npm ci` inside `Development/S
 
 ## Exact Next Action / 下一步
 
-Run physical iPhone regression for v23, including editor handles, swipe feel, long press, all 18 hotspot alignments, contact toggles, Share Sheet, and offline update. Any later product behavior modification must begin as v24 rather than changing verified v23 output.
+Run physical iPhone regression for v24, including editor handles, swipe feel, long press, all 18 coastline alignments, contact toggles, Share Sheet, and offline update. Any later product behavior modification must begin as v25 rather than changing verified v24 output.

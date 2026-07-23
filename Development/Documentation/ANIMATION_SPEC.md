@@ -70,6 +70,12 @@ v18 introduced whole-shell desktop fitting. v19 preserved that interaction contr
 ## v23 Precise Coloured Reveal / v23 精緻彩色揭示
 
 - v23 preserves the 600 ms hold, 12 px movement cancellation, 3-second post-release visibility, keyboard parity, and deck-gesture isolation.
+
+## v24 Coastline Glow / v24 海岸線發光
+
+- The 600 ms hold and 3-second post-release timing remain unchanged.
+- Only the Taiwan coastline glows: a broad translucent stroke pulses under a crisp stroke, with no solid fill, centre dot, circular halo, or radial disc.
+- `prefers-reduced-motion` disables pulsing while keeping the complete outline steadily visible.
 - Every locator uses one shared 39-segment geographic Taiwan path with a broad north, distinct east/west coasts, and pointed south.
 - The outline and halo use the artwork's own colour/accent pair and align with the baked motif inside a centred image crop.
 - Continuous flashing remains disabled under `prefers-reduced-motion: reduce`; the precise outline stays steadily visible.

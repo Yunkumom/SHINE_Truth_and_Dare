@@ -1,26 +1,27 @@
 # Truth and Dare Directory Guide / 資料夾指南
 
-This is the canonical repository map. Active Development contains preserved earlier lines, the current v23 line, and files required to run, understand, and validate them.
+This is the canonical repository map. Active Development contains preserved earlier lines, the current v24 line, and files required to run, understand, and validate them.
 
-本檔是正式 repository 地圖。作用中的 Development 保留較早版本與目前 v23，以及執行、理解與驗證所需的檔案。
+本檔是正式 repository 地圖。作用中的 Development 保留較早版本與目前 v24，以及執行、理解與驗證所需的檔案。
 
 ## Root / 根目錄
 
 | Path | Purpose / 用途 |
 | --- | --- |
 | `Apps/` | Completed runnable releases. / 完成且可執行的 releases。 |
-| `Apps/Standalone/` | Immutable v15–v23 HTML releases plus v16 runtime assets. / 不可變 v15–v23 HTML 與 v16 runtime assets。 |
+| `Apps/Standalone/` | Immutable v15–v24 HTML releases plus v16 runtime assets. / 不可變 v15–v24 HTML 與 v16 runtime assets。 |
 | `Apps/Public-Web/v2/` | Preserved immutable v19-derived GitHub Pages release. / 保留的 v19 公開版。 |
 | `Apps/Public-Web/v3/` | Preserved immutable v20 GitHub Pages release. / 保留的 v20 公開版。 |
 | `Apps/Public-Web/v4/` | Preserved immutable v21 GitHub Pages release. / 保留的不可變 v21 GitHub Pages release。 |
 | `Apps/Public-Web/v5/` | Preserved immutable v22 GitHub Pages release. / 保留的不可變 v22 GitHub Pages release。 |
-| `Apps/Public-Web/v6/` | Current immutable v23 GitHub Pages release. / 目前不可變 v23 GitHub Pages release。 |
+| `Apps/Public-Web/v6/` | Preserved immutable v23 GitHub Pages release. / 保留的不可變 v23 GitHub Pages release。 |
+| `Apps/Public-Web/v7/` | Current immutable v24 GitHub Pages release with coastline reveal. / 目前不可變 v24 GitHub Pages 海岸線揭示版。 |
 | `Assets/` | Reusable resources and governance. / 可重用資源與治理。 |
 | `Assets/Catalog/` | Licence, attribution, source, and safety records. / 授權、標示、來源與安全紀錄。 |
 | `Assets/Deities/` | High-resolution AI-generated Taiwanese deity source artwork and provenance; `v20-variants/` adds nine action/pose variants. / 高解析台灣神祇原始圖；`v20-variants/` 增加九張動作變體。 |
 | `Assets/Deities/v20-variants/` | v20 source PNG variants with Taiwan motifs hidden in objects, clothing, or scenery. / v20 原始 PNG，將台灣意象藏入器物、服飾或場景。 |
 | `Assets/Deities/v23-taiwan-safe/` | Current 18 PNG sources with precise coloured Taiwan silhouettes inside the visible crop. / 目前 18 張彩色精緻台灣輪廓安全區 PNG。 |
-| `Development/` | Current v23 source, automation, validation, and product contracts. / 目前 v23 source、自動化、驗證與產品合約。 |
+| `Development/` | Current v24 source, automation, validation, and product contracts. / 目前 v24 source、自動化、驗證與產品合約。 |
 | `_meta/` | Purpose, roadmap, handoff, changelog, and reconstruction blueprints. / purpose、roadmap、handoff、changelog 與重建藍圖。 |
 | `_agent/` | Agent workspace guidance. / Agent 工作指引。 |
 | `_agent/Skills/` | Optional project-specific reusable Skills; currently only its index. / 專案 Skills，目前只有索引。 |
@@ -35,12 +36,13 @@ This is the canonical repository map. Active Development contains preserved earl
 | `_pending/v22-generated-development-state_2026-07-22/` | Reproducible v22 dependencies and TypeScript caches, kept outside active Development. / v22 可重建依賴與 cache。 |
 | `_pending/v23-preverification-build_2026-07-22/` | Unpublished v23 output before centred artwork-crop correction; evidence only. / 圖片置中裁切修正前的未發布 v23，僅供驗證。 |
 | `_pending/v23-generated-development-state_2026-07-22/` | Reproducible v23 dependencies and TypeScript caches, kept outside active Development. / v23 可重建依賴與 cache。 |
+| `_pending/v24-generated-development-state_2026-07-23/` | Reproducible v24 dependencies and TypeScript caches, kept outside active Development. / v24 可重建依賴與 cache。 |
 | `.github/` | GitHub-required workflow configuration. / GitHub workflow 設定。 |
 | `.gitattributes` | Cross-platform byte-preservation rules for immutable releases and generated outputs. / 跨平台保留不可變 release 與生成輸出的原始位元組。 |
 | `README.md` | Product summary and quick start. / 產品簡介與快速開始。 |
 | `GUIDE.md` | This canonical directory map. / 本正式目錄地圖。 |
 | `AGENTS.md` | Automated-contributor rules. / 自動化協作者規則。 |
-| `Open Truth and Dare.cmd` | One-click Windows v23 launcher. / Windows v23 一鍵啟動器。 |
+| `Open Truth and Dare.cmd` | One-click Windows v24 launcher. / Windows v24 一鍵啟動器。 |
 
 ## Active Development / 作用中開發
 
@@ -56,14 +58,16 @@ This is the canonical repository map. Active Development contains preserved earl
 | `Development/Source/Public-Web/v4/` | Recipe linking verified v21 source to immutable Public Web v4. / v21 至公開 v4 的產製說明。 |
 | `Development/Source/Main-App-v22/` | Preserved source with direct layout editing, swipe/flip deck, enlarged 63:88 cards, optional contact exchange, and hidden-Taiwan reveal. / 保留的 source，含版面編輯、滑動翻牌、放大卡片、可選聯絡交換及藏台灣。 |
 | `Development/Source/Public-Web/v5/` | Recipe linking verified v22 source to immutable Public Web v5. / v22 至公開 v5 的產製說明。 |
-| `Development/Source/Main-App-v23/` | Current source with 18 Taiwan-safe artworks, canonical coloured reveal, centred crop, and preserved v22 behavior. / 目前 source，含 18 張台灣安全圖、統一彩色揭示與置中裁切。 |
+| `Development/Source/Main-App-v23/` | Preserved source with 18 Taiwan-safe artworks and the earlier reveal. / 保留 source，含 18 張台灣安全圖與舊揭示。 |
 | `Development/Source/Public-Web/v6/` | Recipe linking verified v23 source to immutable Public Web v6. / v23 至公開 v6 的產製說明。 |
+| `Development/Source/Main-App-v24/` | Current source with the Natural Earth-derived transparent dual-stroke Taiwan coastline reveal. / 目前 source，使用 Natural Earth 衍生的透明雙線台灣海岸線揭示。 |
+| `Development/Source/Public-Web/v7/` | Recipe linking verified v24 source to immutable Public Web v7. / v24 至公開 v7 的產製說明。 |
 | `Development/Source/Main-App-v18/src/` | Authored UI, policies, data, styles, and tests. / 人工維護 UI、政策、資料、樣式與測試。 |
 | `Development/Source/Main-App-v18/public/` | PWA manifest, worker template, and owned icons. / PWA manifest、worker template 與自有 icons。 |
 | `Development/Source/Main-App-v18/dist/` | Verified generated v18 PWA output; never hand-edit. / 已驗證 v18 PWA 輸出，不可手改。 |
-| `Development/Automation/Scripts/` | Versioned v18–v23 PWA, standalone, and public-release builders. / 版本化 v18–v23 建置器。 |
-| `Development/Automation/Tools/` | Loopback-only v23 desktop server helper. / 僅限本機的 v23 desktop server。 |
-| `Development/Tests/` | v18–v23, structure, and repository validators. / v18–v23、結構與 repository 驗證。 |
+| `Development/Automation/Scripts/` | Versioned v18–v24 PWA, standalone, and public-release builders. / 版本化 v18–v24 建置器。 |
+| `Development/Automation/Tools/` | Loopback-only v24 desktop server helper. / 僅限本機的 v24 desktop server。 |
+| `Development/Tests/` | v18–v24, structure, and repository validators. / v18–v24、結構與 repository 驗證。 |
 | `Development/Documentation/` | Current product, architecture, animation, content, and PWA contracts. / 目前產品、架構、動畫、內容與 PWA 合約。 |
 
 `node_modules/`, coverage, and TypeScript build caches are not active repository structure. Restore dependencies with `npm ci` only when development is needed.
@@ -82,8 +86,8 @@ The following are recoverable under `_pending/Development-simplification_2026-07
 # Run current desktop release
 .\Open Truth and Dare.cmd
 
-# Restore dependencies and work on current v23 source
-Set-Location Development/Source/Main-App-v23
+# Restore dependencies and work on current v24 source
+Set-Location Development/Source/Main-App-v24
 npm ci
 npm run dev
 npm run typecheck
@@ -94,4 +98,4 @@ npm test
 powershell -ExecutionPolicy Bypass -File Development/Tests/validate_repository.ps1
 ```
 
-Existing release outputs are immutable. New product behavior after v23 requires v24. Uncertain or proposed-deletion content must move to `_pending/` and be indexed; never permanently delete it without explicit human approval.
+Existing release outputs are immutable. New product behavior after v24 requires v25. Uncertain or proposed-deletion content must move to `_pending/` and be indexed; never permanently delete it without explicit human approval.

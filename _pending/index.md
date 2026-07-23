@@ -51,6 +51,12 @@ Preserves the unpublished first v23 standalone and Public Web v6 outputs generat
 Retains reproducible v23 `node_modules` and TypeScript build caches after final source verification so active Development remains uncluttered. Restore dependencies with `npm ci` for later v24 work.
 
 保留 v23 原始碼驗證後可重建的 `node_modules` 與 TypeScript cache，讓作用中的 Development 維持簡潔；日後建立 v24 時可用 `npm ci` 還原依賴。
+
+## `v24-generated-development-state_2026-07-23/`
+
+Retains reproducible v24 `node_modules` and TypeScript build caches after final source verification so active Development remains uncluttered. Restore dependencies with `npm ci` for later v25 work.
+
+保留 v24 原始碼驗證後可重建的 `node_modules` 與 TypeScript cache，讓作用中的 Development 維持簡潔；日後建立 v25 時可用 `npm ci` 還原依賴。
 # Pending / 待處理
 
 ## v19 first-build artifacts / v19 首次建置產物

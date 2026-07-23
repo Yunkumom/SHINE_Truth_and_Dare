@@ -36,7 +36,7 @@ Current desktop data flow:
 Open Truth and Dare.cmd
   -> Development/Automation/Tools/serve_truth_and_dare.ps1
   -> python http.server on 127.0.0.1:8765
-  -> Apps/Standalone/encounter_cards_v23.html
+  -> Apps/Standalone/encounter_cards_v24.html
   -> embedded React/CSS runtime
   -> interactive game
 ```
@@ -44,7 +44,13 @@ Open Truth and Dare.cmd
 ## Security and Privacy Surface / 安全與隱私面
 
 - No environment variables, API credentials, backend, or account session are required.
-- Verified persistent keys are language, font scale, and the non-personal v23 layout document.
+- Verified persistent keys are language, font scale, and the non-personal v24 layout document.
+
+## v24 Taiwan Coastline Architecture / v24 台灣海岸線架構
+
+- `Development/Source/Main-App-v24/src/lib/taiwan-shape.ts` owns one simplified, normalized main-island coastline derived from Natural Earth 1:10m map-unit geometry.
+- `TaiwanReveal.tsx` renders the same path twice: a broad low-opacity glow beneath a crisp coastline. Neither path has a fill.
+- The overlay remains runtime-only and excluded from commemorative-card PNG export; gesture timing, keyboard parity, hotspots, and privacy boundaries are unchanged from v23.
 - User-entered names, contacts, birthdays, notes, and responses must remain client-side unless a future design explicitly changes the boundary.
 
 ## v22 Layout and Gesture Architecture / v22 版面與手勢架構

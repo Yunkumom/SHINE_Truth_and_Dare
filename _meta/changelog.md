@@ -1,5 +1,13 @@
 # Changelog / 變更紀錄
 
+## 2026-07-23 — v24 glowing Taiwan coastline / v24 台灣海岸線發光
+
+- Created v24 without modifying immutable v15–v23 releases.
+- Replaced the old symbol-like locator with a 44-point main-island coastline normalized from Natural Earth 1:10m map-unit geometry.
+- Added transparent broad-glow and crisp-coastline strokes; removed the solid fill, centre dot, oval halo, and radial disc.
+- Preserved long-press timing, keyboard parity, per-artwork placement and colours, reduced motion, privacy, and PNG-export exclusion.
+- Added standalone v24, Public Web v7, versioned builders, focused tests, release validation, documentation, and 430 × 932 browser regression.
+
 ## 2026-07-22 — v23 precise Taiwan artwork / v23 精緻台灣圖像
 
 - Created v23 without modifying immutable v15–v22 releases.

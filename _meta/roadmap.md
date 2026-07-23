@@ -111,3 +111,11 @@
 - [x] Centre game and keepsake image crops so the baked motif and long-press locator stay visible and aligned.
 - [x] Build standalone v23, Public Web v6, versioned automation, asset provenance, and deterministic validation.
 - [ ] Complete physical iPhone checks for all 18 long-press alignments, Share Sheet, install, and offline update.
+
+## Phase 13 — v24 glowing Taiwan coastline / v24 台灣海岸線發光
+
+- [x] Create v24 without modifying immutable v15–v23 releases.
+- [x] Replace the old filled locator, centre dot, and oval halo with a transparent dual-stroke coastline derived from Natural Earth geometry.
+- [x] Enlarge the reveal to 40 × 80 while preserving 600 ms hold, 3-second visibility, keyboard parity, hotspots, and reduced-motion support.
+- [x] Build standalone v24, Public Web v7, versioned automation, documentation, and deterministic validation.
+- [ ] Complete physical iPhone checks for all 18 coastline alignments, Share Sheet, install, and offline update.

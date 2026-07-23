@@ -65,11 +65,6 @@ if (Test-Path -LiteralPath $standalonePath -PathType Leaf) {
 
 $v22Path = Join-Path $projectRoot 'Apps/Standalone/encounter_cards_v22.html'
 Assert-V23Condition ((Get-FileHash -Algorithm SHA256 -LiteralPath $v22Path).Hash -eq '77D42D108877E6E895EF106CE49FF9C94C59DE783A6BA4507221ABA81162EEBB') 'Standalone v22 remains immutable'
-$server = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot 'Development/Automation/Tools/serve_truth_and_dare.ps1')
-Assert-V23Condition ($server -match 'encounter_cards_v23\.html' -and $server -match 'encounter-release.*V23') 'Desktop launcher serves and verifies v23'
-$workflow = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot '.github/workflows/pages.yml')
-Assert-V23Condition ($workflow -match 'Main-App-v23' -and $workflow -match 'Public-Web/v6') 'GitHub Pages workflow builds and publishes v23 as Public Web v6'
-
 if ($failures.Count) { Write-Host "v23 validation failed with $($failures.Count) issue(s)." -ForegroundColor Red; exit 1 }
 Write-Host 'v23 validation passed.' -ForegroundColor Cyan
 exit 0

@@ -31,3 +31,9 @@ The 18 PNG deity sources under `Assets/Deities/` are project-owned AI generation
 The 18 PNG files in `Assets/Deities/v23-taiwan-safe/` are project-owned AI edits generated with OpenAI built-in image generation on 2026-07-22 from the project-owned v19/v20 references. Each edit preserves the deity and composition while replacing any unsafe edge motif with a precise, coloured Taiwan silhouette in a visible garment, weapon, accessory, or prop. No third-party artwork, text, logo, or watermark was added. See the folder README for the complete mapping and prompt contract.
 
 `Assets/Deities/v23-taiwan-safe/` 中的 18 張 PNG，是 2026-07-22 使用 OpenAI 內建圖像生成，以專案自有 v19／v20 圖像為參考建立的專案自有編修。每張保留神祇與構圖，並將可能被切掉的邊緣圖案改為藏在服飾、兵器、配件或器物中、位置可見且形狀精確的彩色台灣輪廓。未加入第三方作品、文字、標誌或浮水印；完整對照與提示合約見該資料夾 README。
+
+## Encounter Cards v24 Taiwan coastline / v24 台灣海岸線
+
+The v24 runtime path is derived from the public-domain Natural Earth 1:10m Admin 0 map-unit geometry. The Taiwan main-island polygon was selected, simplified to 44 points, longitude-corrected, and normalized to the app's 120 × 240 SVG viewBox. It is data-derived geometry rather than third-party artwork.
+
+v24 runtime path 源自 public-domain 的 Natural Earth 1:10m Admin 0 map-unit geometry；選取台灣本島 polygon，簡化為 44 點、校正經度比例並正規化至 120 × 240 SVG viewBox。此為資料衍生幾何，而非第三方作品。
