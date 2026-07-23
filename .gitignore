@@ -81,3 +81,7 @@ node_modules/
 dist/
 build/
 coverage/
+
+# Recoverable v25 local generated state; keep only its annotation in Git
+_pending/v25-generated-development-state_2026-07-24/*
+!_pending/v25-generated-development-state_2026-07-24/README.md

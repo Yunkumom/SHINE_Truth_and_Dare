@@ -1,8 +1,8 @@
 # Development / 開發資料
 
-This directory contains preserved v18–v23 source lines and the current Encounter Cards v24 source line. Historical v17 source, older completed plans, old-version builders, and generated dependencies remain recoverable under `../_pending/`.
+This directory contains preserved v18–v24 source lines and the current Encounter Cards v25 source line. Historical v17 source, older completed plans, old-version builders, and generated dependencies remain recoverable under `../_pending/`.
 
-此目錄保留 v18–v23 source 與目前作用中的 Encounter Cards v24 source。v17 歷史 source、舊版計畫、builder 與可重建依賴仍可由 `../_pending/` 回復。
+此目錄保留 v18–v24 source 與目前作用中的 Encounter Cards v25 source。v17 歷史 source、舊版計畫、builder 與可重建依賴仍可由 `../_pending/` 回復。
 
 ## Structure / 結構
 
@@ -16,12 +16,14 @@ Development/
 ├── Source/Main-App-v22/       # Preserved layout-editor and swipe-deck application
 ├── Source/Main-App-v23/       # Preserved Taiwan-safe artwork application
 ├── Source/Main-App-v24/       # Current precise coastline-reveal application
+├── Source/Main-App-v25/       # Current desktop workspace and portrait-safe application
 ├── Source/Public-Web/v2/      # Preserved Public v2 source recipe
 ├── Source/Public-Web/v3/      # Preserved Public v3 source recipe
 ├── Source/Public-Web/v4/      # Preserved Public v4 source recipe
 ├── Source/Public-Web/v5/      # Preserved Public v5 source recipe
 ├── Source/Public-Web/v6/      # Preserved Public v6 source recipe
 ├── Source/Public-Web/v7/      # Current Public v7 source recipe
+├── Source/Public-Web/v8/      # Current Public v8 source recipe
 ├── Automation/Scripts/        # Versioned v18-v24 builders and exporters
 ├── Automation/Tools/          # Local desktop launcher server
 ├── Tests/                     # Current structure and release contracts
@@ -49,6 +51,8 @@ Development/
 | `Documentation/V23_TAIWAN_ARTWORK_PLAN.md` | Test-first v23 implementation and release plan. / 測試優先的 v23 實作與發行計畫。 |
 | `Documentation/V24_TAIWAN_OUTLINE_DESIGN.md` | Approved v24 coastline-only glow contract. / 已核准的 v24 台灣海岸線發光合約。 |
 | `Documentation/V24_TAIWAN_OUTLINE_PLAN.md` | Test-first v24 implementation and release plan. / 測試優先的 v24 實作與發行計畫。 |
+| `Documentation/V25_DESKTOP_WORKSPACE_DESIGN.md` | Approved v25 desktop/mobile and portrait-safe design. / 已核准 v25 桌機／手機與人像安全設計。 |
+| `Documentation/V25_DESKTOP_WORKSPACE_PLAN.md` | Test-first v25 release plan. / 測試優先 v25 發行計畫。 |
 
 ## Automation and Validation / 自動化與驗證
 
@@ -82,6 +86,15 @@ Development/
 | `Tests/validate_v22.ps1` | Verifies editor, swipe threshold, enlarged card, contact-selectable 63:88 keepsake, release hash, Public Web v5, and launcher. / 驗證編輯器、滑動門檻、放大卡片、聯絡資訊紀念卡、雜湊、公開 v5 與啟動器。 |
 | `Tests/validate_v23.ps1` | Verifies 18 Taiwan-safe sources, canonical coloured reveal, centred crop, hashes, Public Web v6, and launcher. / 驗證 18 張安全圖、統一彩色揭示、置中裁切、雜湊、公開 v6 與啟動器。 |
 | `Tests/validate_v24.ps1` | Verifies coastline geometry, transparent dual strokes, release hashes, Public Web v7, and launcher. / 驗證海岸線、透明雙線、雜湊、公開 v7 與啟動器。 |
+| `Source/Main-App-v25/` | Current v25 source and verified `dist/`. / 目前 v25 source 與已驗證 `dist/`。 |
+| `Source/Main-App-v25/src/` | Authored desktop workspace, responsive phone UI, and focal crop implementation. / 桌面工作區、手機響應與焦點裁切原始碼。 |
+| `Source/Main-App-v25/src/lib/portrait-focus.ts` | Shared browser/PNG portrait-safe cover geometry. / 瀏覽器與 PNG 共用的人像安全裁切。 |
+| `Source/Main-App-v25/src/styles/v25-layout.css` | Desktop two-column and narrow card-header layout. / 桌面雙欄與窄卡名區版面。 |
+| `Source/Public-Web/v8/` | Public Web v8 recipe. / 公開 v8 產製說明。 |
+| `Automation/Scripts/export-standalone-v25.mjs` | Creates immutable standalone v25. / 產生不可變 standalone v25。 |
+| `Automation/Scripts/finalize-pwa-v25.mjs` | Finalizes v25 offline precache. / 完成 v25 離線快取。 |
+| `Automation/Scripts/finalize-public-v8.mjs` | Creates Public Web v8. / 產生公開 v8。 |
+| `Tests/validate_v25.ps1` | Verifies v25 workspace, focal crop, release, launcher, and Pages targets. / 驗證 v25 工作區、裁切、發行與 Pages。 |
 | `Tests/validate_clean_structure.ps1` | Verifies the simplified directory contract. / 驗證精簡後的目錄合約。 |
 | `Tests/validate_repository.ps1` | Runs the complete v18–v24 and structure contract. / 執行完整 v18–v24 與結構驗證。 |
 

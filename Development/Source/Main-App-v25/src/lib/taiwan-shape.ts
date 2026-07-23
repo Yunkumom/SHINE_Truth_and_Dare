@@ -1,0 +1,7 @@
+/**
+ * Taiwan main-island coastline normalized from Natural Earth 1:10m map-unit
+ * geometry, simplified for legibility at the v25 phone reveal size.
+ */
+export const TAIWAN_VIEWBOX = '0 0 120 240'
+
+export const TAIWAN_PATH = 'M108.5 49.6 L103.0 60.0 L103.5 68.1 L107.2 70.9 L104.9 71.4 L104.8 78.0 L101.5 80.9 L101.1 88.4 L92.0 102.5 L93.2 106.2 L80.5 158.9 L68.1 181.1 L55.5 196.3 L51.8 207.3 L49.5 234.0 L45.4 230.7 L42.5 232.0 L37.3 210.4 L18.7 193.1 L21.4 196.4 L16.2 188.3 L10.8 168.9 L12.1 165.7 L6.0 165.0 L8.5 161.8 L6.2 158.5 L11.2 148.2 L9.6 147.0 L12.1 145.8 L9.8 136.2 L13.2 121.4 L41.8 70.4 L48.7 66.8 L61.6 43.5 L79.3 37.0 L82.9 38.3 L80.2 35.5 L82.5 31.9 L90.5 29.4 L97.3 37.1 L107.8 39.7 L109.2 45.2 L114.0 46.4 L108.5 49.6Z'

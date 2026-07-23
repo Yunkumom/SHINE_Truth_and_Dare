@@ -1,5 +1,13 @@
 # Roadmap / 路線圖
 
+## Phase 8 — v25 desktop studio / v25 桌面工作區
+
+- [x] Add synchronized desktop workbench and 430 × 932 phone preview on all screens.
+- [x] Preserve the single-column mobile interaction.
+- [x] Add portrait-safe focus metadata shared by browser and PNG export.
+- [x] Narrow the deity title band and enlarge artwork.
+- [ ] Complete physical iPhone and multi-desktop-browser regression after Pages deployment.
+
 ## Phase 1 — v15 Preservation / v15 保存
 
 - [x] Establish the required governance structure.

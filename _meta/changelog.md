@@ -1,5 +1,12 @@
 # Changelog / 變更紀錄
 
+## 2026-07-24 — v25 desktop workspace and portrait-safe framing
+
+- Added a desktop two-column studio on every screen: enlarged interactive workbench and parameters on the left, synchronized 430 × 932 phone preview on the right.
+- Preserved the mobile single-column experience and v16-inspired visual language.
+- Added shared focal cover geometry for all 18 deity artworks so browser and downloaded PNG cards retain faces and headwear.
+- Narrowed the deity title band, enlarged artwork, and created standalone v25 / Public Web v8.
+
 ## 2026-07-23 — v24 glowing Taiwan coastline / v24 台灣海岸線發光
 
 - Created v24 without modifying immutable v15–v23 releases.

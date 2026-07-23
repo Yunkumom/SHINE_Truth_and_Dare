@@ -2,17 +2,17 @@
 
 ## Current State / 目前狀態
 
-- Active authored source: `Development/Source/Main-App-v24/src/`
-- Verified PWA output: `Development/Source/Main-App-v24/dist/`
-- Current standalone release: `Apps/Standalone/encounter_cards_v24.html`
-- Public release artifact: `Apps/Public-Web/v7/`
+- Active authored source: `Development/Source/Main-App-v25/src/`
+- Verified PWA output: `Development/Source/Main-App-v25/dist/`
+- Current standalone release: `Apps/Standalone/encounter_cards_v25.html`
+- Public release artifact: `Apps/Public-Web/v8/`
 - Desktop entry: `Open Truth and Dare.cmd`
-- Desktop URL: `http://127.0.0.1:8765/Apps/Standalone/encounter_cards_v24.html`
-- Layout contract: 430 × 932 on mobile; whole-shell shrink-to-fit on desktop.
-- v15–v24 standalone releases remain preserved and immutable.
+- Desktop URL: `http://127.0.0.1:8765/Apps/Standalone/encounter_cards_v25.html`
+- Layout contract: 430 × 932 single mobile surface; desktop two-column workbench with an exact synchronized phone preview.
+- v15–v25 standalone releases remain preserved and immutable.
 - Development history and inactive product lines are recoverable at `_pending/Development-simplification_2026-07-19/`.
 - GitHub repository: `https://github.com/Yunkumom/SHINE_Truth_and_Dare`.
-- Public GitHub Pages URL: `https://yunkumom.github.io/SHINE_Truth_and_Dare/`; the local v7 artifact requires a new explicitly authorized GitHub push/deployment before it replaces the currently published release.
+- Public GitHub Pages URL: `https://yunkumom.github.io/SHINE_Truth_and_Dare/`; Pages deploys Public Web v8 from `main`.
 
 ## Simplified Development / 精簡後 Development
 

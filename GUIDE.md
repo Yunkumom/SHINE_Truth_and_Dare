@@ -1,8 +1,8 @@
 # Truth and Dare Directory Guide / 資料夾指南
 
-This is the canonical repository map. Active Development contains preserved earlier lines, the current v24 line, and files required to run, understand, and validate them.
+This is the canonical repository map. Active Development contains preserved earlier lines, the current v25 line, and files required to run, understand, and validate them.
 
-本檔是正式 repository 地圖。作用中的 Development 保留較早版本與目前 v24，以及執行、理解與驗證所需的檔案。
+本檔是正式 repository 地圖。作用中的 Development 保留較早版本與目前 v25，以及執行、理解與驗證所需的檔案。
 
 ## Root / 根目錄
 
@@ -16,6 +16,7 @@ This is the canonical repository map. Active Development contains preserved earl
 | `Apps/Public-Web/v5/` | Preserved immutable v22 GitHub Pages release. / 保留的不可變 v22 GitHub Pages release。 |
 | `Apps/Public-Web/v6/` | Preserved immutable v23 GitHub Pages release. / 保留的不可變 v23 GitHub Pages release。 |
 | `Apps/Public-Web/v7/` | Current immutable v24 GitHub Pages release with coastline reveal. / 目前不可變 v24 GitHub Pages 海岸線揭示版。 |
+| `Apps/Public-Web/v8/` | Current immutable v25 GitHub Pages desktop-workspace release. / 目前不可變 v25 GitHub Pages 桌面工作區版。 |
 | `Assets/` | Reusable resources and governance. / 可重用資源與治理。 |
 | `Assets/Catalog/` | Licence, attribution, source, and safety records. / 授權、標示、來源與安全紀錄。 |
 | `Assets/Deities/` | High-resolution AI-generated Taiwanese deity source artwork and provenance; `v20-variants/` adds nine action/pose variants. / 高解析台灣神祇原始圖；`v20-variants/` 增加九張動作變體。 |
@@ -61,6 +62,9 @@ This is the canonical repository map. Active Development contains preserved earl
 | `Development/Source/Main-App-v23/` | Preserved source with 18 Taiwan-safe artworks and the earlier reveal. / 保留 source，含 18 張台灣安全圖與舊揭示。 |
 | `Development/Source/Public-Web/v6/` | Recipe linking verified v23 source to immutable Public Web v6. / v23 至公開 v6 的產製說明。 |
 | `Development/Source/Main-App-v24/` | Current source with the Natural Earth-derived transparent dual-stroke Taiwan coastline reveal. / 目前 source，使用 Natural Earth 衍生的透明雙線台灣海岸線揭示。 |
+| `Development/Source/Main-App-v25/` | Current source with desktop workspace and portrait-safe focal cropping. / 目前桌面工作區與人像安全焦點裁切 source。 |
+| `Development/Source/Public-Web/v8/` | v25 to Public Web v8 recipe. / v25 至公開 v8 產製說明。 |
+| `_pending/v25-generated-development-state_2026-07-24/` | Reproducible v25 dependencies and caches. / 可重建 v25 依賴與 cache。 |
 | `Development/Source/Public-Web/v7/` | Recipe linking verified v24 source to immutable Public Web v7. / v24 至公開 v7 的產製說明。 |
 | `Development/Source/Main-App-v18/src/` | Authored UI, policies, data, styles, and tests. / 人工維護 UI、政策、資料、樣式與測試。 |
 | `Development/Source/Main-App-v18/public/` | PWA manifest, worker template, and owned icons. / PWA manifest、worker template 與自有 icons。 |

@@ -2,9 +2,9 @@
 
 ## Purpose / 目的
 
-Reconstruct the repository around the active v24 source while preserving standalone v15–v24 releases and keeping retired development material recoverable.
+Reconstruct the repository around the active v25 source while preserving standalone v15–v25 releases and keeping retired development material recoverable.
 
-以作用中 v24 source 重建 repository，同時保留 standalone v15–v24，並讓退出使用的開發資料可回復。
+以作用中 v25 source 重建 repository，同時保留 standalone v15–v25，並讓退出使用的開發資料可回復。
 
 ## Canonical Structure / 正式結構
 

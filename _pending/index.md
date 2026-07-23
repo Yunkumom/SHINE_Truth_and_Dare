@@ -1,5 +1,11 @@
 # Pending Index / 待確認索引
 
+## `v25-generated-development-state_2026-07-24/`
+
+Reproducible v25 dependencies and TypeScript caches retained outside active Development after verification.
+
+v25 驗證後移出作用中 Development 的可重建依賴與 TypeScript cache。
+
 ## `Development-simplification_2026-07-19/`
 
 Moved here intact during the approved conservative Development simplification. The archive retains original `Development/...` relative paths for recovery.
