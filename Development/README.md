@@ -222,3 +222,133 @@ powershell -ExecutionPolicy Bypass -File Development/Tests/validate_repository.p
 Existing v15–v26 generated outputs are preserved. Do not rerun an exporter to overwrite v26; create a new source/output version for new behavior. Direct `file://` execution is unsupported for the complete contract; use `Open Truth and Dare.cmd`.
 
 既有 v15–v26 生成成品已保存。不得覆寫 v26；新行為必須建立新的 source/output 版本。完整合約不支援直接使用 `file://`，請使用根目錄的 `Open Truth and Dare.cmd`。
+
+## Main-App-v27 additions / v27 新增內容
+
+`Source/Main-App-v27/` is the current v16-inspired entrance-layout release. Its desktop editor, phone preview, privacy boundary, and gameplay are inherited from v26; `src/styles/v27-layout.css` owns the unified setup palette and safe typography. `Source/Public-Web/v10/` is the public recipe.
+
+### v27 retained-file annotations / v27 檔案註記
+
+- `Source/Main-App-v27/eslint.config.js` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/index.html` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/package-lock.json` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/package.json` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/README.md` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/tsconfig.app.json` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/tsconfig.json` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/tsconfig.node.json` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/vite.config.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/public/manifest.webmanifest` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/public/service-worker.js` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/public/assets/deities/baosheng-dadi-taiwan.png` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/public/assets/deities/baosheng-dadi-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/public/assets/deities/guansheng-dijun-taiwan.png` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/public/assets/deities/guansheng-dijun-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/public/assets/deities/guanyin-taiwan.png` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/public/assets/deities/guanyin-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/public/assets/deities/mazu-taiwan.png` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/public/assets/deities/mazu-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/public/assets/deities/tudigong-taiwan.png` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/public/assets/deities/tudigong-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/public/assets/deities/wenchang-dijun-taiwan.png` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/public/assets/deities/wenchang-dijun-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/public/assets/deities/xuantian-shangdi-taiwan.png` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/public/assets/deities/xuantian-shangdi-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/public/assets/deities/yue-lao-taiwan.png` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/public/assets/deities/yue-lao-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/public/assets/deities/zhusheng-niangniang-taiwan.png` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/public/assets/deities/zhusheng-niangniang-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/public/assets/icons/icon-192.svg` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/public/assets/icons/icon-512.svg` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/App.test.tsx` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/App.tsx` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/main.tsx` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/types.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/vite-env.d.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/baosheng-apothecary-taiwan-safe.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/baosheng-dadi-apothecary-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/baosheng-dadi-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/baosheng-herbs-taiwan-safe.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/guansheng-courtyard-taiwan-safe.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/guansheng-dijun-courtyard-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/guansheng-dijun-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/guansheng-guardian-taiwan-safe.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/guanyin-lotus-taiwan-safe.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/guanyin-lotus-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/guanyin-moon-taiwan-safe.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/guanyin-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/mazu-lantern-taiwan-safe.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/mazu-lantern-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/mazu-sea-taiwan-safe.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/mazu-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/tudigong-harvest-taiwan-safe.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/tudigong-harvest-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/tudigong-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/tudigong-throne-taiwan-safe.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/wenchang-book-taiwan-safe.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/wenchang-dijun-study-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/wenchang-dijun-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/wenchang-study-taiwan-safe.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/xuantian-sea-taiwan-safe.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/xuantian-shangdi-stair-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/xuantian-shangdi-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/xuantian-stair-taiwan-safe.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/yue-lao-banyan-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/yue-lao-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/yuelao-banyan-taiwan-safe.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/yuelao-book-taiwan-safe.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/zhusheng-lamp-taiwan-safe.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/zhusheng-niangniang-lamp-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/zhusheng-niangniang-taiwan.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/assets/deities/zhusheng-tablet-taiwan-safe.webp` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/components/EditableBlock.tsx` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/components/LayoutEditor.test.tsx` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/components/LayoutEditor.tsx` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/components/SwipeDeck.test.tsx` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/components/SwipeDeck.tsx` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/components/TaiwanReveal.test.tsx` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/components/TaiwanReveal.tsx` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/data/blessings.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/data/cards.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/layout/layout-model.test.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/layout/layout-model.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/lib/age-gate.test.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/lib/age-gate.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/lib/deity-art.test.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/lib/deity-art.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/lib/device-frame.test.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/lib/device-frame.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/lib/encounter.test.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/lib/encounter.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/lib/game.test.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/lib/game.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/lib/portrait-focus.test.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/lib/portrait-focus.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/lib/preferences.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/lib/share.test.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/lib/share.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/lib/swipe-deck.test.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/lib/swipe-deck.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/lib/taiwan-shape.test.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/lib/taiwan-shape.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/lib/viewport-scale.test.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/lib/viewport-scale.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/presentation/presentation-model.test.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/presentation/presentation-model.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/styles/app.css` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/styles/layout-editor.css` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/styles/taiwan-reveal.css` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/styles/v27-layout.css` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/styles/v27.css` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/src/test/setup.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/tests/artwork-crop-css.test.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/tests/desktop-workspace-css.test.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/tests/setup-layout-css.test.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Main-App-v27/tests/taiwan-reveal-css.test.ts` — v27 source, configuration, asset, or deterministic test retained for the current release.
+- `Source/Public-Web/v10/README.md` — v27 to Public Web v10 release recipe.
+- `Automation/Scripts/export-standalone-v27.mjs` — creates immutable v27 standalone output.
+- `Automation/Scripts/finalize-pwa-v27.mjs` — finalizes v27 offline precache.
+- `Automation/Scripts/finalize-public-v10.mjs` — creates immutable Public Web v10.
+- `Tests/validate_v27.ps1` — verifies the v27 release boundary.
+- `Documentation/V27_ENTRANCE_LAYOUT_DESIGN.md` — approved setup visual design.
+- `Documentation/V27_ENTRANCE_LAYOUT_PLAN.md` — test-first v27 release plan.

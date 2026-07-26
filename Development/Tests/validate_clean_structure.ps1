@@ -21,8 +21,8 @@ $unexpectedRootEntries = Get-ChildItem -LiteralPath $projectRoot -Force | Where-
 Assert-StructureCondition ($unexpectedRootEntries.Count -eq 0) 'Root contains only approved product, governance, and platform entries'
 
 $requiredDirectories = @(
-    'Apps/Standalone', 'Apps/Public-Web/v2', 'Apps/Public-Web/v3', 'Apps/Public-Web/v4', 'Apps/Public-Web/v5', 'Apps/Public-Web/v6', 'Apps/Public-Web/v7', 'Apps/Public-Web/v8', 'Apps/Public-Web/v9', 'Assets/Catalog', 'Assets/Deities', 'Assets/Deities/v20-variants', 'Assets/Deities/v23-taiwan-safe',
-    'Development/Source/Main-App-v18', 'Development/Source/Main-App-v19', 'Development/Source/Main-App-v20', 'Development/Source/Main-App-v21', 'Development/Source/Main-App-v22', 'Development/Source/Main-App-v23', 'Development/Source/Main-App-v24', 'Development/Source/Main-App-v25', 'Development/Source/Main-App-v26', 'Development/Source/Public-Web/v2', 'Development/Source/Public-Web/v3', 'Development/Source/Public-Web/v4', 'Development/Source/Public-Web/v5', 'Development/Source/Public-Web/v6', 'Development/Source/Public-Web/v7', 'Development/Source/Public-Web/v8', 'Development/Source/Public-Web/v9', 'Development/Automation/Scripts', 'Development/Automation/Tools',
+    'Apps/Standalone', 'Apps/Public-Web/v2', 'Apps/Public-Web/v3', 'Apps/Public-Web/v4', 'Apps/Public-Web/v5', 'Apps/Public-Web/v6', 'Apps/Public-Web/v7', 'Apps/Public-Web/v8', 'Apps/Public-Web/v9', 'Apps/Public-Web/v10', 'Assets/Catalog', 'Assets/Deities', 'Assets/Deities/v20-variants', 'Assets/Deities/v23-taiwan-safe',
+    'Development/Source/Main-App-v18', 'Development/Source/Main-App-v19', 'Development/Source/Main-App-v20', 'Development/Source/Main-App-v21', 'Development/Source/Main-App-v22', 'Development/Source/Main-App-v23', 'Development/Source/Main-App-v24', 'Development/Source/Main-App-v25', 'Development/Source/Main-App-v26', 'Development/Source/Main-App-v27', 'Development/Source/Public-Web/v2', 'Development/Source/Public-Web/v3', 'Development/Source/Public-Web/v4', 'Development/Source/Public-Web/v5', 'Development/Source/Public-Web/v6', 'Development/Source/Public-Web/v7', 'Development/Source/Public-Web/v8', 'Development/Source/Public-Web/v9', 'Development/Source/Public-Web/v10', 'Development/Automation/Scripts', 'Development/Automation/Tools',
     'Development/Tests', 'Development/Documentation',
     '_meta', '_agent', '_agent/Skills', '_human', '_pending',
     '_pending/Development-simplification_2026-07-19', '_pending/v24-generated-development-state_2026-07-23', '_pending/v25-generated-development-state_2026-07-24', '_pending/v26-generated-development-state_2026-07-26'
@@ -51,8 +51,8 @@ $missingDevelopmentEntries = $expectedDevelopmentEntries | Where-Object { $_ -no
 Assert-StructureCondition ($unexpectedDevelopmentEntries.Count -eq 0 -and $missingDevelopmentEntries.Count -eq 0) 'Development has only the simplified current-source, automation, tests, documentation, and README surface'
 
 $sourceEntries = @(Get-ChildItem -LiteralPath (Join-Path $developmentRoot 'Source') -Force | Select-Object -ExpandProperty Name)
-$expectedSourceEntries = @('Main-App-v18','Main-App-v19','Main-App-v20','Main-App-v21','Main-App-v22','Main-App-v23','Main-App-v24','Main-App-v25','Main-App-v26','Public-Web')
-Assert-StructureCondition ($sourceEntries.Count -eq $expectedSourceEntries.Count -and @($sourceEntries | Where-Object { $_ -notin $expectedSourceEntries }).Count -eq 0) 'Development Source contains preserved v18-v25, active v26, and versioned Public Web recipes'
+$expectedSourceEntries = @('Main-App-v18','Main-App-v19','Main-App-v20','Main-App-v21','Main-App-v22','Main-App-v23','Main-App-v24','Main-App-v25','Main-App-v26','Main-App-v27','Public-Web')
+Assert-StructureCondition ($sourceEntries.Count -eq $expectedSourceEntries.Count -and @($sourceEntries | Where-Object { $_ -notin $expectedSourceEntries }).Count -eq 0) 'Development Source contains preserved v18-v26, active v27, and versioned Public Web recipes'
 
 $generatedClutter = Get-ChildItem -LiteralPath $developmentRoot -Recurse -Force | Where-Object {
     $_.Name -eq 'node_modules' -or $_.Name -eq 'coverage' -or $_.Name -like '*.tsbuildinfo'
@@ -74,7 +74,8 @@ if (Test-Path -LiteralPath $developmentReadmePath -PathType Leaf) {
         $_.FullName -notmatch '[\\/]Source[\\/]Main-App-v24[\\/]' -and
         $_.FullName -notmatch '[\\/]Source[\\/]Main-App-v25[\\/]' -and
         $_.FullName -notmatch '[\\/]Source[\\/]Main-App-v26[\\/]' -and
-        $_.FullName -notmatch '[\\/]Source[\\/]Public-Web[\\/]v[23456789][\\/]'
+        $_.FullName -notmatch '[\\/]Source[\\/]Main-App-v27[\\/]' -and
+        $_.FullName -notmatch '[\\/]Source[\\/]Public-Web[\\/]v(10|[23456789])[\\/]'
     }
     foreach ($file in $retainedFiles) {
         $relativePath = $file.FullName.Substring($developmentRoot.Length + 1).Replace('\', '/')

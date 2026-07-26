@@ -97,3 +97,6 @@ Retains reproducible v24 `node_modules` and TypeScript build caches after final 
 # v26 generated development state — 2026-07-26
 
 - `_pending/v26-generated-development-state_2026-07-26/` contains recoverable local-only v26 dependency/cache state and a superseded browser-checkpoint build. Its README is tracked; generated contents are ignored.
+
+- `_pending/v27-failed-dependency-restore_2026-07-26/` — recoverable partial npm restore after a lockfile checksum substitution was detected; not product source.
+- `_pending/v27-generated-development-state_2026-07-26/` — reproducible v27 dependencies and TypeScript caches moved out of active Development after verification.

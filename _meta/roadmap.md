@@ -1,12 +1,12 @@
 # Roadmap / 路線圖
 
-## Phase 9 — v26 physical-ratio frame and card presentation editor
+## Phase 9 — v27 physical-ratio frame and card presentation editor
 
 - [x] Preserve the 430 × 932 mobile canvas inside a desktop-only 445 × 932 iPhone Pro Max frame derived from 78.0 × 163.4 mm.
 - [x] Add per-artwork focus/zoom and shared artwork-height controls.
 - [x] Add blessing font, line-height, height, padding, and position controls with privacy-safe persistence.
 - [x] Synchronize interactive card, keepsake, desktop phone preview, and PNG presentation.
-- [x] Build standalone v26 and Public Web v9 with deterministic validation.
+- [x] Build standalone v27 and Public Web v10 with deterministic validation.
 - [ ] Complete physical iPhone and multi-browser regression after deployment.
 
 ## Phase 8 — v25 desktop studio / v25 桌面工作區

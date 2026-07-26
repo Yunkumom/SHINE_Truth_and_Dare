@@ -48,9 +48,11 @@ $requiredFiles = @(
     'Development/Source/Main-App-v25/src/App.tsx', 'Development/Source/Main-App-v25/src/lib/portrait-focus.ts', 'Development/Source/Main-App-v25/dist/index.html',
     'Development/Source/Main-App-v26/package.json', 'Development/Source/Main-App-v26/package-lock.json',
     'Development/Source/Main-App-v26/src/App.tsx', 'Development/Source/Main-App-v26/src/lib/device-frame.ts', 'Development/Source/Main-App-v26/src/presentation/presentation-model.ts', 'Development/Source/Main-App-v26/dist/index.html',
+    'Development/Source/Main-App-v27/package.json', 'Development/Source/Main-App-v27/package-lock.json',
+    'Development/Source/Main-App-v27/src/App.tsx', 'Development/Source/Main-App-v27/src/styles/v27-layout.css', 'Development/Source/Main-App-v27/dist/index.html',
     'Development/Automation/Scripts/finalize-pwa-v18.mjs', 'Development/Automation/Scripts/export-standalone-v18.mjs',
     'Development/Automation/Tools/serve_truth_and_dare.ps1',
-    'Development/Tests/validate_clean_structure.ps1', 'Development/Tests/validate_v18.ps1', 'Development/Tests/validate_v19.ps1', 'Development/Tests/validate_v20.ps1', 'Development/Tests/validate_v21.ps1', 'Development/Tests/validate_v22.ps1', 'Development/Tests/validate_v23.ps1', 'Development/Tests/validate_v24.ps1', 'Development/Tests/validate_v25.ps1', 'Development/Tests/validate_v26.ps1', 'Development/Tests/validate_repository.ps1',
+    'Development/Tests/validate_clean_structure.ps1', 'Development/Tests/validate_v18.ps1', 'Development/Tests/validate_v19.ps1', 'Development/Tests/validate_v20.ps1', 'Development/Tests/validate_v21.ps1', 'Development/Tests/validate_v22.ps1', 'Development/Tests/validate_v23.ps1', 'Development/Tests/validate_v24.ps1', 'Development/Tests/validate_v25.ps1', 'Development/Tests/validate_v26.ps1', 'Development/Tests/validate_v27.ps1', 'Development/Tests/validate_repository.ps1',
     'Assets/Catalog/asset-licenses.md', 'Assets/Catalog/content-sources.json',
     '_pending/Development-simplification_2026-07-19/README.md', '_pending/v24-generated-development-state_2026-07-23/README.md'
 )
@@ -131,6 +133,11 @@ $v26ValidationOutput = & powershell -NoProfile -ExecutionPolicy Bypass -File (Jo
 $v26ValidationExit = $LASTEXITCODE
 $v26ValidationOutput | ForEach-Object { Write-Host $_ }
 Assert-RepositoryCondition ($v26ValidationExit -eq 0) 'Focused v26 contract validation passes'
+
+$v27ValidationOutput = & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'validate_v27.ps1') 2>&1
+$v27ValidationExit = $LASTEXITCODE
+$v27ValidationOutput | ForEach-Object { Write-Host $_ }
+Assert-RepositoryCondition ($v27ValidationExit -eq 0) 'Focused v27 contract validation passes'
 
 $cleanStructureOutput = & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'validate_clean_structure.ps1') 2>&1
 $cleanStructureExit = $LASTEXITCODE

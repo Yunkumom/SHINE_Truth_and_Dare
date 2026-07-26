@@ -48,10 +48,8 @@ Assert-V26Condition ((Get-FileHash -Algorithm SHA256 -LiteralPath (Join-Path $pr
 Assert-V26Condition ((Get-FileHash -Algorithm SHA256 -LiteralPath (Join-Path $projectRoot 'Apps/Standalone/encounter_cards_v23.html')).Hash -eq 'F586D801E53563F16AAB2B1546523E11CF1B3F956B08F540CCF2FF3E9C01B219') 'Standalone v23 remains immutable'
 Assert-V26Condition ((Get-FileHash -Algorithm SHA256 -LiteralPath (Join-Path $projectRoot 'Apps/Standalone/encounter_cards_v25.html')).Hash -eq 'FB01D971568500AA66C827FD4B3F9C769C9308167EC4B063F951DC53501E82D7') 'Standalone v25 remains immutable'
 
-$server = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot 'Development/Automation/Tools/serve_truth_and_dare.ps1')
-Assert-V26Condition ($server -match 'encounter_cards_v26\.html' -and $server -match 'encounter-release.*V26') 'Desktop launcher serves and verifies v26'
-$workflow = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot '.github/workflows/pages.yml')
-Assert-V26Condition ($workflow -match 'Main-App-v26' -and $workflow -match 'Public-Web/v9') 'GitHub Pages workflow builds and publishes v26 as Public Web v9'
+$v26Recipe = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot 'Development/Source/Public-Web/v9/README.md')
+Assert-V26Condition ($v26Recipe -match 'v26' -and $v26Recipe -match 'v9') 'Preserved v26 release recipe records standalone and Public Web v9'
 $app = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot 'Development/Source/Main-App-v26/src/App.tsx')
 $layoutCss = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot 'Development/Source/Main-App-v26/src/styles/v26-layout.css')
 Assert-V26Condition ($app -match 'desktop-workspace' -and $app -match 'portraitObjectPosition') 'Desktop synchronized workspace and portrait-safe browser rendering are present'
