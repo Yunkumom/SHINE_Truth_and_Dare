@@ -1,5 +1,11 @@
 # Pending Index / 待確認索引
 
+## `v28-generated-development-state_2026-07-26/`
+
+Reproducible v28 dependencies and TypeScript caches retained outside active Development after verification.
+
+v28 驗證後移出作用中 Development 的可重建依賴與 TypeScript cache。
+
 ## `v25-generated-development-state_2026-07-24/`
 
 Reproducible v25 dependencies and TypeScript caches retained outside active Development after verification.

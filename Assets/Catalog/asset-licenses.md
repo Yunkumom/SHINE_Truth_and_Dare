@@ -37,3 +37,9 @@ The 18 PNG files in `Assets/Deities/v23-taiwan-safe/` are project-owned AI edits
 The v24 runtime path is derived from the public-domain Natural Earth 1:10m Admin 0 map-unit geometry. The Taiwan main-island polygon was selected, simplified to 44 points, longitude-corrected, and normalized to the app's 120 × 240 SVG viewBox. It is data-derived geometry rather than third-party artwork.
 
 v24 runtime path 源自 public-domain 的 Natural Earth 1:10m Admin 0 map-unit geometry；選取台灣本島 polygon，簡化為 44 點、校正經度比例並正規化至 120 × 240 SVG viewBox。此為資料衍生幾何，而非第三方作品。
+
+## Encounter Cards v28 Baosheng Dadi wide artwork / v28 保生大帝寬構圖
+
+`Assets/Deities/baosheng-dadi-apothecary-wide-taiwan-safe-v28.png` is a project-owned AI generation created with OpenAI built-in image generation on 2026-07-26 from the project-owned v23 Baosheng Dadi reference. The prompt preserves the refined rainy apothecary direction while widening the scene, protecting the full crown and face, and placing one complete turquoise Taiwan enamel on the medicine mortar. No third-party artwork, text, logo, or watermark was added.
+
+此 PNG 於 2026-07-26 使用 OpenAI 內建圖像生成，以專案自有 v23 保生大帝圖為參考建立。構圖增加四周場景與頭冠安全留白，並在藥缽上放置一個完整的青綠台灣琺瑯；未加入第三方作品、文字、標誌或浮水印。

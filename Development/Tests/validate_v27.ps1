@@ -48,10 +48,8 @@ Assert-V27Condition ((Get-FileHash -Algorithm SHA256 -LiteralPath (Join-Path $pr
 Assert-V27Condition ((Get-FileHash -Algorithm SHA256 -LiteralPath (Join-Path $projectRoot 'Apps/Standalone/encounter_cards_v23.html')).Hash -eq 'F586D801E53563F16AAB2B1546523E11CF1B3F956B08F540CCF2FF3E9C01B219') 'Standalone v23 remains immutable'
 Assert-V27Condition ((Get-FileHash -Algorithm SHA256 -LiteralPath (Join-Path $projectRoot 'Apps/Standalone/encounter_cards_v25.html')).Hash -eq 'FB01D971568500AA66C827FD4B3F9C769C9308167EC4B063F951DC53501E82D7') 'Standalone v25 remains immutable'
 
-$server = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot 'Development/Automation/Tools/serve_truth_and_dare.ps1')
-Assert-V27Condition ($server -match 'encounter_cards_v27\.html' -and $server -match 'encounter-release.*V27') 'Desktop launcher serves and verifies v27'
-$workflow = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot '.github/workflows/pages.yml')
-Assert-V27Condition ($workflow -match 'Main-App-v27' -and $workflow -match 'Public-Web/v10') 'GitHub Pages workflow builds and publishes v27 as Public Web v10'
+$publicV10 = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot 'Apps/Public-Web/v10/index.html')
+Assert-V27Condition ($publicV10 -match 'Encounter Cards v27') 'Preserved Public Web v10 identifies v27'
 $app = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot 'Development/Source/Main-App-v27/src/App.tsx')
 $layoutCss = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot 'Development/Source/Main-App-v27/src/styles/v27-layout.css')
 Assert-V27Condition ($app -match 'desktop-workspace' -and $app -match 'portraitObjectPosition') 'Desktop synchronized workspace and portrait-safe browser rendering are present'

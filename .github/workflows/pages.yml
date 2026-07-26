@@ -16,17 +16,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 22, cache: npm, cache-dependency-path: Development/Source/Main-App-v27/package-lock.json }
+        with: { node-version: 22, cache: npm, cache-dependency-path: Development/Source/Main-App-v28/package-lock.json }
       - run: npm ci
-        working-directory: Development/Source/Main-App-v27
+        working-directory: Development/Source/Main-App-v28
       - run: npm test && npm run typecheck && npm run build
-        working-directory: Development/Source/Main-App-v27
-      - name: Verify committed immutable v27 and v10 outputs
+        working-directory: Development/Source/Main-App-v28
+      - name: Verify committed immutable v28 and v11 outputs
         run: |
-          grep -q "Encounter Cards v27" Apps/Public-Web/v10/index.html
-          grep -q "encounter-cards-v27-" Apps/Public-Web/v10/service-worker.js
+          grep -q "Encounter Cards v28" Apps/Public-Web/v11/index.html
+          grep -q "encounter-cards-v28-" Apps/Public-Web/v11/service-worker.js
       - uses: actions/upload-pages-artifact@v3
-        with: { path: Apps/Public-Web/v10 }
+        with: { path: Apps/Public-Web/v11 }
   deploy:
     environment:
       name: github-pages

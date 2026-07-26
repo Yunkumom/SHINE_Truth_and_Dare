@@ -1,5 +1,13 @@
 # Roadmap / 路線圖
 
+## Phase 14 — v28 Baosheng Dadi safe artwork
+
+- [x] Regenerate the Baosheng Dadi apothecary artwork with a wider source composition and complete crown clearance.
+- [x] Keep the complete Taiwan enamel inside the central card-safe crop.
+- [x] Recalibrate the default portrait focus and long-press coastline locator.
+- [x] Create v28 source, standalone v28, and Public Web v11 without modifying v27.
+- [ ] Complete physical iPhone comparison of the baked Taiwan enamel and glowing coastline.
+
 ## Phase 9 — v27 physical-ratio frame and card presentation editor
 
 - [x] Preserve the 430 × 932 mobile canvas inside a desktop-only 445 × 932 iPhone Pro Max frame derived from 78.0 × 163.4 mm.

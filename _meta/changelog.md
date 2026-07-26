@@ -1,5 +1,12 @@
 # Changelog / 變更紀錄
 
+## 2026-07-26 — v28 Baosheng Dadi safe artwork
+
+- Generated a new project-owned, wide environmental portrait of Baosheng Dadi in the rainy apothecary style.
+- Preserved generous headroom around the complete crown and added more surrounding scene than the card crop displays.
+- Placed a complete turquoise Taiwan enamel on the medicine mortar and recalibrated the long-press coastline locator.
+- Created standalone v28, Public Web v11, versioned automation, documentation, and focused validation.
+
 ## 2026-07-26 — v27 physical-ratio phone frame and card editor
 
 - Added a 445 × 932 desktop iPhone Pro Max chassis derived from the supplied 78.0 × 163.4 mm ratio while preserving the 430 × 932 mobile canvas.
