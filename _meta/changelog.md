@@ -1,5 +1,12 @@
 # Changelog / 變更紀錄
 
+## 2026-07-26 — v26 physical-ratio phone frame and card editor
+
+- Added a 445 × 932 desktop iPhone Pro Max chassis derived from the supplied 78.0 × 163.4 mm ratio while preserving the 430 × 932 mobile canvas.
+- Added privacy-safe per-artwork crop/zoom and complete blessing typography/geometry controls.
+- Synchronized settings across draw cards, keepsake preview, phone preview, and PNG export.
+- Created standalone v26, Public Web v9, versioned automation, documentation, and focused validation.
+
 ## 2026-07-24 — v25 desktop workspace and portrait-safe framing
 
 - Added a desktop two-column studio on every screen: enlarged interactive workbench and parameters on the left, synchronized 430 × 932 phone preview on the right.

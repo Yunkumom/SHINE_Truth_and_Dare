@@ -94,3 +94,6 @@ Retains reproducible v24 `node_modules` and TypeScript build caches after final 
 
 - `_pending/v21-generated-development-state_2026-07-22/` retains the reproducible v21 `node_modules` directory and TypeScript build caches after final verification so active Development remains uncluttered. Restore with `npm ci` instead of treating these files as authored source.
 - 此目錄保留 v21 最終驗證後可重建的依賴與 TypeScript cache，讓作用中的 Development 維持簡潔；正常情況請用 `npm ci` 還原。
+# v26 generated development state — 2026-07-26
+
+- `_pending/v26-generated-development-state_2026-07-26/` contains recoverable local-only v26 dependency/cache state and a superseded browser-checkpoint build. Its README is tracked; generated contents are ignored.

@@ -21,11 +21,11 @@ $unexpectedRootEntries = Get-ChildItem -LiteralPath $projectRoot -Force | Where-
 Assert-StructureCondition ($unexpectedRootEntries.Count -eq 0) 'Root contains only approved product, governance, and platform entries'
 
 $requiredDirectories = @(
-    'Apps/Standalone', 'Apps/Public-Web/v2', 'Apps/Public-Web/v3', 'Apps/Public-Web/v4', 'Apps/Public-Web/v5', 'Apps/Public-Web/v6', 'Apps/Public-Web/v7', 'Apps/Public-Web/v8', 'Assets/Catalog', 'Assets/Deities', 'Assets/Deities/v20-variants', 'Assets/Deities/v23-taiwan-safe',
-    'Development/Source/Main-App-v18', 'Development/Source/Main-App-v19', 'Development/Source/Main-App-v20', 'Development/Source/Main-App-v21', 'Development/Source/Main-App-v22', 'Development/Source/Main-App-v23', 'Development/Source/Main-App-v24', 'Development/Source/Main-App-v25', 'Development/Source/Public-Web/v2', 'Development/Source/Public-Web/v3', 'Development/Source/Public-Web/v4', 'Development/Source/Public-Web/v5', 'Development/Source/Public-Web/v6', 'Development/Source/Public-Web/v7', 'Development/Source/Public-Web/v8', 'Development/Automation/Scripts', 'Development/Automation/Tools',
+    'Apps/Standalone', 'Apps/Public-Web/v2', 'Apps/Public-Web/v3', 'Apps/Public-Web/v4', 'Apps/Public-Web/v5', 'Apps/Public-Web/v6', 'Apps/Public-Web/v7', 'Apps/Public-Web/v8', 'Apps/Public-Web/v9', 'Assets/Catalog', 'Assets/Deities', 'Assets/Deities/v20-variants', 'Assets/Deities/v23-taiwan-safe',
+    'Development/Source/Main-App-v18', 'Development/Source/Main-App-v19', 'Development/Source/Main-App-v20', 'Development/Source/Main-App-v21', 'Development/Source/Main-App-v22', 'Development/Source/Main-App-v23', 'Development/Source/Main-App-v24', 'Development/Source/Main-App-v25', 'Development/Source/Main-App-v26', 'Development/Source/Public-Web/v2', 'Development/Source/Public-Web/v3', 'Development/Source/Public-Web/v4', 'Development/Source/Public-Web/v5', 'Development/Source/Public-Web/v6', 'Development/Source/Public-Web/v7', 'Development/Source/Public-Web/v8', 'Development/Source/Public-Web/v9', 'Development/Automation/Scripts', 'Development/Automation/Tools',
     'Development/Tests', 'Development/Documentation',
     '_meta', '_agent', '_agent/Skills', '_human', '_pending',
-    '_pending/Development-simplification_2026-07-19', '_pending/v24-generated-development-state_2026-07-23', '_pending/v25-generated-development-state_2026-07-24'
+    '_pending/Development-simplification_2026-07-19', '_pending/v24-generated-development-state_2026-07-23', '_pending/v25-generated-development-state_2026-07-24', '_pending/v26-generated-development-state_2026-07-26'
 )
 foreach ($relativePath in $requiredDirectories) {
     Assert-StructureCondition (Test-Path -LiteralPath (Join-Path $projectRoot $relativePath) -PathType Container) "Required directory exists: $relativePath"
@@ -34,10 +34,10 @@ foreach ($relativePath in $requiredDirectories) {
 $requiredFiles = @(
     'GUIDE.md', 'Apps/README.md', 'Assets/README.md', 'Assets/Catalog/README.md',
     'Development/README.md', 'Development/Documentation/README.md',
-    'Development/Source/Main-App-v18/package.json', 'Development/Source/Main-App-v19/package.json', 'Development/Source/Main-App-v20/package.json', 'Development/Source/Main-App-v21/package.json', 'Development/Source/Main-App-v22/package.json', 'Development/Source/Main-App-v23/package.json', 'Development/Source/Main-App-v24/package.json', 'Development/Source/Main-App-v25/package.json', 'Development/Source/Public-Web/v2/README.md', 'Development/Source/Public-Web/v3/README.md', 'Development/Source/Public-Web/v4/README.md', 'Development/Source/Public-Web/v5/README.md', 'Development/Source/Public-Web/v6/README.md', 'Development/Source/Public-Web/v7/README.md', 'Development/Source/Public-Web/v8/README.md', 'Development/Automation/Tools/serve_truth_and_dare.ps1',
-    'Development/Tests/validate_clean_structure.ps1', 'Development/Tests/validate_v18.ps1', 'Development/Tests/validate_v19.ps1', 'Development/Tests/validate_v20.ps1', 'Development/Tests/validate_v21.ps1', 'Development/Tests/validate_v22.ps1', 'Development/Tests/validate_v23.ps1', 'Development/Tests/validate_v24.ps1', 'Development/Tests/validate_v25.ps1', 'Development/Tests/validate_repository.ps1',
+    'Development/Source/Main-App-v18/package.json', 'Development/Source/Main-App-v19/package.json', 'Development/Source/Main-App-v20/package.json', 'Development/Source/Main-App-v21/package.json', 'Development/Source/Main-App-v22/package.json', 'Development/Source/Main-App-v23/package.json', 'Development/Source/Main-App-v24/package.json', 'Development/Source/Main-App-v25/package.json', 'Development/Source/Main-App-v26/package.json', 'Development/Source/Public-Web/v2/README.md', 'Development/Source/Public-Web/v3/README.md', 'Development/Source/Public-Web/v4/README.md', 'Development/Source/Public-Web/v5/README.md', 'Development/Source/Public-Web/v6/README.md', 'Development/Source/Public-Web/v7/README.md', 'Development/Source/Public-Web/v8/README.md', 'Development/Source/Public-Web/v9/README.md', 'Development/Automation/Tools/serve_truth_and_dare.ps1',
+    'Development/Tests/validate_clean_structure.ps1', 'Development/Tests/validate_v18.ps1', 'Development/Tests/validate_v19.ps1', 'Development/Tests/validate_v20.ps1', 'Development/Tests/validate_v21.ps1', 'Development/Tests/validate_v22.ps1', 'Development/Tests/validate_v23.ps1', 'Development/Tests/validate_v24.ps1', 'Development/Tests/validate_v25.ps1', 'Development/Tests/validate_v26.ps1', 'Development/Tests/validate_repository.ps1',
     '_meta/README.md', '_agent/README.md', '_agent/Skills/README.md', '_human/README.md',
-    '_pending/README.md', '_pending/index.md', '_pending/Development-simplification_2026-07-19/README.md', '_pending/v24-generated-development-state_2026-07-23/README.md', '_pending/v25-generated-development-state_2026-07-24/README.md'
+    '_pending/README.md', '_pending/index.md', '_pending/Development-simplification_2026-07-19/README.md', '_pending/v24-generated-development-state_2026-07-23/README.md', '_pending/v25-generated-development-state_2026-07-24/README.md', '_pending/v26-generated-development-state_2026-07-26/README.md'
 )
 foreach ($relativePath in $requiredFiles) {
     Assert-StructureCondition (Test-Path -LiteralPath (Join-Path $projectRoot $relativePath) -PathType Leaf) "Required file exists: $relativePath"
@@ -51,8 +51,8 @@ $missingDevelopmentEntries = $expectedDevelopmentEntries | Where-Object { $_ -no
 Assert-StructureCondition ($unexpectedDevelopmentEntries.Count -eq 0 -and $missingDevelopmentEntries.Count -eq 0) 'Development has only the simplified current-source, automation, tests, documentation, and README surface'
 
 $sourceEntries = @(Get-ChildItem -LiteralPath (Join-Path $developmentRoot 'Source') -Force | Select-Object -ExpandProperty Name)
-$expectedSourceEntries = @('Main-App-v18','Main-App-v19','Main-App-v20','Main-App-v21','Main-App-v22','Main-App-v23','Main-App-v24','Main-App-v25','Public-Web')
-Assert-StructureCondition ($sourceEntries.Count -eq $expectedSourceEntries.Count -and @($sourceEntries | Where-Object { $_ -notin $expectedSourceEntries }).Count -eq 0) 'Development Source contains preserved v18-v24, active v25, and versioned Public Web recipes'
+$expectedSourceEntries = @('Main-App-v18','Main-App-v19','Main-App-v20','Main-App-v21','Main-App-v22','Main-App-v23','Main-App-v24','Main-App-v25','Main-App-v26','Public-Web')
+Assert-StructureCondition ($sourceEntries.Count -eq $expectedSourceEntries.Count -and @($sourceEntries | Where-Object { $_ -notin $expectedSourceEntries }).Count -eq 0) 'Development Source contains preserved v18-v25, active v26, and versioned Public Web recipes'
 
 $generatedClutter = Get-ChildItem -LiteralPath $developmentRoot -Recurse -Force | Where-Object {
     $_.Name -eq 'node_modules' -or $_.Name -eq 'coverage' -or $_.Name -like '*.tsbuildinfo'
@@ -73,7 +73,8 @@ if (Test-Path -LiteralPath $developmentReadmePath -PathType Leaf) {
         $_.FullName -notmatch '[\\/]Source[\\/]Main-App-v23[\\/]' -and
         $_.FullName -notmatch '[\\/]Source[\\/]Main-App-v24[\\/]' -and
         $_.FullName -notmatch '[\\/]Source[\\/]Main-App-v25[\\/]' -and
-        $_.FullName -notmatch '[\\/]Source[\\/]Public-Web[\\/]v[2345678][\\/]'
+        $_.FullName -notmatch '[\\/]Source[\\/]Main-App-v26[\\/]' -and
+        $_.FullName -notmatch '[\\/]Source[\\/]Public-Web[\\/]v[23456789][\\/]'
     }
     foreach ($file in $retainedFiles) {
         $relativePath = $file.FullName.Substring($developmentRoot.Length + 1).Replace('\', '/')
@@ -99,6 +100,9 @@ if (Test-Path -LiteralPath $developmentReadmePath -PathType Leaf) {
     }
     foreach ($annotation in @('Source/Main-App-v25/','Source/Main-App-v25/src/','Source/Main-App-v25/src/lib/portrait-focus.ts','Source/Main-App-v25/src/styles/v25-layout.css','Source/Public-Web/v8/','Automation/Scripts/export-standalone-v25.mjs','Automation/Scripts/finalize-pwa-v25.mjs','Automation/Scripts/finalize-public-v8.mjs','Tests/validate_v25.ps1')) {
         Assert-StructureCondition ($developmentReadme.Contains($annotation)) "Development README annotates v25 path: $annotation"
+    }
+    foreach ($annotation in @('Source/Main-App-v26/','Source/Main-App-v26/src/','Source/Main-App-v26/src/lib/device-frame.ts','Source/Main-App-v26/src/presentation/presentation-model.ts','Source/Main-App-v26/src/styles/v26-layout.css','Source/Public-Web/v9/','Automation/Scripts/export-standalone-v26.mjs','Automation/Scripts/finalize-pwa-v26.mjs','Automation/Scripts/finalize-public-v9.mjs','Tests/validate_v26.ps1')) {
+        Assert-StructureCondition ($developmentReadme.Contains($annotation)) "Development README annotates v26 path: $annotation"
     }
 }
 

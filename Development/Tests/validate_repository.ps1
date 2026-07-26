@@ -16,8 +16,8 @@ $requiredFiles = @(
     '_agent/README.md', '_agent/Skills/README.md', '_human/README.md', '_human/code-learning-tool.html', '_pending/README.md', '_pending/index.md',
     'Apps/Standalone/encounter_cards_v15.html', 'Apps/Standalone/encounter_cards_v16.html',
     'Apps/Standalone/encounter_cards_v17.html', 'Apps/Standalone/encounter_cards_v18.html', 'Apps/Standalone/encounter_cards_v19.html',
-    'Apps/Standalone/encounter_cards_v20.html', 'Apps/Standalone/encounter_cards_v21.html', 'Apps/Standalone/encounter_cards_v22.html', 'Apps/Standalone/encounter_cards_v23.html', 'Apps/Standalone/encounter_cards_v24.html', 'Apps/Standalone/encounter_cards_v25.html',
-    'Apps/Public-Web/v2/index.html', 'Apps/Public-Web/v3/index.html', 'Apps/Public-Web/v4/index.html', 'Apps/Public-Web/v5/index.html', 'Apps/Public-Web/v6/index.html', 'Apps/Public-Web/v7/index.html', 'Apps/Public-Web/v8/index.html',
+    'Apps/Standalone/encounter_cards_v20.html', 'Apps/Standalone/encounter_cards_v21.html', 'Apps/Standalone/encounter_cards_v22.html', 'Apps/Standalone/encounter_cards_v23.html', 'Apps/Standalone/encounter_cards_v24.html', 'Apps/Standalone/encounter_cards_v25.html', 'Apps/Standalone/encounter_cards_v26.html',
+    'Apps/Public-Web/v2/index.html', 'Apps/Public-Web/v3/index.html', 'Apps/Public-Web/v4/index.html', 'Apps/Public-Web/v5/index.html', 'Apps/Public-Web/v6/index.html', 'Apps/Public-Web/v7/index.html', 'Apps/Public-Web/v8/index.html', 'Apps/Public-Web/v9/index.html',
     'Apps/Standalone/v16-assets/rolldown-runtime-S-ySWqyJ.js', 'Apps/Standalone/v16-assets/framework-DjPHiq1u.js',
     'Apps/Standalone/v16-assets/index-CePrWcV7.js', 'Apps/Standalone/v16-assets/layout-segment-context-Bb-kZqck.js',
     'Apps/Standalone/v16-assets/page-B3j9dtoA.js',
@@ -46,9 +46,11 @@ $requiredFiles = @(
     'Development/Source/Main-App-v24/src/lib/deity-art.ts', 'Development/Source/Main-App-v24/src/lib/taiwan-shape.ts', 'Development/Source/Main-App-v24/dist/index.html',
     'Development/Source/Main-App-v25/package.json', 'Development/Source/Main-App-v25/package-lock.json',
     'Development/Source/Main-App-v25/src/App.tsx', 'Development/Source/Main-App-v25/src/lib/portrait-focus.ts', 'Development/Source/Main-App-v25/dist/index.html',
+    'Development/Source/Main-App-v26/package.json', 'Development/Source/Main-App-v26/package-lock.json',
+    'Development/Source/Main-App-v26/src/App.tsx', 'Development/Source/Main-App-v26/src/lib/device-frame.ts', 'Development/Source/Main-App-v26/src/presentation/presentation-model.ts', 'Development/Source/Main-App-v26/dist/index.html',
     'Development/Automation/Scripts/finalize-pwa-v18.mjs', 'Development/Automation/Scripts/export-standalone-v18.mjs',
     'Development/Automation/Tools/serve_truth_and_dare.ps1',
-    'Development/Tests/validate_clean_structure.ps1', 'Development/Tests/validate_v18.ps1', 'Development/Tests/validate_v19.ps1', 'Development/Tests/validate_v20.ps1', 'Development/Tests/validate_v21.ps1', 'Development/Tests/validate_v22.ps1', 'Development/Tests/validate_v23.ps1', 'Development/Tests/validate_v24.ps1', 'Development/Tests/validate_v25.ps1', 'Development/Tests/validate_repository.ps1',
+    'Development/Tests/validate_clean_structure.ps1', 'Development/Tests/validate_v18.ps1', 'Development/Tests/validate_v19.ps1', 'Development/Tests/validate_v20.ps1', 'Development/Tests/validate_v21.ps1', 'Development/Tests/validate_v22.ps1', 'Development/Tests/validate_v23.ps1', 'Development/Tests/validate_v24.ps1', 'Development/Tests/validate_v25.ps1', 'Development/Tests/validate_v26.ps1', 'Development/Tests/validate_repository.ps1',
     'Assets/Catalog/asset-licenses.md', 'Assets/Catalog/content-sources.json',
     '_pending/Development-simplification_2026-07-19/README.md', '_pending/v24-generated-development-state_2026-07-23/README.md'
 )
@@ -124,6 +126,11 @@ $v25ValidationOutput = & powershell -NoProfile -ExecutionPolicy Bypass -File (Jo
 $v25ValidationExit = $LASTEXITCODE
 $v25ValidationOutput | ForEach-Object { Write-Host $_ }
 Assert-RepositoryCondition ($v25ValidationExit -eq 0) 'Focused v25 contract validation passes'
+
+$v26ValidationOutput = & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'validate_v26.ps1') 2>&1
+$v26ValidationExit = $LASTEXITCODE
+$v26ValidationOutput | ForEach-Object { Write-Host $_ }
+Assert-RepositoryCondition ($v26ValidationExit -eq 0) 'Focused v26 contract validation passes'
 
 $cleanStructureOutput = & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'validate_clean_structure.ps1') 2>&1
 $cleanStructureExit = $LASTEXITCODE

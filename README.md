@@ -1,17 +1,17 @@
 # Truth and Dare
 
-Truth and Dare is the governed repository for **Encounter Cards**, a bilingual, iPhone-first conversation card game. Encounter Cards v25 is the current maintained release; v15–v24 remain immutable standalone references.
+Truth and Dare is the governed repository for **Encounter Cards**, a bilingual, iPhone-first conversation card game. Encounter Cards v26 is the current maintained release; v15–v25 remain immutable standalone references.
 
-Truth and Dare 是雙語、iPhone 優先的對話卡牌遊戲 **相遇卡 Encounter Cards**。v25 是目前維護版本；v15–v24 保留為不可變 standalone 參考版本。
+Truth and Dare 是雙語、iPhone 優先的對話卡牌遊戲 **相遇卡 Encounter Cards**。v26 是目前維護版本；v15–v25 保留為不可變 standalone 參考版本。
 
 ## Start / 開始
 
-- Double-click `Open Truth and Dare.cmd`; it serves and opens the current v25 release at `127.0.0.1:8765`.
+- Double-click `Open Truth and Dare.cmd`; it serves and opens the current v26 release at `127.0.0.1:8765`.
 - Public site: `https://yunkumom.github.io/SHINE_Truth_and_Dare/` (available after the Pages workflow completes).
-- Current authored source: `Development/Source/Main-App-v25/src/`
-- Current verified PWA build: `Development/Source/Main-App-v25/dist/`
-- Current standalone release: `Apps/Standalone/encounter_cards_v25.html`
-- Public GitHub Pages artifact: `Apps/Public-Web/v8/`
+- Current authored source: `Development/Source/Main-App-v26/src/`
+- Current verified PWA build: `Development/Source/Main-App-v26/dist/`
+- Current standalone release: `Apps/Standalone/encounter_cards_v26.html`
+- Public GitHub Pages artifact: `Apps/Public-Web/v9/`
 - Current deity source artwork: `Assets/Deities/v23-taiwan-safe/`.
 - Complete Development file guide: `Development/README.md`
 - Recoverable retired development material: `_pending/Development-simplification_2026-07-19/`
@@ -22,7 +22,7 @@ Truth and Dare 是雙語、iPhone 優先的對話卡牌遊戲 **相遇卡 Encoun
 Truth and Dare/
 ├── Apps/          # Preserved runnable releases
 ├── Assets/        # Reusable assets and provenance
-├── Development/   # Preserved earlier lines plus current v24 source, tools, tests, and contracts
+├── Development/   # Preserved earlier lines plus current v26 source, tools, tests, and contracts
 ├── _meta/         # Purpose, roadmap, handoff, changelog, blueprints
 ├── _agent/        # Agent guidance
 ├── _human/        # Human-facing support references
@@ -39,7 +39,7 @@ Development 已於 2026-07-19 保守精簡。v17 source、未發布 Public Web�
 ## Development / 開發
 
 ```powershell
-Set-Location Development/Source/Main-App-v25
+Set-Location Development/Source/Main-App-v26
 npm ci
 npm run dev
 npm run typecheck
@@ -47,7 +47,7 @@ npm run lint
 npm test
 ```
 
-Existing v15–v25 outputs are immutable. Product changes after v25 require v26 rather than overwriting a released version.
+Existing v15–v26 outputs are immutable after release. Later product changes require a new version rather than overwriting a released version.
 
 完整 repository 驗證：
 
@@ -58,7 +58,7 @@ powershell -ExecutionPolicy Bypass -File Development/Tests/validate_repository.p
 ## Product and Privacy Contract / 產品與隱私合約
 
 - Chinese, English, and bilingual modes; Levels 1–5; Truth, Dare, and Surprise.
-- 430 × 932 iPhone Pro Max frame; editable setup/game/keepsake blocks remain centered and shrink-to-fit on desktop.
+- 430 × 932 app canvas inside a desktop-only 445 × 932 iPhone Pro Max physical-ratio frame; mobile remains full-screen.
 - Eighteen deity artworks with safe hotspots; hold for 600 ms to reveal a transparent, Natural Earth-derived Taiwan coastline glow for 3 seconds.
 - Swipe-up draw with a 22% commitment threshold, spring return, flip reveal, enlarged 402 × 562 game card, and bottom fallback controls.
 - Privacy-safe layout JSON with direct drag/resize, exact numeric controls, twenty-step undo/redo, reset, and import/export.
@@ -66,6 +66,6 @@ powershell -ExecutionPolicy Bypass -File Development/Tests/validate_repository.p
 - Independent question/artwork pairing and a required blessing on every commemorative PNG; the runtime locator is not exported.
 - Names, contacts, birthdays, notes, answers, and adult-content choices remain privacy-sensitive and client-side.
 - No analytics, backend, accounts, or personal-data transmission without explicit approval and privacy review.
-- Only language and font-scale preferences may persist locally.
+- Only language, font scale, privacy-safe layout geometry, and non-personal artwork/blessing presentation settings may persist locally.
 
 The owner-private blueprint remains local-only and excluded from Git.

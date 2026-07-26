@@ -1,8 +1,8 @@
 # Development / 開發資料
 
-This directory contains preserved v18–v24 source lines and the current Encounter Cards v25 source line. Historical v17 source, older completed plans, old-version builders, and generated dependencies remain recoverable under `../_pending/`.
+This directory contains preserved v18–v25 source lines and the current Encounter Cards v26 source line. Historical v17 source, older completed plans, old-version builders, and generated dependencies remain recoverable under `../_pending/`.
 
-此目錄保留 v18–v24 source 與目前作用中的 Encounter Cards v25 source。v17 歷史 source、舊版計畫、builder 與可重建依賴仍可由 `../_pending/` 回復。
+此目錄保留 v18–v25 source 與目前作用中的 Encounter Cards v26 source。v17 歷史 source、舊版計畫、builder 與可重建依賴仍可由 `../_pending/` 回復。
 
 ## Structure / 結構
 
@@ -17,6 +17,7 @@ Development/
 ├── Source/Main-App-v23/       # Preserved Taiwan-safe artwork application
 ├── Source/Main-App-v24/       # Current precise coastline-reveal application
 ├── Source/Main-App-v25/       # Current desktop workspace and portrait-safe application
+├── Source/Main-App-v26/       # Current physical-ratio phone frame and card editor application
 ├── Source/Public-Web/v2/      # Preserved Public v2 source recipe
 ├── Source/Public-Web/v3/      # Preserved Public v3 source recipe
 ├── Source/Public-Web/v4/      # Preserved Public v4 source recipe
@@ -78,7 +79,7 @@ Development/
 | `Automation/Scripts/export-standalone-v24.mjs` | Produces immutable standalone v24 with the coastline reveal embedded. / 產生內嵌海岸線揭示的 v24 單檔版。 |
 | `Automation/Scripts/finalize-pwa-v24.mjs` | Finalizes the v24 offline precache. / 完成 v24 離線快取。 |
 | `Automation/Scripts/finalize-public-v7.mjs` | Creates immutable Public Web v7 from the verified v24 build. / 從 v24 建立不可變 Public Web v7。 |
-| `Automation/Tools/serve_truth_and_dare.ps1` | Starts a loopback-only HTTP server and opens current v24. / 啟動僅限本機的 HTTP server 並開啟目前 v24。 |
+| `Automation/Tools/serve_truth_and_dare.ps1` | Starts a loopback-only HTTP server and opens current v26. / 啟動僅限本機的 HTTP server 並開啟目前 v26。 |
 | `Tests/validate_v18.ps1` | Verifies preserved v18 contracts and release hashes. / 驗證保留的 v18 合約與 release 雜湊。 |
 | `Tests/validate_v19.ps1` | Verifies preserved v19 artwork, standalone embedding, hash, and Public Web v2 output. / 驗證保留的 v19 圖像、單檔、雜湊與公開 v2。 |
 | `Tests/validate_v20.ps1` | Verifies v20 visual markers, 18 artworks, blessing/download contracts, hashes, public output, and launcher target. / 驗證 v20 視覺、18 張圖、祝福／下載、雜湊、公開輸出與啟動器。 |
@@ -86,7 +87,7 @@ Development/
 | `Tests/validate_v22.ps1` | Verifies editor, swipe threshold, enlarged card, contact-selectable 63:88 keepsake, release hash, Public Web v5, and launcher. / 驗證編輯器、滑動門檻、放大卡片、聯絡資訊紀念卡、雜湊、公開 v5 與啟動器。 |
 | `Tests/validate_v23.ps1` | Verifies 18 Taiwan-safe sources, canonical coloured reveal, centred crop, hashes, Public Web v6, and launcher. / 驗證 18 張安全圖、統一彩色揭示、置中裁切、雜湊、公開 v6 與啟動器。 |
 | `Tests/validate_v24.ps1` | Verifies coastline geometry, transparent dual strokes, release hashes, Public Web v7, and launcher. / 驗證海岸線、透明雙線、雜湊、公開 v7 與啟動器。 |
-| `Source/Main-App-v25/` | Current v25 source and verified `dist/`. / 目前 v25 source 與已驗證 `dist/`。 |
+| `Source/Main-App-v25/` | Preserved v25 source and verified `dist/`. / 保留的 v25 source 與已驗證 `dist/`。 |
 | `Source/Main-App-v25/src/` | Authored desktop workspace, responsive phone UI, and focal crop implementation. / 桌面工作區、手機響應與焦點裁切原始碼。 |
 | `Source/Main-App-v25/src/lib/portrait-focus.ts` | Shared browser/PNG portrait-safe cover geometry. / 瀏覽器與 PNG 共用的人像安全裁切。 |
 | `Source/Main-App-v25/src/styles/v25-layout.css` | Desktop two-column and narrow card-header layout. / 桌面雙欄與窄卡名區版面。 |
@@ -98,13 +99,21 @@ Development/
 | `Tests/validate_clean_structure.ps1` | Verifies the simplified directory contract. / 驗證精簡後的目錄合約。 |
 | `Tests/validate_repository.ps1` | Runs the complete v18–v24 and structure contract. / 執行完整 v18–v24 與結構驗證。 |
 
+## Main-App-v26 additions / v26 新增內容
+
+`Source/Main-App-v26/` is the current authored application and `Source/Main-App-v26/src/` contains its source. `Source/Main-App-v26/src/lib/device-frame.ts` defines the supplied 78.0 × 163.4 mm desktop simulation as a 445 × 932 outer frame around the unchanged 430 × 932 app canvas. `Source/Main-App-v26/src/presentation/presentation-model.ts` owns privacy-safe per-artwork crop/zoom and blessing presentation settings. `Source/Main-App-v26/src/styles/v26-layout.css` owns the synchronized desktop frame and card styles.
+
+`Source/Public-Web/v9/` records the public recipe. `Automation/Scripts/export-standalone-v26.mjs`, `Automation/Scripts/finalize-pwa-v26.mjs`, `Automation/Scripts/finalize-public-v9.mjs`, and `Tests/validate_v26.ps1` form the release boundary.
+
+`Documentation/V26_IPHONE_FRAME_CARD_EDITOR_DESIGN.md` records the approved interaction and privacy design. `Documentation/V26_IPHONE_FRAME_CARD_EDITOR_PLAN.md` records the test-first release plan.
+
 ## Main-App-v24 additions / v24 新增內容
 
-`Source/Main-App-v24/` is the current authored application, with code under `Source/Main-App-v24/src/`. `Source/Main-App-v24/src/components/TaiwanReveal.tsx` renders two coincident paths from `Source/Main-App-v24/src/lib/taiwan-shape.ts`; `Source/Main-App-v24/src/styles/taiwan-reveal.css` keeps both interiors transparent and applies a broad glow beneath a crisp coastline. The path is normalized from Natural Earth 1:10m map-unit geometry. `Source/Public-Web/v7/` documents the public recipe; `Automation/Scripts/export-standalone-v24.mjs`, `Automation/Scripts/finalize-pwa-v24.mjs`, `Automation/Scripts/finalize-public-v7.mjs`, and `Tests/validate_v24.ps1` own the v24 release boundary.
+`Source/Main-App-v24/` is a preserved authored application, with code under `Source/Main-App-v24/src/`. `Source/Main-App-v24/src/components/TaiwanReveal.tsx` renders two coincident paths from `Source/Main-App-v24/src/lib/taiwan-shape.ts`; `Source/Main-App-v24/src/styles/taiwan-reveal.css` keeps both interiors transparent and applies a broad glow beneath a crisp coastline. The path is normalized from Natural Earth 1:10m map-unit geometry. `Source/Public-Web/v7/` documents the public recipe; `Automation/Scripts/export-standalone-v24.mjs`, `Automation/Scripts/finalize-pwa-v24.mjs`, `Automation/Scripts/finalize-public-v7.mjs`, and `Tests/validate_v24.ps1` own the v24 release boundary.
 
 ## Main-App-v23 additions / v23 新增內容
 
-`Source/Main-App-v23/` is the current authored application, with code under `Source/Main-App-v23/src/`, and preserves v22 layout, deck, privacy, and export behavior. `Source/Main-App-v23/src/assets/deities/` contains 18 version-bound Taiwan-safe WebP files. `Source/Main-App-v23/src/lib/deity-art.ts` registers their visible-crop coordinates and distinct colours; `Source/Main-App-v23/src/lib/taiwan-shape.ts` owns one detailed geographic silhouette shared by every reveal; and `Source/Main-App-v23/src/components/TaiwanReveal.tsx` renders that outline with artwork-specific colour and accessible motion. `Source/Main-App-v23/src/styles/taiwan-reveal.css`, `Source/Main-App-v23/src/styles/v23.css`, and `Source/Main-App-v23/src/styles/v23-layout.css` keep the baked motif visible and the locator aligned in both the game card and keepsake.
+`Source/Main-App-v23/` is a preserved authored application, with code under `Source/Main-App-v23/src/`, and preserves v22 layout, deck, privacy, and export behavior. `Source/Main-App-v23/src/assets/deities/` contains 18 version-bound Taiwan-safe WebP files. `Source/Main-App-v23/src/lib/deity-art.ts` registers their visible-crop coordinates and distinct colours; `Source/Main-App-v23/src/lib/taiwan-shape.ts` owns one detailed geographic silhouette shared by every reveal; and `Source/Main-App-v23/src/components/TaiwanReveal.tsx` renders that outline with artwork-specific colour and accessible motion. `Source/Main-App-v23/src/styles/taiwan-reveal.css`, `Source/Main-App-v23/src/styles/v23.css`, and `Source/Main-App-v23/src/styles/v23-layout.css` keep the baked motif visible and the locator aligned in both the game card and keepsake.
 
 `Source/Main-App-v23/dist/`, `Apps/Standalone/encounter_cards_v23.html`, and `Apps/Public-Web/v6/` are generated verified release outputs; never hand-edit them. `Source/Public-Web/v6/README.md` records the public recipe and `Tests/validate_v23.ps1` verifies the release contract.
 
@@ -188,7 +197,7 @@ The preserved authored paths are `Source/Main-App-v22/src/`, `Source/Main-App-v2
 `node_modules/` 與 `*.tsbuildinfo` 是生成內容，因此不留在作用中 Development。需要開發時才還原依賴：
 
 ```powershell
-Set-Location "Development/Source/Main-App-v24"
+Set-Location "Development/Source/Main-App-v26"
 npm ci
 ```
 
@@ -196,20 +205,20 @@ npm ci
 
 ```powershell
 # Restore dependencies, then develop and verify source
-Set-Location "Development/Source/Main-App-v24"
+Set-Location "Development/Source/Main-App-v26"
 npm ci
 npm run dev
 npm run typecheck
 npm run lint
 npm test
 
-# Released v24 outputs are immutable; use these checks for maintenance
+# Released v26 outputs are immutable; use these checks for maintenance
 npm run build
 
 # Repository validation from the project root
 powershell -ExecutionPolicy Bypass -File Development/Tests/validate_repository.ps1
 ```
 
-Existing v15–v24 generated outputs are preserved. Do not rerun an exporter to overwrite v24; create v25 source/output artifacts for new behavior. Direct `file://` execution is unsupported for the complete contract; use `Open Truth and Dare.cmd`.
+Existing v15–v26 generated outputs are preserved. Do not rerun an exporter to overwrite v26; create a new source/output version for new behavior. Direct `file://` execution is unsupported for the complete contract; use `Open Truth and Dare.cmd`.
 
-既有 v15–v24 生成成品已保存。不得覆寫 v24；新行為必須建立 v25 source/output。完整合約不支援直接使用 `file://`，請使用根目錄的 `Open Truth and Dare.cmd`。
+既有 v15–v26 生成成品已保存。不得覆寫 v26；新行為必須建立新的 source/output 版本。完整合約不支援直接使用 `file://`，請使用根目錄的 `Open Truth and Dare.cmd`。
