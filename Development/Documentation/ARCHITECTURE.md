@@ -122,3 +122,7 @@ v18 introduced the modular session UI, 60 bilingual cards, policy libraries, PWA
 `Assets/Deities/v30-safe-masters/` owns 18 reusable 1024 × 1536 PNG masters. `Development/Source/Main-App-v30/src/assets/deities/*-safe-v30.webp` contains optimized version-bound derivatives. `src/lib/deity-art.ts` maps every variant to one runtime image, a bounded portrait focal point, and an aligned canonical Taiwan locator. Vite embeds these assets into the immutable standalone build and copies them into Public Web v13.
 
 `Assets/Deities/v30-safe-masters/` 保存 18 張可重用 1024 × 1536 PNG master；v30 source 的 `*-safe-v30.webp` 是版本綁定輕量副本。`deity-art.ts` 將每個變體對應到 runtime 圖、人像焦點與精準台灣 locator；Vite 將素材內嵌至 standalone，並產製 Public Web v13。
+
+## v31 Setup Presentation Architecture / v31 入口呈現架構
+
+v31 copies the governed v30 runtime and artwork into a new immutable line. `src/styles/v31-layout.css` owns root-scoped milk-tea theme tokens shared by the setup shell, desktop workbench, editor, and device frame. `src/layout/layout-model.ts` owns enlarged default heights for the familiarity and card-type blocks, while fieldset legends remain static, wrapping, in-flow title rows. Public Web v14 and standalone v31 are generated from the same verified dist.

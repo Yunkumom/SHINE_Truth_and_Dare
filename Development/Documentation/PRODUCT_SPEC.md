@@ -73,6 +73,12 @@ v30 preserves the complete v29 interaction, typography, layout, export, and priv
 
 v30 完整保留 v29 的互動、字級、版面、輸出與隱私合約。18 張神祇變體全部使用新的 1024 × 1536 擴景 master；完整臉與頭冠留在近方形 runtime 裁切內，彩色台灣圖形及其精準發光輪廓定位均位於中央可見畫面。九位神祇各保留兩張變體。
 
+## Current v31 milk-tea setup / 目前 v31 淡奶茶入口
+
+v31 preserves every v30 game, artwork, typography, export, and privacy contract. The setup canvas, desktop workbench, editor, device frame, fields, selectors, and Begin control use a unified pale milk-tea family rather than black or navy setup surfaces. Every bilingual setup heading owns an in-flow title row and must fit within its block at 430 × 932 without overlap, clipping, or ellipsis.
+
+v31 完整保留 v30 遊戲、圖像、字級、輸出與隱私合約。入口、桌面工作區、編輯器、手機框、欄位、選擇器與開始按鈕統一使用淡奶茶色系，不再使用黑色或深藍入口背景；所有雙語標題都有獨立正常流標題列，於 430 × 932 內不得重疊、裁切或省略。
+
 Detailed gesture behavior is defined in `ANIMATION_SPEC.md`.
 
 ## Privacy Boundary / 隱私邊界

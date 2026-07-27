@@ -8,17 +8,17 @@ Before meaningful changes, read `README.md`, `GUIDE.md`, this file, `_meta/purpo
 
 ## Product Rules / 產品規則
 
-- Treat `Apps/Standalone/encounter_cards_v15.html` through `encounter_cards_v30.html` as immutable releases. Never overwrite or hand-edit them.
-- v30 authored source remains under `Development/Source/Main-App-v30/src/`; its verified `dist/` is generated and immutable.
-- Product behavior changes after v30 require a new versioned source and output line.
-- The current Windows launcher must serve `Apps/Standalone/encounter_cards_v30.html` through `Development/Automation/Tools/serve_truth_and_dare.ps1`; direct `file://` execution is unsupported for the complete contract.
+- Treat `Apps/Standalone/encounter_cards_v15.html` through `encounter_cards_v31.html` as immutable releases. Never overwrite or hand-edit them.
+- v31 authored source remains under `Development/Source/Main-App-v31/src/`; its verified `dist/` is generated and immutable.
+- Product behavior changes after v31 require a new versioned source and output line.
+- The current Windows launcher must serve `Apps/Standalone/encounter_cards_v31.html` through `Development/Automation/Tools/serve_truth_and_dare.ps1`; direct `file://` execution is unsupported for the complete contract.
 - Preserve the 430 × 932 iPhone Pro Max contract, centered desktop phone frame, Chinese/English/bilingual modes, Levels 1–5, Truth/Dare/Surprise modes, and mobile card interaction unless a new version is explicitly approved.
 - Treat names, optional contact information, birthdays, notes, answers, and 18+ choices as privacy-sensitive input.
 - Do not add analytics, backend transmission, accounts, or persistent personal-data storage without explicit approval and privacy review.
 - v17 source, unpublished Public Web work, legacy builders/tests, completed designs/plans, and failed v20 pre-release checkpoints are inactive but recoverable under `_pending/`. Do not restore or modify an archived product line without explicit reactivation scope.
 
-- 將 `Apps/Standalone/` 中 v15–v30 視為不可變 release，不得覆寫或手改。
-- v30 人工 source 位於 `Development/Source/Main-App-v30/src/`；已驗證 `dist/` 為不可變生成成品。
+- 將 `Apps/Standalone/` 中 v15–v31 視為不可變 release，不得覆寫或手改。
+- v31 人工 source 位於 `Development/Source/Main-App-v31/src/`；已驗證 `dist/` 為不可變生成成品。
 - v30 後的產品行為修改必須建立新版本。
 - Windows 啟動器必須透過本機 server 開啟 v30；完整合約不支援直接 `file://`。
 - 保留 430 × 932、中／英／雙語、Level 1–5、真心話／小挑戰／隨機及行動卡牌互動，除非明確核准新版本。
@@ -41,7 +41,7 @@ Before meaningful changes, read `README.md`, `GUIDE.md`, this file, `_meta/purpo
 .\Open Truth and Dare.cmd
 
 # Source work (restore generated dependencies first)
-Set-Location Development/Source/Main-App-v30
+Set-Location Development/Source/Main-App-v31
 npm ci
 npm run dev
 npm run typecheck

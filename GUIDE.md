@@ -1,6 +1,6 @@
 # Truth and Dare Directory Guide / 資料夾指南
 
-This is the canonical repository map. Active Development contains preserved earlier lines, the current v30 line, and files required to run, understand, and validate them.
+This is the canonical repository map. Active Development contains preserved earlier lines, the current v31 line, and files required to run, understand, and validate them.
 
 本檔是正式 repository 地圖。作用中的 Development 保留較早版本與目前 v30，以及執行、理解與驗證所需的檔案。
 
@@ -22,6 +22,7 @@ This is the canonical repository map. Active Development contains preserved earl
 | `Apps/Public-Web/v11/` | Preserved immutable v28 GitHub Pages release with the wide, crown-safe Baosheng artwork. / 保留的不可變 v28 GitHub Pages 保生大帝安全構圖版。 |
 | `Apps/Public-Web/v12/` | Current immutable v29 GitHub Pages release with adjustable readable card text. / 目前不可變 v29 GitHub Pages 可調整易讀卡片文字版。 |
 | `Apps/Public-Web/v13/` | Current immutable v30 GitHub Pages release with 18 regenerated portrait-safe artworks. / 目前不可變 v30 GitHub Pages 18 張重生成人像安全圖版。 |
+| `Apps/Public-Web/v14/` | Current immutable v31 GitHub Pages release with the unified milk-tea setup and safe headings. / 目前不可變 v31 GitHub Pages 淡奶茶入口與安全標題版。 |
 | `Assets/` | Reusable resources and governance. / 可重用資源與治理。 |
 | `Assets/Catalog/` | Licence, attribution, source, and safety records. / 授權、標示、來源與安全紀錄。 |
 | `Assets/Deities/` | High-resolution AI-generated Taiwanese deity source artwork and provenance; `v20-variants/` adds nine action/pose variants. / 高解析台灣神祇原始圖；`v20-variants/` 增加九張動作變體。 |
@@ -82,11 +83,14 @@ This is the canonical repository map. Active Development contains preserved earl
 | `Development/Source/Public-Web/v12/` | v29 to Public Web v12 recipe. / v29 至公開 v12 產製說明。 |
 | `Development/Source/Main-App-v30/` | Current v30 source with all 18 regenerated portrait-safe artworks and aligned Taiwan locators. / 目前 v30 全 18 張重生成人像安全圖與台灣定位 source。 |
 | `Development/Source/Public-Web/v13/` | v30 to Public Web v13 recipe. / v30 至公開 v13 產製說明。 |
+| `Development/Source/Main-App-v31/` | Current v31 source with a unified milk-tea setup, editor, desktop workbench, and unclipped bilingual headings. / 目前 v31 淡奶茶入口、編輯器、桌面工作區與不裁切雙語標題 source。 |
+| `Development/Source/Public-Web/v14/` | v31 to Public Web v14 recipe. / v31 至公開 v14 產製說明。 |
 | `_pending/v27-generated-development-state_2026-07-26/` | Recoverable local v27 dependencies and caches. / 可回復的 v27 本機依賴與 cache。 |
 | `_pending/v28-generated-development-state_2026-07-26/` | Recoverable local v28 dependencies and caches. / 可回復的 v28 本機依賴與 cache。 |
 | `_pending/v29-preverification-build_2026-07-27/` | Unpublished checkpoint retained as evidence of the corrected English blessing-font override. / 保留作為英文祝福字級覆蓋修正證據的未發布檢查點。 |
 | `_pending/v29-generated-development-state_2026-07-27/` | Recoverable local v29 dependencies and TypeScript caches. / 可回復的 v29 本機依賴與 TypeScript cache。 |
 | `_pending/v30-generated-development-state_2026-07-27/` | Recoverable local v30 dependencies and TypeScript caches. / 可回復的 v30 本機依賴與 TypeScript cache。 |
+| `_pending/v31-generated-development-state_2026-07-27/` | Recoverable local v31 dependencies and TypeScript caches. / 可回復的 v31 本機依賴與 TypeScript cache。 |
 | `Development/Source/Public-Web/v7/` | Recipe linking verified v24 source to immutable Public Web v7. / v24 至公開 v7 的產製說明。 |
 | `Development/Source/Main-App-v18/src/` | Authored UI, policies, data, styles, and tests. / 人工維護 UI、政策、資料、樣式與測試。 |
 | `Development/Source/Main-App-v18/public/` | PWA manifest, worker template, and owned icons. / PWA manifest、worker template 與自有 icons。 |
@@ -112,8 +116,8 @@ The following are recoverable under `_pending/Development-simplification_2026-07
 # Run current desktop release
 .\Open Truth and Dare.cmd
 
-# Restore dependencies and work on current v30 source
-Set-Location Development/Source/Main-App-v30
+# Restore dependencies and work on current v31 source
+Set-Location Development/Source/Main-App-v31
 npm ci
 npm run dev
 npm run typecheck
@@ -124,4 +128,4 @@ npm test
 powershell -ExecutionPolicy Bypass -File Development/Tests/validate_repository.ps1
 ```
 
-Existing release outputs are immutable. New product behavior after v30 requires v31. Uncertain or proposed-deletion content must move to `_pending/` and be indexed; never permanently delete it without explicit human approval.
+Existing release outputs are immutable. New product behavior after v31 requires v32. Uncertain or proposed-deletion content must move to `_pending/` and be indexed; never permanently delete it without explicit human approval.

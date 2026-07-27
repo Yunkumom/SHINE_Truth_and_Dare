@@ -1,5 +1,11 @@
 # Pending Index / 待確認索引
 
+## `v31-generated-development-state_2026-07-27/`
+
+Recoverable v31 `node_modules` and TypeScript build caches moved out of active Development after verification.
+
+v31 驗證後移出的可重建依賴與 TypeScript cache。
+
 ## `v29-preverification-build_2026-07-27/`
 
 Recoverable first v29 output moved here after browser QA found the English blessing scale override; evidence only, not publishable.

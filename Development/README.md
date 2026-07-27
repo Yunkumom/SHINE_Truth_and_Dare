@@ -1,8 +1,8 @@
 # Development / 開發資料
 
-This directory contains preserved v18–v29 source lines and the current Encounter Cards v30 source line. Historical v17 source, older completed plans, old-version builders, and generated dependencies remain recoverable under `../_pending/`.
+This directory contains preserved v18–v30 source lines and the current Encounter Cards v31 source line. Historical v17 source, older completed plans, old-version builders, and generated dependencies remain recoverable under `../_pending/`.
 
-此目錄保留 v18–v29 source 與目前作用中的 Encounter Cards v30 source。v17 歷史 source、舊版計畫、builder 與可重建依賴仍可由 `../_pending/` 回復。
+此目錄保留 v18–v30 source 與目前作用中的 Encounter Cards v31 source。v17 歷史 source、舊版計畫、builder 與可重建依賴仍可由 `../_pending/` 回復。
 
 ## Structure / 結構
 
@@ -21,7 +21,8 @@ Development/
 ├── Source/Main-App-v27/       # Preserved entrance-layout refinement
 ├── Source/Main-App-v28/       # Preserved Baosheng safe-artwork release
 ├── Source/Main-App-v29/       # Preserved readable adjustable card-text release
-├── Source/Main-App-v30/       # Current 18-artwork portrait-safe release
+├── Source/Main-App-v30/       # Preserved 18-artwork portrait-safe release
+├── Source/Main-App-v31/       # Current milk-tea setup release
 ├── Source/Public-Web/v2/      # Preserved Public v2 source recipe
 ├── Source/Public-Web/v3/      # Preserved Public v3 source recipe
 ├── Source/Public-Web/v4/      # Preserved Public v4 source recipe
@@ -32,7 +33,8 @@ Development/
 ├── Source/Public-Web/v10/     # Preserved v27 public recipe
 ├── Source/Public-Web/v11/     # Preserved v28 public recipe
 ├── Source/Public-Web/v12/     # Current v29 public recipe
-├── Source/Public-Web/v13/     # Current v30 public recipe
+├── Source/Public-Web/v13/     # Preserved v30 public recipe
+├── Source/Public-Web/v14/     # Current v31 public recipe
 ├── Automation/Scripts/        # Versioned v18-v24 builders and exporters
 ├── Automation/Tools/          # Local desktop launcher server
 ├── Tests/                     # Current structure and release contracts
@@ -251,7 +253,11 @@ Existing v15–v26 generated outputs are preserved. Do not rerun an exporter to 
 
 ## Main-App-v30 additions / v30 新增內容
 
-`Source/Main-App-v30/` is the current release. It preserves v29 behavior and replaces all 18 runtime deity images with high-quality WebP derivatives of the expanded 2:3 masters in `Assets/Deities/v30-safe-masters/`. `src/lib/deity-art.ts` owns the per-artwork portrait focus and aligned Taiwan locator metadata. `Source/Public-Web/v13/` is the public recipe. `Automation/Scripts/finalize-pwa-v30.mjs`, `Automation/Scripts/export-standalone-v30.mjs`, and `Automation/Scripts/finalize-public-v13.mjs` generate the outputs; `Tests/validate_v30.ps1` owns the release boundary.
+`Source/Main-App-v30/` is a preserved release. It preserves v29 behavior and replaces all 18 runtime deity images with high-quality WebP derivatives of the expanded 2:3 masters in `Assets/Deities/v30-safe-masters/`. `src/lib/deity-art.ts` owns the per-artwork portrait focus and aligned Taiwan locator metadata. `Source/Public-Web/v13/` is the public recipe. `Automation/Scripts/finalize-pwa-v30.mjs`, `Automation/Scripts/export-standalone-v30.mjs`, and `Automation/Scripts/finalize-public-v13.mjs` generate the outputs; `Tests/validate_v30.ps1` owns the release boundary.
+
+## Main-App-v31 additions / v31 新增內容
+
+`Source/Main-App-v31/` is the current release. It preserves v30 interaction, artwork, typography, export, and privacy behavior while unifying the setup canvas, editor, desktop workbench, device frame, cards, and controls around a pale milk-tea, cream, caramel, espresso, and muted-gold palette. `src/styles/v31-layout.css` reserves in-flow height for all bilingual setup headings; `src/layout/layout-model.ts` provides safe default heights for familiarity and card-type blocks. `Source/Public-Web/v14/` is the public recipe. `Automation/Scripts/finalize-pwa-v31.mjs`, `Automation/Scripts/export-standalone-v31.mjs`, and `Automation/Scripts/finalize-public-v14.mjs` generate the outputs; `Tests/validate_v31.ps1` owns the release boundary. Design and test-first evidence are documented in `Documentation/V31_MILK_TEA_SETUP_DESIGN.md` and `Documentation/V31_MILK_TEA_SETUP_PLAN.md`.
 
 ### v27 retained-file annotations / v27 檔案註記
 

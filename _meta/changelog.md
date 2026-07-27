@@ -1,5 +1,12 @@
 # Changelog / 變更紀錄
 
+## 2026-07-27 — v31 milk-tea setup and safe headings
+
+- Replaced black/navy setup and desktop editing surfaces with a unified milk-tea, cream, caramel, espresso, and muted-gold palette.
+- Increased the default familiarity and card-type block heights and made bilingual legends static in-flow title rows.
+- Added deterministic CSS contracts and browser measurements proving every setup label fits at 430 × 932.
+- Created standalone v31, Public Web v14, versioned automation, documentation, and focused validation.
+
 ## 2026-07-27 — v30 portrait-safe deity artwork regeneration
 
 - Generated and visually reviewed 18 new 1024 × 1536 deity masters using the project-owned Baosheng Dadi composition as style/safety reference.

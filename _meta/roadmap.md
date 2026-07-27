@@ -1,5 +1,12 @@
 # Roadmap / 路線圖
 
+## Phase 17 — v31 milk-tea setup and safe headings
+
+- [x] Replace black/navy setup and editing surfaces with one pale milk-tea visual family.
+- [x] Reserve in-flow bilingual title rows for setup, familiarity, and card-type headings.
+- [x] Verify every setup label fits at 430 × 932 and in the desktop workbench.
+- [x] Create standalone v31 and Public Web v14 without modifying v30.
+
 ## Phase 16 — v30 portrait-safe artwork regeneration
 
 - [x] Generate 18 expanded 2:3 masters with complete face/crown clearance.
