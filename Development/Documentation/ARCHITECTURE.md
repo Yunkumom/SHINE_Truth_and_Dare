@@ -46,6 +46,13 @@ Open Truth and Dare.cmd
 - No environment variables, API credentials, backend, or account session are required.
 - Verified persistent keys are language, font scale, and the non-personal v24 layout document.
 
+## v29 Typography Presentation Architecture / v29 字級呈現架構
+
+- `src/presentation/presentation-model.ts` owns versioned, privacy-safe question and blessing font scales normalized to 0.9–1.8.
+- `LayoutEditor.tsx` exposes synchronized numeric and range controls on the desktop workbench.
+- `App.tsx` maps the values to CSS custom properties shared by the interactive card, inert phone preview, and keepsake preview.
+- `lib/share.ts` applies the same values to canvas question and blessing typography; no personal content enters presentation persistence.
+
 ## v24 Taiwan Coastline Architecture / v24 台灣海岸線架構
 
 - `Development/Source/Main-App-v24/src/lib/taiwan-shape.ts` owns one simplified, normalized main-island coastline derived from Natural Earth 1:10m map-unit geometry.

@@ -1,0 +1,130 @@
+:root {
+  font-family: Inter, "PingFang TC", "Noto Sans TC", system-ui, sans-serif;
+  color: #f2ecdf;
+  background: #02080d;
+  font-synthesis: none;
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  min-width: 320px;
+  margin: 0;
+}
+body {
+  overflow: hidden;
+  background: radial-gradient(
+    circle at 50% 12%,
+    #143347 0,
+    #07141e 42%,
+    #02080d 78%
+  );
+}
+button,
+input {
+  font: inherit;
+}
+.viewport-stage {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.phone-fit-stage {
+  --phone-scale: 1;
+  width: calc(430px * var(--phone-scale));
+  height: calc(932px * var(--phone-scale));
+  position: relative;
+}
+.app-shell {
+  --ink: #06131f;
+  --navy: #081a28;
+  --navy-soft: #102838;
+  --paper: #f2ecdf;
+  --paper-deep: #e4d9c5;
+  --gold: #d5b77a;
+  --gold-muted: #a98d59;
+  --mist: #afbdba;
+  --line: #d5b77a47;
+  width: 430px;
+  height: 932px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  overflow: hidden;
+  background: var(--ink);
+  font-size: calc(16px * var(--font-scale));
+  transform: translate(-50%, -50%) scale(var(--phone-scale));
+  transform-origin: center;
+  border: 1px solid #d5b77a59;
+  border-radius: 48px;
+  box-shadow:
+    0 30px 90px #000a,
+    0 0 0 8px #071019;
+  isolation: isolate;
+}
+.app-shell:before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.17;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+@media (max-width: 560px) {
+  body {
+    overflow: auto;
+  }
+  .viewport-stage {
+    height: 100svh;
+    min-height: 100svh;
+    display: block;
+    overflow: auto;
+  }
+  .phone-fit-stage {
+    width: 100%;
+    height: 100svh;
+  }
+  .app-shell {
+    width: 100%;
+    min-width: 320px;
+    height: 100svh;
+    min-height: 780px;
+    position: relative;
+    left: auto;
+    top: auto;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+  }
+  .landing-shell {
+    overflow-y: auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  :before,
+  :after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

@@ -61,6 +61,11 @@ Static inspection of the supplied artifact confirms:
 - v22 keeps the primary draw gesture on the deck, moves the fallback button to the bottom, and lets the card use 402 × 562 pixels of the 430 × 932 canvas.
 - v22 editor mode exposes setup, game, and keepsake blocks for drag, resize, numeric adjustment, undo/redo, reset, and privacy-safe JSON exchange.
 - v23 keeps the full v22 interaction contract while replacing all 18 deity images with visible-crop-safe artwork and one precise canonical Taiwan reveal shape.
+- v29 defaults question and blessing scales to 1.2 and 1.25, exposes independent 0.9–1.8 controls, and synchronizes them across the card, preview, keepsake, and PNG.
+
+## Current v29 readable typography / 目前 v29 易讀字級
+
+v29 preserves the complete v28 artwork, Taiwan-reveal, gesture, layout, device-frame, export, and privacy contracts. Question and blessing text receive independent normalized presentation values. Long on-screen copy wraps and remains accessible inside its panel; the same scales drive commemorative PNG typography. Mobile retains the global accessibility A−/A＋ control.
 
 Detailed gesture behavior is defined in `ANIMATION_SPEC.md`.
 

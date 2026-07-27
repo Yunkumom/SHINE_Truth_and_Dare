@@ -1,5 +1,12 @@
 # Changelog / 變更紀錄
 
+## 2026-07-27 — v29 readable adjustable card text
+
+- Increased default question and blessing text scales by 20% and 25%.
+- Added independent numeric and slider controls with a safe 0.9–1.8 range.
+- Synchronized typography across the draw card, phone preview, keepsake, and PNG output, with wrapping and bounded scrolling for long copy.
+- Created standalone v29, Public Web v12, versioned automation, documentation, and focused validation.
+
 ## 2026-07-26 — v28 Baosheng Dadi safe artwork
 
 - Generated a new project-owned, wide environmental portrait of Baosheng Dadi in the rainy apothecary style.

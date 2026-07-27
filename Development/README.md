@@ -1,8 +1,8 @@
 # Development / 開發資料
 
-This directory contains preserved v18–v27 source lines and the current Encounter Cards v28 source line. Historical v17 source, older completed plans, old-version builders, and generated dependencies remain recoverable under `../_pending/`.
+This directory contains preserved v18–v28 source lines and the current Encounter Cards v29 source line. Historical v17 source, older completed plans, old-version builders, and generated dependencies remain recoverable under `../_pending/`.
 
-此目錄保留 v18–v27 source 與目前作用中的 Encounter Cards v28 source。v17 歷史 source、舊版計畫、builder 與可重建依賴仍可由 `../_pending/` 回復。
+此目錄保留 v18–v28 source 與目前作用中的 Encounter Cards v29 source。v17 歷史 source、舊版計畫、builder 與可重建依賴仍可由 `../_pending/` 回復。
 
 ## Structure / 結構
 
@@ -19,7 +19,8 @@ Development/
 ├── Source/Main-App-v25/       # Current desktop workspace and portrait-safe application
 ├── Source/Main-App-v26/       # Current physical-ratio phone frame and card editor application
 ├── Source/Main-App-v27/       # Preserved entrance-layout refinement
-├── Source/Main-App-v28/       # Current Baosheng safe-artwork release
+├── Source/Main-App-v28/       # Preserved Baosheng safe-artwork release
+├── Source/Main-App-v29/       # Current readable adjustable card-text release
 ├── Source/Public-Web/v2/      # Preserved Public v2 source recipe
 ├── Source/Public-Web/v3/      # Preserved Public v3 source recipe
 ├── Source/Public-Web/v4/      # Preserved Public v4 source recipe
@@ -28,7 +29,8 @@ Development/
 ├── Source/Public-Web/v7/      # Current Public v7 source recipe
 ├── Source/Public-Web/v8/      # Current Public v8 source recipe
 ├── Source/Public-Web/v10/     # Preserved v27 public recipe
-├── Source/Public-Web/v11/     # Current v28 public recipe
+├── Source/Public-Web/v11/     # Preserved v28 public recipe
+├── Source/Public-Web/v12/     # Current v29 public recipe
 ├── Automation/Scripts/        # Versioned v18-v24 builders and exporters
 ├── Automation/Tools/          # Local desktop launcher server
 ├── Tests/                     # Current structure and release contracts
@@ -60,6 +62,8 @@ Development/
 | `Documentation/V25_DESKTOP_WORKSPACE_PLAN.md` | Test-first v25 release plan. / 測試優先 v25 發行計畫。 |
 | `Documentation/V28_BAOSHENG_SAFE_ARTWORK_DESIGN.md` | Approved wide, crown-safe Baosheng artwork contract. / 已核准保生大帝寬構圖安全合約。 |
 | `Documentation/V28_BAOSHENG_SAFE_ARTWORK_PLAN.md` | Test-first v28 release plan. / 測試優先 v28 發行計畫。 |
+| `Documentation/V29_READABLE_CARD_TEXT_DESIGN.md` | Approved readable question/blessing typography contract. / 已核准的問題／祝福易讀字級合約。 |
+| `Documentation/V29_READABLE_CARD_TEXT_PLAN.md` | Test-first v29 release plan. / 測試優先 v29 發行計畫。 |
 
 ## Automation and Validation / 自動化與驗證
 
@@ -235,7 +239,11 @@ Existing v15–v26 generated outputs are preserved. Do not rerun an exporter to 
 
 ## Main-App-v28 additions / v28 新增內容
 
-`Source/Main-App-v28/` is the current release. It preserves v27 and replaces the Baosheng Dadi apothecary variant with `src/assets/deities/baosheng-apothecary-wide-taiwan-safe-v28.png`. `src/lib/deity-art.ts` owns the crown-safe focus and aligned Taiwan hotspot; `Source/Public-Web/v11/` is the public recipe. Versioned builders are `Automation/Scripts/finalize-pwa-v28.mjs`, `Automation/Scripts/export-standalone-v28.mjs`, and `Automation/Scripts/finalize-public-v11.mjs`; `Tests/validate_v28.ps1` verifies the release boundary.
+`Source/Main-App-v28/` is the preserved Baosheng-safe release. It preserves v27 and replaces the Baosheng Dadi apothecary variant with `src/assets/deities/baosheng-apothecary-wide-taiwan-safe-v28.png`. `src/lib/deity-art.ts` owns the crown-safe focus and aligned Taiwan hotspot; `Source/Public-Web/v11/` is its public recipe. Versioned builders are `Automation/Scripts/finalize-pwa-v28.mjs`, `Automation/Scripts/export-standalone-v28.mjs`, and `Automation/Scripts/finalize-public-v11.mjs`; `Tests/validate_v28.ps1` verifies the preserved release boundary.
+
+## Main-App-v29 additions / v29 新增內容
+
+`Source/Main-App-v29/` is the current release. It preserves v28 and adds independently adjustable question and blessing font scales through `src/presentation/presentation-model.ts` and `src/components/LayoutEditor.tsx`. `src/App.tsx`, `src/styles/v29-layout.css`, and `src/lib/share.ts` synchronize those values across screen and PNG output. `Source/Public-Web/v12/` is the public recipe. `Automation/Scripts/finalize-pwa-v29.mjs`, `Automation/Scripts/export-standalone-v29.mjs`, and `Automation/Scripts/finalize-public-v12.mjs` generate its outputs; `Tests/validate_v29.ps1` owns the release boundary.
 
 ### v27 retained-file annotations / v27 檔案註記
 

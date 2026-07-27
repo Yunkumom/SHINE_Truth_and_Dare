@@ -1,8 +1,8 @@
 # Truth and Dare Directory Guide / 資料夾指南
 
-This is the canonical repository map. Active Development contains preserved earlier lines, the current v28 line, and files required to run, understand, and validate them.
+This is the canonical repository map. Active Development contains preserved earlier lines, the current v29 line, and files required to run, understand, and validate them.
 
-本檔是正式 repository 地圖。作用中的 Development 保留較早版本與目前 v28，以及執行、理解與驗證所需的檔案。
+本檔是正式 repository 地圖。作用中的 Development 保留較早版本與目前 v29，以及執行、理解與驗證所需的檔案。
 
 ## Root / 根目錄
 
@@ -19,13 +19,14 @@ This is the canonical repository map. Active Development contains preserved earl
 | `Apps/Public-Web/v8/` | Current immutable v25 GitHub Pages desktop-workspace release. / 目前不可變 v25 GitHub Pages 桌面工作區版。 |
 | `Apps/Public-Web/v9/` | Preserved immutable v26 GitHub Pages iPhone-frame and card-editor release. / 保留的不可變 v26 手機框與卡片編輯版。 |
 | `Apps/Public-Web/v10/` | Current immutable v27 GitHub Pages iPhone-frame and card-editor release. / 目前不可變 v27 GitHub Pages 手機框與卡片編輯版。 |
-| `Apps/Public-Web/v11/` | Current immutable v28 GitHub Pages release with the wide, crown-safe Baosheng artwork. / 目前不可變 v28 GitHub Pages 保生大帝安全構圖版。 |
+| `Apps/Public-Web/v11/` | Preserved immutable v28 GitHub Pages release with the wide, crown-safe Baosheng artwork. / 保留的不可變 v28 GitHub Pages 保生大帝安全構圖版。 |
+| `Apps/Public-Web/v12/` | Current immutable v29 GitHub Pages release with adjustable readable card text. / 目前不可變 v29 GitHub Pages 可調整易讀卡片文字版。 |
 | `Assets/` | Reusable resources and governance. / 可重用資源與治理。 |
 | `Assets/Catalog/` | Licence, attribution, source, and safety records. / 授權、標示、來源與安全紀錄。 |
 | `Assets/Deities/` | High-resolution AI-generated Taiwanese deity source artwork and provenance; `v20-variants/` adds nine action/pose variants. / 高解析台灣神祇原始圖；`v20-variants/` 增加九張動作變體。 |
 | `Assets/Deities/v20-variants/` | v20 source PNG variants with Taiwan motifs hidden in objects, clothing, or scenery. / v20 原始 PNG，將台灣意象藏入器物、服飾或場景。 |
 | `Assets/Deities/v23-taiwan-safe/` | Current 18 PNG sources with precise coloured Taiwan silhouettes inside the visible crop. / 目前 18 張彩色精緻台灣輪廓安全區 PNG。 |
-| `Development/` | Current v28 source, automation, validation, and product contracts. / 目前 v28 source、自動化、驗證與產品合約。 |
+| `Development/` | Current v29 source, automation, validation, and product contracts. / 目前 v29 source、自動化、驗證與產品合約。 |
 | `_meta/` | Purpose, roadmap, handoff, changelog, and reconstruction blueprints. / purpose、roadmap、handoff、changelog 與重建藍圖。 |
 | `_agent/` | Agent workspace guidance. / Agent 工作指引。 |
 | `_agent/Skills/` | Optional project-specific reusable Skills; currently only its index. / 專案 Skills，目前只有索引。 |
@@ -73,10 +74,14 @@ This is the canonical repository map. Active Development contains preserved earl
 | `_pending/v26-generated-development-state_2026-07-26/` | Recoverable local v26 dependencies and caches. / 可回復的 v26 本機依賴與 cache。 |
 | `Development/Source/Main-App-v27/` | Preserved v27 source with physical-ratio device frame and card presentation controls. / 保留的 v27 實體比例手機框與卡片呈現 source。 |
 | `Development/Source/Public-Web/v10/` | v27 to Public Web v10 recipe. / v27 至公開 v10 產製說明。 |
-| `Development/Source/Main-App-v28/` | Current v28 source with the wide Baosheng safe crop and aligned locator. / 目前 v28 保生大帝安全構圖與定位 source。 |
+| `Development/Source/Main-App-v28/` | Preserved v28 source with the wide Baosheng safe crop and aligned locator. / 保留的 v28 保生大帝安全構圖與定位 source。 |
 | `Development/Source/Public-Web/v11/` | v28 to Public Web v11 recipe. / v28 至公開 v11 產製說明。 |
+| `Development/Source/Main-App-v29/` | Current v29 source with independently adjustable question and blessing typography. / 目前 v29 可獨立調整問題與祝福字級 source。 |
+| `Development/Source/Public-Web/v12/` | v29 to Public Web v12 recipe. / v29 至公開 v12 產製說明。 |
 | `_pending/v27-generated-development-state_2026-07-26/` | Recoverable local v27 dependencies and caches. / 可回復的 v27 本機依賴與 cache。 |
 | `_pending/v28-generated-development-state_2026-07-26/` | Recoverable local v28 dependencies and caches. / 可回復的 v28 本機依賴與 cache。 |
+| `_pending/v29-preverification-build_2026-07-27/` | Unpublished checkpoint retained as evidence of the corrected English blessing-font override. / 保留作為英文祝福字級覆蓋修正證據的未發布檢查點。 |
+| `_pending/v29-generated-development-state_2026-07-27/` | Recoverable local v29 dependencies and TypeScript caches. / 可回復的 v29 本機依賴與 TypeScript cache。 |
 | `Development/Source/Public-Web/v7/` | Recipe linking verified v24 source to immutable Public Web v7. / v24 至公開 v7 的產製說明。 |
 | `Development/Source/Main-App-v18/src/` | Authored UI, policies, data, styles, and tests. / 人工維護 UI、政策、資料、樣式與測試。 |
 | `Development/Source/Main-App-v18/public/` | PWA manifest, worker template, and owned icons. / PWA manifest、worker template 與自有 icons。 |
@@ -102,8 +107,8 @@ The following are recoverable under `_pending/Development-simplification_2026-07
 # Run current desktop release
 .\Open Truth and Dare.cmd
 
-# Restore dependencies and work on current v28 source
-Set-Location Development/Source/Main-App-v28
+# Restore dependencies and work on current v29 source
+Set-Location Development/Source/Main-App-v29
 npm ci
 npm run dev
 npm run typecheck
@@ -114,4 +119,4 @@ npm test
 powershell -ExecutionPolicy Bypass -File Development/Tests/validate_repository.ps1
 ```
 
-Existing release outputs are immutable. New product behavior after v24 requires v25. Uncertain or proposed-deletion content must move to `_pending/` and be indexed; never permanently delete it without explicit human approval.
+Existing release outputs are immutable. New product behavior after v29 requires v30. Uncertain or proposed-deletion content must move to `_pending/` and be indexed; never permanently delete it without explicit human approval.

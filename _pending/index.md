@@ -1,5 +1,11 @@
 # Pending Index / 待確認索引
 
+## `v29-preverification-build_2026-07-27/`
+
+Recoverable first v29 output moved here after browser QA found the English blessing scale override; evidence only, not publishable.
+
+瀏覽器驗證發現英文祝福字級仍被舊樣式覆寫後移入的第一版 v29 成品；僅供證據，不可發布。
+
 ## `v28-generated-development-state_2026-07-26/`
 
 Reproducible v28 dependencies and TypeScript caches retained outside active Development after verification.
@@ -106,3 +112,13 @@ Retains reproducible v24 `node_modules` and TypeScript build caches after final 
 
 - `_pending/v27-failed-dependency-restore_2026-07-26/` — recoverable partial npm restore after a lockfile checksum substitution was detected; not product source.
 - `_pending/v27-generated-development-state_2026-07-26/` — reproducible v27 dependencies and TypeScript caches moved out of active Development after verification.
+
+## v29 preverification build / v29 驗證前建置
+
+- `_pending/v29-preverification-build_2026-07-27/` preserves the unpublished checkpoint that exposed an English blessing-font specificity defect. It is verification evidence only and must not be published.
+- 此目錄保留發現英文祝福字級 specificity 問題的未發布檢查點；僅作為驗證證據，不可發布。
+
+## v29 generated development state / v29 生成開發狀態
+
+- `_pending/v29-generated-development-state_2026-07-27/` retains reproducible v29 dependencies and TypeScript caches after all source checks passed. Restore future dependencies with `npm ci`.
+- 此目錄保留 v29 通過 source 驗證後的可重建依賴與 TypeScript 快取；後續請用 `npm ci` 還原依賴。

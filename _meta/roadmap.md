@@ -1,5 +1,13 @@
 # Roadmap / 路線圖
 
+## Phase 15 — v29 readable adjustable card text
+
+- [x] Increase default question and blessing text scales to 1.2 and 1.25.
+- [x] Add independent number and range controls normalized to 0.9–1.8.
+- [x] Synchronize typography across game, phone preview, keepsake, and PNG export.
+- [x] Create v29 source, standalone v29, and Public Web v12 without modifying v28.
+- [ ] Complete physical iPhone readability, Share Sheet, installation, and offline-update regression.
+
 ## Phase 14 — v28 Baosheng Dadi safe artwork
 
 - [x] Regenerate the Baosheng Dadi apothecary artwork with a wider source composition and complete crown clearance.
