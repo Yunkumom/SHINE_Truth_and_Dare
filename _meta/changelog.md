@@ -1,5 +1,13 @@
 # Changelog / 變更紀錄
 
+## 2026-07-27 — v30 portrait-safe deity artwork regeneration
+
+- Generated and visually reviewed 18 new 1024 × 1536 deity masters using the project-owned Baosheng Dadi composition as style/safety reference.
+- Rejected and regenerated one Guan Sheng Dijun variant whose first Taiwan motif fell below the card-safe crop.
+- Added high-quality WebP runtime derivatives, per-artwork focal points, and aligned glowing Taiwan locators without changing v29 behavior.
+- Created standalone v30, Public Web v13, versioned automation, provenance, documentation, and focused validation.
+
+
 ## 2026-07-27 — v29 readable adjustable card text
 
 - Increased default question and blessing text scales by 20% and 25%.

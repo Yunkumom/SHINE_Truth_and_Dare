@@ -1,17 +1,17 @@
 # Truth and Dare
 
-Truth and Dare is the governed repository for **Encounter Cards**, a bilingual, iPhone-first conversation card game. Encounter Cards v29 is the current maintained release; v15–v29 remain immutable standalone references after publication.
+Truth and Dare is the governed repository for **Encounter Cards**, a bilingual, iPhone-first conversation card game. Encounter Cards v30 is the current maintained release; v15–v30 remain immutable standalone references after publication.
 
-Truth and Dare 是雙語、iPhone 優先的對話卡牌遊戲 **相遇卡 Encounter Cards**。v29 是目前維護版本；v15–v29 發布後均保留為不可變 standalone 參考版本。
+Truth and Dare 是雙語、iPhone 優先的對話卡牌遊戲 **相遇卡 Encounter Cards**。v30 是目前維護版本；v15–v30 發布後均保留為不可變 standalone 參考版本。
 
 ## Start / 開始
 
-- Double-click `Open Truth and Dare.cmd`; it serves and opens the current v29 release at `127.0.0.1:8765`.
+- Double-click `Open Truth and Dare.cmd`; it serves and opens the current v30 release at `127.0.0.1:8765`.
 - Public site: `https://yunkumom.github.io/SHINE_Truth_and_Dare/` (available after the Pages workflow completes).
-- Current authored source: `Development/Source/Main-App-v29/src/`
-- Current verified PWA build: `Development/Source/Main-App-v29/dist/`
-- Current standalone release: `Apps/Standalone/encounter_cards_v29.html`
-- Public GitHub Pages artifact: `Apps/Public-Web/v12/`
+- Current authored source: `Development/Source/Main-App-v30/src/`
+- Current verified PWA build: `Development/Source/Main-App-v30/dist/`
+- Current standalone release: `Apps/Standalone/encounter_cards_v30.html`
+- Public GitHub Pages artifact: `Apps/Public-Web/v13/`
 - Current deity source artwork: `Assets/Deities/v23-taiwan-safe/`.
 - Complete Development file guide: `Development/README.md`
 - Recoverable retired development material: `_pending/Development-simplification_2026-07-19/`
@@ -22,7 +22,7 @@ Truth and Dare 是雙語、iPhone 優先的對話卡牌遊戲 **相遇卡 Encoun
 Truth and Dare/
 ├── Apps/          # Preserved runnable releases
 ├── Assets/        # Reusable assets and provenance
-├── Development/   # Preserved earlier lines plus current v29 source, tools, tests, and contracts
+├── Development/   # Preserved earlier lines plus current v30 source, tools, tests, and contracts
 ├── _meta/         # Purpose, roadmap, handoff, changelog, blueprints
 ├── _agent/        # Agent guidance
 ├── _human/        # Human-facing support references
@@ -39,7 +39,7 @@ Development 已於 2026-07-19 保守精簡。v17 source、未發布 Public Web�
 ## Development / 開發
 
 ```powershell
-Set-Location Development/Source/Main-App-v29
+Set-Location Development/Source/Main-App-v30
 npm ci
 npm run dev
 npm run typecheck
@@ -47,7 +47,7 @@ npm run lint
 npm test
 ```
 
-Existing v15–v29 outputs are immutable after release. Later product changes require a new version rather than overwriting a released version.
+Existing v15–v30 outputs are immutable after release. Later product changes require a new version rather than overwriting a released version.
 
 完整 repository 驗證：
 

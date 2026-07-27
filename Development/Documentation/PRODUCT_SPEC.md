@@ -67,6 +67,12 @@ Static inspection of the supplied artifact confirms:
 
 v29 preserves the complete v28 artwork, Taiwan-reveal, gesture, layout, device-frame, export, and privacy contracts. Question and blessing text receive independent normalized presentation values. Long on-screen copy wraps and remains accessible inside its panel; the same scales drive commemorative PNG typography. Mobile retains the global accessibility A−/A＋ control.
 
+## Current v30 portrait-safe artwork / 目前 v30 人像安全圖
+
+v30 preserves the complete v29 interaction, typography, layout, export, and privacy contracts. All 18 deity variants use new 1024 × 1536 masters with expanded surroundings. Complete faces and crowns remain inside the near-square runtime crop; the coloured Taiwan motif and its canonical glowing coastline locator remain inside the visible central artwork area. Two variants remain available for each of nine deities.
+
+v30 完整保留 v29 的互動、字級、版面、輸出與隱私合約。18 張神祇變體全部使用新的 1024 × 1536 擴景 master；完整臉與頭冠留在近方形 runtime 裁切內，彩色台灣圖形及其精準發光輪廓定位均位於中央可見畫面。九位神祇各保留兩張變體。
+
 Detailed gesture behavior is defined in `ANIMATION_SPEC.md`.
 
 ## Privacy Boundary / 隱私邊界

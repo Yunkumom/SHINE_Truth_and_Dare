@@ -1,5 +1,14 @@
 # Roadmap / 路線圖
 
+## Phase 16 — v30 portrait-safe artwork regeneration
+
+- [x] Generate 18 expanded 2:3 masters with complete face/crown clearance.
+- [x] Keep every embedded Taiwan inside the central card crop and align the canonical reveal locator.
+- [x] Preserve v29 interaction, typography, privacy and export behavior in a new v30 line.
+- [x] Browser-rotate through all 18 runtime assets and inspect the three highest-risk crops.
+- [x] Create standalone v30 and Public Web v13 without modifying v29.
+
+
 ## Phase 15 — v29 readable adjustable card text
 
 - [x] Increase default question and blessing text scales to 1.2 and 1.25.

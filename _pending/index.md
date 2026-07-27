@@ -122,3 +122,8 @@ Retains reproducible v24 `node_modules` and TypeScript build caches after final 
 
 - `_pending/v29-generated-development-state_2026-07-27/` retains reproducible v29 dependencies and TypeScript caches after all source checks passed. Restore future dependencies with `npm ci`.
 - 此目錄保留 v29 通過 source 驗證後的可重建依賴與 TypeScript 快取；後續請用 `npm ci` 還原依賴。
+
+## v30 generated development state / v30 生成開發狀態
+
+- `_pending/v30-generated-development-state_2026-07-27/` retains reproducible v30 dependencies and TypeScript caches after final artwork integration and release verification. Restore with `npm ci`.
+- 此目錄保留 v30 圖像整合與 release 驗證後的可重建依賴及 TypeScript cache；後續請用 `npm ci` 還原。

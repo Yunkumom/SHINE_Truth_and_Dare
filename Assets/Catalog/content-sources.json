@@ -7,11 +7,12 @@
     "v20_variant_batch": "2026-07-22",
     "v23_taiwan_safe_batch": "2026-07-22",
     "v28_baosheng_wide_batch": "2026-07-26",
+    "v30_portrait_safe_batch": "2026-07-27",
     "source_path": "Assets/Deities/",
     "variant_path": "Assets/Deities/v20-variants/",
-    "taiwan_safe_path": "Assets/Deities/v23-taiwan-safe/",
+    "taiwan_safe_path": "Assets/Deities/v30-safe-masters/",
     "count": 18,
-    "note": "Project-owned AI generations; v23 edits place a precise, coloured Taiwan silhouette in every visible card-safe crop. The v28 Baosheng apothecary source widens the scene, preserves complete crown clearance, and keeps its Taiwan enamel inside the central safe crop. No text or watermark."
+    "note": "Project-owned AI generations; v30 regenerates all 18 masters at 1024x1536 with expanded scenery, complete crown clearance, and one coloured Taiwan silhouette protected inside the central card-safe crop. No text or watermark."
   },
   "taiwan_outline_v24": {
     "source": "Natural Earth 1:10m Admin 0 map units",

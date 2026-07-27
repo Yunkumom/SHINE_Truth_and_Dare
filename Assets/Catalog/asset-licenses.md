@@ -43,3 +43,9 @@ v24 runtime path 源自 public-domain 的 Natural Earth 1:10m Admin 0 map-unit g
 `Assets/Deities/baosheng-dadi-apothecary-wide-taiwan-safe-v28.png` is a project-owned AI generation created with OpenAI built-in image generation on 2026-07-26 from the project-owned v23 Baosheng Dadi reference. The prompt preserves the refined rainy apothecary direction while widening the scene, protecting the full crown and face, and placing one complete turquoise Taiwan enamel on the medicine mortar. No third-party artwork, text, logo, or watermark was added.
 
 此 PNG 於 2026-07-26 使用 OpenAI 內建圖像生成，以專案自有 v23 保生大帝圖為參考建立。構圖增加四周場景與頭冠安全留白，並在藥缽上放置一個完整的青綠台灣琺瑯；未加入第三方作品、文字、標誌或浮水印。
+
+## Encounter Cards v30 portrait-safe masters / v30 人像安全 master
+
+The 18 PNG files in `Assets/Deities/v30-safe-masters/` are project-owned AI generations created with OpenAI built-in image generation on 2026-07-27. The project-owned v28 Baosheng Dadi artwork served as a style and safe-framing reference. Every prompt required expanded surrounding scenery, complete face/crown clearance, and one complete Taiwan main-island silhouette in the central card-safe area. No third-party artwork, text, logo, or watermark was added.
+
+`Assets/Deities/v30-safe-masters/` 的 18 張 PNG 為本專案於 2026-07-27 使用 OpenAI 內建圖片生成建立的自有素材；專案自有 v28 保生大帝圖僅作畫風與安全構圖參考。每張均要求擴充四周場景、完整保留臉與頭冠，並把一個完整台灣本島輪廓放在卡片中央安全區；未加入第三方作品、文字、標誌或浮水印。

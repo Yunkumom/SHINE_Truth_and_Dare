@@ -117,3 +117,8 @@ v18 introduced the modular session UI, 60 bilingual cards, policy libraries, PWA
 ## Preserved v21 Modular Architecture / 保留的 v21 模組化架構
 
 `Development/Source/Main-App-v21/src/` preserves the first `TaiwanHotspot` and long-press reveal implementation. Verified `dist/`, standalone v21, and Public Web v4 remain immutable.
+## v30 Artwork Asset Architecture / v30 圖像素材架構
+
+`Assets/Deities/v30-safe-masters/` owns 18 reusable 1024 × 1536 PNG masters. `Development/Source/Main-App-v30/src/assets/deities/*-safe-v30.webp` contains optimized version-bound derivatives. `src/lib/deity-art.ts` maps every variant to one runtime image, a bounded portrait focal point, and an aligned canonical Taiwan locator. Vite embeds these assets into the immutable standalone build and copies them into Public Web v13.
+
+`Assets/Deities/v30-safe-masters/` 保存 18 張可重用 1024 × 1536 PNG master；v30 source 的 `*-safe-v30.webp` 是版本綁定輕量副本。`deity-art.ts` 將每個變體對應到 runtime 圖、人像焦點與精準台灣 locator；Vite 將素材內嵌至 standalone，並產製 Public Web v13。

@@ -50,8 +50,8 @@ Assert-V29Condition ((Get-FileHash -Algorithm SHA256 -LiteralPath (Join-Path $pr
 
 $server = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot 'Development/Automation/Tools/serve_truth_and_dare.ps1')
 $workflow = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot '.github/workflows/pages.yml')
-Assert-V29Condition ($server -match 'encounter_cards_v29\.html' -and $server -match 'encounter-release.*V29') 'Desktop launcher serves and verifies v29'
-Assert-V29Condition ($workflow -match 'Main-App-v29' -and $workflow -match 'Public-Web/v12') 'GitHub Pages workflow builds and publishes v29 as Public Web v12'
+Assert-V29Condition ($server -match 'encounter_cards_v30\.html' -and $server -match 'encounter-release.*V30') 'Current desktop launcher moved forward without modifying v29'
+Assert-V29Condition ($workflow -match 'Main-App-v30' -and $workflow -match 'Public-Web/v13') 'Current GitHub Pages workflow moved forward without modifying Public Web v12'
 
 if ($failures.Count) { Write-Host "v29 validation failed with $($failures.Count) issue(s)." -ForegroundColor Red; exit 1 }
 Write-Host 'v29 validation passed.' -ForegroundColor Cyan
