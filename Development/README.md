@@ -1,8 +1,8 @@
 # Development / 開發資料
 
-This directory contains preserved v18–v30 source lines and the current Encounter Cards v31 source line. Historical v17 source, older completed plans, old-version builders, and generated dependencies remain recoverable under `../_pending/`.
+This directory contains preserved v18–v31 source lines and the current Encounter Cards v32 source line. Historical v17 source, older completed plans, old-version builders, and generated dependencies remain recoverable under `../_pending/`.
 
-此目錄保留 v18–v30 source 與目前作用中的 Encounter Cards v31 source。v17 歷史 source、舊版計畫、builder 與可重建依賴仍可由 `../_pending/` 回復。
+此目錄保留 v18–v31 source 與目前作用中的 Encounter Cards v32 source。v17 歷史 source、舊版計畫、builder 與可重建依賴仍可由 `../_pending/` 回復。
 
 ## Structure / 結構
 
@@ -23,6 +23,7 @@ Development/
 ├── Source/Main-App-v29/       # Preserved readable adjustable card-text release
 ├── Source/Main-App-v30/       # Preserved 18-artwork portrait-safe release
 ├── Source/Main-App-v31/       # Current milk-tea setup release
+├── Source/Main-App-v32/       # Current desktop-mode, safe-text, and artwork-choice release
 ├── Source/Public-Web/v2/      # Preserved Public v2 source recipe
 ├── Source/Public-Web/v3/      # Preserved Public v3 source recipe
 ├── Source/Public-Web/v4/      # Preserved Public v4 source recipe
@@ -35,7 +36,8 @@ Development/
 ├── Source/Public-Web/v12/     # Current v29 public recipe
 ├── Source/Public-Web/v13/     # Preserved v30 public recipe
 ├── Source/Public-Web/v14/     # Current v31 public recipe
-├── Automation/Scripts/        # Versioned v18-v24 builders and exporters
+├── Source/Public-Web/v15/     # Current v32 public recipe
+├── Automation/Scripts/        # Versioned v18-v32 builders and exporters
 ├── Automation/Tools/          # Local desktop launcher server
 ├── Tests/                     # Current structure and release contracts
 └── Documentation/             # Current product and interaction contracts
@@ -384,3 +386,21 @@ Existing v15–v26 generated outputs are preserved. Do not rerun an exporter to 
 - `Tests/validate_v27.ps1` — verifies the v27 release boundary.
 - `Documentation/V27_ENTRANCE_LAYOUT_DESIGN.md` — approved setup visual design.
 - `Documentation/V27_ENTRANCE_LAYOUT_PLAN.md` — test-first v27 release plan.
+
+## Current v32 Line / 目前 v32 版本
+
+- `Source/Main-App-v32/` — current authored React/TypeScript product line; `src/` contains UI, data, policies, layout, presentation, assets, styles, and unit tests, while `public/` owns offline metadata and `dist/` is generated immutable output.
+- `Source/Main-App-v32/src/App.tsx` — composes separate desktop Settings/Test surfaces, mobile play-only flow, advanced deck choice, favorite-face selection, game, and keepsake.
+- `Source/Main-App-v32/src/data/collections.ts` — governed registry for available Taiwan deity art and planned Taiwan astral, world deity, and world zodiac families.
+- `Source/Main-App-v32/src/lib/artwork-selection.ts` — deterministic collection filtering, specific-artwork locking, and three-face candidate selection without coupling questions or blessings.
+- `Source/Main-App-v32/src/components/EditableBlock.tsx` — bounded scale-aware layout manipulation that is disabled by default and ignores interactive controls.
+- `Source/Main-App-v32/src/components/LayoutEditor.tsx` — desktop-only numeric editor with opt-in direct manipulation.
+- `Source/Main-App-v32/src/styles/v32.css` — v16-quality product styling and card presentation.
+- `Source/Main-App-v32/src/styles/v32-layout.css` — milk-tea desktop modes, 430 × 932 device contract, no-clipping typography, advanced picker, and candidate fan.
+- `Source/Public-Web/v15/README.md` — v32 to Public Web v15 release recipe.
+- `Automation/Scripts/export-standalone-v32.mjs` — creates immutable v32 standalone output.
+- `Automation/Scripts/finalize-pwa-v32.mjs` — finalizes v32 offline precache.
+- `Automation/Scripts/finalize-public-v15.mjs` — creates immutable Public Web v15.
+- `Tests/validate_v32.ps1` — verifies the v32 product and publication boundary.
+- `Documentation/V32_DESKTOP_MODES_AND_TYPE_SAFETY_DESIGN.md` — approved v32 interaction, typography, and collection design.
+- `Documentation/V32_DESKTOP_MODES_AND_TYPE_SAFETY_PLAN.md` — test-first v32 implementation and release plan.

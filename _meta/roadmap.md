@@ -1,5 +1,15 @@
 # Roadmap / 路線圖
 
+## Phase 18 — v32 desktop modes, stable editing, and deck choice
+
+- [x] Separate desktop Settings and Test modes while keeping mobile play-only.
+- [x] Disable direct manipulation by default, make it scale-aware, and exclude interactive controls from drag starts.
+- [x] Guarantee non-clipping setup and deity-card typography at 430 × 932.
+- [x] Add collapsed advanced entry choice, specific-artwork locking, and three favorite faces before reveal.
+- [x] Register Taiwan astral, world deity, and world zodiac collections as governed planned families without unapproved assets.
+- [x] Create standalone v32 and Public Web v15 without modifying v31.
+- [ ] Complete physical iPhone installation, offline update, Share Sheet, and gesture regression.
+
 ## Phase 17 — v31 milk-tea setup and safe headings
 
 - [x] Replace black/navy setup and editing surfaces with one pale milk-tea visual family.

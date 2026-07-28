@@ -1,5 +1,14 @@
 # Changelog / 變更紀錄
 
+## 2026-07-28 — v32 desktop modes, stable editing, and governed deck choice
+
+- Split desktop into Settings and Test modes; kept mobile as a clean play-only 430 × 932 experience.
+- Made direct layout manipulation opt-in, scale-aware, and safe around buttons, inputs, links, and other controls.
+- Added no-clipping typography contracts for setup, deity headers, question/blessing panels, and keepsakes.
+- Added a collapsed advanced entry picker, specific-artwork locking with independent random questions/blessings, and a three-face favorite picker before reveal.
+- Registered Taiwan astral, world deity, and world zodiac families as planned and unavailable until governed assets are approved.
+- Created standalone v32, Public Web v15, versioned automation, focused tests, documentation, launcher/Pages updates, and deterministic validation.
+
 ## 2026-07-27 — v31 milk-tea setup and safe headings
 
 - Replaced black/navy setup and desktop editing surfaces with a unified milk-tea, cream, caramel, espresso, and muted-gold palette.

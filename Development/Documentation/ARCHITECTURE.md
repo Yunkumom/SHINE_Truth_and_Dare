@@ -126,3 +126,12 @@ v18 introduced the modular session UI, 60 bilingual cards, policy libraries, PWA
 ## v31 Setup Presentation Architecture / v31 入口呈現架構
 
 v31 copies the governed v30 runtime and artwork into a new immutable line. `src/styles/v31-layout.css` owns root-scoped milk-tea theme tokens shared by the setup shell, desktop workbench, editor, and device frame. `src/layout/layout-model.ts` owns enlarged default heights for the familiarity and card-type blocks, while fieldset legends remain static, wrapping, in-flow title rows. Public Web v14 and standalone v31 are generated from the same verified dist.
+
+## v32 Mode and Collection Architecture / v32 模式與牌組架構
+
+- `App.tsx` owns a desktop-only `settings | test` mode boundary. Settings composes the workbench, editor, and inert phone preview; Test composes one interactive centered phone. The mobile branch bypasses both desktop surfaces.
+- `EditableBlock.tsx` receives explicit `directManipulation` and `canvasScale` values. Pointer deltas are converted to logical canvas units, controls are excluded from drag initiation, and direct manipulation defaults off.
+- `data/collections.ts` is the governed collection registry. Only `taiwan-deities` is available in v32; planned family records have no runtime assets and cannot enter random selection.
+- `lib/artwork-selection.ts` resolves all-random, collection, or specific-artwork preferences and builds three distinct candidate faces. `App.tsx` continues to select prompts and blessings independently.
+- `styles/v32-layout.css` separates desktop mode chrome from the 430 × 932 phone canvas and applies non-clipping line-height, overflow, wrapping, and scroll-access rules to setup, card, and keepsake text.
+- `dist/`, standalone v32, and Public Web v15 are generated from the same tested source. Personal fields remain in React memory and are never placed in the collection or layout persistence models.

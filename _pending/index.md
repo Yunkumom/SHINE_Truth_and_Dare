@@ -1,5 +1,17 @@
 # Pending Index / 待確認索引
 
+## `v32-preverification-build_2026-07-28/`
+
+Unpublished v32/Public Web v15 candidate from before strict specific-artwork locking; verification evidence only.
+
+指定卡面嚴格鎖定修正前的未發布 v32／Public Web v15 候選；僅供驗證。
+
+## `v32-generated-development-state_2026-07-28/`
+
+Recoverable v32 `node_modules` and TypeScript build caches moved out of active Development after verification.
+
+v32 驗證後移出的可重建依賴與 TypeScript cache。
+
 ## `v31-generated-development-state_2026-07-27/`
 
 Recoverable v31 `node_modules` and TypeScript build caches moved out of active Development after verification.

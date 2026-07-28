@@ -79,6 +79,14 @@ v31 preserves every v30 game, artwork, typography, export, and privacy contract.
 
 v31 完整保留 v30 遊戲、圖像、字級、輸出與隱私合約。入口、桌面工作區、編輯器、手機框、欄位、選擇器與開始按鈕統一使用淡奶茶色系，不再使用黑色或深藍入口背景；所有雙語標題都有獨立正常流標題列，於 430 × 932 內不得重疊、裁切或省略。
 
+## Current v32 desktop modes and deck choice / 目前 v32 桌面模式與選牌
+
+v32 preserves every v31 game, artwork, typography, export, offline, and privacy contract. Desktop starts in Settings mode with an enlarged workbench, docked numeric controls, an inert phone preview, and direct manipulation disabled until explicitly enabled. Test mode provides one fully interactive centered 430 × 932 phone and retains session state when modes change. Mobile never renders desktop editing controls.
+
+The collapsed advanced entry control supports all-random play or one approved artwork. Choosing a specific artwork locks only the artwork; the prompt and mandatory blessing remain independent and random. Before reveal, another participant may choose one of three favorite faces. Taiwan astral, world deity, and world zodiac families are registered as planned but cannot be selected until governed assets and content are approved. All visible headings and controls must reserve adequate line height and must not use clipping or ellipsis as a layout substitute.
+
+v32 完整保留 v31 的遊戲、圖像、字級、輸出、離線與隱私合約。桌面預設為設定模式，提供放大工作區、固定數值控制、不可互動手機預覽，且拖拉須明確開啟；測試模式只呈現一支完整可互動且置中的 430 × 932 手機，切換模式會保留遊戲狀態。手機不會顯示桌面編輯工具。進階選牌可全部隨機或鎖定一張已核准卡面；鎖定僅影響圖像，題目與必備祝福仍獨立隨機。翻牌前可讓另一位參與者從三張卡面中挑選。台灣星座、不同國家神明與不同國家星座先登錄為規劃中，素材及內容完成治理前不可選用。所有可見標題與控制文字必須保留足夠行高，不得用裁切或省略號掩蓋版面問題。
+
 Detailed gesture behavior is defined in `ANIMATION_SPEC.md`.
 
 ## Privacy Boundary / 隱私邊界
