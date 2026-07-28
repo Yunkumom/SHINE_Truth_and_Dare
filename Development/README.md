@@ -1,8 +1,8 @@
 # Development / 開發資料
 
-This directory contains preserved v18–v31 source lines and the current Encounter Cards v32 source line. Historical v17 source, older completed plans, old-version builders, and generated dependencies remain recoverable under `../_pending/`.
+This directory contains preserved v18–v32 source lines and the current Encounter Cards v33 source line. Historical v17 source, older completed plans, old-version builders, and generated dependencies remain recoverable under `../_pending/`.
 
-此目錄保留 v18–v31 source 與目前作用中的 Encounter Cards v32 source。v17 歷史 source、舊版計畫、builder 與可重建依賴仍可由 `../_pending/` 回復。
+此目錄保留 v18–v32 source 與目前作用中的 Encounter Cards v33 source。v17 歷史 source、舊版計畫、builder 與可重建依賴仍可由 `../_pending/` 回復。
 
 ## Structure / 結構
 
@@ -23,7 +23,8 @@ Development/
 ├── Source/Main-App-v29/       # Preserved readable adjustable card-text release
 ├── Source/Main-App-v30/       # Preserved 18-artwork portrait-safe release
 ├── Source/Main-App-v31/       # Current milk-tea setup release
-├── Source/Main-App-v32/       # Current desktop-mode, safe-text, and artwork-choice release
+├── Source/Main-App-v32/       # Preserved desktop-mode, safe-text, and artwork-choice release
+├── Source/Main-App-v33/       # Current Taiwan-zodiac and independent exact-choice release
 ├── Source/Public-Web/v2/      # Preserved Public v2 source recipe
 ├── Source/Public-Web/v3/      # Preserved Public v3 source recipe
 ├── Source/Public-Web/v4/      # Preserved Public v4 source recipe
@@ -36,8 +37,9 @@ Development/
 ├── Source/Public-Web/v12/     # Current v29 public recipe
 ├── Source/Public-Web/v13/     # Preserved v30 public recipe
 ├── Source/Public-Web/v14/     # Current v31 public recipe
-├── Source/Public-Web/v15/     # Current v32 public recipe
-├── Automation/Scripts/        # Versioned v18-v32 builders and exporters
+├── Source/Public-Web/v15/     # Preserved v32 public recipe
+├── Source/Public-Web/v16/     # Current v33 public recipe
+├── Automation/Scripts/        # Versioned v18-v33 builders and exporters
 ├── Automation/Tools/          # Local desktop launcher server
 ├── Tests/                     # Current structure and release contracts
 └── Documentation/             # Current product and interaction contracts
@@ -387,7 +389,7 @@ Existing v15–v26 generated outputs are preserved. Do not rerun an exporter to 
 - `Documentation/V27_ENTRANCE_LAYOUT_DESIGN.md` — approved setup visual design.
 - `Documentation/V27_ENTRANCE_LAYOUT_PLAN.md` — test-first v27 release plan.
 
-## Current v32 Line / 目前 v32 版本
+## Preserved v32 Line / 保留 v32 版本
 
 - `Source/Main-App-v32/` — current authored React/TypeScript product line; `src/` contains UI, data, policies, layout, presentation, assets, styles, and unit tests, while `public/` owns offline metadata and `dist/` is generated immutable output.
 - `Source/Main-App-v32/src/App.tsx` — composes separate desktop Settings/Test surfaces, mobile play-only flow, advanced deck choice, favorite-face selection, game, and keepsake.
@@ -404,3 +406,20 @@ Existing v15–v26 generated outputs are preserved. Do not rerun an exporter to 
 - `Tests/validate_v32.ps1` — verifies the v32 product and publication boundary.
 - `Documentation/V32_DESKTOP_MODES_AND_TYPE_SAFETY_DESIGN.md` — approved v32 interaction, typography, and collection design.
 - `Documentation/V32_DESKTOP_MODES_AND_TYPE_SAFETY_PLAN.md` — test-first v32 implementation and release plan.
+
+## Current v33 Line / 目前 v33 版本
+
+- `Source/Main-App-v33/` — current authored React/TypeScript line; `dist/` is the verified immutable PWA output.
+- `Source/Main-App-v33/src/App.tsx` — preserves desktop Settings/Test and mobile play-only flows while adding the collapsed independent artwork/question chooser.
+- `Source/Main-App-v33/src/lib/zodiac-art.ts` — registers twelve Taiwan Astral Guardians with central Taiwan reveal coordinates and country/culture metadata.
+- `Source/Main-App-v33/src/lib/artwork-catalog.ts` — combines 18 deity and 12 zodiac faces without coupling either family to questions or blessings.
+- `Source/Main-App-v33/src/data/question-packs.ts` — registers the growing question-library boundary; v33 starts with `classic-60`.
+- `Source/Main-App-v33/src/lib/question-selection.ts` — resolves random or exact eligible questions and safely falls back when level or mode changes.
+- `Source/Main-App-v33/src/styles/v33.css` — styles the milk-tea exact-choice panel, collection controls, artwork grid, search, and readable question list.
+- `Source/Public-Web/v16/README.md` — v33 to Public Web v16 release recipe.
+- `Automation/Scripts/export-standalone-v33.mjs` — creates immutable standalone v33.
+- `Automation/Scripts/finalize-pwa-v33.mjs` — finalizes the v33 offline precache.
+- `Automation/Scripts/finalize-public-v16.mjs` — creates immutable Public Web v16.
+- `Tests/validate_v33.ps1` — verifies the v33 asset, behavior, release, launcher, and Pages boundaries.
+- `Documentation/V33_TAIWAN_ZODIAC_EXACT_CHOICE_DESIGN.md` — approved artwork, collection, exact-choice, privacy, and growth design.
+- `Documentation/V33_TAIWAN_ZODIAC_EXACT_CHOICE_PLAN.md` — test-first generation, implementation, and publication plan.

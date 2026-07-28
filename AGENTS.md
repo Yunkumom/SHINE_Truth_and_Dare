@@ -8,19 +8,19 @@ Before meaningful changes, read `README.md`, `GUIDE.md`, this file, `_meta/purpo
 
 ## Product Rules / 產品規則
 
-- Treat `Apps/Standalone/encounter_cards_v15.html` through `encounter_cards_v32.html` as immutable releases. Never overwrite or hand-edit them.
-- v32 authored source remains under `Development/Source/Main-App-v32/src/`; its verified `dist/` is generated and immutable.
-- Product behavior changes after v32 require a new versioned source and output line.
-- The current Windows launcher must serve `Apps/Standalone/encounter_cards_v32.html` through `Development/Automation/Tools/serve_truth_and_dare.ps1`; direct `file://` execution is unsupported for the complete contract.
+- Treat `Apps/Standalone/encounter_cards_v15.html` through `encounter_cards_v33.html` as immutable releases. Never overwrite or hand-edit them.
+- v33 authored source remains under `Development/Source/Main-App-v33/src/`; its verified `dist/` is generated and immutable.
+- Product behavior changes after v33 require a new versioned source and output line.
+- The current Windows launcher must serve `Apps/Standalone/encounter_cards_v33.html` through `Development/Automation/Tools/serve_truth_and_dare.ps1`; direct `file://` execution is unsupported for the complete contract.
 - Preserve the 430 × 932 iPhone Pro Max contract, centered desktop phone frame, Chinese/English/bilingual modes, Levels 1–5, Truth/Dare/Surprise modes, and mobile card interaction unless a new version is explicitly approved.
 - Treat names, optional contact information, birthdays, notes, answers, and 18+ choices as privacy-sensitive input.
 - Do not add analytics, backend transmission, accounts, or persistent personal-data storage without explicit approval and privacy review.
 - v17 source, unpublished Public Web work, legacy builders/tests, completed designs/plans, and failed v20 pre-release checkpoints are inactive but recoverable under `_pending/`. Do not restore or modify an archived product line without explicit reactivation scope.
 
-- 將 `Apps/Standalone/` 中 v15–v32 視為不可變 release，不得覆寫或手改。
-- v32 人工 source 位於 `Development/Source/Main-App-v32/src/`；已驗證 `dist/` 為不可變生成成品。
-- v32 後的產品行為修改必須建立新版本。
-- Windows 啟動器必須透過本機 server 開啟 v32；完整合約不支援直接 `file://`。
+- 將 `Apps/Standalone/` 中 v15–v33 視為不可變 release，不得覆寫或手改。
+- v33 人工 source 位於 `Development/Source/Main-App-v33/src/`；已驗證 `dist/` 為不可變生成成品。
+- v33 後的產品行為修改必須建立新版本。
+- Windows 啟動器必須透過本機 server 開啟 v33；完整合約不支援直接 `file://`。
 - 保留 430 × 932、中／英／雙語、Level 1–5、真心話／小挑戰／隨機及行動卡牌互動，除非明確核准新版本。
 - 隱私敏感輸入不得傳輸、記錄或持久保存；未經核准不得加入 analytics、backend 或帳號。
 
@@ -56,7 +56,7 @@ powershell -ExecutionPolicy Bypass -File Development/Tests/validate_repository.p
 
 ## Predicted Next Work / 預測下一步
 
-1. Complete physical iPhone v32 regression across all 18 portrait-safe artworks, Taiwan alignment, selection, swipe/flip, PNG, Share Sheet, installation, and offline update.
+1. Complete physical iPhone v33 regression across all 30 artworks, Taiwan alignment, exact choice, swipe/flip, PNG, Share Sheet, installation, and offline update.
 2. Review Level 5 age/content safety and artwork provenance.
 3. Create a new versioned release for any later product change.
 4. Review `_pending/index.md`; permanent disposal requires explicit human approval.

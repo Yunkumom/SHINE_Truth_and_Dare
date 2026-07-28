@@ -16,8 +16,8 @@ $requiredFiles = @(
     '_agent/README.md', '_agent/Skills/README.md', '_human/README.md', '_human/code-learning-tool.html', '_pending/README.md', '_pending/index.md',
     'Apps/Standalone/encounter_cards_v15.html', 'Apps/Standalone/encounter_cards_v16.html',
     'Apps/Standalone/encounter_cards_v17.html', 'Apps/Standalone/encounter_cards_v18.html', 'Apps/Standalone/encounter_cards_v19.html',
-    'Apps/Standalone/encounter_cards_v20.html', 'Apps/Standalone/encounter_cards_v21.html', 'Apps/Standalone/encounter_cards_v22.html', 'Apps/Standalone/encounter_cards_v23.html', 'Apps/Standalone/encounter_cards_v24.html', 'Apps/Standalone/encounter_cards_v25.html', 'Apps/Standalone/encounter_cards_v26.html', 'Apps/Standalone/encounter_cards_v27.html', 'Apps/Standalone/encounter_cards_v28.html', 'Apps/Standalone/encounter_cards_v29.html', 'Apps/Standalone/encounter_cards_v30.html', 'Apps/Standalone/encounter_cards_v31.html', 'Apps/Standalone/encounter_cards_v32.html',
-    'Apps/Public-Web/v2/index.html', 'Apps/Public-Web/v3/index.html', 'Apps/Public-Web/v4/index.html', 'Apps/Public-Web/v5/index.html', 'Apps/Public-Web/v6/index.html', 'Apps/Public-Web/v7/index.html', 'Apps/Public-Web/v8/index.html', 'Apps/Public-Web/v9/index.html', 'Apps/Public-Web/v10/index.html', 'Apps/Public-Web/v11/index.html', 'Apps/Public-Web/v12/index.html', 'Apps/Public-Web/v13/index.html', 'Apps/Public-Web/v14/index.html', 'Apps/Public-Web/v15/index.html',
+    'Apps/Standalone/encounter_cards_v20.html', 'Apps/Standalone/encounter_cards_v21.html', 'Apps/Standalone/encounter_cards_v22.html', 'Apps/Standalone/encounter_cards_v23.html', 'Apps/Standalone/encounter_cards_v24.html', 'Apps/Standalone/encounter_cards_v25.html', 'Apps/Standalone/encounter_cards_v26.html', 'Apps/Standalone/encounter_cards_v27.html', 'Apps/Standalone/encounter_cards_v28.html', 'Apps/Standalone/encounter_cards_v29.html', 'Apps/Standalone/encounter_cards_v30.html', 'Apps/Standalone/encounter_cards_v31.html', 'Apps/Standalone/encounter_cards_v32.html', 'Apps/Standalone/encounter_cards_v33.html',
+    'Apps/Public-Web/v2/index.html', 'Apps/Public-Web/v3/index.html', 'Apps/Public-Web/v4/index.html', 'Apps/Public-Web/v5/index.html', 'Apps/Public-Web/v6/index.html', 'Apps/Public-Web/v7/index.html', 'Apps/Public-Web/v8/index.html', 'Apps/Public-Web/v9/index.html', 'Apps/Public-Web/v10/index.html', 'Apps/Public-Web/v11/index.html', 'Apps/Public-Web/v12/index.html', 'Apps/Public-Web/v13/index.html', 'Apps/Public-Web/v14/index.html', 'Apps/Public-Web/v15/index.html', 'Apps/Public-Web/v16/index.html',
     'Apps/Standalone/v16-assets/rolldown-runtime-S-ySWqyJ.js', 'Apps/Standalone/v16-assets/framework-DjPHiq1u.js',
     'Apps/Standalone/v16-assets/index-CePrWcV7.js', 'Apps/Standalone/v16-assets/layout-segment-context-Bb-kZqck.js',
     'Apps/Standalone/v16-assets/page-B3j9dtoA.js',
@@ -60,12 +60,15 @@ $requiredFiles = @(
     'Development/Source/Main-App-v31/src/App.tsx', 'Development/Source/Main-App-v31/src/styles/v31-layout.css', 'Development/Source/Main-App-v31/dist/index.html',
     'Development/Source/Main-App-v32/package.json', 'Development/Source/Main-App-v32/package-lock.json',
     'Development/Source/Main-App-v32/src/App.tsx', 'Development/Source/Main-App-v32/src/styles/v32-layout.css', 'Development/Source/Main-App-v32/dist/index.html',
-    'Assets/Deities/v30-safe-masters/README.md',
+    'Development/Source/Main-App-v33/package.json', 'Development/Source/Main-App-v33/package-lock.json',
+    'Development/Source/Main-App-v33/src/App.tsx', 'Development/Source/Main-App-v33/src/lib/zodiac-art.ts', 'Development/Source/Main-App-v33/src/lib/question-selection.ts', 'Development/Source/Main-App-v33/src/styles/v33.css', 'Development/Source/Main-App-v33/dist/index.html',
+    'Assets/Deities/v30-safe-masters/README.md', 'Assets/Zodiac/README.md', 'Assets/Zodiac/Taiwan/README.md', 'Assets/Zodiac/Taiwan/v33-masters/README.md', 'Assets/Zodiac/Taiwan/v33-masters/manifest.json',
     'Development/Automation/Scripts/finalize-pwa-v18.mjs', 'Development/Automation/Scripts/export-standalone-v18.mjs',
+    'Development/Automation/Scripts/finalize-pwa-v33.mjs', 'Development/Automation/Scripts/export-standalone-v33.mjs', 'Development/Automation/Scripts/finalize-public-v16.mjs',
     'Development/Automation/Tools/serve_truth_and_dare.ps1',
-    'Development/Tests/validate_clean_structure.ps1', 'Development/Tests/validate_v18.ps1', 'Development/Tests/validate_v19.ps1', 'Development/Tests/validate_v20.ps1', 'Development/Tests/validate_v21.ps1', 'Development/Tests/validate_v22.ps1', 'Development/Tests/validate_v23.ps1', 'Development/Tests/validate_v24.ps1', 'Development/Tests/validate_v25.ps1', 'Development/Tests/validate_v26.ps1', 'Development/Tests/validate_v27.ps1', 'Development/Tests/validate_v28.ps1', 'Development/Tests/validate_v29.ps1', 'Development/Tests/validate_v30.ps1', 'Development/Tests/validate_v31.ps1', 'Development/Tests/validate_v32.ps1', 'Development/Tests/validate_repository.ps1',
+    'Development/Tests/validate_clean_structure.ps1', 'Development/Tests/validate_v18.ps1', 'Development/Tests/validate_v19.ps1', 'Development/Tests/validate_v20.ps1', 'Development/Tests/validate_v21.ps1', 'Development/Tests/validate_v22.ps1', 'Development/Tests/validate_v23.ps1', 'Development/Tests/validate_v24.ps1', 'Development/Tests/validate_v25.ps1', 'Development/Tests/validate_v26.ps1', 'Development/Tests/validate_v27.ps1', 'Development/Tests/validate_v28.ps1', 'Development/Tests/validate_v29.ps1', 'Development/Tests/validate_v30.ps1', 'Development/Tests/validate_v31.ps1', 'Development/Tests/validate_v32.ps1', 'Development/Tests/validate_v33.ps1', 'Development/Tests/validate_repository.ps1',
     'Assets/Catalog/asset-licenses.md', 'Assets/Catalog/content-sources.json',
-    '_pending/Development-simplification_2026-07-19/README.md', '_pending/v24-generated-development-state_2026-07-23/README.md', '_pending/v32-generated-development-state_2026-07-28/README.md'
+    '_pending/Development-simplification_2026-07-19/README.md', '_pending/v24-generated-development-state_2026-07-23/README.md', '_pending/v32-generated-development-state_2026-07-28/README.md', '_pending/v33-preverification-build_2026-07-28/README.md', '_pending/v33-generated-development-state_2026-07-28/README.md'
 )
 foreach ($relativePath in $requiredFiles) {
     Assert-RepositoryCondition (Test-Path -LiteralPath (Join-Path $projectRoot $relativePath) -PathType Leaf) "Required file exists: $relativePath"
@@ -174,6 +177,11 @@ $v32ValidationOutput = & powershell -NoProfile -ExecutionPolicy Bypass -File (Jo
 $v32ValidationExit = $LASTEXITCODE
 $v32ValidationOutput | ForEach-Object { Write-Host $_ }
 Assert-RepositoryCondition ($v32ValidationExit -eq 0) 'Focused v32 contract validation passes'
+
+$v33ValidationOutput = & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'validate_v33.ps1') 2>&1
+$v33ValidationExit = $LASTEXITCODE
+$v33ValidationOutput | ForEach-Object { Write-Host $_ }
+Assert-RepositoryCondition ($v33ValidationExit -eq 0) 'Focused v33 contract validation passes'
 
 $cleanStructureOutput = & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'validate_clean_structure.ps1') 2>&1
 $cleanStructureExit = $LASTEXITCODE

@@ -1,5 +1,13 @@
 # Changelog / 變更紀錄
 
+## 2026-07-28 — v33 Taiwan Astral Guardians and independent exact choice
+
+- Generated, visually reviewed, and governed twelve original 1024 × 1536 Taiwan zodiac masters with extra scene, complete head ornaments, Taiwanese locations, and complete centrally safe Taiwan silhouettes.
+- Added a country/culture-ready zodiac asset hierarchy, contact sheet, provenance manifest, and twelve optimised v33 WebP runtime copies.
+- Kept random artwork and questions as the default while adding a collapsed session-only panel for collection choice, exact artwork, question search, and exact eligible question selection.
+- Kept artwork, question, and mandatory blessing independent; ineligible exact questions safely fall back to the current level/mode pool.
+- Created standalone v33, Public Web v16, versioned builders, 103 passing tests, deterministic validation, launcher updates, and GitHub Pages deployment configuration.
+
 ## 2026-07-28 — v32 desktop modes, stable editing, and governed deck choice
 
 - Split desktop into Settings and Test modes; kept mobile as a clean play-only 430 × 932 experience.

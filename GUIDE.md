@@ -1,15 +1,15 @@
 # Truth and Dare Directory Guide / 資料夾指南
 
-This is the canonical repository map. Active Development contains preserved earlier lines, the current v32 line, and files required to run, understand, and validate them.
+This is the canonical repository map. Active Development contains preserved earlier lines, the current v33 line, and files required to run, understand, and validate them.
 
-本檔是正式 repository 地圖。作用中的 Development 保留較早版本與目前 v32，以及執行、理解與驗證所需的檔案。
+本檔是正式 repository 地圖。作用中的 Development 保留較早版本與目前 v33，以及執行、理解與驗證所需的檔案。
 
 ## Root / 根目錄
 
 | Path | Purpose / 用途 |
 | --- | --- |
 | `Apps/` | Completed runnable releases. / 完成且可執行的 releases。 |
-| `Apps/Standalone/` | Immutable v15–v32 HTML releases plus v16 runtime assets. / 不可變 v15–v32 HTML 與 v16 runtime assets。 |
+| `Apps/Standalone/` | Immutable v15–v33 HTML releases plus v16 runtime assets. / 不可變 v15–v33 HTML 與 v16 runtime assets。 |
 | `Apps/Public-Web/v2/` | Preserved immutable v19-derived GitHub Pages release. / 保留的 v19 公開版。 |
 | `Apps/Public-Web/v3/` | Preserved immutable v20 GitHub Pages release. / 保留的 v20 公開版。 |
 | `Apps/Public-Web/v4/` | Preserved immutable v21 GitHub Pages release. / 保留的不可變 v21 GitHub Pages release。 |
@@ -24,13 +24,17 @@ This is the canonical repository map. Active Development contains preserved earl
 | `Apps/Public-Web/v13/` | Current immutable v30 GitHub Pages release with 18 regenerated portrait-safe artworks. / 目前不可變 v30 GitHub Pages 18 張重生成人像安全圖版。 |
 | `Apps/Public-Web/v14/` | Current immutable v31 GitHub Pages release with the unified milk-tea setup and safe headings. / 目前不可變 v31 GitHub Pages 淡奶茶入口與安全標題版。 |
 | `Apps/Public-Web/v15/` | Current immutable v32 GitHub Pages release with separate desktop modes, safe typography, and governed artwork choice. / 目前不可變 v32 GitHub Pages 桌面模式分離、安全字體與受治理卡面選擇版。 |
+| `Apps/Public-Web/v16/` | Current immutable v33 GitHub Pages release with 12 Taiwan zodiac guardians and independent exact artwork/question choice. / 目前不可變 v33 GitHub Pages 台灣星座守護者與圖片／問題獨立指定版。 |
 | `Assets/` | Reusable resources and governance. / 可重用資源與治理。 |
 | `Assets/Catalog/` | Licence, attribution, source, and safety records. / 授權、標示、來源與安全紀錄。 |
 | `Assets/Deities/` | High-resolution AI-generated Taiwanese deity source artwork and provenance; `v20-variants/` adds nine action/pose variants. / 高解析台灣神祇原始圖；`v20-variants/` 增加九張動作變體。 |
 | `Assets/Deities/v20-variants/` | v20 source PNG variants with Taiwan motifs hidden in objects, clothing, or scenery. / v20 原始 PNG，將台灣意象藏入器物、服飾或場景。 |
 | `Assets/Deities/v23-taiwan-safe/` | Current 18 PNG sources with precise coloured Taiwan silhouettes inside the visible crop. / 目前 18 張彩色精緻台灣輪廓安全區 PNG。 |
 | `Assets/Deities/v30-safe-masters/` | Current 18 reusable 2:3 PNG masters with expanded scene, crown clearance, and central Taiwan. / 目前 18 張可重用 2:3 擴景、頭冠安全、中央台灣 PNG master。 |
-| `Development/` | Current v32 source, automation, validation, and product contracts. / 目前 v32 source、自動化、驗證與產品合約。 |
+| `Assets/Zodiac/` | Country- and culture-specific zodiac assets and governance. / 依國家與文化分類的星座素材及治理。 |
+| `Assets/Zodiac/Taiwan/` | Taiwan-specific western-zodiac collection and cultural notes. / 台灣版西洋星座系列與文化註記。 |
+| `Assets/Zodiac/Taiwan/v33-masters/` | Twelve 1024 × 1536 PNG masters, contact sheet, and provenance manifest. / 12 張 1024 × 1536 PNG master、總覽及來源 manifest。 |
+| `Development/` | Current v33 source, automation, validation, and product contracts. / 目前 v33 source、自動化、驗證與產品合約。 |
 | `_meta/` | Purpose, roadmap, handoff, changelog, and reconstruction blueprints. / purpose、roadmap、handoff、changelog 與重建藍圖。 |
 | `_agent/` | Agent workspace guidance. / Agent 工作指引。 |
 | `_agent/Skills/` | Optional project-specific reusable Skills; currently only its index. / 專案 Skills，目前只有索引。 |
@@ -51,7 +55,7 @@ This is the canonical repository map. Active Development contains preserved earl
 | `README.md` | Product summary and quick start. / 產品簡介與快速開始。 |
 | `GUIDE.md` | This canonical directory map. / 本正式目錄地圖。 |
 | `AGENTS.md` | Automated-contributor rules. / 自動化協作者規則。 |
-| `Open Truth and Dare.cmd` | One-click Windows v32 launcher. / Windows v32 一鍵啟動器。 |
+| `Open Truth and Dare.cmd` | One-click Windows v33 launcher. / Windows v33 一鍵啟動器。 |
 
 ## Active Development / 作用中開發
 
@@ -88,6 +92,8 @@ This is the canonical repository map. Active Development contains preserved earl
 | `Development/Source/Public-Web/v14/` | v31 to Public Web v14 recipe. / v31 至公開 v14 產製說明。 |
 | `Development/Source/Main-App-v32/` | Current authored source with separate desktop Settings/Test modes, mobile play-only behavior, stable opt-in direct manipulation, safe text, and governed artwork choice. / 目前 v32 人工 source，含桌面設定／測試模式、手機純遊玩、穩定的選用拖拉、安全文字及受治理卡面選擇。 |
 | `Development/Source/Public-Web/v15/` | v32 to Public Web v15 recipe. / v32 至公開 v15 產製說明。 |
+| `Development/Source/Main-App-v33/` | Current authored source with 30 governed artworks, Taiwan zodiac data, question packs, and independent exact choices. / 目前 v33 人工 source，含 30 張受治理卡面、台灣星座資料、問題包與獨立指定。 |
+| `Development/Source/Public-Web/v16/` | v33 to Public Web v16 recipe. / v33 至公開 v16 產製說明。 |
 | `_pending/v27-generated-development-state_2026-07-26/` | Recoverable local v27 dependencies and caches. / 可回復的 v27 本機依賴與 cache。 |
 | `_pending/v28-generated-development-state_2026-07-26/` | Recoverable local v28 dependencies and caches. / 可回復的 v28 本機依賴與 cache。 |
 | `_pending/v29-preverification-build_2026-07-27/` | Unpublished checkpoint retained as evidence of the corrected English blessing-font override. / 保留作為英文祝福字級覆蓋修正證據的未發布檢查點。 |
@@ -96,13 +102,15 @@ This is the canonical repository map. Active Development contains preserved earl
 | `_pending/v31-generated-development-state_2026-07-27/` | Recoverable local v31 dependencies and TypeScript caches. / 可回復的 v31 本機依賴與 TypeScript cache。 |
 | `_pending/v32-generated-development-state_2026-07-28/` | Recoverable local v32 dependencies and TypeScript caches. / 可回復的 v32 本機依賴與 TypeScript cache。 |
 | `_pending/v32-preverification-build_2026-07-28/` | Unpublished v32 output from before strict specific-artwork locking; evidence only. / 指定卡面嚴格鎖定前的未發布 v32 成品，僅供驗證。 |
+| `_pending/v33-preverification-build_2026-07-28/` | Unpublished v33 browser-QA candidates retained as evidence; never publish them. / v33 瀏覽器驗證中的未發布候選版本，僅供證據且不得發布。 |
+| `_pending/v33-generated-development-state_2026-07-28/` | Recoverable local v33 dependencies and TypeScript caches. / 可回復的 v33 本機依賴與 TypeScript cache。 |
 | `Development/Source/Public-Web/v7/` | Recipe linking verified v24 source to immutable Public Web v7. / v24 至公開 v7 的產製說明。 |
 | `Development/Source/Main-App-v18/src/` | Authored UI, policies, data, styles, and tests. / 人工維護 UI、政策、資料、樣式與測試。 |
 | `Development/Source/Main-App-v18/public/` | PWA manifest, worker template, and owned icons. / PWA manifest、worker template 與自有 icons。 |
 | `Development/Source/Main-App-v18/dist/` | Verified generated v18 PWA output; never hand-edit. / 已驗證 v18 PWA 輸出，不可手改。 |
-| `Development/Automation/Scripts/` | Versioned v18–v32 PWA, standalone, and public-release builders. / 版本化 v18–v32 建置器。 |
-| `Development/Automation/Tools/` | Loopback-only v32 desktop server helper. / 僅限本機的 v32 desktop server。 |
-| `Development/Tests/` | v18–v32, structure, and repository validators. / v18–v32、結構與 repository 驗證。 |
+| `Development/Automation/Scripts/` | Versioned v18–v33 PWA, standalone, and public-release builders. / 版本化 v18–v33 建置器。 |
+| `Development/Automation/Tools/` | Loopback-only v33 desktop server helper. / 僅限本機的 v33 desktop server。 |
+| `Development/Tests/` | v18–v33, structure, and repository validators. / v18–v33、結構與 repository 驗證。 |
 | `Development/Documentation/` | Current product, architecture, animation, content, and PWA contracts. / 目前產品、架構、動畫、內容與 PWA 合約。 |
 
 `node_modules/`, coverage, and TypeScript build caches are not active repository structure. Restore dependencies with `npm ci` only when development is needed.
@@ -121,8 +129,8 @@ The following are recoverable under `_pending/Development-simplification_2026-07
 # Run current desktop release
 .\Open Truth and Dare.cmd
 
-# Restore dependencies and work on current v32 source
-Set-Location Development/Source/Main-App-v32
+# Restore dependencies and work on current v33 source
+Set-Location Development/Source/Main-App-v33
 npm ci
 npm run dev
 npm run typecheck
@@ -133,4 +141,4 @@ npm test
 powershell -ExecutionPolicy Bypass -File Development/Tests/validate_repository.ps1
 ```
 
-Existing release outputs are immutable. New product behavior after v32 requires a new version. Uncertain or proposed-deletion content must move to `_pending/` and be indexed; never permanently delete it without explicit human approval.
+Existing release outputs are immutable. New product behavior after v33 requires a new version. Uncertain or proposed-deletion content must move to `_pending/` and be indexed; never permanently delete it without explicit human approval.

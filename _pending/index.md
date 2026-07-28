@@ -1,5 +1,17 @@
 # Pending Index / 待確認索引
 
+## `v33-preverification-build_2026-07-28/`
+
+Unpublished first v33/Public Web v16 build from before release-specific layout and presentation storage keys were corrected; verification evidence only.
+
+版面與呈現設定 key 改為 v33 前的首次未發布 v33／Public Web v16 build；僅供驗證證據。
+
+## `v33-generated-development-state_2026-07-28/`
+
+Recoverable v33 `node_modules` and TypeScript build caches moved out of active Development after final source verification. Restore dependencies with `npm ci` for the next versioned product line.
+
+最終原始碼驗證後移出作用中 Development 的可回復 v33 `node_modules` 與 TypeScript build cache；建立下一個版本時使用 `npm ci` 還原依賴。
+
 ## `v32-preverification-build_2026-07-28/`
 
 Unpublished v32/Public Web v15 candidate from before strict specific-artwork locking; verification evidence only.

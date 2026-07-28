@@ -1,0 +1,181 @@
+import { act, fireEvent, render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+import App from './App'
+
+describe('Encounter Cards setup', () => {
+  beforeEach(() => { vi.useRealTimers(); localStorage.clear() })
+
+  it('changes language and enters the draw screen without personal data', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+    await user.click(screen.getByRole('button', { name: 'English' }))
+    expect(screen.getByRole('heading', { name: 'Turn a simple conversation into a meeting worth keeping.' })).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: /Begin/ }))
+    expect(screen.getByRole('button', { name: 'Draw a card' })).toBeInTheDocument()
+  })
+
+  it('renders the approved entrance hierarchy as V33 with Begin separated at the bottom', () => {
+    render(<App />)
+    expect(screen.getByText('ENCOUNTER CARDS · V33')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /讓一次簡單的對話，成為值得收藏的相遇/ })).toBeInTheDocument()
+    expect(screen.getByText(/準備這次相遇/)).toBeInTheDocument()
+    expect(screen.getByText(/Choose familiarity level/)).toBeInTheDocument()
+    expect(screen.getByText(/Choose a card type/)).toBeInTheDocument()
+    const modes = screen.getByTestId('editable-modes')
+    const begin = screen.getByTestId('editable-begin')
+    expect(Number.parseFloat(begin.style.top)).toBeGreaterThan(Number.parseFloat(modes.style.top) + Number.parseFloat(modes.style.height))
+  })
+
+  it('opens the three-screen editor only in desktop settings mode', () => {
+    const originalWidth = window.innerWidth
+    Object.defineProperty(window, 'innerWidth', { configurable: true, value: 1600 })
+    render(<App />)
+    expect(screen.getByRole('dialog', { name: 'Layout editor' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /Keepsake layout/ })).toBeInTheDocument()
+    Object.defineProperty(window, 'innerWidth', { configurable: true, value: originalWidth })
+  })
+
+  it('keeps level five locked until an adult birthday is entered', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+    await user.click(screen.getByRole('button', { name: /Level 5/ }))
+    expect(screen.getByLabelText('Birthday')).toBeInTheDocument()
+    await user.type(screen.getByLabelText('Birthday'), '2000-01-01')
+    await user.click(screen.getByRole('button', { name: 'Confirm 18+' }))
+    expect(screen.getByRole('button', { name: /Level 5/ })).toHaveAttribute('aria-pressed', 'true')
+  })
+
+  it('supports desktop mouse clicks through setup, draw, and next-card controls', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+    await user.click(screen.getByRole('button', { name: 'Truth' }))
+    await user.click(screen.getByRole('button', { name: /Level 2/ }))
+    await user.click(screen.getByRole('button', { name: /開始抽卡/ }))
+    expect(screen.getByTestId('editable-card')).toHaveStyle({ width: '402px', height: '590px' })
+    await user.click(screen.getByRole('button', { name: '抽一張卡' }))
+    expect(screen.getByRole('img', { name: /台灣/ })).toBeInTheDocument()
+    expect(screen.getByTestId('mythic-card')).toBeInTheDocument()
+    expect(screen.getByTestId('mythic-card')).toHaveStyle({ '--question-font-scale': '1.2', '--blessing-font-scale': '1.25' })
+    expect(screen.getByText(/祝福|Blessing/)).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: '下一張' })).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: '下一張' }))
+    expect(screen.getByRole('button', { name: '下一張' })).toBeInTheDocument()
+  })
+
+  it('opens a keepsake preview with optional participant exchange rows', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+    const inputs = screen.getAllByRole('textbox')
+    await user.type(inputs[0], 'Yunkumom')
+    await user.type(inputs[1], 'Linker Lin')
+    await user.type(inputs[2], 'hello@example.com')
+    await user.type(inputs[3], '0912345678')
+    await user.click(screen.getByRole('button', { name: /開始抽卡/ }))
+    await user.click(screen.getByRole('button', { name: '抽一張卡' }))
+    await user.click(screen.getByRole('button', { name: '製作紀念卡' }))
+    expect(screen.getByText(/Yunkumom/)).toBeInTheDocument()
+    expect(screen.getByText(/Linker Lin/)).toBeInTheDocument()
+    expect(screen.getByText(/給這次相遇的祝福|BLESSING/)).toBeInTheDocument()
+    expect(screen.getByRole('checkbox', { name: /Include your contact/ })).toBeChecked()
+    expect(screen.getByRole('checkbox', { name: /Include their contact/ })).toBeChecked()
+  })
+
+  it('reveals Taiwan without bubbling a card-draw gesture', () => {
+    vi.useFakeTimers()
+    render(<App />)
+    fireEvent.click(screen.getByRole('button', { name: /開始抽卡/ }))
+    fireEvent.click(screen.getByRole('button', { name: '抽一張卡' }))
+    const artworkImage = screen.getByRole('img', { name: /台灣/ })
+    const artworkSource = artworkImage.getAttribute('src')
+    const revealTarget = screen.getByRole('button', { name: /長按圖片/ })
+    fireEvent.pointerDown(revealTarget, { clientX: 25, clientY: 25, pointerId: 4 })
+    act(() => vi.advanceTimersByTime(600))
+    expect(screen.getByTestId('taiwan-locator')).toBeInTheDocument()
+    fireEvent.pointerUp(revealTarget, { clientX: 25, clientY: 25, pointerId: 4 })
+    expect(screen.getByRole('img', { name: /台灣/ })).toHaveAttribute('src', artworkSource)
+  })
+
+  it('renders the synchronized desktop workbench and exact phone preview above 1100px', () => {
+    const originalWidth = window.innerWidth
+    Object.defineProperty(window, 'innerWidth', { configurable: true, value: 1600 })
+    render(<App />)
+    expect(screen.getByTestId('desktop-workspace')).toBeInTheDocument()
+    expect(screen.getByLabelText('Desktop enlarged workspace')).toBeInTheDocument()
+    expect(screen.getByLabelText('78 by 163.4 millimeter iPhone Pro Max preview')).toBeInTheDocument()
+    expect(screen.getByRole('dialog', { name: 'Layout editor' })).toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button', { name: 'Game layout · 抽卡' }))
+    expect(screen.getAllByTestId('mythic-card')).toHaveLength(2)
+    Object.defineProperty(window, 'innerWidth', { configurable: true, value: originalWidth })
+  })
+
+  it('separates desktop settings from a fully interactive test mode', async () => {
+    const originalWidth = window.innerWidth
+    Object.defineProperty(window, 'innerWidth', { configurable: true, value: 1600 })
+    const user = userEvent.setup()
+    render(<App />)
+    expect(screen.getByRole('group', { name: 'Desktop mode' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Settings mode' })).toHaveAttribute('aria-pressed', 'true')
+    expect(screen.getByLabelText('Direct manipulation')).not.toBeChecked()
+    await user.click(screen.getByRole('button', { name: 'Test mode' }))
+    expect(screen.queryByRole('dialog', { name: 'Layout editor' })).not.toBeInTheDocument()
+    expect(screen.queryByLabelText('78 by 163.4 millimeter iPhone Pro Max preview')).not.toBeInTheDocument()
+    expect(screen.getByLabelText('Desktop interactive phone test')).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: /開始抽卡/ }))
+    expect(screen.getByRole('button', { name: '抽一張卡' })).toBeInTheDocument()
+    Object.defineProperty(window, 'innerWidth', { configurable: true, value: originalWidth })
+  })
+
+  it('keeps mobile play-only and hides all layout authoring controls', () => {
+    const originalWidth = window.innerWidth
+    Object.defineProperty(window, 'innerWidth', { configurable: true, value: 430 })
+    render(<App />)
+    expect(screen.queryByRole('group', { name: 'Desktop mode' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /Edit layout/ })).not.toBeInTheDocument()
+    expect(screen.queryByRole('dialog', { name: 'Layout editor' })).not.toBeInTheDocument()
+    Object.defineProperty(window, 'innerWidth', { configurable: true, value: originalWidth })
+  })
+
+  it('keeps advanced artwork choice collapsed and independent from the question draw', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+    const disclosure = screen.getByRole('button', { name: /Exact choice/ })
+    expect(disclosure).toHaveAttribute('aria-expanded', 'false')
+    await user.click(disclosure)
+    expect(screen.getByRole('button', { name: '隨機卡面' })).toHaveAttribute('aria-pressed', 'true')
+    expect(screen.getByText(/台灣神明/)).toBeInTheDocument()
+    expect(screen.getByText(/台灣星座守護者/)).toBeInTheDocument()
+    expect(screen.getByText(/各國神明/).closest('article')).toHaveTextContent(/規劃中|Planned/)
+    expect(screen.getByText(/各國星座/).closest('article')).toHaveTextContent(/規劃中|Planned/)
+  })
+
+  it('lets another participant choose a preferred face while the question stays hidden until draw', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+    await user.click(screen.getByRole('button', { name: /Exact choice/ }))
+    await user.click(screen.getByRole('button', { name: '指定 媽祖 · mazu-sea' }))
+    await user.click(screen.getByRole('button', { name: /Close advanced deck choice/ }))
+    await user.click(screen.getByRole('button', { name: /開始抽卡/ }))
+    expect(screen.getByLabelText('Choose a favorite card face')).toBeInTheDocument()
+    expect(screen.queryByTestId('mythic-card')).not.toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: '選擇 媽祖 · Choose Mazu · mazu-sea' }))
+    expect(screen.getByRole('img', { name: /媽祖・藏有台灣輪廓的卡面/ })).toBeInTheDocument()
+    expect(screen.getByTestId('mythic-card')).toBeInTheDocument()
+  })
+
+  it('independently chooses one Taiwan zodiac face and one exact eligible question', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+    await user.click(screen.getByRole('button', { name: /Exact choice/ }))
+    await user.click(screen.getByRole('button', { name: '選擇牌組 台灣星座守護者' }))
+    await user.click(screen.getByRole('button', { name: '指定 牡羊座・合歡破曉 · tw-zodiac-aries' }))
+    await user.click(screen.getByRole('button', { name: /指定問題 card-03/ }))
+    await user.click(screen.getByRole('button', { name: /Close advanced deck choice/ }))
+    await user.click(screen.getByRole('button', { name: /開始抽卡/ }))
+    expect(screen.getAllByRole('button', { name: /選擇 牡羊座/ })).toHaveLength(1)
+    await user.click(screen.getByRole('button', { name: /選擇 牡羊座/ }))
+    expect(screen.getByText('你理想的週末早晨是什麼樣子？')).toBeInTheDocument()
+    expect(screen.getByRole('img', { name: /牡羊座・合歡破曉/ })).toBeInTheDocument()
+    expect(screen.getByText(/給這次相遇的祝福|BLESSING/)).toBeInTheDocument()
+  })
+})

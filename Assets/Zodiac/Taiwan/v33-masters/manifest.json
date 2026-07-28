@@ -1,0 +1,152 @@
+{
+  "collectionId": "taiwan-zodiac",
+  "release": "v33",
+  "title": {
+    "zh": "台灣星座守護者",
+    "en": "Taiwan Astral Guardians"
+  },
+  "generatedWith": "OpenAI image generation",
+  "generatedOn": "2026-07-28",
+  "licenseStatus": "Original project-owned generated artwork; provenance review required before external relicensing.",
+  "masterContract": {
+    "width": 1024,
+    "height": 1536,
+    "aspectRatio": "2:3",
+    "safeComposition": "Face, complete head ornament, zodiac attribute, and Taiwan silhouette remain inside the central card-safe region.",
+    "culturalLimit": "No protected Indigenous regalia or sacred tribal patterns. Taiwanese scenery and everyday craft references are used respectfully."
+  },
+  "artworks": [
+    {
+      "id": "tw-zodiac-aries-v33",
+      "sign": "aries",
+      "zhName": "牡羊座・合歡破曉",
+      "enName": "Aries · Hehuan Dawn",
+      "master": "tw-zodiac-aries-v33.png",
+      "runtime": "tw-zodiac-aries-safe-v33.webp",
+      "taiwanPlacement": "turquoise chest clasp",
+      "taiwanHotspot": { "x": 0.49, "y": 0.42 },
+      "culturalCues": ["Hehuanshan", "Taiwan alpine rhododendron", "mountain cloud sea"]
+    },
+    {
+      "id": "tw-zodiac-taurus-v33",
+      "sign": "taurus",
+      "zhName": "金牛座・阿里山茶境",
+      "enName": "Taurus · Alishan Tea Mist",
+      "master": "tw-zodiac-taurus-v33.png",
+      "runtime": "tw-zodiac-taurus-safe-v33.webp",
+      "taiwanPlacement": "ruby tea-basket medallion",
+      "taiwanHotspot": { "x": 0.5, "y": 0.63 },
+      "culturalCues": ["Alishan tea terraces", "red cypress", "mountain railway"]
+    },
+    {
+      "id": "tw-zodiac-gemini-v33",
+      "sign": "gemini",
+      "zhName": "雙子座・雙燈相映",
+      "enName": "Gemini · Twin Lanterns",
+      "master": "tw-zodiac-gemini-v33.png",
+      "runtime": "tw-zodiac-gemini-safe-v33.webp",
+      "taiwanPlacement": "jade embroidery joining the twin sashes",
+      "taiwanHotspot": { "x": 0.5, "y": 0.65 },
+      "culturalCues": ["Taiwanese temple street", "lanterns", "swallowtail butterflies"]
+    },
+    {
+      "id": "tw-zodiac-cancer-v33",
+      "sign": "cancer",
+      "zhName": "巨蟹座・澎湖月潮",
+      "enName": "Cancer · Penghu Moon Tide",
+      "master": "tw-zodiac-cancer-v33.png",
+      "runtime": "tw-zodiac-cancer-safe-v33.webp",
+      "taiwanPlacement": "coral-red breastplate inlay",
+      "taiwanHotspot": { "x": 0.5, "y": 0.45 },
+      "culturalCues": ["Penghu basalt", "tidal pools", "coral"]
+    },
+    {
+      "id": "tw-zodiac-leo-v33",
+      "sign": "leo",
+      "zhName": "獅子座・廟埕日輪",
+      "enName": "Leo · Temple Sun",
+      "master": "tw-zodiac-leo-v33.png",
+      "runtime": "tw-zodiac-leo-safe-v33.webp",
+      "taiwanPlacement": "cobalt belt medallion",
+      "taiwanHotspot": { "x": 0.46, "y": 0.54 },
+      "culturalCues": ["Taiwanese temple courtyard", "guardian lion", "roof swallows"]
+    },
+    {
+      "id": "tw-zodiac-virgo-v33",
+      "sign": "virgo",
+      "zhName": "處女座・池上豐穗",
+      "enName": "Virgo · Chishang Harvest",
+      "master": "tw-zodiac-virgo-v33.png",
+      "runtime": "tw-zodiac-virgo-safe-v33.webp",
+      "taiwanPlacement": "violet apron embroidery",
+      "taiwanHotspot": { "x": 0.5, "y": 0.64 },
+      "culturalCues": ["Chishang rice fields", "tea flowers", "woven gathering basket"]
+    },
+    {
+      "id": "tw-zodiac-libra-v33",
+      "sign": "libra",
+      "zhName": "天秤座・大稻埕衡光",
+      "enName": "Libra · Dadaocheng Balance",
+      "master": "tw-zodiac-libra-v33.png",
+      "runtime": "tw-zodiac-libra-safe-v33.webp",
+      "taiwanPlacement": "emerald scale counterweight",
+      "taiwanHotspot": { "x": 0.49, "y": 0.47 },
+      "culturalCues": ["Dadaocheng wharf", "red-brick arcades", "tea chests"]
+    },
+    {
+      "id": "tw-zodiac-scorpio-v33",
+      "sign": "scorpio",
+      "zhName": "天蠍座・峽谷雷行",
+      "enName": "Scorpio · Gorge Thunder",
+      "master": "tw-zodiac-scorpio-v33.png",
+      "runtime": "tw-zodiac-scorpio-safe-v33.webp",
+      "taiwanPlacement": "amber forearm-gauntlet inlay",
+      "taiwanHotspot": { "x": 0.47, "y": 0.5 },
+      "culturalCues": ["Taiwan marble gorge", "ferns", "mountain river"]
+    },
+    {
+      "id": "tw-zodiac-sagittarius-v33",
+      "sign": "sagittarius",
+      "zhName": "射手座・玉山逐光",
+      "enName": "Sagittarius · Yushan Flight",
+      "master": "tw-zodiac-sagittarius-v33.png",
+      "runtime": "tw-zodiac-sagittarius-safe-v33.webp",
+      "taiwanPlacement": "crimson upper-chest quiver clasp",
+      "taiwanHotspot": { "x": 0.56, "y": 0.38 },
+      "culturalCues": ["Yushan", "Taiwan blue magpie", "cloud sea"]
+    },
+    {
+      "id": "tw-zodiac-capricorn-v33",
+      "sign": "capricorn",
+      "zhName": "摩羯座・清水崖誓",
+      "enName": "Capricorn · Qingshui Resolve",
+      "master": "tw-zodiac-capricorn-v33.png",
+      "runtime": "tw-zodiac-capricorn-safe-v33.webp",
+      "taiwanPlacement": "turquoise inner-shoulder buckle",
+      "taiwanHotspot": { "x": 0.46, "y": 0.34 },
+      "culturalCues": ["Qingshui Cliffs", "Pacific Ocean", "coastal pine"]
+    },
+    {
+      "id": "tw-zodiac-aquarius-v33",
+      "sign": "aquarius",
+      "zhName": "水瓶座・九份雨泉",
+      "enName": "Aquarius · Jiufen Rain Spring",
+      "master": "tw-zodiac-aquarius-v33.png",
+      "runtime": "tw-zodiac-aquarius-safe-v33.webp",
+      "taiwanPlacement": "gold relief on ceramic vessel",
+      "taiwanHotspot": { "x": 0.49, "y": 0.57 },
+      "culturalCues": ["Jiufen hillside", "tea-house lanterns", "Taiwanese ceramics"]
+    },
+    {
+      "id": "tw-zodiac-pisces-v33",
+      "sign": "pisces",
+      "zhName": "雙魚座・東岸月海",
+      "enName": "Pisces · East Coast Moon Sea",
+      "master": "tw-zodiac-pisces-v33.png",
+      "runtime": "tw-zodiac-pisces-safe-v33.webp",
+      "taiwanPlacement": "magenta jewel between twin fish",
+      "taiwanHotspot": { "x": 0.5, "y": 0.47 },
+      "culturalCues": ["Taiwan east coast", "coral", "moonlit Pacific current"]
+    }
+  ]
+}

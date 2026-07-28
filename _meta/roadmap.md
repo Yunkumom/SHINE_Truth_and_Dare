@@ -1,5 +1,15 @@
 # Roadmap / 路線圖
 
+## Phase 19 — v33 Taiwan zodiac and independent exact choice
+
+- [x] Define a reusable country/culture asset contract and Taiwan Astral Guardian visual system.
+- [x] Generate and inspect twelve 1024 × 1536 portrait-safe Taiwan zodiac masters with complete Taiwan silhouettes.
+- [x] Publish two available collections containing 30 independent artwork faces.
+- [x] Keep random artwork/questions as default and add session-only exact artwork/question controls with search.
+- [x] Preserve independent mandatory blessings and safe fallback when an exact question becomes ineligible.
+- [x] Create standalone v33 and Public Web v16 without modifying v32.
+- [ ] Complete physical iPhone installation, offline update, Share Sheet, and 30-artwork gesture regression.
+
 ## Phase 18 — v32 desktop modes, stable editing, and deck choice
 
 - [x] Separate desktop Settings and Test modes while keeping mobile play-only.
