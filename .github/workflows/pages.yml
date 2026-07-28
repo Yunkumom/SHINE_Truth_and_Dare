@@ -23,7 +23,7 @@ jobs:
         working-directory: Development/Source/Main-App-v32
       - name: Verify committed immutable v32 and v15 outputs
         run: |
-          grep -q "Encounter Cards v32" Apps/Public-Web/v15/index.html
+          grep -q "Encounter Cards V32" Apps/Public-Web/v15/index.html
           grep -q "encounter-cards-v32-" Apps/Public-Web/v15/service-worker.js
       - uses: actions/upload-pages-artifact@v3
         with: { path: Apps/Public-Web/v15 }
