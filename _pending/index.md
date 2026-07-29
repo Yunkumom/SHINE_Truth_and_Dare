@@ -1,5 +1,10 @@
 # Pending Index / 待確認索引
 
+## `v35-generated-development-state_2026-07-29/`
+
+- Recoverable v35 `node_modules/` and TypeScript build-info caches moved out of active Development after successful tests and build.
+- v35 測試與建置成功後移出的可回復依賴與 TypeScript cache；未永久刪除。
+
 ## `v34-generated-development-state_2026-07-29/`
 
 - Recoverable v34 `node_modules/` and TypeScript build-info caches moved out of active Development after successful tests and build.

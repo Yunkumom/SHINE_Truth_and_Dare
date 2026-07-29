@@ -1,15 +1,15 @@
 # Truth and Dare Directory Guide / 資料夾指南
 
-This is the canonical repository map. Active Development contains preserved earlier lines, the current v34 line, and files required to run, understand, and validate them.
+This is the canonical repository map. Active Development contains preserved earlier lines, the current v35 line, and files required to run, understand, and validate them.
 
-本檔是正式 repository 地圖。作用中的 Development 保留較早版本與目前 v34，以及執行、理解與驗證所需的檔案。
+本檔是正式 repository 地圖。作用中的 Development 保留較早版本與目前 v35，以及執行、理解與驗證所需的檔案。
 
 ## Root / 根目錄
 
 | Path | Purpose / 用途 |
 | --- | --- |
 | `Apps/` | Completed runnable releases. / 完成且可執行的 releases。 |
-| `Apps/Standalone/` | Immutable v15–v34 HTML releases plus v16 runtime assets. / 不可變 v15–v34 HTML 與 v16 runtime assets。 |
+| `Apps/Standalone/` | Immutable v15–v35 HTML releases plus v16 runtime assets. / 不可變 v15–v35 HTML 與 v16 runtime assets。 |
 | `Apps/Public-Web/v2/` | Preserved immutable v19-derived GitHub Pages release. / 保留的 v19 公開版。 |
 | `Apps/Public-Web/v3/` | Preserved immutable v20 GitHub Pages release. / 保留的 v20 公開版。 |
 | `Apps/Public-Web/v4/` | Preserved immutable v21 GitHub Pages release. / 保留的不可變 v21 GitHub Pages release。 |
@@ -25,7 +25,8 @@ This is the canonical repository map. Active Development contains preserved earl
 | `Apps/Public-Web/v14/` | Current immutable v31 GitHub Pages release with the unified milk-tea setup and safe headings. / 目前不可變 v31 GitHub Pages 淡奶茶入口與安全標題版。 |
 | `Apps/Public-Web/v15/` | Current immutable v32 GitHub Pages release with separate desktop modes, safe typography, and governed artwork choice. / 目前不可變 v32 GitHub Pages 桌面模式分離、安全字體與受治理卡面選擇版。 |
 | `Apps/Public-Web/v16/` | Current immutable v33 GitHub Pages release with 12 Taiwan zodiac guardians and independent exact artwork/question choice. / 目前不可變 v33 GitHub Pages 台灣星座守護者與圖片／問題獨立指定版。 |
-| `Apps/Public-Web/v17/` | Current immutable v34 artifact with classic and Local Stories zodiac versions plus Taiwan feature notes. / 目前不可變 v34 古典／地方故事星座版本與台灣特色註記成品。 |
+| `Apps/Public-Web/v17/` | Preserved immutable v34 artifact with classic and Local Stories zodiac versions plus Taiwan feature notes. / 保留的不可變 v34 古典／地方故事星座版本與台灣特色註記成品。 |
+| `Apps/Public-Web/v18/` | Current immutable v35 Pages artifact with the complete swipeable card library. / 目前不可變 v35 完整滑動卡庫 Pages 成品。 |
 | `Assets/` | Reusable resources and governance. / 可重用資源與治理。 |
 | `Assets/Catalog/` | Licence, attribution, source, and safety records. / 授權、標示、來源與安全紀錄。 |
 | `Assets/Deities/` | High-resolution AI-generated Taiwanese deity source artwork and provenance; `v20-variants/` adds nine action/pose variants. / 高解析台灣神祇原始圖；`v20-variants/` 增加九張動作變體。 |
@@ -36,7 +37,7 @@ This is the canonical repository map. Active Development contains preserved earl
 | `Assets/Zodiac/Taiwan/` | Taiwan-specific western-zodiac collection and cultural notes. / 台灣版西洋星座系列與文化註記。 |
 | `Assets/Zodiac/Taiwan/v33-masters/` | Twelve 1024 × 1536 PNG masters, contact sheet, and provenance manifest. / 12 張 1024 × 1536 PNG master、總覽及來源 manifest。 |
 | `Assets/Zodiac/Taiwan/v34-local-stories-masters/` | Twelve 1024 × 1536 Local Stories masters, bilingual cultural notes, contact sheet, and manifest. / 12 張地方故事 master、雙語文化註記、總覽與 manifest。 |
-| `Development/` | Current v34 source, automation, validation, and product contracts. / 目前 v34 source、自動化、驗證與產品合約。 |
+| `Development/` | Current v35 source, automation, validation, and product contracts. / 目前 v35 source、自動化、驗證與產品合約。 |
 | `_meta/` | Purpose, roadmap, handoff, changelog, and reconstruction blueprints. / purpose、roadmap、handoff、changelog 與重建藍圖。 |
 | `_agent/` | Agent workspace guidance. / Agent 工作指引。 |
 | `_agent/Skills/` | Optional project-specific reusable Skills; currently only its index. / 專案 Skills，目前只有索引。 |
@@ -57,7 +58,7 @@ This is the canonical repository map. Active Development contains preserved earl
 | `README.md` | Product summary and quick start. / 產品簡介與快速開始。 |
 | `GUIDE.md` | This canonical directory map. / 本正式目錄地圖。 |
 | `AGENTS.md` | Automated-contributor rules. / 自動化協作者規則。 |
-| `Open Truth and Dare.cmd` | One-click Windows v34 launcher. / Windows v34 一鍵啟動器。 |
+| `Open Truth and Dare.cmd` | One-click Windows v35 launcher. / Windows v35 一鍵啟動器。 |
 
 ## Active Development / 作用中開發
 
@@ -96,8 +97,10 @@ This is the canonical repository map. Active Development contains preserved earl
 | `Development/Source/Public-Web/v15/` | v32 to Public Web v15 recipe. / v32 至公開 v15 產製說明。 |
 | `Development/Source/Main-App-v33/` | Current authored source with 30 governed artworks, Taiwan zodiac data, question packs, and independent exact choices. / 目前 v33 人工 source，含 30 張受治理卡面、台灣星座資料、問題包與獨立指定。 |
 | `Development/Source/Public-Web/v16/` | v33 to Public Web v16 recipe. / v33 至公開 v16 產製說明。 |
-| `Development/Source/Main-App-v34/` | Current authored source with 42 governed artworks, explicit series versions, and bilingual Taiwan feature notes. / 目前 v34 人工 source，含 42 張受治理卡面、明確系列版本與雙語台灣特色註記。 |
+| `Development/Source/Main-App-v34/` | Preserved immutable authored source with 42 governed artworks, explicit series versions, and bilingual Taiwan feature notes. / 保留的不可變 v34 人工 source，含 42 張受治理卡面、明確系列版本與雙語台灣特色註記。 |
 | `Development/Source/Public-Web/v17/` | v34 to Public Web v17 recipe. / v34 至公開 v17 產製說明。 |
+| `Development/Source/Main-App-v35/` | Current authored source with the entrance menu, full-card library, three-card virtualization, and independent artwork selection. / 目前 v35 人工 source，含入口清單、完整卡庫、三卡虛擬化與獨立卡面選擇。 |
+| `Development/Source/Public-Web/v18/` | v35 to Public Web v18 recipe. / v35 至公開 v18 產製說明。 |
 | `_pending/v27-generated-development-state_2026-07-26/` | Recoverable local v27 dependencies and caches. / 可回復的 v27 本機依賴與 cache。 |
 | `_pending/v28-generated-development-state_2026-07-26/` | Recoverable local v28 dependencies and caches. / 可回復的 v28 本機依賴與 cache。 |
 | `_pending/v29-preverification-build_2026-07-27/` | Unpublished checkpoint retained as evidence of the corrected English blessing-font override. / 保留作為英文祝福字級覆蓋修正證據的未發布檢查點。 |
@@ -110,6 +113,7 @@ This is the canonical repository map. Active Development contains preserved earl
 | `_pending/v33-generated-development-state_2026-07-28/` | Recoverable local v33 dependencies and TypeScript caches. / 可回復的 v33 本機依賴與 TypeScript cache。 |
 | `_pending/v34-generated-development-state_2026-07-29/` | Recoverable local v34 dependencies and TypeScript caches. / 可回復的 v34 本機依賴與 TypeScript cache。 |
 | `_pending/v34-preverification-build_2026-07-29/` | Unpublished first v34 build retained before final Taiwan-locator alignment. / 最終台灣定位校正前的未發布 v34 候選。 |
+| `_pending/v35-generated-development-state_2026-07-29/` | Recoverable local v35 dependencies and TypeScript caches. / 可回復的 v35 本機依賴與 TypeScript cache。 |
 | `Development/Source/Public-Web/v7/` | Recipe linking verified v24 source to immutable Public Web v7. / v24 至公開 v7 的產製說明。 |
 | `Development/Source/Main-App-v18/src/` | Authored UI, policies, data, styles, and tests. / 人工維護 UI、政策、資料、樣式與測試。 |
 | `Development/Source/Main-App-v18/public/` | PWA manifest, worker template, and owned icons. / PWA manifest、worker template 與自有 icons。 |

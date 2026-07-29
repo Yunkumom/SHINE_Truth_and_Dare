@@ -1,0 +1,16 @@
+.v34-shell .collection-version-label{margin:2px 0 7px;padding:7px 8px;border-left:3px solid var(--setup-caramel-deep);background:#fff8e8;color:var(--setup-espresso)}
+.v34-shell .collection-version-label b,.v34-shell .collection-version-label span{display:block;white-space:normal;overflow:visible}
+.v34-shell .collection-version-label b{font:800 10px/1.35 "Noto Serif TC",serif}
+.v34-shell .collection-version-label span{margin-top:2px;color:var(--setup-muted-brown);font:600 8px/1.45 sans-serif}
+.v34-shell .collection-roadmap{grid-template-columns:repeat(2,minmax(0,1fr))}
+.v34-shell .artwork-picker{grid-template-columns:repeat(2,minmax(0,1fr))}
+.v34-shell .artwork-picker button{text-align:left;padding:5px;overflow:visible}
+.v34-shell .artwork-picker img{height:112px;object-position:50% 34%}
+.v34-shell .artwork-picker span{min-height:0;padding:5px 2px 2px;font:700 10px/1.35 "Noto Serif TC",serif}
+.v34-shell .artwork-picker small,.v34-shell .artwork-picker em{display:block;white-space:normal;overflow:visible;padding:0 2px}
+.v34-shell .artwork-picker small{color:var(--setup-caramel-deep);font:800 8px/1.4 sans-serif}
+.v34-shell .artwork-picker em{margin-top:3px;color:var(--setup-muted-brown);font:500 7px/1.45 sans-serif}
+.v34-shell .mythic-card-header .artwork-feature-note{color:#72512e;letter-spacing:.02em;font:700 6px/1.3 "Noto Serif TC",serif}
+.v34-shell .mythic-card-header{padding-top:4px;padding-bottom:4px}
+.v34-shell .mythic-card-header h2{font-size:20px;line-height:1.2}
+@media(max-width:370px){.v34-shell .artwork-picker img{height:98px}}

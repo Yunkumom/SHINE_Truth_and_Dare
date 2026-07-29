@@ -1,5 +1,13 @@
 # Encounter Cards Architecture
 
+## v35 Entrance Card-Library Architecture / v35 入口卡庫架構
+
+- `components/CardLibrary.tsx` owns the modal surface, collection filters, focus/keyboard behavior, pointer tracking, and the three-card virtual window.
+- `lib/card-library.ts` contains pure wrapping, filtering, and swipe-decision policies with unit tests.
+- `App.tsx` derives deterministic preview question/blessing content from the artwork index and applies only the selected artwork ID to the session preference. It does not mutate the live draw while browsing.
+- `styles/v35.css` owns the 430 × 932 library grid, 360 × 503 preview-card proportions, touch behavior, side-card transitions, and reduced-motion path.
+- Source, verified PWA dist, standalone v35, and Public Web v18 are generated from one tested v35 line. Allowed persistence keys are versioned `encounter-layout-v35` and `encounter-presentation-v35` plus language/font settings; library position and filters remain session-only.
+
 ## Current v15 Package / 目前 v15 封裝
 
 The baseline is one approximately 11.7 MB HTML document. It contains:

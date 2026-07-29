@@ -1,8 +1,8 @@
 # Development / 開發資料
 
-This directory contains preserved v18–v33 source lines and the current Encounter Cards v34 source line. Historical v17 source, older completed plans, old-version builders, and generated dependencies remain recoverable under `../_pending/`.
+This directory contains preserved v18–v34 source lines and the current Encounter Cards v35 source line. Historical v17 source, older completed plans, old-version builders, and generated dependencies remain recoverable under `../_pending/`.
 
-此目錄保留 v18–v33 source 與目前作用中的 Encounter Cards v34 source。v17 歷史 source、舊版計畫、builder 與可重建依賴仍可由 `../_pending/` 回復。
+此目錄保留 v18–v34 source 與目前作用中的 Encounter Cards v35 source。v17 歷史 source、舊版計畫、builder 與可重建依賴仍可由 `../_pending/` 回復。
 
 ## Structure / 結構
 
@@ -25,7 +25,8 @@ Development/
 ├── Source/Main-App-v31/       # Current milk-tea setup release
 ├── Source/Main-App-v32/       # Preserved desktop-mode, safe-text, and artwork-choice release
 ├── Source/Main-App-v33/       # Current Taiwan-zodiac and independent exact-choice release
-├── Source/Main-App-v34/       # Current Local Stories and series-version release
+├── Source/Main-App-v34/       # Preserved Local Stories and series-version release
+├── Source/Main-App-v35/       # Current entrance card-library release
 ├── Source/Public-Web/v2/      # Preserved Public v2 source recipe
 ├── Source/Public-Web/v3/      # Preserved Public v3 source recipe
 ├── Source/Public-Web/v4/      # Preserved Public v4 source recipe
@@ -40,8 +41,9 @@ Development/
 ├── Source/Public-Web/v14/     # Current v31 public recipe
 ├── Source/Public-Web/v15/     # Preserved v32 public recipe
 ├── Source/Public-Web/v16/     # Current v33 public recipe
-├── Source/Public-Web/v17/     # Current v34 public recipe
-├── Automation/Scripts/        # Versioned v18-v34 builders and exporters
+├── Source/Public-Web/v17/     # Preserved v34 public recipe
+├── Source/Public-Web/v18/     # Current v35 public recipe
+├── Automation/Scripts/        # Versioned v18-v35 builders and exporters
 ├── Automation/Tools/          # Local desktop launcher server
 ├── Tests/                     # Current structure and release contracts
 └── Documentation/             # Current product and interaction contracts
@@ -60,6 +62,8 @@ Development/
 | `Documentation/pwa-offline-strategy.md` | PWA precache, offline readiness, update, and fallback policy. / PWA 預快取、離線狀態、更新與備援政策。 |
 | `Documentation/V34_MODERN_TAIWAN_ZODIAC_DESIGN.md` | Approved Local Stories visual, preservation, metadata, and version-choice design. / 已核准的地方故事視覺、保留、註記與版本選擇設計。 |
 | `Documentation/V34_MODERN_TAIWAN_ZODIAC_PLAN.md` | Test-first v34 asset, source, release, and validation plan. / 測試優先的 v34 素材、source、release 與驗證計畫。 |
+| `Documentation/V35_CARD_LIBRARY_DESIGN.md` | Approved entrance full-card library experience. / 已核准入口完整卡庫體驗。 |
+| `Documentation/V35_CARD_LIBRARY_PLAN.md` | Test-first v35 implementation and release plan. / 測試優先的 v35 實作與發布計畫。 |
 | `Documentation/V20_VISUAL_DESIGN.md` | Approved v16-inspired entrance, card, artwork, and centering design contract. / 已核准的 v20 視覺合約。 |
 | `Documentation/V20_IMPLEMENTATION_PLAN.md` | Testable v20 source, asset, release, and validation plan. / 可驗證的 v20 實作計畫。 |
 | `Documentation/V21_TAIWAN_REVEAL_DESIGN.md` | Approved long-press timing, locator, hotspot, motion, and accessibility contract. / 已核准的 v21 長按、定位、動畫與無障礙合約。 |
@@ -428,7 +432,7 @@ Existing v15–v26 generated outputs are preserved. Do not rerun an exporter to 
 
 ## v34 Local Stories Release / v34 地方故事版本
 
-- `Source/Main-App-v34/` — current authored React/TypeScript line; its generated `dist/` is the verified v34 PWA output.
+- `Source/Main-App-v34/` — preserved immutable React/TypeScript line; its generated `dist/` is the verified v34 PWA output.
 - `Source/Main-App-v34/src/App.tsx` — adds explicit series-version choice, richer artwork notes, 42-face metadata, and compact feature labels while preserving v33 play behavior.
 - `Source/Main-App-v34/src/lib/zodiac-art.ts` — preserves all twelve v33 personified guardians as the classic selectable version and supplies cultural notes.
 - `Source/Main-App-v34/src/lib/local-zodiac-art.ts` — registers twelve Local Stories runtime assets, safe portrait focus, Taiwan locators, and bilingual feature notes.
@@ -441,5 +445,17 @@ Existing v15–v26 generated outputs are preserved. Do not rerun an exporter to 
 - `Automation/Scripts/export-standalone-v34.mjs` — creates immutable `Apps/Standalone/encounter_cards_v34.html`.
 - `Automation/Scripts/finalize-public-v17.mjs` — creates immutable `Apps/Public-Web/v17/` from verified v34 dist.
 - `Tests/validate_v34.ps1` — verifies v34 assets, metadata, release hash, launcher, and Pages recipe.
+
+## v35 Entrance Card Library / v35 入口卡庫
+
+- `Source/Main-App-v35/` — current authored React/TypeScript line and verified v35 PWA output.
+- `Source/Main-App-v35/src/components/CardLibrary.tsx` — accessible modal library with collection filters, wrap-around navigation, pointer swipe, arrows, and keyboard controls.
+- `Source/Main-App-v35/src/lib/card-library.ts` — pure navigation, filtering, and swipe policies.
+- `Source/Main-App-v35/src/styles/v35.css` — 430 × 932 library layout, full-card presentation, and reduced-motion rules.
+- `Source/Public-Web/v18/README.md` — v35 to Public Web v18 release recipe.
+- `Automation/Scripts/finalize-pwa-v35.mjs` — finalizes the v35 offline precache.
+- `Automation/Scripts/export-standalone-v35.mjs` — creates immutable `Apps/Standalone/encounter_cards_v35.html`.
+- `Automation/Scripts/finalize-public-v18.mjs` — creates immutable `Apps/Public-Web/v18/` from verified v35 dist.
+- `Tests/validate_v35.ps1` — verifies the card-library contract, release hash, launcher, and Pages recipe.
 - `Documentation/V33_TAIWAN_ZODIAC_EXACT_CHOICE_DESIGN.md` — approved artwork, collection, exact-choice, privacy, and growth design.
 - `Documentation/V33_TAIWAN_ZODIAC_EXACT_CHOICE_PLAN.md` — test-first generation, implementation, and publication plan.

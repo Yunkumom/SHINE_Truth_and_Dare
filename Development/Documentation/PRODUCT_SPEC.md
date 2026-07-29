@@ -129,3 +129,11 @@ v20 restores the v16 entrance composition: branded header and language switch, l
 ## Preserved v21 Release / 保留的 v21 Release
 
 v21 preserves the complete v20 visual, language, card, blessing, export, privacy, and 430 × 932 desktop-centering contracts. Every one of the 18 deity artworks has a distinct hidden-Taiwan hotspot. Holding the artwork for 600 ms reveals a blinking gold Taiwan outline at that location; after release it remains for 3 seconds and fades. Pointer movement cancels an uncommitted reveal, artwork events do not bubble into card drawing, Enter and Space provide keyboard parity, and reduced-motion users receive a steady locator. The runtime annotation never enters the commemorative PNG.
+## Current v35 entrance card library / 目前 v35 入口卡庫
+
+- The setup header exposes one compact list icon; activating it replaces the 430 × 932 setup surface with an accessible full-card library.
+- The library can browse all 42 approved artworks and filter them by available collection without loading 42 card DOM trees at once.
+- The current full card includes artwork, independently selected preview question, and a mandatory blessing. Side cards show the immediate previous and next faces.
+- Horizontal swipe, Previous/Next controls, Left/Right keys, and wrap-around navigation are equivalent. Escape or the back control closes the library.
+- “Use this face” changes only the session artwork preference and closes the library. Question choice remains random unless separately changed through the advanced setup panel.
+- No library state, personal input, or exact selection is persisted or transmitted.

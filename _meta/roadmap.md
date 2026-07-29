@@ -1,5 +1,14 @@
 # Roadmap / 路線圖
 
+## Phase 21 — v35 entrance card library
+
+- [x] Add a discreet entrance list control that opens the complete 42-card library.
+- [x] Render full commemorative-style card previews with independent deterministic question and mandatory blessing copy.
+- [x] Add collection filters, wrap-around horizontal swipe, previous/next buttons, and keyboard navigation.
+- [x] Keep the selected artwork independent from question selection and session-only.
+- [x] Create standalone v35 and Public Web v18 without modifying v34.
+- [ ] Complete physical iPhone swipe-feel, crop, Share Sheet, installation, and offline-update regression.
+
 ## Phase 20 — v34 Taiwan Zodiac Local Stories and version choice
 
 - [x] Preserve all twelve v33 personified zodiac guardians as a selectable classic backup version.

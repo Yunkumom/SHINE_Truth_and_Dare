@@ -1,5 +1,12 @@
 # Changelog / 變更紀錄
 
+## 2026-07-29 — v35 entrance card library / 入口完整卡庫
+
+- Added a hidden-in-plain-sight list control to the setup header and a 42-card, full-card browsing library.
+- Added collection filters, three-card virtualization, natural wrap-around horizontal swipe, arrow controls, keyboard navigation, modal focus, and reduced-motion behavior.
+- Kept exact artwork choice independent from question choice; preview questions are deterministic and every preview includes a blessing.
+- Created immutable standalone v35 and Public Web v18, updated the desktop launcher and Pages recipe, and retained v15–v34 unchanged.
+
 ## 2026-07-29 — v34 Taiwan Zodiac Local Stories / 台灣星座地方故事
 
 - Preserved all twelve v33 classical personified zodiac images as the selectable `taiwan-zodiac-classic` backup series; no generated image was removed.

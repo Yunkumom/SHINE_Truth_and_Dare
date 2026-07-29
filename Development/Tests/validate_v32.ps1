@@ -51,8 +51,8 @@ Assert-V32Condition ((Get-FileHash -Algorithm SHA256 -LiteralPath (Join-Path $pr
 
 $server = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot 'Development/Automation/Tools/serve_truth_and_dare.ps1')
 $workflow = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot '.github/workflows/pages.yml')
-Assert-V32Condition ($server -match 'encounter_cards_v34\.html' -and $server -match 'encounter-release.*V34') 'Desktop launcher advances to v34 without modifying v32'
-Assert-V32Condition ($workflow -match 'Main-App-v34' -and $workflow -match 'Public-Web/v17') 'GitHub Pages advances to v34 and Public Web v17'
+Assert-V32Condition ($server -match 'encounter_cards_v35\.html' -and $server -match 'encounter-release.*V35') 'Desktop launcher advances to v35 without modifying v32'
+Assert-V32Condition ($workflow -match 'Main-App-v35' -and $workflow -match 'Public-Web/v18') 'GitHub Pages advances to v35 and Public Web v18'
 
 if ($failures.Count) { Write-Host "v32 validation failed with $($failures.Count) issue(s)." -ForegroundColor Red; exit 1 }
 Write-Host 'v32 validation passed.' -ForegroundColor Cyan

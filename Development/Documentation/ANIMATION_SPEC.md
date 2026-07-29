@@ -49,6 +49,14 @@ Drawing a card should feel like pulling a physical collectible card from a deck 
 - Announce the revealed card through an appropriate live region without repeating hidden back text.
 - Maintain readable contrast and scalable type.
 
+## v35 Card-Library Swipe / v35 卡庫滑動
+
+- The entrance library renders only the previous, current, and next full cards while exposing all 42 governed artworks through wrap-around navigation.
+- A horizontal travel of `max(52 px, 16% of viewport width)` commits to the adjacent card; shorter travel returns smoothly to center.
+- Pointer movement stays one-to-one during the drag. Buttons and Left/Right arrow keys provide equivalent navigation; Escape closes the modal.
+- The card-library gesture does not alter the live draw, question choice, blessing choice, or personal setup fields.
+- Reduced-motion mode replaces lateral carousel motion with a short opacity transition and hides the side cards.
+
 ## Verification Status
 
 This document records confirmed product intent. v16 browser testing verified language, level, mode, and Begin interactions plus responsive geometry. The complete drag, flip, discard, PNG, and physical-iPhone sequence has not yet been interactively regression-tested.

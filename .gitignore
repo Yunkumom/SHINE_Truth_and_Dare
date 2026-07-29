@@ -105,3 +105,7 @@ _pending/v34-generated-development-state_2026-07-29/*
 # Unpublished v34 crop-QA build is local evidence; keep only its annotation in Git
 _pending/v34-preverification-build_2026-07-29/*
 !_pending/v34-preverification-build_2026-07-29/README.md
+
+# Recoverable v35 dependency/cache state; keep only its annotation in Git
+_pending/v35-generated-development-state_2026-07-29/*
+!_pending/v35-generated-development-state_2026-07-29/README.md
