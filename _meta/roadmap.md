@@ -1,5 +1,14 @@
 # Roadmap / 路線圖
 
+## Phase 20 — v34 Taiwan Zodiac Local Stories and version choice
+
+- [x] Preserve all twelve v33 personified zodiac guardians as a selectable classic backup version.
+- [x] Generate twelve new 2:3 Local Stories masters with wider composition, complete Taiwan silhouettes, and modern Taiwanese cultural framing.
+- [x] Add bilingual short feature labels and educational descriptions for all zodiac artwork.
+- [x] Expose an explicit collection-version step before exact artwork choice while keeping random as the default.
+- [x] Create standalone v34 and Public Web v17 without modifying v33.
+- [ ] Complete physical iPhone crop, long-press locator, Share Sheet, installation, and offline-update regression across all 42 artworks.
+
 ## Phase 19 — v33 Taiwan zodiac and independent exact choice
 
 - [x] Define a reusable country/culture asset contract and Taiwan Astral Guardian visual system.

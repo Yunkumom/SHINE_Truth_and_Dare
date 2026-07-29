@@ -1,0 +1,23 @@
+.v33-shell .advanced-deck-panel{scrollbar-color:var(--setup-caramel) var(--setup-cream-deep)}
+.v33-shell .advanced-deck-panel-heading{position:sticky;top:-12px;z-index:4;margin:-12px -12px 10px;padding:12px;background:linear-gradient(180deg,var(--setup-cream) 82%,color-mix(in srgb,var(--setup-cream) 0%,transparent))}
+.exact-choice-section{border-top:1px solid #9d6a3a55;padding-top:10px;margin-top:10px}
+.exact-choice-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:7px}
+.exact-choice-heading>b{font:800 10px/1.35 "Noto Serif TC",serif;letter-spacing:.06em}
+.exact-choice-heading>button{min-height:30px;border:1px solid var(--setup-caramel);background:var(--setup-cream-deep);color:var(--setup-espresso);padding:5px 9px;font:700 9px/1.35 sans-serif}
+.exact-choice-heading>button[aria-pressed=true]{background:var(--setup-caramel-deep);color:#fff8e9}
+.v33-shell .collection-roadmap button,.v33-shell .collection-roadmap article{min-width:0;min-height:51px;border:1px solid #b58a5566;background:var(--setup-cream-deep);color:var(--setup-espresso);padding:7px;text-align:left}
+.v33-shell .collection-roadmap button.is-selected{border-color:var(--setup-caramel-deep);box-shadow:inset 0 0 0 2px var(--setup-gold)}
+.v33-shell .collection-roadmap button b,.v33-shell .collection-roadmap button span{display:block;white-space:normal;overflow:visible;line-height:1.35}
+.v33-shell .collection-roadmap button b{font-size:9px}.v33-shell .collection-roadmap button span{margin-top:3px;color:var(--setup-muted-brown);font-size:7px}
+.question-choice>p{margin:0 0 7px;color:var(--setup-muted-brown);font:600 8px/1.4 sans-serif}
+.question-choice>input{width:100%;min-height:34px;border:1px solid #b58a5577;background:#fffaf0;color:var(--setup-espresso);padding:7px 9px;font:600 9px/1.4 sans-serif}
+.question-picker{display:grid;gap:6px;margin-top:7px;max-height:230px;overflow:auto;overscroll-behavior:contain;padding-right:2px}
+.question-picker button{display:block;width:100%;min-height:58px;border:1px solid #b58a5566;background:var(--setup-cream-deep);color:var(--setup-espresso);padding:7px 8px;text-align:left}
+.question-picker button[aria-pressed=true]{border-color:var(--setup-caramel-deep);box-shadow:inset 0 0 0 2px var(--setup-gold)}
+.question-picker span,.question-picker b,.question-picker small{display:block;white-space:normal;overflow:visible}
+.question-picker span{color:var(--setup-caramel-deep);font:700 7px/1.35 sans-serif;letter-spacing:.05em}
+.question-picker b{margin-top:3px;font:700 10px/1.45 "Noto Serif TC",serif}
+.question-picker small{margin-top:2px;color:var(--setup-muted-brown);font:500 8px/1.4 Georgia,serif}
+.v33-shell .artwork-picker img{height:84px}
+.v33-shell .artwork-picker span{min-height:31px}
+@media(max-width:1099px){.v33-shell .advanced-deck-panel{max-height:700px}.question-picker{max-height:200px}}

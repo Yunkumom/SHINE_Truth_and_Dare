@@ -1,5 +1,14 @@
 # Changelog / 變更紀錄
 
+## 2026-07-29 — v34 Taiwan Zodiac Local Stories / 台灣星座地方故事
+
+- Preserved all twelve v33 classical personified zodiac images as the selectable `taiwan-zodiac-classic` backup series; no generated image was removed.
+- Generated twelve original 1024 × 1536 Local Stories masters with expanded scene safety, complete Taiwan silhouettes, and zodiac-led contemporary Taiwanese compositions.
+- Added bilingual Taiwan-feature labels and educational descriptions to both zodiac series.
+- Added an explicit hidden collection-version selector, richer artwork cards, compact card-face feature notes, and 42 total governed artwork faces.
+- Created immutable standalone v34 and Public Web v17, updated the desktop launcher and Pages recipe, and retained v15–v33 unchanged.
+- No push or deployment was performed in this change.
+
 ## 2026-07-28 — v33 Taiwan Astral Guardians and independent exact choice
 
 - Generated, visually reviewed, and governed twelve original 1024 × 1536 Taiwan zodiac masters with extra scene, complete head ornaments, Taiwanese locations, and complete centrally safe Taiwan silhouettes.

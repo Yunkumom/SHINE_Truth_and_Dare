@@ -27,6 +27,7 @@ $requiredDirectories = @(
     '_meta', '_agent', '_agent/Skills', '_human', '_pending',
     '_pending/Development-simplification_2026-07-19', '_pending/v24-generated-development-state_2026-07-23', '_pending/v25-generated-development-state_2026-07-24', '_pending/v26-generated-development-state_2026-07-26', '_pending/v28-generated-development-state_2026-07-26', '_pending/v29-preverification-build_2026-07-27', '_pending/v29-generated-development-state_2026-07-27', '_pending/v30-generated-development-state_2026-07-27', '_pending/v31-generated-development-state_2026-07-27', '_pending/v32-generated-development-state_2026-07-28', '_pending/v33-preverification-build_2026-07-28', '_pending/v33-generated-development-state_2026-07-28'
 )
+$requiredDirectories += @('Apps/Public-Web/v17', 'Assets/Zodiac/Taiwan/v34-local-stories-masters', 'Development/Source/Main-App-v34', 'Development/Source/Public-Web/v17', '_pending/v34-generated-development-state_2026-07-29', '_pending/v34-preverification-build_2026-07-29')
 foreach ($relativePath in $requiredDirectories) {
     Assert-StructureCondition (Test-Path -LiteralPath (Join-Path $projectRoot $relativePath) -PathType Container) "Required directory exists: $relativePath"
 }
@@ -41,6 +42,7 @@ $requiredFiles = @(
     '_meta/README.md', '_agent/README.md', '_agent/Skills/README.md', '_human/README.md',
     '_pending/README.md', '_pending/index.md', '_pending/Development-simplification_2026-07-19/README.md', '_pending/v24-generated-development-state_2026-07-23/README.md', '_pending/v25-generated-development-state_2026-07-24/README.md', '_pending/v26-generated-development-state_2026-07-26/README.md', '_pending/v28-generated-development-state_2026-07-26/README.md', '_pending/v29-preverification-build_2026-07-27/README.md', '_pending/v29-generated-development-state_2026-07-27/README.md', '_pending/v30-generated-development-state_2026-07-27/README.md', '_pending/v31-generated-development-state_2026-07-27/README.md', '_pending/v32-generated-development-state_2026-07-28/README.md', '_pending/v33-preverification-build_2026-07-28/README.md', '_pending/v33-generated-development-state_2026-07-28/README.md'
 )
+$requiredFiles += @('Assets/Zodiac/Taiwan/v34-local-stories-masters/README.md', 'Development/Source/Main-App-v34/package.json', 'Development/Source/Public-Web/v17/README.md', 'Development/Tests/validate_v34.ps1', '_pending/v34-generated-development-state_2026-07-29/README.md', '_pending/v34-preverification-build_2026-07-29/README.md')
 foreach ($relativePath in $requiredFiles) {
     Assert-StructureCondition (Test-Path -LiteralPath (Join-Path $projectRoot $relativePath) -PathType Leaf) "Required file exists: $relativePath"
 }
@@ -53,8 +55,8 @@ $missingDevelopmentEntries = $expectedDevelopmentEntries | Where-Object { $_ -no
 Assert-StructureCondition ($unexpectedDevelopmentEntries.Count -eq 0 -and $missingDevelopmentEntries.Count -eq 0) 'Development has only the simplified current-source, automation, tests, documentation, and README surface'
 
 $sourceEntries = @(Get-ChildItem -LiteralPath (Join-Path $developmentRoot 'Source') -Force | Select-Object -ExpandProperty Name)
-$expectedSourceEntries = @('Main-App-v18','Main-App-v19','Main-App-v20','Main-App-v21','Main-App-v22','Main-App-v23','Main-App-v24','Main-App-v25','Main-App-v26','Main-App-v27','Main-App-v28','Main-App-v29','Main-App-v30','Main-App-v31','Main-App-v32','Main-App-v33','Public-Web')
-Assert-StructureCondition ($sourceEntries.Count -eq $expectedSourceEntries.Count -and @($sourceEntries | Where-Object { $_ -notin $expectedSourceEntries }).Count -eq 0) 'Development Source contains preserved v18-v32, active v33, and versioned Public Web recipes'
+$expectedSourceEntries = @('Main-App-v18','Main-App-v19','Main-App-v20','Main-App-v21','Main-App-v22','Main-App-v23','Main-App-v24','Main-App-v25','Main-App-v26','Main-App-v27','Main-App-v28','Main-App-v29','Main-App-v30','Main-App-v31','Main-App-v32','Main-App-v33','Main-App-v34','Public-Web')
+Assert-StructureCondition ($sourceEntries.Count -eq $expectedSourceEntries.Count -and @($sourceEntries | Where-Object { $_ -notin $expectedSourceEntries }).Count -eq 0) 'Development Source contains preserved v18-v33, active v34, and versioned Public Web recipes'
 
 $generatedClutter = Get-ChildItem -LiteralPath $developmentRoot -Recurse -Force | Where-Object {
     $_.Name -eq 'node_modules' -or $_.Name -eq 'coverage' -or $_.Name -like '*.tsbuildinfo'
@@ -83,7 +85,8 @@ if (Test-Path -LiteralPath $developmentReadmePath -PathType Leaf) {
         $_.FullName -notmatch '[\\/]Source[\\/]Main-App-v31[\\/]' -and
         $_.FullName -notmatch '[\\/]Source[\\/]Main-App-v32[\\/]' -and
         $_.FullName -notmatch '[\\/]Source[\\/]Main-App-v33[\\/]' -and
-        $_.FullName -notmatch '[\\/]Source[\\/]Public-Web[\\/]v(1[0123456]|[23456789])[\\/]'
+        $_.FullName -notmatch '[\\/]Source[\\/]Main-App-v34[\\/]' -and
+        $_.FullName -notmatch '[\\/]Source[\\/]Public-Web[\\/]v(1[01234567]|[23456789])[\\/]'
     }
     foreach ($file in $retainedFiles) {
         $relativePath = $file.FullName.Substring($developmentRoot.Length + 1).Replace('\', '/')

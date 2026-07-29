@@ -1,5 +1,15 @@
 # Pending Index / 待確認索引
 
+## `v34-generated-development-state_2026-07-29/`
+
+- Recoverable v34 `node_modules/` and TypeScript build-info caches moved out of active Development after successful tests and build.
+- v34 測試與建置成功後移出的可回復依賴與 TypeScript cache；未永久刪除。
+
+## `v34-preverification-build_2026-07-29/`
+
+- First v34 standalone, dist, and Public Web v17 candidate retained before final Taiwan-locator alignment.
+- 最終台灣發光座標對齊前的 v34 成品候選；僅供證據，不得發布。
+
 ## `v33-preverification-build_2026-07-28/`
 
 Unpublished first v33/Public Web v16 build from before release-specific layout and presentation storage keys were corrected; verification evidence only.
