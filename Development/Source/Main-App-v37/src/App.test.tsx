@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import App from './App'
 
 describe('Encounter Cards setup', () => {
-  beforeEach(() => { vi.useRealTimers(); window.localStorage.clear() })
+  beforeEach(() => { vi.useRealTimers(); globalThis.localStorage.clear() })
 
   it('changes language and enters the draw screen without personal data', async () => {
     const user = userEvent.setup()
