@@ -1,6 +1,6 @@
 # Documentation / 文件
 
-This directory contains current product and interaction contracts through the approved v36 mobile ChatGPT Work integration release. Older completed designs, implementation plans, and publication history are recoverable under `_pending/Development-simplification_2026-07-19/Development/Documentation/`.
+This directory contains current product and interaction contracts through the approved v37 desktop studio release. Older completed designs, implementation plans, and publication history are recoverable under `_pending/Development-simplification_2026-07-19/Development/Documentation/`.
 
 - `V31_MILK_TEA_SETUP_DESIGN.md` defines the approved unified palette and no-clipping setup contract.
 - `V31_MILK_TEA_SETUP_PLAN.md` records the test-first implementation, browser measurements, release, and publication checkpoints.
@@ -14,8 +14,10 @@ This directory contains current product and interaction contracts through the ap
 - `V35_CARD_LIBRARY_PLAN.md` records the test-first v35 source, release, and verification checkpoints.
 - `V36_MOBILE_WORK_INTEGRATION_DESIGN.md` records the approved mobile Work integration and safety boundaries.
 - `V36_MOBILE_WORK_INTEGRATION_PLAN.md` records the test-first v36 implementation, archive, release, and verification checkpoints.
+- `V37_DESKTOP_STUDIO_DESIGN.md` defines the fixed three-column desktop studio, compact editor categories, and interactive Test mode.
+- `V37_DESKTOP_STUDIO_PLAN.md` records the test-first v37 implementation, browser measurement, release, and verification checkpoints.
 
-此處保留目前有效的產品／互動合約至已核准的 v36 手機 ChatGPT Work 整合版。更早的設計、計畫與發布歷史可在 `_pending/Development-simplification_2026-07-19/Development/Documentation/` 回復。
+此處保留目前有效的產品／互動合約至已核准的 v37 桌面工作室版本。更早的設計、計畫與發布歷史可在 `_pending/Development-simplification_2026-07-19/Development/Documentation/` 回復。
 
 The purpose of every retained document is listed in `Development/README.md`.
 

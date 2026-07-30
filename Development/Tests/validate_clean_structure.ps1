@@ -27,7 +27,7 @@ $requiredDirectories = @(
     '_meta', '_agent', '_agent/Skills', '_human', '_pending',
     '_pending/Development-simplification_2026-07-19', '_pending/v24-generated-development-state_2026-07-23', '_pending/v25-generated-development-state_2026-07-24', '_pending/v26-generated-development-state_2026-07-26', '_pending/v28-generated-development-state_2026-07-26', '_pending/v29-preverification-build_2026-07-27', '_pending/v29-generated-development-state_2026-07-27', '_pending/v30-generated-development-state_2026-07-27', '_pending/v31-generated-development-state_2026-07-27', '_pending/v32-generated-development-state_2026-07-28', '_pending/v33-preverification-build_2026-07-28', '_pending/v33-generated-development-state_2026-07-28'
 )
-$requiredDirectories += @('Apps/Public-Web/v17', 'Apps/Public-Web/v18', 'Apps/Public-Web/v19', 'Assets/Zodiac/Taiwan/v34-local-stories-masters', 'Development/Source/Main-App-v34', 'Development/Source/Main-App-v35', 'Development/Source/Main-App-v36', 'Development/Source/Public-Web/v17', 'Development/Source/Public-Web/v18', 'Development/Source/Public-Web/v19', '_pending/v34-generated-development-state_2026-07-29', '_pending/v34-preverification-build_2026-07-29', '_pending/v35-generated-development-state_2026-07-29', '_pending/Encounter_Cards_v11_Source_2026-07-30', '_pending/v36-generated-development-state_2026-07-30', '_pending/v36-preverification-build_2026-07-30')
+$requiredDirectories += @('Apps/Public-Web/v17', 'Apps/Public-Web/v18', 'Apps/Public-Web/v19', 'Apps/Public-Web/v20', 'Assets/Zodiac/Taiwan/v34-local-stories-masters', 'Development/Source/Main-App-v34', 'Development/Source/Main-App-v35', 'Development/Source/Main-App-v36', 'Development/Source/Main-App-v37', 'Development/Source/Public-Web/v17', 'Development/Source/Public-Web/v18', 'Development/Source/Public-Web/v19', 'Development/Source/Public-Web/v20', '_pending/v34-generated-development-state_2026-07-29', '_pending/v34-preverification-build_2026-07-29', '_pending/v35-generated-development-state_2026-07-29', '_pending/Encounter_Cards_v11_Source_2026-07-30', '_pending/v36-generated-development-state_2026-07-30', '_pending/v36-preverification-build_2026-07-30', '_pending/v37-generated-development-state_2026-07-30')
 foreach ($relativePath in $requiredDirectories) {
     Assert-StructureCondition (Test-Path -LiteralPath (Join-Path $projectRoot $relativePath) -PathType Container) "Required directory exists: $relativePath"
 }
@@ -42,7 +42,7 @@ $requiredFiles = @(
     '_meta/README.md', '_agent/README.md', '_agent/Skills/README.md', '_human/README.md',
     '_pending/README.md', '_pending/index.md', '_pending/Development-simplification_2026-07-19/README.md', '_pending/v24-generated-development-state_2026-07-23/README.md', '_pending/v25-generated-development-state_2026-07-24/README.md', '_pending/v26-generated-development-state_2026-07-26/README.md', '_pending/v28-generated-development-state_2026-07-26/README.md', '_pending/v29-preverification-build_2026-07-27/README.md', '_pending/v29-generated-development-state_2026-07-27/README.md', '_pending/v30-generated-development-state_2026-07-27/README.md', '_pending/v31-generated-development-state_2026-07-27/README.md', '_pending/v32-generated-development-state_2026-07-28/README.md', '_pending/v33-preverification-build_2026-07-28/README.md', '_pending/v33-generated-development-state_2026-07-28/README.md'
 )
-$requiredFiles += @('Assets/Zodiac/Taiwan/v34-local-stories-masters/README.md', 'Development/Source/Main-App-v34/package.json', 'Development/Source/Main-App-v35/package.json', 'Development/Source/Main-App-v36/package.json', 'Development/Source/Public-Web/v17/README.md', 'Development/Source/Public-Web/v18/README.md', 'Development/Source/Public-Web/v19/README.md', 'Development/Tests/validate_v34.ps1', 'Development/Tests/validate_v35.ps1', 'Development/Tests/validate_v36.ps1', '_pending/v34-generated-development-state_2026-07-29/README.md', '_pending/v34-preverification-build_2026-07-29/README.md', '_pending/v35-generated-development-state_2026-07-29/README.md', '_pending/Encounter_Cards_v11_Source_2026-07-30/README.md', '_pending/v36-generated-development-state_2026-07-30/README.md', '_pending/v36-preverification-build_2026-07-30/README.md')
+$requiredFiles += @('Assets/Zodiac/Taiwan/v34-local-stories-masters/README.md', 'Development/Source/Main-App-v34/package.json', 'Development/Source/Main-App-v35/package.json', 'Development/Source/Main-App-v36/package.json', 'Development/Source/Main-App-v37/package.json', 'Development/Source/Public-Web/v17/README.md', 'Development/Source/Public-Web/v18/README.md', 'Development/Source/Public-Web/v19/README.md', 'Development/Source/Public-Web/v20/README.md', 'Development/Tests/validate_v34.ps1', 'Development/Tests/validate_v35.ps1', 'Development/Tests/validate_v36.ps1', 'Development/Tests/validate_v37.ps1', '_pending/v34-generated-development-state_2026-07-29/README.md', '_pending/v34-preverification-build_2026-07-29/README.md', '_pending/v35-generated-development-state_2026-07-29/README.md', '_pending/Encounter_Cards_v11_Source_2026-07-30/README.md', '_pending/v36-generated-development-state_2026-07-30/README.md', '_pending/v36-preverification-build_2026-07-30/README.md', '_pending/v37-generated-development-state_2026-07-30/README.md')
 foreach ($relativePath in $requiredFiles) {
     Assert-StructureCondition (Test-Path -LiteralPath (Join-Path $projectRoot $relativePath) -PathType Leaf) "Required file exists: $relativePath"
 }
@@ -55,8 +55,8 @@ $missingDevelopmentEntries = $expectedDevelopmentEntries | Where-Object { $_ -no
 Assert-StructureCondition ($unexpectedDevelopmentEntries.Count -eq 0 -and $missingDevelopmentEntries.Count -eq 0) 'Development has only the simplified current-source, automation, tests, documentation, and README surface'
 
 $sourceEntries = @(Get-ChildItem -LiteralPath (Join-Path $developmentRoot 'Source') -Force | Select-Object -ExpandProperty Name)
-$expectedSourceEntries = @('Main-App-v18','Main-App-v19','Main-App-v20','Main-App-v21','Main-App-v22','Main-App-v23','Main-App-v24','Main-App-v25','Main-App-v26','Main-App-v27','Main-App-v28','Main-App-v29','Main-App-v30','Main-App-v31','Main-App-v32','Main-App-v33','Main-App-v34','Main-App-v35','Main-App-v36','Public-Web')
-Assert-StructureCondition ($sourceEntries.Count -eq $expectedSourceEntries.Count -and @($sourceEntries | Where-Object { $_ -notin $expectedSourceEntries }).Count -eq 0) 'Development Source contains preserved v18-v35, active v36, and versioned Public Web recipes'
+$expectedSourceEntries = @('Main-App-v18','Main-App-v19','Main-App-v20','Main-App-v21','Main-App-v22','Main-App-v23','Main-App-v24','Main-App-v25','Main-App-v26','Main-App-v27','Main-App-v28','Main-App-v29','Main-App-v30','Main-App-v31','Main-App-v32','Main-App-v33','Main-App-v34','Main-App-v35','Main-App-v36','Main-App-v37','Public-Web')
+Assert-StructureCondition ($sourceEntries.Count -eq $expectedSourceEntries.Count -and @($sourceEntries | Where-Object { $_ -notin $expectedSourceEntries }).Count -eq 0) 'Development Source contains preserved v18-v36, active v37, and versioned Public Web recipes'
 
 $generatedClutter = Get-ChildItem -LiteralPath $developmentRoot -Recurse -Force | Where-Object {
     $_.Name -eq 'node_modules' -or $_.Name -eq 'coverage' -or $_.Name -like '*.tsbuildinfo'
@@ -88,6 +88,7 @@ if (Test-Path -LiteralPath $developmentReadmePath -PathType Leaf) {
         $_.FullName -notmatch '[\\/]Source[\\/]Main-App-v34[\\/]' -and
         $_.FullName -notmatch '[\\/]Source[\\/]Main-App-v35[\\/]' -and
         $_.FullName -notmatch '[\\/]Source[\\/]Main-App-v36[\\/]' -and
+        $_.FullName -notmatch '[\\/]Source[\\/]Main-App-v37[\\/]' -and
         $_.FullName -notmatch '[\\/]Source[\\/]Public-Web[\\/]v(1[0123456789]|[23456789])[\\/]'
     }
     foreach ($file in $retainedFiles) {
@@ -120,6 +121,9 @@ if (Test-Path -LiteralPath $developmentReadmePath -PathType Leaf) {
     }
     foreach ($annotation in @('Source/Main-App-v36/','Source/Main-App-v36/src/components/MobileSettings.tsx','Source/Main-App-v36/src/components/ArtworkPicker.tsx','Source/Main-App-v36/src/components/ArtworkAdjuster.tsx','Source/Main-App-v36/src/lib/question-manager.ts','Source/Public-Web/v19/','Automation/Scripts/export-standalone-v36.mjs','Automation/Scripts/finalize-pwa-v36.mjs','Automation/Scripts/finalize-public-v19.mjs','Tests/validate_v36.ps1')) {
         Assert-StructureCondition ($developmentReadme.Contains($annotation)) "Development README annotates v36 path: $annotation"
+    }
+    foreach ($annotation in @('Source/Main-App-v37/','Source/Main-App-v37/src/App.tsx','Source/Main-App-v37/src/components/LayoutEditor.tsx','Source/Main-App-v37/src/styles/v37.css','Source/Public-Web/v20/','Automation/Scripts/export-standalone-v37.mjs','Automation/Scripts/finalize-pwa-v37.mjs','Automation/Scripts/finalize-public-v20.mjs','Tests/validate_v37.ps1')) {
+        Assert-StructureCondition ($developmentReadme.Contains($annotation)) "Development README annotates v37 path: $annotation"
     }
 }
 

@@ -1,5 +1,14 @@
 # Roadmap / 路線圖
 
+## Phase 23 — v37 compact desktop studio
+
+- [x] Fix the layout editor to the far-left desktop column and separate mode controls into a compact reserved bookmark rail.
+- [x] Add Layout, Card, History, and Data editor categories so every control group fits without editor scrolling.
+- [x] Enlarge the centre authoring preview and keep an inert phone preview on the far right.
+- [x] Preserve one fully interactive phone simulation in Test mode and session state across mode changes.
+- [x] Verify zero page/editor overflow and no control overlap at 1366 × 768, then create standalone v37 and Public Web v20.
+- [ ] Complete physical iPhone and additional desktop-browser regression.
+
 ## Phase 22 — v36 mobile ChatGPT Work integration
 
 - [x] Promote the supplied mobile Work package into a governed v36 authored source line without modifying v35.

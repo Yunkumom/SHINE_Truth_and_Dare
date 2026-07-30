@@ -1,5 +1,13 @@
 # Encounter Cards Architecture
 
+## v37 Compact Desktop Studio Architecture / v37 精簡桌面工作室架構
+
+- `App.tsx` composes explicit `desktop-editor-rail`, `desktop-center-column`, and `desktop-phone-preview` regions in Settings mode; the compact mode tabs live inside the centre column rather than above or inside the editor.
+- `LayoutEditor.tsx` owns memory-only `layout | card | history | data` category state and renders only one panel at a time.
+- `styles/v37.css` overrides the inherited desktop arrangement with fixed 270px and 310px outer columns, a flexible centre column, scroll containment, compact bookmark tabs, and separate centre/right scale policies.
+- Test mode removes the editor and inert preview, then renders one interactive phone while preserving React session state.
+- The v37 source, PWA dist, standalone v37, and Public Web v20 are generated from one tested line. Persistence remains limited to language, font scale, `encounter-layout-v37`, and `encounter-presentation-v37`.
+
 ## v36 Mobile Work Integration Architecture / v36 手機 Work 整合架構
 
 - `components/MobileSettings.tsx` owns the accessible five-tab settings surface; `ArtworkPicker.tsx` and `ArtworkAdjuster.tsx` own exact artwork choice and bounded focus/zoom controls.

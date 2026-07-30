@@ -44,8 +44,8 @@ if (Test-Path -LiteralPath $standalonePath -PathType Leaf) {
 $server = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot 'Development/Automation/Tools/serve_truth_and_dare.ps1')
 $workflow = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot '.github/workflows/pages.yml')
 $serviceWorker = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot 'Apps/Public-Web/v18/service-worker.js')
-Assert-V35Condition ($server -match 'encounter_cards_v36\.html' -and $server -match 'encounter-release.*V36') 'Desktop launcher advances to v36 without modifying v35'
-Assert-V35Condition ($workflow -match 'Main-App-v36' -and $workflow -match 'Public-Web/v19') 'GitHub Pages advances to v36 and Public Web v19 without modifying v35'
+Assert-V35Condition ($server -match 'encounter_cards_v37\.html' -and $server -match 'encounter-release.*V37') 'Desktop launcher advances to v37 without modifying v35'
+Assert-V35Condition ($workflow -match 'Main-App-v37' -and $workflow -match 'Public-Web/v20') 'GitHub Pages advances to v37 and Public Web v20 without modifying v35'
 Assert-V35Condition ($serviceWorker -match 'encounter-cards-v35-') 'Public Web v18 uses the v35 offline cache namespace'
 
 if ($failures.Count) { Write-Host "v35 validation failed with $($failures.Count) issue(s)." -ForegroundColor Red; exit 1 }

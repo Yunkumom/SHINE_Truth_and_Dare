@@ -1,8 +1,8 @@
 # Development / 開發資料
 
-This directory contains preserved v18–v35 source lines and the current Encounter Cards v36 source line. Historical v17 source, older completed plans, old-version builders, imported mobile Work source, and generated dependencies remain recoverable under `../_pending/`.
+This directory contains preserved v18–v36 source lines and the current Encounter Cards v37 source line. Historical v17 source, older completed plans, old-version builders, imported mobile Work source, and generated dependencies remain recoverable under `../_pending/`.
 
-此目錄保留 v18–v35 source 與目前作用中的 Encounter Cards v36 source。v17 歷史 source、舊版計畫、builder、手機 Work 原始資料與可重建依賴仍可由 `../_pending/` 回復。
+此目錄保留 v18–v36 source 與目前作用中的 Encounter Cards v37 source。v17 歷史 source、舊版計畫、builder、手機 Work 原始資料與可重建依賴仍可由 `../_pending/` 回復。
 
 ## Structure / 結構
 
@@ -27,7 +27,8 @@ Development/
 ├── Source/Main-App-v33/       # Current Taiwan-zodiac and independent exact-choice release
 ├── Source/Main-App-v34/       # Preserved Local Stories and series-version release
 ├── Source/Main-App-v35/       # Current entrance card-library release
-├── Source/Main-App-v36/       # Current mobile Work integration release
+├── Source/Main-App-v36/       # Preserved mobile Work integration release
+├── Source/Main-App-v37/       # Current compact desktop studio release
 ├── Source/Public-Web/v2/      # Preserved Public v2 source recipe
 ├── Source/Public-Web/v3/      # Preserved Public v3 source recipe
 ├── Source/Public-Web/v4/      # Preserved Public v4 source recipe
@@ -44,8 +45,9 @@ Development/
 ├── Source/Public-Web/v16/     # Current v33 public recipe
 ├── Source/Public-Web/v17/     # Preserved v34 public recipe
 ├── Source/Public-Web/v18/     # Current v35 public recipe
-├── Source/Public-Web/v19/     # Current v36 public recipe
-├── Automation/Scripts/        # Versioned v18-v36 builders and exporters
+├── Source/Public-Web/v19/     # Preserved v36 public recipe
+├── Source/Public-Web/v20/     # Current v37 public recipe
+├── Automation/Scripts/        # Versioned v18-v37 builders and exporters
 ├── Automation/Tools/          # Local desktop launcher server
 ├── Tests/                     # Current structure and release contracts
 └── Documentation/             # Current product and interaction contracts
@@ -68,6 +70,8 @@ Development/
 | `Documentation/V35_CARD_LIBRARY_PLAN.md` | Test-first v35 implementation and release plan. / 測試優先的 v35 實作與發布計畫。 |
 | `Documentation/V36_MOBILE_WORK_INTEGRATION_DESIGN.md` | Approved mobile Work integration and privacy boundaries. / 已核准手機 Work 整合與隱私邊界。 |
 | `Documentation/V36_MOBILE_WORK_INTEGRATION_PLAN.md` | Test-first v36 implementation, archive, and release plan. / 測試優先的 v36 實作、封存與發布計畫。 |
+| `Documentation/V37_DESKTOP_STUDIO_DESIGN.md` | Approved fixed three-column desktop studio and compact editor contract. / 已核准固定三欄桌面工作室與精簡編輯器合約。 |
+| `Documentation/V37_DESKTOP_STUDIO_PLAN.md` | Test-first v37 implementation, browser measurement, and release plan. / 測試優先的 v37 實作、瀏覽器量測與發布計畫。 |
 | `Documentation/V20_VISUAL_DESIGN.md` | Approved v16-inspired entrance, card, artwork, and centering design contract. / 已核准的 v20 視覺合約。 |
 | `Documentation/V20_IMPLEMENTATION_PLAN.md` | Testable v20 source, asset, release, and validation plan. / 可驗證的 v20 實作計畫。 |
 | `Documentation/V21_TAIWAN_REVEAL_DESIGN.md` | Approved long-press timing, locator, hotspot, motion, and accessibility contract. / 已核准的 v21 長按、定位、動畫與無障礙合約。 |
@@ -464,7 +468,7 @@ Existing v15–v26 generated outputs are preserved. Do not rerun an exporter to 
 
 ## v36 Mobile Work Integration / v36 手機 Work 整合
 
-- `Source/Main-App-v36/` — current authored React/TypeScript line and verified v36 PWA output.
+- `Source/Main-App-v36/` — preserved authored React/TypeScript line and verified v36 PWA output.
 - `Source/Main-App-v36/src/components/MobileSettings.tsx` — accessible five-tab setup, artwork, question, content, and saved-position manager.
 - `Source/Main-App-v36/src/components/ArtworkPicker.tsx` — governed 42-face selection.
 - `Source/Main-App-v36/src/components/ArtworkAdjuster.tsx` — bounded per-artwork focus/zoom.
@@ -474,5 +478,17 @@ Existing v15–v26 generated outputs are preserved. Do not rerun an exporter to 
 - `Automation/Scripts/export-standalone-v36.mjs` — creates immutable `Apps/Standalone/encounter_cards_v36.html`.
 - `Automation/Scripts/finalize-public-v19.mjs` — creates immutable `Apps/Public-Web/v19/` from verified v36 dist.
 - `Tests/validate_v36.ps1` — verifies Work integration, mandatory blessings, privacy boundary, release hash, launcher, and Pages recipe.
+
+## v37 Compact Desktop Studio / v37 精簡桌面工作室
+
+- `Source/Main-App-v37/` — current authored React/TypeScript line and verified v37 PWA output.
+- `Source/Main-App-v37/src/App.tsx` — composes the far-left editor, large centre authoring preview, inert right phone preview, and interactive Test phone.
+- `Source/Main-App-v37/src/components/LayoutEditor.tsx` — groups layout, card, history, and data controls into selectable compact sections.
+- `Source/Main-App-v37/src/styles/v37.css` — owns the scroll-free 1366 × 768 desktop studio and bookmark mode tabs.
+- `Source/Public-Web/v20/README.md` — v37 to Public Web v20 release recipe.
+- `Automation/Scripts/finalize-pwa-v37.mjs` — finalizes the v37 offline precache.
+- `Automation/Scripts/export-standalone-v37.mjs` — creates immutable `Apps/Standalone/encounter_cards_v37.html`.
+- `Automation/Scripts/finalize-public-v20.mjs` — creates immutable `Apps/Public-Web/v20/` from verified v37 dist.
+- `Tests/validate_v37.ps1` — verifies the studio, privacy, release hash, launcher, and Pages boundaries.
 - `Documentation/V33_TAIWAN_ZODIAC_EXACT_CHOICE_DESIGN.md` — approved artwork, collection, exact-choice, privacy, and growth design.
 - `Documentation/V33_TAIWAN_ZODIAC_EXACT_CHOICE_PLAN.md` — test-first generation, implementation, and publication plan.

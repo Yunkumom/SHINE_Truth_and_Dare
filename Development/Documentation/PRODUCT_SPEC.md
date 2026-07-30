@@ -137,6 +137,14 @@ v21 preserves the complete v20 visual, language, card, blessing, export, privacy
 - Revealed cards expose artwork reselection and bounded per-artwork focus/zoom controls. Only non-personal presentation values use the versioned `encounter-presentation-v36` key.
 - The 430 × 932 phone contract, bilingual modes, Levels 1–5, Truth/Dare/Surprise, Taiwan reveal, keepsake PNG, Share Sheet, and offline behavior remain intact.
 
+## Current v37 desktop studio / 目前 v37 桌面工作室
+
+- At 1366 × 768 and larger, Settings mode fits a fixed far-left editor, a larger centre authoring preview, and an inert far-right phone preview without page or editor scrolling.
+- Compact vertical bookmark tabs switch Settings/Test from a reserved centre-column rail and never overlap the editor.
+- Layout, Card, History, and Data editor categories render one at a time.
+- Test mode contains one fully interactive phone simulation, no layout handles, and no inert duplicate preview.
+- Mobile and every v36 interaction, privacy, blessing, export, sharing, and offline contract remain unchanged.
+
 ## Preserved v35 entrance card library / 保留的 v35 入口卡庫
 
 - The setup header exposes one compact list icon; activating it replaces the 430 × 932 setup surface with an accessible full-card library.

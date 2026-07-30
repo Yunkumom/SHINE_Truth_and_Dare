@@ -49,8 +49,8 @@ if (Test-Path -LiteralPath $standalonePath -PathType Leaf) {
 
 $server = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot 'Development/Automation/Tools/serve_truth_and_dare.ps1')
 $workflow = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot '.github/workflows/pages.yml')
-Assert-V34Condition ($server -match 'encounter_cards_v36\.html' -and $server -match 'encounter-release.*V36') 'Desktop launcher advances to v36 without modifying v34'
-Assert-V34Condition ($workflow -match 'Main-App-v36' -and $workflow -match 'Public-Web/v19') 'GitHub Pages advances to v36 and Public Web v19 without modifying v34'
+Assert-V34Condition ($server -match 'encounter_cards_v37\.html' -and $server -match 'encounter-release.*V37') 'Desktop launcher advances to v37 without modifying v34'
+Assert-V34Condition ($workflow -match 'Main-App-v37' -and $workflow -match 'Public-Web/v20') 'GitHub Pages advances to v37 and Public Web v20 without modifying v34'
 
 if ($failures.Count) { Write-Host "v34 validation failed with $($failures.Count) issue(s)." -ForegroundColor Red; exit 1 }
 Write-Host 'v34 validation passed.' -ForegroundColor Cyan

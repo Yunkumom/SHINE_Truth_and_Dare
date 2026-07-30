@@ -1,5 +1,10 @@
 # Pending Index / 待確認索引
 
+## `v37-generated-development-state_2026-07-30/`
+
+- Recoverable v37 `node_modules/` and TypeScript build-info caches moved out of active Development after successful tests and release generation.
+- v37 測試與 release 產製成功後移出的可回復依賴與 TypeScript cache；未永久刪除。
+
 ## `v36-preverification-build_2026-07-30/`
 
 - Unpublished v36 standalone, PWA dist, and Public Web v19 checkpoints from before the final modal-inert, custom-question language fallback, and modal focus-transfer corrections; evidence only.

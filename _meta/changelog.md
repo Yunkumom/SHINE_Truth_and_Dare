@@ -1,5 +1,13 @@
 # Changelog / 變更紀錄
 
+## 2026-07-30 — v37 compact desktop studio / 精簡桌面工作室
+
+- Rebuilt desktop Settings as a fixed three-column studio with the compact layout editor at far left, a larger centre authoring preview, and an inert phone preview at far right.
+- Replaced the large top mode bar with small vertical bookmark tabs in a reserved centre-column rail that never overlaps the editor.
+- Split editor controls into Layout, Card, History, and Data categories so every category fits at 1366 × 768 without scrolling.
+- Kept Test mode as one fully interactive phone simulation and preserved mobile, privacy, card, blessing, export, sharing, and offline behavior.
+- Created immutable standalone v37 and Public Web v20 and updated the launcher and Node 26 Pages workflow.
+
 ## 2026-07-30 — v36 mobile ChatGPT Work integration / 手機 Work 整合
 
 - Integrated the supplied mobile ChatGPT Work settings into a new authored React/TypeScript v36 line while retaining v35 unchanged.
