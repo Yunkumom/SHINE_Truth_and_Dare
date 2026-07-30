@@ -1,8 +1,8 @@
 # Development / 開發資料
 
-This directory contains preserved v18–v34 source lines and the current Encounter Cards v35 source line. Historical v17 source, older completed plans, old-version builders, and generated dependencies remain recoverable under `../_pending/`.
+This directory contains preserved v18–v35 source lines and the current Encounter Cards v36 source line. Historical v17 source, older completed plans, old-version builders, imported mobile Work source, and generated dependencies remain recoverable under `../_pending/`.
 
-此目錄保留 v18–v34 source 與目前作用中的 Encounter Cards v35 source。v17 歷史 source、舊版計畫、builder 與可重建依賴仍可由 `../_pending/` 回復。
+此目錄保留 v18–v35 source 與目前作用中的 Encounter Cards v36 source。v17 歷史 source、舊版計畫、builder、手機 Work 原始資料與可重建依賴仍可由 `../_pending/` 回復。
 
 ## Structure / 結構
 
@@ -27,6 +27,7 @@ Development/
 ├── Source/Main-App-v33/       # Current Taiwan-zodiac and independent exact-choice release
 ├── Source/Main-App-v34/       # Preserved Local Stories and series-version release
 ├── Source/Main-App-v35/       # Current entrance card-library release
+├── Source/Main-App-v36/       # Current mobile Work integration release
 ├── Source/Public-Web/v2/      # Preserved Public v2 source recipe
 ├── Source/Public-Web/v3/      # Preserved Public v3 source recipe
 ├── Source/Public-Web/v4/      # Preserved Public v4 source recipe
@@ -43,7 +44,8 @@ Development/
 ├── Source/Public-Web/v16/     # Current v33 public recipe
 ├── Source/Public-Web/v17/     # Preserved v34 public recipe
 ├── Source/Public-Web/v18/     # Current v35 public recipe
-├── Automation/Scripts/        # Versioned v18-v35 builders and exporters
+├── Source/Public-Web/v19/     # Current v36 public recipe
+├── Automation/Scripts/        # Versioned v18-v36 builders and exporters
 ├── Automation/Tools/          # Local desktop launcher server
 ├── Tests/                     # Current structure and release contracts
 └── Documentation/             # Current product and interaction contracts
@@ -64,6 +66,8 @@ Development/
 | `Documentation/V34_MODERN_TAIWAN_ZODIAC_PLAN.md` | Test-first v34 asset, source, release, and validation plan. / 測試優先的 v34 素材、source、release 與驗證計畫。 |
 | `Documentation/V35_CARD_LIBRARY_DESIGN.md` | Approved entrance full-card library experience. / 已核准入口完整卡庫體驗。 |
 | `Documentation/V35_CARD_LIBRARY_PLAN.md` | Test-first v35 implementation and release plan. / 測試優先的 v35 實作與發布計畫。 |
+| `Documentation/V36_MOBILE_WORK_INTEGRATION_DESIGN.md` | Approved mobile Work integration and privacy boundaries. / 已核准手機 Work 整合與隱私邊界。 |
+| `Documentation/V36_MOBILE_WORK_INTEGRATION_PLAN.md` | Test-first v36 implementation, archive, and release plan. / 測試優先的 v36 實作、封存與發布計畫。 |
 | `Documentation/V20_VISUAL_DESIGN.md` | Approved v16-inspired entrance, card, artwork, and centering design contract. / 已核准的 v20 視覺合約。 |
 | `Documentation/V20_IMPLEMENTATION_PLAN.md` | Testable v20 source, asset, release, and validation plan. / 可驗證的 v20 實作計畫。 |
 | `Documentation/V21_TAIWAN_REVEAL_DESIGN.md` | Approved long-press timing, locator, hotspot, motion, and accessibility contract. / 已核准的 v21 長按、定位、動畫與無障礙合約。 |
@@ -457,5 +461,18 @@ Existing v15–v26 generated outputs are preserved. Do not rerun an exporter to 
 - `Automation/Scripts/export-standalone-v35.mjs` — creates immutable `Apps/Standalone/encounter_cards_v35.html`.
 - `Automation/Scripts/finalize-public-v18.mjs` — creates immutable `Apps/Public-Web/v18/` from verified v35 dist.
 - `Tests/validate_v35.ps1` — verifies the card-library contract, release hash, launcher, and Pages recipe.
+
+## v36 Mobile Work Integration / v36 手機 Work 整合
+
+- `Source/Main-App-v36/` — current authored React/TypeScript line and verified v36 PWA output.
+- `Source/Main-App-v36/src/components/MobileSettings.tsx` — accessible five-tab setup, artwork, question, content, and saved-position manager.
+- `Source/Main-App-v36/src/components/ArtworkPicker.tsx` — governed 42-face selection.
+- `Source/Main-App-v36/src/components/ArtworkAdjuster.tsx` — bounded per-artwork focus/zoom.
+- `Source/Main-App-v36/src/lib/question-manager.ts` — session-only enable/disable, custom-question, exact-choice, and safe fallback policy.
+- `Source/Public-Web/v19/README.md` — v36 to Public Web v19 release recipe.
+- `Automation/Scripts/finalize-pwa-v36.mjs` — finalizes the v36 offline precache.
+- `Automation/Scripts/export-standalone-v36.mjs` — creates immutable `Apps/Standalone/encounter_cards_v36.html`.
+- `Automation/Scripts/finalize-public-v19.mjs` — creates immutable `Apps/Public-Web/v19/` from verified v36 dist.
+- `Tests/validate_v36.ps1` — verifies Work integration, mandatory blessings, privacy boundary, release hash, launcher, and Pages recipe.
 - `Documentation/V33_TAIWAN_ZODIAC_EXACT_CHOICE_DESIGN.md` — approved artwork, collection, exact-choice, privacy, and growth design.
 - `Documentation/V33_TAIWAN_ZODIAC_EXACT_CHOICE_PLAN.md` — test-first generation, implementation, and publication plan.

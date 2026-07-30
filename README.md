@@ -1,17 +1,17 @@
 # Truth and Dare
 
-Truth and Dare is the governed repository for **Encounter Cards**, a bilingual, iPhone-first conversation card game. Encounter Cards v35 is the current maintained release; v15–v35 remain immutable standalone references after publication.
+Truth and Dare is the governed repository for **Encounter Cards**, a bilingual, iPhone-first conversation card game. Encounter Cards v36 is the current maintained release; v15–v36 remain immutable standalone references after publication.
 
-Truth and Dare 是雙語、iPhone 優先的對話卡牌遊戲 **相遇卡 Encounter Cards**。v35 是目前維護版本；v15–v35 發布後均保留為不可變 standalone 參考版本。
+Truth and Dare 是雙語、iPhone 優先的對話卡牌遊戲 **相遇卡 Encounter Cards**。v36 是目前維護版本；v15–v36 發布後均保留為不可變 standalone 參考版本。
 
 ## Start / 開始
 
-- Double-click `Open Truth and Dare.cmd`; it serves and opens the current v35 release at `127.0.0.1:8765`.
+- Double-click `Open Truth and Dare.cmd`; it serves and opens the current v36 release at `127.0.0.1:8765`.
 - Public site: `https://yunkumom.github.io/SHINE_Truth_and_Dare/` (available after the Pages workflow completes).
-- Current authored source: `Development/Source/Main-App-v35/src/`
-- Current verified PWA build: `Development/Source/Main-App-v35/dist/`
-- Current standalone release: `Apps/Standalone/encounter_cards_v35.html`
-- Current public release artifact: `Apps/Public-Web/v18/`
+- Current authored source: `Development/Source/Main-App-v36/src/`
+- Current verified PWA build: `Development/Source/Main-App-v36/dist/`
+- Current standalone release: `Apps/Standalone/encounter_cards_v36.html`
+- Current public release artifact: `Apps/Public-Web/v19/`
 - Reusable Taiwan zodiac masters: `Assets/Zodiac/Taiwan/v33-masters/` (classic) and `Assets/Zodiac/Taiwan/v34-local-stories-masters/` (Local Stories).
 - Current deity source artwork: `Assets/Deities/v30-safe-masters/`.
 - Complete Development file guide: `Development/README.md`
@@ -23,7 +23,7 @@ Truth and Dare 是雙語、iPhone 優先的對話卡牌遊戲 **相遇卡 Encoun
 Truth and Dare/
 ├── Apps/          # Preserved runnable releases
 ├── Assets/        # Reusable assets and provenance
-├── Development/   # Preserved earlier lines plus current v35 source, tools, tests, and contracts
+├── Development/   # Preserved earlier lines plus current v36 source, tools, tests, and contracts
 ├── _meta/         # Purpose, roadmap, handoff, changelog, blueprints
 ├── _agent/        # Agent guidance
 ├── _human/        # Human-facing support references
@@ -40,7 +40,7 @@ Development 已於 2026-07-19 保守精簡。v17 source、未發布 Public Web�
 ## Development / 開發
 
 ```powershell
-Set-Location Development/Source/Main-App-v35
+Set-Location Development/Source/Main-App-v36
 npm ci
 npm run dev
 npm run typecheck
@@ -48,7 +48,7 @@ npm run lint
 npm test
 ```
 
-Existing v15–v35 outputs are immutable after release. Later product changes require a new version rather than overwriting a released version.
+Existing v15–v36 outputs are immutable after release. Later product changes require a new version rather than overwriting a released version.
 
 完整 repository 驗證：
 
@@ -61,7 +61,8 @@ powershell -ExecutionPolicy Bypass -File Development/Tests/validate_repository.p
 - Chinese, English, and bilingual modes; Levels 1–5; Truth, Dare, and Surprise.
 - Desktop Settings and Test modes are separate; mobile opens directly into the play-only 430 × 932 experience.
 - Advanced entry selection supports all-random or a specific approved artwork, while the question and mandatory blessing remain independently randomized.
-- The entrance menu opens a full-card library with collection filters, natural wrap-around horizontal swiping, arrow/keyboard alternatives, and a session-only “use this face” action.
+- Mobile settings expose Level/mode selection, the governed 42-face library, exact artwork/question choice, session-only custom-question management, content controls, and per-artwork position adjustment.
+- Blessings remain mandatory; custom questions, disabled states, and exact choices are memory-only and are cleared when the session reloads.
 - The draw screen offers three favorite artwork faces before reveal; hidden advanced choice exposes Taiwan deities, preserved classic zodiac guardians, and the new Local Stories zodiac version. World deity and world zodiac collections remain planned.
 - 430 × 932 app canvas inside a desktop-only 445 × 932 iPhone Pro Max physical-ratio frame; mobile remains full-screen.
 - Eighteen deity artworks with safe hotspots; hold for 600 ms to reveal a transparent, Natural Earth-derived Taiwan coastline glow for 3 seconds.

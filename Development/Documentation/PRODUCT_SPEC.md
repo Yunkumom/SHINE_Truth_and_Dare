@@ -129,7 +129,15 @@ v20 restores the v16 entrance composition: branded header and language switch, l
 ## Preserved v21 Release / 保留的 v21 Release
 
 v21 preserves the complete v20 visual, language, card, blessing, export, privacy, and 430 × 932 desktop-centering contracts. Every one of the 18 deity artworks has a distinct hidden-Taiwan hotspot. Holding the artwork for 600 ms reveals a blinking gold Taiwan outline at that location; after release it remains for 3 seconds and fades. Pointer movement cancels an uncommitted reveal, artwork events do not bubble into card drawing, Enter and Space provide keyboard parity, and reduced-motion users receive a steady locator. The runtime annotation never enters the commemorative PNG.
-## Current v35 entrance card library / 目前 v35 入口卡庫
+## Current v36 mobile Work integration / 目前 v36 手機 Work 整合
+
+- The setup header opens a five-tab settings dialog for general draw settings, the 42-artwork library, question management, card-content controls, and saved artwork positions.
+- Exact artwork and exact question choices remain independent. Custom questions, disabled-question state, and exact choices exist only for the current browser session.
+- The card and keepsake may hide the decorative “Real You” label or question, but the blessing is mandatory and cannot be disabled.
+- Revealed cards expose artwork reselection and bounded per-artwork focus/zoom controls. Only non-personal presentation values use the versioned `encounter-presentation-v36` key.
+- The 430 × 932 phone contract, bilingual modes, Levels 1–5, Truth/Dare/Surprise, Taiwan reveal, keepsake PNG, Share Sheet, and offline behavior remain intact.
+
+## Preserved v35 entrance card library / 保留的 v35 入口卡庫
 
 - The setup header exposes one compact list icon; activating it replaces the 430 × 932 setup surface with an accessible full-card library.
 - The library can browse all 42 approved artworks and filter them by available collection without loading 42 card DOM trees at once.

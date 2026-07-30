@@ -1,5 +1,22 @@
 # Pending Index / 待確認索引
 
+## `v36-preverification-build_2026-07-30/`
+
+- Unpublished v36 standalone, PWA dist, and Public Web v19 checkpoints from before the final modal-inert, custom-question language fallback, and modal focus-transfer corrections; evidence only.
+- 最終 modal 背景 inert、自訂問題語言備援與 modal 焦點轉移修正前的未發布 v36／Public Web v19 檢查點；僅供驗證證據。
+
+## `v36-generated-development-state_2026-07-30/`
+
+- Recoverable v36 `node_modules/` and TypeScript build-info caches moved out of active Development after successful tests and release generation.
+- v36 測試與 release 產製成功後移出的可回復依賴與 TypeScript cache；未永久刪除。
+
+## `Encounter_Cards_v11_Source_2026-07-30/`
+
+- Original 72-file, 53,421,078-byte mobile ChatGPT Work package preserved intact after its governed v36 integration; aggregate path-and-file SHA-256: `2D0F191DFAF00208D6EF880641B191CAF3C72D610B68519CFABBB40AABD08D11`.
+- Potential account/deployment configuration (`.npmrc` and `.openai/`) remains unread, local-only, and explicitly ignored by Git.
+- 手機 ChatGPT Work 原始包在完成 v36 受治理整合後完整保留；共 72 檔、53,421,078 bytes，路徑與檔案綜合 SHA-256 如上。
+- 可能涉及帳號／部署的設定（`.npmrc` 與 `.openai/`）未被讀取，僅留本機並由 Git 明確忽略。
+
 ## `v35-generated-development-state_2026-07-29/`
 
 - Recoverable v35 `node_modules/` and TypeScript build-info caches moved out of active Development after successful tests and build.

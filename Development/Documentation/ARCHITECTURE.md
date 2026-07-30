@@ -1,6 +1,14 @@
 # Encounter Cards Architecture
 
-## v35 Entrance Card-Library Architecture / v35 入口卡庫架構
+## v36 Mobile Work Integration Architecture / v36 手機 Work 整合架構
+
+- `components/MobileSettings.tsx` owns the accessible five-tab settings surface; `ArtworkPicker.tsx` and `ArtworkAdjuster.tsx` own exact artwork choice and bounded focus/zoom controls.
+- `lib/question-manager.ts` resolves governed and session-authored questions, disabled items, exact selection, and safe built-in fallback without persistent storage.
+- `App.tsx` keeps question-manager state in React memory, applies v36-only layout/presentation keys, and always renders `BlessingText` on the card and keepsake.
+- `styles/v36.css` contains the adapted mobile ChatGPT Work visual layer. Temporary Work version labels were normalized to v36 and blessing-hiding behavior was removed.
+- One tested source produces `Main-App-v36/dist/`, immutable standalone v36, and Public Web v19. Allowed local keys are `encounter-language`, `encounter-font-scale`, `encounter-layout-v36`, and `encounter-presentation-v36`.
+
+## Preserved v35 Entrance Card-Library Architecture / 保留的 v35 入口卡庫架構
 
 - `components/CardLibrary.tsx` owns the modal surface, collection filters, focus/keyboard behavior, pointer tracking, and the three-card virtual window.
 - `lib/card-library.ts` contains pure wrapping, filtering, and swipe-decision policies with unit tests.

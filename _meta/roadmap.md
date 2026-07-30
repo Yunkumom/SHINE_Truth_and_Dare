@@ -1,5 +1,14 @@
 # Roadmap / 路線圖
 
+## Phase 22 — v36 mobile ChatGPT Work integration
+
+- [x] Promote the supplied mobile Work package into a governed v36 authored source line without modifying v35.
+- [x] Add five-tab mobile settings, all 42 artwork faces, exact selection, session-only question management, and per-artwork adjustment.
+- [x] Preserve mandatory blessings and prohibit persistent custom/disabled/exact question state.
+- [x] Create standalone v36 and Public Web v19, then update the launcher and Pages workflow to Node 26.
+- [x] Preserve the original 72-file Work package under `_pending/Encounter_Cards_v11_Source_2026-07-30/` with matching inventory hash.
+- [ ] Complete physical iPhone Share Sheet, installation, offline-update, gesture-feel, and PNG regression.
+
 ## Phase 21 — v35 entrance card library
 
 - [x] Add a discreet entrance list control that opens the complete 42-card library.

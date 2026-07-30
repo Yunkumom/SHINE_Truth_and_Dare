@@ -1,5 +1,13 @@
 # Changelog / 變更紀錄
 
+## 2026-07-30 — v36 mobile ChatGPT Work integration / 手機 Work 整合
+
+- Integrated the supplied mobile ChatGPT Work settings into a new authored React/TypeScript v36 line while retaining v35 unchanged.
+- Added accessible five-tab settings, the governed 42-artwork photo grid, independent exact artwork/question choice, session-only custom and disabled questions, card-content controls, and per-artwork focus/zoom.
+- Kept blessings mandatory and kept personal/user-authored question state out of persistence, logs, analytics, networking, and backend storage.
+- Created immutable standalone v36 and Public Web v19, updated the loopback launcher and GitHub Pages workflow, and locked the v36 standalone SHA-256.
+- Archived the intact 72-file mobile Work package to `_pending/Encounter_Cards_v11_Source_2026-07-30/` after matching aggregate inventory verification.
+
 ## 2026-07-29 — v35 entrance card library / 入口完整卡庫
 
 - Added a hidden-in-plain-sight list control to the setup header and a 42-card, full-card browsing library.

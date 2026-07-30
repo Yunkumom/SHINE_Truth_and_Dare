@@ -106,6 +106,18 @@ _pending/v34-generated-development-state_2026-07-29/*
 _pending/v34-preverification-build_2026-07-29/*
 !_pending/v34-preverification-build_2026-07-29/README.md
 
+# Recoverable v36 dependency/cache state; keep only its annotation in Git
+_pending/v36-generated-development-state_2026-07-30/*
+!_pending/v36-generated-development-state_2026-07-30/README.md
+
+# Unpublished v36 verification checkpoints are local evidence; keep only their annotation in Git
+_pending/v36-preverification-build_2026-07-30/*
+!_pending/v36-preverification-build_2026-07-30/README.md
+
+# Mobile Work archive deployment/account configuration stays local and unread
+_pending/Encounter_Cards_v11_Source_2026-07-30/.npmrc
+_pending/Encounter_Cards_v11_Source_2026-07-30/.openai/
+
 # Recoverable v35 dependency/cache state; keep only its annotation in Git
 _pending/v35-generated-development-state_2026-07-29/*
 !_pending/v35-generated-development-state_2026-07-29/README.md
