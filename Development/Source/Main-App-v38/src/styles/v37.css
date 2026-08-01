@@ -1,0 +1,185 @@
+/* Encounter Cards v38 desktop studio. Mobile product styling remains inherited. */
+
+.editor-category-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 3px;
+  margin: 7px 0;
+}
+
+.editor-category-tabs button {
+  min-width: 0;
+  min-height: 30px;
+  padding: 4px 2px;
+  font-size: 8px;
+  line-height: 1.2;
+}
+
+.editor-category-tabs button.active {
+  background: #a77735;
+  color: #071824;
+}
+
+.editor-panel {
+  min-height: 0;
+}
+
+.editor-empty {
+  display: grid;
+  gap: 5px;
+  place-content: center;
+  min-height: 120px;
+  text-align: center;
+}
+
+.editor-empty small {
+  color: #d5b77a;
+  font-size: 8px;
+}
+
+@media (min-width: 1100px) {
+  .desktop-viewport {
+    box-sizing: border-box;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    padding: 12px;
+    overflow: hidden;
+  }
+
+  .desktop-workspace {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    grid-template-columns: 270px minmax(0,1fr) 310px;
+    gap: 12px;
+    align-items: stretch;
+    overflow: hidden;
+    --workbench-scale: .74;
+    --preview-scale: .62;
+  }
+
+  .desktop-editor-rail {
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .layout-editor.is-docked {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    padding: 9px;
+    overflow: hidden;
+  }
+
+  .layout-editor.is-docked .json-field textarea {
+    height: clamp(220px, 52vh, 430px);
+    resize: none;
+  }
+
+  .layout-editor.is-docked .type-scale-controls label {
+    grid-template-columns: minmax(0, 1fr) 54px;
+    gap: 4px;
+  }
+
+  .layout-editor.is-docked .type-scale-controls input[type="range"] {
+    grid-column: 1 / -1;
+    width: calc(100% - 4px);
+    justify-self: start;
+  }
+
+  .layout-editor.is-docked .editor-panel,
+  .layout-editor.is-docked .card-presentation-controls {
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .layout-editor.is-docked input,
+  .layout-editor.is-docked select,
+  .layout-editor.is-docked textarea {
+    box-sizing: border-box;
+  }
+
+  .desktop-center-column {
+    min-width: 0;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 54px minmax(0, 1fr);
+    grid-template-areas: "mode-tabs stage";
+    gap: 8px;
+    overflow: hidden;
+  }
+
+  .desktop-mode-bookmarks {
+    grid-area: mode-tabs;
+    z-index: 4;
+    align-self: start;
+    padding-top: 10px;
+  }
+
+  .desktop-mode-switch.desktop-mode-bookmark-tabs {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 3px;
+    transform: none;
+    border: 1px solid var(--setup-caramel);
+    border-radius: 8px 0 0 8px;
+    background: var(--setup-cream);
+    box-shadow: 0 6px 18px #7653332b;
+  }
+
+  .desktop-mode-bookmark-tabs button {
+    min-height: 30px;
+    padding: 4px 2px;
+    border-radius: 5px 0 0 5px;
+    font-size: 9px;
+    line-height: 1.1;
+  }
+
+  .desktop-mode-bookmark-tabs button small {
+    margin-top: 1px;
+    font-size: 5px;
+    letter-spacing: .08em;
+  }
+
+  .desktop-center-stage {
+    grid-area: stage;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+  }
+
+  .desktop-phone-preview {
+    align-self: center;
+    justify-self: end;
+    width: calc(445px * var(--preview-scale));
+    height: calc(932px * var(--preview-scale));
+  }
+
+  .desktop-test-stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .desktop-test-mode-tabs {
+    position: absolute;
+    z-index: 1200;
+    top: 12px;
+    left: calc(50% - 275px);
+    width: 54px;
+  }
+}
+
+@media (min-width: 1366px) and (min-height: 768px) {
+  .desktop-workspace {
+    min-width: 1342px;
+    min-height: 744px;
+  }
+}

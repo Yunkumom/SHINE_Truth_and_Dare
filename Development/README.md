@@ -1,8 +1,8 @@
 # Development / 開發資料
 
-This directory contains preserved v18–v36 source lines and the current Encounter Cards v37 source line. Historical v17 source, older completed plans, old-version builders, imported mobile Work source, and generated dependencies remain recoverable under `../_pending/`.
+This directory contains preserved v18–v37 source lines and the current Encounter Cards v38 source line. Historical v17 source, older completed plans, old-version builders, imported mobile Work source, and generated dependencies remain recoverable under `../_pending/`.
 
-此目錄保留 v18–v36 source 與目前作用中的 Encounter Cards v37 source。v17 歷史 source、舊版計畫、builder、手機 Work 原始資料與可重建依賴仍可由 `../_pending/` 回復。
+此目錄保留 v18–v37 source 與目前作用中的 Encounter Cards v38 source。v17 歷史 source、舊版計畫、builder、手機 Work 原始資料與可重建依賴仍可由 `../_pending/` 回復。
 
 ## Structure / 結構
 
@@ -28,7 +28,8 @@ Development/
 ├── Source/Main-App-v34/       # Preserved Local Stories and series-version release
 ├── Source/Main-App-v35/       # Current entrance card-library release
 ├── Source/Main-App-v36/       # Preserved mobile Work integration release
-├── Source/Main-App-v37/       # Current compact desktop studio release
+├── Source/Main-App-v37/       # Preserved compact desktop studio release
+├── Source/Main-App-v38/       # Current one-viewport mobile fit release
 ├── Source/Public-Web/v2/      # Preserved Public v2 source recipe
 ├── Source/Public-Web/v3/      # Preserved Public v3 source recipe
 ├── Source/Public-Web/v4/      # Preserved Public v4 source recipe
@@ -46,8 +47,9 @@ Development/
 ├── Source/Public-Web/v17/     # Preserved v34 public recipe
 ├── Source/Public-Web/v18/     # Current v35 public recipe
 ├── Source/Public-Web/v19/     # Preserved v36 public recipe
-├── Source/Public-Web/v20/     # Current v37 public recipe
-├── Automation/Scripts/        # Versioned v18-v37 builders and exporters
+├── Source/Public-Web/v20/     # Preserved v37 public recipe
+├── Source/Public-Web/v21/     # Current v38 public recipe
+├── Automation/Scripts/        # Versioned v18-v38 builders and exporters
 ├── Automation/Tools/          # Local desktop launcher server
 ├── Tests/                     # Current structure and release contracts
 └── Documentation/             # Current product and interaction contracts
@@ -490,5 +492,17 @@ Existing v15–v26 generated outputs are preserved. Do not rerun an exporter to 
 - `Automation/Scripts/export-standalone-v37.mjs` — creates immutable `Apps/Standalone/encounter_cards_v37.html`.
 - `Automation/Scripts/finalize-public-v20.mjs` — creates immutable `Apps/Public-Web/v20/` from verified v37 dist.
 - `Tests/validate_v37.ps1` — verifies the studio, privacy, release hash, launcher, and Pages boundaries.
+
+## v38 Mobile Viewport Fit / v38 手機單頁適配
+
+- `Source/Main-App-v38/` — current authored React/TypeScript line and verified v38 PWA output.
+- `Source/Main-App-v38/src/lib/viewport-scale.ts` — fits the complete 430 × 932 canvas to the live mobile visual viewport.
+- `Source/Main-App-v38/src/components/ArtworkAdjuster.tsx` — adds draft-based Cancel/Save, a nine-square grid, extended position ranges, and 240% zoom.
+- `Source/Main-App-v38/src/styles/v38.css` — prevents document scrolling and horizontal clipping while bounding revealed-card controls.
+- `Source/Public-Web/v21/README.md` — v38 to Public Web v21 release recipe.
+- `Automation/Scripts/finalize-pwa-v38.mjs` — finalizes the v38 offline precache.
+- `Automation/Scripts/export-standalone-v38.mjs` — creates immutable `Apps/Standalone/encounter_cards_v38.html`.
+- `Automation/Scripts/finalize-public-v21.mjs` — creates immutable `Apps/Public-Web/v21/` from verified v38 dist.
+- `Tests/validate_v38.ps1` — verifies mobile fit, artwork adjustment, privacy, release hash, launcher, and Pages boundaries.
 - `Documentation/V33_TAIWAN_ZODIAC_EXACT_CHOICE_DESIGN.md` — approved artwork, collection, exact-choice, privacy, and growth design.
 - `Documentation/V33_TAIWAN_ZODIAC_EXACT_CHOICE_PLAN.md` — test-first generation, implementation, and publication plan.

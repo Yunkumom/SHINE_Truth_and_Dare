@@ -5,13 +5,13 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot))
-$relativeProductUrl = '/Apps/Standalone/encounter_cards_v37.html'
-$productPath = Join-Path $projectRoot 'Apps/Standalone/encounter_cards_v37.html'
+$relativeProductUrl = '/Apps/Standalone/encounter_cards_v38.html'
+$productPath = Join-Path $projectRoot 'Apps/Standalone/encounter_cards_v38.html'
 $productUrl = "http://127.0.0.1:$Port$relativeProductUrl"
-$healthMarker = 'encounter-release" content="V37"'
+$healthMarker = 'encounter-release" content="V38"'
 
 if (-not (Test-Path -LiteralPath $productPath -PathType Leaf)) {
-    throw 'Encounter Cards v37 is missing. Restore the verified standalone release before starting the launcher.'
+    throw 'Encounter Cards v38 is missing. Restore the verified standalone release before starting the launcher.'
 }
 
 function Test-TruthAndDareServer {

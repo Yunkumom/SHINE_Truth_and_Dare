@@ -1,5 +1,13 @@
 # Roadmap / 路線圖
 
+## Phase 24 — v38 one-viewport mobile fit
+
+- [x] Fit the complete 430 × 932 mobile setup and draw canvases inside the live visual viewport without page scrolling.
+- [x] Prevent header, form, card, and revealed-artwork controls from clipping horizontally.
+- [x] Add a nine-square artwork grid, explicit Cancel/Save, extended vertical movement, and 240% zoom.
+- [x] Verify 126 automated tests, typecheck, lint, production build, standalone v38, and Public Web v21.
+- [ ] Complete physical iPhone Safari/Chrome regression for browser-chrome resize, gestures, Share Sheet, installation, and offline update.
+
 ## Phase 23 — v37 compact desktop studio
 
 - [x] Fix the layout editor to the far-left desktop column and separate mode controls into a compact reserved bookmark rail.

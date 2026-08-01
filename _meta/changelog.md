@@ -1,5 +1,13 @@
 # Changelog / 變更紀錄
 
+## 2026-08-01 — v38 one-viewport mobile fit / 手機單頁適配
+
+- Replaced the mobile reflow branch with visual-viewport scaling so the complete 430 × 932 setup and draw canvases stay visible without document scrolling or horizontal clipping.
+- Kept revealed-card reselect and artwork-adjust controls inside both canvas edges.
+- Added draft-based Cancel/Save artwork editing, a nine-square grid, X −50…50%, Y −60…60%, and 100…240% zoom; saved offsets now visibly transform the card image.
+- Preserved the v37 desktop studio and all privacy, mandatory-blessing, offline, and independent artwork/question contracts.
+- Created immutable standalone v38 and Public Web v21 and advanced the launcher and Node 26 Pages workflow.
+
 ## 2026-07-30 — v37 compact desktop studio / 精簡桌面工作室
 
 - Rebuilt desktop Settings as a fixed three-column studio with the compact layout editor at far left, a larger centre authoring preview, and an inert phone preview at far right.

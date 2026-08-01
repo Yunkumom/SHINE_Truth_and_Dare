@@ -54,7 +54,7 @@ $server = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot '
 $workflow = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot '.github/workflows/pages.yml')
 $publicWorkerPath = Join-Path $projectRoot 'Apps/Public-Web/v20/service-worker.js'
 Assert-V37Condition ($server -match 'encounter_cards_v37\.html' -and $server -match 'encounter-release.*V37') 'Desktop launcher serves and verifies v37'
-Assert-V37Condition ($workflow -match 'Main-App-v37' -and $workflow -match 'Public-Web/v20' -and $workflow -match 'node-version: 26') 'GitHub Pages builds v37 on Node 26 and publishes Public Web v20'
+Assert-V37Condition ($workflow -match 'Main-App-v38' -and $workflow -match 'Public-Web/v21' -and $workflow -match 'node-version: 26') 'GitHub Pages advances to v38 and Public Web v21 without modifying v37'
 if (Test-Path -LiteralPath $publicWorkerPath -PathType Leaf) {
     $serviceWorker = Get-Content -Raw -Encoding UTF8 -LiteralPath $publicWorkerPath
     Assert-V37Condition ($serviceWorker -match 'encounter-cards-v37-') 'Public Web v20 uses the v37 offline cache namespace'
