@@ -1,0 +1,648 @@
+/* Encounter Cards v39: full-width mobile reflow, mode home, and direct keepsake creation. */
+
+@media (max-width: 1099px) {
+  html,
+  body,
+  #root,
+  .v39-mobile-stage {
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
+  .v39-mobile-stage {
+    display: block;
+    height: 100dvh;
+  }
+
+  .v39-mobile-stage .phone-fit-stage,
+  .v39-mobile-stage .app-shell {
+    width: 100%;
+    min-width: 0;
+    height: 100dvh;
+    min-height: 0;
+  }
+
+  .v39-mobile-stage .phone-fit-stage {
+    position: relative;
+  }
+
+  .v39-mobile-stage .app-shell {
+    position: relative;
+    left: 0;
+    top: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: hidden;
+    transform: none;
+  }
+
+  .v39-shell .screen-canvas,
+  .v39-shell .setup-content {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .v39-shell .site-header,
+  .v39-shell .header-tools,
+  .v39-shell .wordmark,
+  .v39-shell .wordmark > span:last-child,
+  .v39-shell .field-row label {
+    min-width: 0;
+  }
+
+  .v39-shell .header-block {
+    left: 0 !important;
+    width: 100% !important;
+  }
+
+  .v39-shell .site-header {
+    padding-inline: 12px;
+  }
+
+  .v39-shell .wordmark {
+    gap: 7px;
+    font-size: 16px;
+  }
+
+  .v39-shell .mark {
+    width: 36px;
+    height: 36px;
+  }
+
+  .v39-shell .header-tools {
+    gap: 5px;
+  }
+
+  .v39-shell .card-library-trigger.settings-trigger {
+    width: 42px;
+    min-width: 42px;
+    height: 42px;
+    display: grid;
+    grid-template-columns: 1fr;
+    place-items: center;
+    padding: 0;
+  }
+
+  .menu-icon {
+    width: 19px;
+    display: grid;
+    gap: 4px;
+  }
+
+  .menu-icon i {
+    display: block;
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+  }
+
+  .v39-shell .language-select {
+    width: min(126px, 30vw);
+    min-width: 0;
+  }
+
+  .v39-shell .setup-hero-block,
+  .v39-shell .setup-fields-block,
+  .v39-shell .setup-begin-block {
+    right: 12px !important;
+    left: 12px !important;
+    width: auto !important;
+  }
+
+  .v39-shell .setup-hero-block {
+    top: 66px !important;
+    height: clamp(122px, 18dvh, 150px) !important;
+  }
+
+  .v39-shell .setup-fields-block {
+    top: clamp(194px, 25dvh, 226px) !important;
+    height: 184px !important;
+  }
+
+  .v39-shell.setup-shell .setup-begin-block {
+    right: 12px !important;
+    bottom: max(7px, env(safe-area-inset-bottom)) !important;
+    left: 12px !important;
+    width: auto !important;
+  }
+
+  .v39-shell .game-toolbar-block {
+    right: 12px !important;
+    left: 12px !important;
+    width: auto !important;
+  }
+
+  .v39-shell .game-card-block {
+    right: 12px !important;
+    left: 12px !important;
+    width: auto !important;
+    height: clamp(390px, calc(100dvh - 294px), 590px) !important;
+  }
+
+  .v39-shell .game-actions-block {
+    top: auto !important;
+    right: 12px !important;
+    bottom: max(8px, env(safe-area-inset-bottom)) !important;
+    left: 12px !important;
+    width: auto !important;
+    height: 58px !important;
+  }
+
+  .v39-shell .artwork-candidate-fan,
+  .v39-shell .artwork-control-panel {
+    top: auto;
+    right: 12px;
+    bottom: calc(max(8px, env(safe-area-inset-bottom)) + 66px);
+    left: 12px;
+    width: auto;
+  }
+
+  .v39-shell .artwork-candidate-fan {
+    height: 112px;
+  }
+
+  .v39-shell .artwork-control-panel {
+    grid-template-columns: minmax(0, 1fr) minmax(66px, auto) minmax(66px, auto);
+    gap: 5px;
+    min-height: 64px;
+    padding: 6px 7px;
+  }
+
+  .v39-shell .artwork-control-panel > button {
+    min-width: 0;
+    padding-inline: 6px;
+    white-space: nowrap;
+  }
+
+  .v39-shell .artwork-position-editor {
+    position: absolute;
+    inset: 6px;
+    width: auto;
+    max-width: none;
+    max-height: none;
+  }
+}
+
+.v39-shell .mythic-art-frame img,
+.v39-shell .keepsake-art img {
+  object-position: 50% 50% !important;
+  transform: translate(var(--artwork-offset-x, 0%), var(--artwork-offset-y, 0%)) scale(var(--artwork-zoom, 1)) !important;
+  transform-origin: center !important;
+}
+
+.v39-shell .artwork-editor-preview img {
+  will-change: transform;
+}
+
+.v39-shell .artwork-editor-controls output {
+  justify-self: end;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Mode home */
+.mode-home-canvas,
+.direct-keepsake-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  color: #3f2a1d;
+  background: radial-gradient(circle at 52% 14%, #fffaf0 0, #ecdabc 54%, #d2af7e 100%);
+  overflow: hidden;
+}
+
+.mode-home-header,
+.direct-keepsake-header {
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  border-bottom: 1px solid #b58a55;
+  background: rgba(255, 249, 237, .88);
+  backdrop-filter: blur(12px);
+}
+
+.mode-home-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mode-home-brand > span {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #b58a55;
+  border-radius: 50%;
+  color: #8a6239;
+}
+
+.mode-home-brand b,
+.mode-home-brand small {
+  display: block;
+}
+
+.mode-home-brand b {
+  font: 800 18px/1.05 "Noto Serif TC", serif;
+}
+
+.mode-home-brand small,
+.mode-home-step {
+  margin-top: 5px;
+  color: #8a6239;
+  font: 700 7px/1 Georgia, serif;
+  letter-spacing: .18em;
+}
+
+.mode-home-intro {
+  padding: clamp(25px, 5dvh, 48px) 22px 19px;
+  text-align: center;
+}
+
+.mode-home-intro > small {
+  color: #8a6239;
+  font: 800 8px/1.3 sans-serif;
+  letter-spacing: .18em;
+}
+
+.mode-home-intro h1 {
+  max-width: 360px;
+  margin: 12px auto 9px;
+  font: 800 clamp(25px, 7vw, 32px)/1.35 "Noto Serif TC", serif;
+}
+
+.mode-home-intro p {
+  max-width: 340px;
+  margin: 0 auto;
+  color: #77634f;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.experience-grid {
+  display: grid;
+  gap: 11px;
+  padding: 0 18px;
+}
+
+.experience-card {
+  min-height: clamp(92px, 13dvh, 116px);
+  display: grid;
+  grid-template-columns: 28px 46px minmax(0, 1fr) 34px;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #b58a55;
+  border-radius: 18px;
+  background: rgba(255, 249, 237, .92);
+  color: #3f2a1d;
+  padding: 12px;
+  text-align: left;
+  box-shadow: 0 10px 24px rgba(93, 59, 31, .12);
+}
+
+.experience-card.is-primary {
+  border-color: #17303f;
+  background: linear-gradient(135deg, #173343, #071823);
+  color: #fff8e9;
+}
+
+.experience-number {
+  align-self: start;
+  color: #9a7447;
+  font: 700 8px Georgia, serif;
+}
+
+.experience-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  color: #a5743e;
+  font-size: 20px;
+}
+
+.is-primary .experience-icon {
+  color: #f0d29a;
+}
+
+.truth-icon {
+  font-size: 13px;
+  letter-spacing: -2px;
+}
+
+.experience-card b,
+.experience-card small {
+  display: block;
+}
+
+.experience-card b {
+  font: 800 17px/1.25 "Noto Serif TC", serif;
+}
+
+.experience-card small {
+  margin-top: 4px;
+  color: #8a6239;
+  font: 700 7px/1.2 Georgia, serif;
+  letter-spacing: .14em;
+}
+
+.experience-card.is-primary small {
+  color: #e2bf83;
+}
+
+.experience-card > i {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #e7c98f;
+  color: #16303f;
+  font: normal 22px/1 serif;
+}
+
+.mode-home-privacy {
+  position: absolute;
+  right: 14px;
+  bottom: max(9px, env(safe-area-inset-bottom));
+  left: 14px;
+  margin: 0;
+  color: #77634f;
+  text-align: center;
+  font-size: 8px;
+}
+
+/* Direct keepsake */
+.direct-keepsake-header {
+  display: grid;
+  grid-template-columns: 42px 1fr 42px;
+  gap: 8px;
+  text-align: center;
+}
+
+.direct-keepsake-header button {
+  width: 38px;
+  height: 38px;
+  border: 1px solid #b58a55;
+  border-radius: 50%;
+  background: #fff7e8;
+  color: #3f2a1d;
+  font-size: 20px;
+}
+
+.direct-keepsake-header b,
+.direct-keepsake-header small {
+  display: block;
+}
+
+.direct-keepsake-header b {
+  font: 800 16px/1.2 "Noto Serif TC", serif;
+}
+
+.direct-keepsake-header small,
+.direct-keepsake-header > span {
+  margin-top: 3px;
+  color: #8a6239;
+  font: 700 7px/1.2 Georgia, serif;
+  letter-spacing: .13em;
+}
+
+.direct-keepsake-content {
+  height: calc(100% - 62px);
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 9px;
+  padding: 10px 12px max(10px, env(safe-area-inset-bottom));
+}
+
+.direct-keepsake-preview {
+  width: min(100%, 355px);
+  min-height: 0;
+  justify-self: center;
+  display: grid;
+  grid-template-rows: 58px minmax(0, 1fr) 106px;
+  border: 5px solid #9a633e;
+  border-radius: 18px;
+  background: #efd6a5;
+  padding: 7px;
+  overflow: hidden;
+  box-shadow: 0 14px 30px rgba(70, 41, 19, .2);
+}
+
+.direct-keepsake-title,
+.direct-keepsake-blessing {
+  background: #f8e7c5;
+  border: 1px solid #a87943;
+}
+
+.direct-keepsake-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 10px;
+}
+
+.direct-keepsake-title small,
+.direct-keepsake-title b {
+  display: block;
+}
+
+.direct-keepsake-title small {
+  color: #8a6239;
+  font-size: 7px;
+}
+
+.direct-keepsake-title b {
+  max-width: 250px;
+  margin-top: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: 800 16px/1.15 "Noto Serif TC", serif;
+}
+
+.direct-keepsake-title i {
+  color: #8e382e;
+  font-style: normal;
+}
+
+.direct-keepsake-image {
+  min-height: 0;
+  margin-top: 7px;
+  border: 1px solid #67401f;
+  background: #132a36;
+  overflow: hidden;
+}
+
+.direct-keepsake-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.direct-keepsake-blessing {
+  margin-top: 7px;
+  padding: 10px;
+  overflow: auto;
+}
+
+.direct-keepsake-blessing small {
+  color: #8e382e;
+  font: 800 7px/1.2 sans-serif;
+  letter-spacing: .08em;
+}
+
+.direct-keepsake-blessing p {
+  margin: 7px 0 0;
+  font: 700 15px/1.45 "Noto Serif TC", serif;
+}
+
+.direct-keepsake-controls {
+  display: grid;
+  gap: 7px;
+  padding: 10px;
+  border: 1px solid #b58a55;
+  border-radius: 15px;
+  background: rgba(255, 249, 237, .96);
+}
+
+.direct-photo-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+
+.direct-photo-actions button,
+.direct-photo-actions label,
+.direct-download-button {
+  min-height: 40px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #8a6239;
+  border-radius: 10px;
+  background: #f4e3c4;
+  color: #3f2a1d;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.direct-photo-actions input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.direct-blessing-select {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.direct-blessing-select select,
+.direct-keepsake-controls textarea {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #b58a55;
+  border-radius: 9px;
+  background: #fffaf0;
+  color: #3f2a1d;
+  padding: 7px;
+  font-size: 10px;
+}
+
+.direct-keepsake-controls textarea {
+  height: 58px;
+  resize: none;
+}
+
+.direct-download-button {
+  background: linear-gradient(135deg, #183141, #081923);
+  color: #fff8e9;
+}
+
+.direct-download-button:disabled {
+  opacity: .48;
+}
+
+.direct-artwork-picker {
+  position: absolute;
+  z-index: 150;
+  inset: 0;
+  display: grid;
+  grid-template-rows: 58px minmax(0, 1fr);
+  background: #fff8e8;
+  overflow: hidden;
+}
+
+.direct-artwork-picker > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid #b58a55;
+}
+
+.direct-artwork-picker > header b {
+  font: 800 17px/1.2 "Noto Serif TC", serif;
+}
+
+.direct-artwork-picker > header button {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #b58a55;
+  border-radius: 50%;
+  background: #f4e3c4;
+  color: #3f2a1d;
+  font-size: 22px;
+}
+
+.direct-artwork-picker .photo-picker-surface {
+  min-height: 0;
+  overflow: auto;
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+
+@media (max-width: 370px), (max-height: 760px) {
+  .mode-home-intro {
+    padding-top: 18px;
+    padding-bottom: 13px;
+  }
+
+  .mode-home-intro h1 {
+    margin-block: 8px 5px;
+    font-size: 23px;
+  }
+
+  .experience-grid {
+    gap: 8px;
+  }
+
+  .experience-card {
+    min-height: 86px;
+    padding: 9px;
+  }
+
+  .direct-keepsake-preview {
+    grid-template-rows: 44px minmax(0, 1fr) 82px;
+  }
+
+  .direct-keepsake-controls {
+    gap: 6px;
+    padding-block: 7px;
+  }
+}

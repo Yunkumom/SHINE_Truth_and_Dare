@@ -1,5 +1,14 @@
 # Roadmap / 路線圖
 
+## Phase 25 — v39 full-width mobile modes and direct keepsake
+
+- [x] Replace mobile canvas shrinking with a full-width, one-viewport reflow across current iPhone sizes.
+- [x] Replace the visible Settings label with an accessible icon-only three-line menu.
+- [x] Add Encounter Card, Direct Keepsake, and Truth or Dare entry modes.
+- [x] Add memory-only image upload, governed artwork choice, library/custom blessing, and local PNG download/share for Direct Keepsake.
+- [x] Verify 132 automated tests, typecheck, lint, and production build.
+- [ ] Complete physical iPhone Safari/Chrome regression and verify GitHub Pages deployment.
+
 ## Phase 24 — v38 one-viewport mobile fit
 
 - [x] Fit the complete 430 × 932 mobile setup and draw canvases inside the live visual viewport without page scrolling.

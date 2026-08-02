@@ -61,7 +61,7 @@ Assert-V31Condition ((Get-FileHash -Algorithm SHA256 -LiteralPath (Join-Path $pr
 $server = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot 'Development/Automation/Tools/serve_truth_and_dare.ps1')
 $workflow = Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $projectRoot '.github/workflows/pages.yml')
 Assert-V31Condition ($server -match 'encounter_cards_v37\.html' -and $server -match 'encounter-release.*V37') 'Current desktop launcher moved to v37 without modifying v31'
-Assert-V31Condition ($workflow -match 'Main-App-v38' -and $workflow -match 'Public-Web/v21') 'Current GitHub Pages workflow moved to v37 and Public Web v20 without modifying Public Web v14'
+Assert-V31Condition ($workflow -match 'Main-App-v39' -and $workflow -match 'Public-Web/v22') 'Current GitHub Pages workflow moved to v37 and Public Web v20 without modifying Public Web v14'
 
 if ($failures.Count) { Write-Host "v31 validation failed with $($failures.Count) issue(s)." -ForegroundColor Red; exit 1 }
 Write-Host 'v31 validation passed.' -ForegroundColor Cyan

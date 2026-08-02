@@ -1,17 +1,17 @@
 # Truth and Dare
 
-Truth and Dare is the governed repository for **Encounter Cards**, a bilingual, iPhone-first conversation card game. Encounter Cards v38 is the current maintained release; v15–v38 remain immutable standalone references after publication.
+Truth and Dare is the governed repository for **Encounter Cards**, a bilingual, iPhone-first conversation card game. Encounter Cards v39 is the current maintained release; v15–v39 remain immutable standalone references after publication.
 
-Truth and Dare 是雙語、iPhone 優先的對話卡牌遊戲 **相遇卡 Encounter Cards**。v38 是目前維護版本；v15–v38 發布後均保留為不可變 standalone 參考版本。
+Truth and Dare 是雙語、iPhone 優先的對話卡牌遊戲 **相遇卡 Encounter Cards**。v39 是目前維護版本；v15–v39 發布後均保留為不可變 standalone 參考版本。
 
 ## Start / 開始
 
-- Double-click `Open Truth and Dare.cmd`; it serves and opens the current v38 release at `127.0.0.1:8765`.
+- Double-click `Open Truth and Dare.cmd`; it serves and opens the current v39 release at `127.0.0.1:8765`.
 - Public site: `https://yunkumom.github.io/SHINE_Truth_and_Dare/` (available after the Pages workflow completes).
-- Current authored source: `Development/Source/Main-App-v38/src/`
-- Current verified PWA build: `Development/Source/Main-App-v38/dist/`
-- Current standalone release: `Apps/Standalone/encounter_cards_v38.html`
-- Current public release artifact: `Apps/Public-Web/v21/`
+- Current authored source: `Development/Source/Main-App-v39/src/`
+- Current verified PWA build: `Development/Source/Main-App-v39/dist/`
+- Current standalone release: `Apps/Standalone/encounter_cards_v39.html`
+- Current public release artifact: `Apps/Public-Web/v22/`
 - Reusable Taiwan zodiac masters: `Assets/Zodiac/Taiwan/v33-masters/` (classic) and `Assets/Zodiac/Taiwan/v34-local-stories-masters/` (Local Stories).
 - Current deity source artwork: `Assets/Deities/v30-safe-masters/`.
 - Complete Development file guide: `Development/README.md`
@@ -23,7 +23,7 @@ Truth and Dare 是雙語、iPhone 優先的對話卡牌遊戲 **相遇卡 Encoun
 Truth and Dare/
 ├── Apps/          # Preserved runnable releases
 ├── Assets/        # Reusable assets and provenance
-├── Development/   # Preserved earlier lines plus current v38 source, tools, tests, and contracts
+├── Development/   # Preserved earlier lines plus current v39 source, tools, tests, and contracts
 ├── _meta/         # Purpose, roadmap, handoff, changelog, blueprints
 ├── _agent/        # Agent guidance
 ├── _human/        # Human-facing support references
@@ -40,7 +40,7 @@ Development 已於 2026-07-19 保守精簡。v17 source、未發布 Public Web�
 ## Development / 開發
 
 ```powershell
-Set-Location Development/Source/Main-App-v38
+Set-Location Development/Source/Main-App-v39
 npm ci
 npm run dev
 npm run typecheck
@@ -48,7 +48,7 @@ npm run lint
 npm test
 ```
 
-Existing v15–v38 outputs are immutable after release. Later product changes require a new version rather than overwriting a released version.
+Existing v15–v39 outputs are immutable after release. Later product changes require a new version rather than overwriting a released version.
 
 完整 repository 驗證：
 
@@ -59,7 +59,9 @@ powershell -ExecutionPolicy Bypass -File Development/Tests/validate_repository.p
 ## Product and Privacy Contract / 產品與隱私合約
 
 - Chinese, English, and bilingual modes; Levels 1–5; Truth, Dare, and Surprise.
-- Desktop Settings and Test modes are separate; mobile uniformly fits the complete play-only 430 × 932 canvas into one live visual viewport without document scrolling.
+- Desktop Settings and Test modes are separate; mobile fills the live viewport width and reflows within `100dvh` without horizontal or document scrolling.
+- Mobile starts with Encounter Card, direct keepsake, and Truth or Dare choices; every experience can return to that mode home.
+- Direct keepsake creation accepts a governed artwork or local photo plus a library/custom blessing and produces a 63:88 PNG without persisting or transmitting the inputs.
 - Advanced entry selection supports all-random or a specific approved artwork, while the question and mandatory blessing remain independently randomized.
 - Mobile settings expose Level/mode selection, the governed 42-face library, exact artwork/question choice, session-only custom-question management, content controls, and per-artwork adjustment with a nine-square grid, explicit Cancel/Save, X −50…50%, Y −60…60%, and 100…240% zoom.
 - Blessings remain mandatory; custom questions, disabled states, and exact choices are memory-only and are cleared when the session reloads.

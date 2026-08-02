@@ -1,0 +1,1252 @@
+/*
+ * Encounter Cards v36 authored presentation layer, migrated from the mobile
+ * ChatGPT Work preview and normalized to the governed v36 product boundary.
+ */
+.v35-shell {
+  --v36-accent-deep: #6f2f27;
+  --v36-accent: #a94836;
+  --v36-paper: #fffaf0;
+  --v36-ink: #352319;
+  --v36-border: #b88d5a;
+  --v36-shadow: 0 12px 30px rgba(76, 46, 25, .16);
+}
+
+.v35-shell .site-header {
+  border-bottom-color: rgba(111, 47, 39, .24);
+  box-shadow: 0 6px 20px rgba(76, 46, 25, .10);
+}
+
+.v35-shell .card-library-trigger {
+  width: 58px;
+  height: 42px;
+  grid-template-columns: 20px 1fr;
+  gap: 4px;
+  border: 1px solid var(--v36-border);
+  border-radius: 13px;
+  background: #fff6e7;
+  box-shadow: 0 4px 12px rgba(76, 46, 25, .10);
+}
+
+.v35-shell .card-library-trigger > span {
+  font-size: 17px;
+}
+
+.v35-shell .card-library-trigger > small {
+  display: block;
+  font: 800 9px/1 "Noto Serif TC", sans-serif;
+  letter-spacing: .08em;
+}
+
+.v35-shell .setup-card {
+  border-color: rgba(184, 141, 90, .72);
+  border-radius: 15px;
+  box-shadow: var(--v36-shadow);
+}
+
+/* Keep both section headings fully inside their framed cards. */
+.v35-shell .level-fieldset,
+.v35-shell .mode-fieldset {
+  position: relative;
+  padding-top: 45px !important;
+}
+
+.v35-shell .level-fieldset > legend,
+.v35-shell .mode-fieldset > legend {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+}
+
+.v35-shell .level-fieldset::before,
+.v35-shell .mode-fieldset::before {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  min-height: 26px;
+  border-bottom: 1px solid rgba(181, 138, 85, .42);
+  color: var(--v36-ink);
+  font: 800 13px/1.25 "Noto Serif TC", Georgia, serif;
+}
+
+.v35-shell .level-fieldset::before {
+  content: "選擇熟識程度 · Choose familiarity level";
+}
+
+.v35-shell .mode-fieldset::before {
+  content: "想抽哪一種卡？ · Choose a card type";
+}
+
+.v35-shell .level-fieldset .level-grid,
+.v35-shell .mode-fieldset .mode-grid {
+  margin-top: 0 !important;
+}
+
+.v35-shell .setup-card input {
+  min-height: 38px;
+  border-width: 1.5px;
+  border-color: rgba(133, 91, 47, .58);
+  border-radius: 11px;
+  background: var(--v36-paper);
+  color: var(--v36-ink);
+  font-size: 12px;
+}
+
+.v35-shell .setup-card input::placeholder {
+  color: #806a59;
+  opacity: .82;
+}
+
+.v35-shell .contact-row {
+  opacity: .82;
+}
+
+/* Give the encounter details more breathing room inside their frame. */
+.v35-shell .setup-fields-block .fields-card {
+  padding-top: 7px !important;
+  padding-bottom: 18px !important;
+}
+
+.v35-shell .setup-fields-block .panel-heading {
+  margin-top: -4px;
+  margin-bottom: 7px;
+}
+
+.v35-shell .setup-fields-block .contact-row {
+  margin-bottom: 5px;
+}
+
+.v35-shell .setup-card button {
+  min-height: 42px;
+  border-radius: 12px;
+}
+
+.v35-shell .setup-card button.active {
+  border-color: var(--v36-accent-deep);
+  background: linear-gradient(145deg, #824337, var(--v36-accent-deep));
+  color: #fffaf0;
+  box-shadow: 0 7px 16px rgba(111, 47, 39, .25);
+}
+
+.v35-shell .setup-card button.active b,
+.v35-shell .setup-card button.active span {
+  color: #fffaf0;
+}
+
+.v35-shell .setup-card button.active small {
+  color: #f0d4ae;
+}
+
+.v35-shell .begin-dock .primary-button {
+  min-height: 58px;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #183141, #081923);
+  box-shadow: 0 13px 26px rgba(7, 20, 30, .28);
+}
+
+/* The primary action remains reachable on every phone viewport. */
+.v35-shell.setup-shell .setup-begin-block {
+  z-index: 108 !important;
+  top: auto !important;
+  right: 18px !important;
+  bottom: max(8px, env(safe-area-inset-bottom)) !important;
+  left: 18px !important;
+  width: auto !important;
+  height: 70px !important;
+}
+
+.v35-shell.setup-shell .begin-dock {
+  padding: 0;
+  border-radius: 16px;
+  background: rgba(246, 230, 200, .94);
+  box-shadow: 0 -10px 24px rgba(76, 46, 25, .14);
+  backdrop-filter: blur(10px);
+}
+
+.v35-shell .begin-dock .primary-button span {
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.v35-shell .begin-dock .primary-button i {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #f3d69d;
+  color: #142936;
+}
+
+.v35-shell button:focus-visible,
+.v35-shell input:focus-visible {
+  outline: 3px solid var(--v36-accent);
+  outline-offset: 3px;
+}
+
+.v35-shell .card-library-filters button[aria-pressed="true"] {
+  border-color: var(--v36-accent-deep);
+  background: var(--v36-accent-deep);
+  color: #fffaf0;
+  box-shadow: 0 5px 14px rgba(111, 47, 39, .22);
+}
+
+.v35-shell .card-library-footer > button {
+  min-height: 52px;
+  border-radius: 14px;
+  box-shadow: 0 9px 20px rgba(7, 20, 30, .20);
+}
+
+/* Independent card-face and question controls. */
+.v35-shell .selection-guide {
+  position: absolute;
+  z-index: 106;
+  right: 18px;
+  bottom: 84px;
+  left: 18px;
+  display: grid;
+  gap: 3px;
+  margin: 0;
+  padding: 6px 8px;
+  border: 1px solid rgba(184, 141, 90, .72);
+  border-radius: 13px;
+  background: rgba(255, 250, 240, .97);
+  box-shadow: 0 8px 20px rgba(76, 46, 25, .10);
+  backdrop-filter: blur(10px);
+}
+
+.v35-shell .selection-guide-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid rgba(181, 138, 85, .34);
+}
+
+.v35-shell .selection-guide-heading b {
+  color: var(--v36-ink);
+  font: 800 9px/1.15 "Noto Serif TC", Georgia, serif;
+}
+
+.v35-shell .selection-guide-heading small {
+  color: #7f6040;
+  font: 700 6px/1.1 Georgia, serif;
+  letter-spacing: .08em;
+}
+
+.v35-shell .selection-guide-heading button {
+  min-height: 22px;
+  border: 0;
+  background: transparent;
+  color: var(--v36-accent-deep);
+  padding: 2px 0;
+  font: 800 7px/1.1 "Noto Serif TC", sans-serif;
+  cursor: pointer;
+}
+
+.v35-shell .selection-guide-row {
+  display: grid;
+  grid-template-columns: 105px minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 5px;
+}
+
+.v35-shell .selection-guide-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.v35-shell .selection-guide-copy b {
+  color: var(--v36-ink);
+  font: 800 8px/1.15 "Noto Serif TC", Georgia, serif;
+}
+
+.v35-shell .selection-guide-copy small {
+  display: none;
+}
+
+.v35-shell .selection-guide button {
+  min-height: 26px;
+  border: 1px solid rgba(133, 91, 47, .62);
+  border-radius: 10px;
+  background: #fff8e9;
+  color: var(--v36-ink);
+  padding: 3px 5px;
+  font: 800 7px/1.15 "Noto Serif TC", sans-serif;
+  cursor: pointer;
+}
+
+.v35-shell .selection-guide button.is-primary {
+  border-color: var(--v36-accent-deep);
+  background: var(--v36-accent-deep);
+  color: #fffaf0;
+}
+
+.v35-shell .advanced-deck-choice {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.v35-shell .advanced-deck-disclosure {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.v35-shell .advanced-deck-panel {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+/*
+ * Taiwan local-story portrait safety.
+ * Preserve the complete top edge of the source artwork across the library,
+ * drawn card, picker thumbnail, and keepsake instead of recropping around the
+ * face. This keeps hair, hats, and the top of each head consistently visible.
+ */
+.v35-shell .taiwan-portrait-safe .mythic-art-frame img,
+.v35-shell .taiwan-portrait-safe.mythic-card .mythic-art-frame img,
+.v35-shell .artwork-picker button.taiwan-portrait-safe img,
+.v35-shell .keepsake-canvas.taiwan-portrait-safe .keepsake-art img {
+  object-position: 50% 0% !important;
+  transform: scale(1) !important;
+  transform-origin: 50% 0% !important;
+}
+
+/* The Card Library is artwork-first; questions and blessings live elsewhere. */
+.v35-shell .library-mythic-card.library-card-content-only {
+  grid-template-rows: 16% 84% !important;
+}
+
+.v35-shell .library-mythic-card.library-card-content-only .mythic-text-panel {
+  display: none !important;
+}
+
+.v35-shell .library-mythic-card.library-card-content-only .mythic-art-frame {
+  margin-bottom: 6px;
+}
+
+/* Hidden library and card-content manager. */
+.library-manager[hidden] {
+  display: none !important;
+}
+
+.library-manager {
+  position: fixed;
+  z-index: 4000;
+  inset: max(10px, env(safe-area-inset-top))
+    max(10px, env(safe-area-inset-right))
+    max(10px, env(safe-area-inset-bottom))
+    max(10px, env(safe-area-inset-left));
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  width: min(520px, calc(100vw - 20px));
+  max-height: 860px;
+  margin: auto;
+  overflow: hidden;
+  border: 1px solid #b88d5a;
+  border-radius: 18px;
+  background: #fff8e9;
+  color: #352319;
+  box-shadow: 0 24px 80px rgba(31, 16, 8, .42);
+  font-family: "Noto Serif TC", sans-serif;
+}
+
+.library-manager-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(184, 141, 90, .55);
+  background: linear-gradient(135deg, #6f2f27, #8d4336);
+  color: #fffaf0;
+}
+
+.library-manager-header div {
+  display: grid;
+  gap: 2px;
+}
+
+.library-manager-header small {
+  color: #f0d4ae;
+  font: 700 8px/1 Georgia, serif;
+  letter-spacing: .14em;
+}
+
+.library-manager-header b {
+  font-size: 18px;
+}
+
+.library-manager-header button {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 250, 240, .55);
+  border-radius: 50%;
+  background: transparent;
+  color: #fffaf0;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.library-manager-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  padding: 7px;
+  border-bottom: 1px solid rgba(184, 141, 90, .42);
+  background: #f1dfbe;
+}
+
+.library-manager-tabs button,
+.question-level-tabs button,
+.library-manager-panel button {
+  min-height: 38px;
+  border: 1px solid rgba(111, 47, 39, .35);
+  border-radius: 10px;
+  background: #fffaf0;
+  color: #352319;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.library-manager-tabs button[aria-pressed="true"],
+.question-level-tabs button[aria-pressed="true"],
+.question-manager-actions button[aria-pressed="true"] {
+  border-color: #6f2f27;
+  background: #6f2f27;
+  color: #fffaf0;
+}
+
+.library-manager-panel {
+  min-height: 0;
+  padding: 14px;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+.library-manager-panel[hidden] {
+  display: none !important;
+}
+
+.library-manager-panel h3,
+.library-manager-panel p {
+  margin: 0;
+}
+
+.library-manager-panel h3 {
+  font-size: 17px;
+}
+
+.library-manager-panel p {
+  margin-top: 5px;
+  color: #785e48;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.manager-primary {
+  width: 100%;
+  margin-top: 14px;
+  background: #102432 !important;
+  color: #fffaf0 !important;
+}
+
+.manager-section-heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.manager-section-heading > button {
+  flex: none;
+  min-height: 34px;
+  padding: 5px 9px;
+}
+
+.question-level-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+  margin: 12px 0 8px;
+}
+
+.question-manager-status {
+  padding: 7px 9px;
+  border-radius: 9px;
+  background: #ead3aa;
+  color: #5c3429;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.question-manager-list {
+  display: grid;
+  gap: 7px;
+  margin-top: 8px;
+}
+
+.question-manager-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid rgba(184, 141, 90, .5);
+  border-radius: 11px;
+  background: #fffdf5;
+}
+
+.question-enable {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  font-size: 8px;
+}
+
+.question-enable input {
+  width: 20px;
+  height: 20px;
+  accent-color: #6f2f27;
+}
+
+.question-manager-copy {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.question-manager-copy small {
+  color: #965543;
+  font: 800 7px/1 Georgia, serif;
+  letter-spacing: .08em;
+}
+
+.question-manager-copy b {
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.question-manager-copy span {
+  color: #806a59;
+  font: 8px/1.35 Georgia, serif;
+}
+
+.question-manager-actions {
+  display: grid;
+  gap: 4px;
+}
+
+.question-manager-actions button {
+  min-height: 28px;
+  padding: 4px 7px;
+  font-size: 8px;
+}
+
+.question-add-form {
+  display: grid;
+  gap: 7px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(184, 141, 90, .55);
+}
+
+.question-add-form b {
+  font-size: 11px;
+}
+
+.question-add-form textarea,
+.question-add-form input,
+.question-add-form select {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 40px;
+  border: 1px solid rgba(111, 47, 39, .45);
+  border-radius: 10px;
+  background: #fffdf5;
+  color: #352319;
+  padding: 8px;
+  font: 11px/1.4 sans-serif;
+}
+
+.question-add-form textarea {
+  min-height: 72px;
+  resize: vertical;
+}
+
+.question-add-form .manager-primary {
+  margin-top: 0;
+}
+
+.content-toggle-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.content-toggle-list label {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 12px;
+  min-height: 54px;
+  padding: 8px 12px;
+  border: 1px solid rgba(184, 141, 90, .55);
+  border-radius: 12px;
+  background: #fffdf5;
+  cursor: pointer;
+}
+
+.content-toggle-list input {
+  width: 24px;
+  height: 24px;
+  accent-color: #6f2f27;
+}
+
+.content-toggle-list span {
+  display: grid;
+  gap: 3px;
+}
+
+.content-toggle-list b {
+  font-size: 13px;
+}
+
+.content-toggle-list small {
+  color: #806a59;
+  font: 8px/1 Georgia, serif;
+  letter-spacing: .12em;
+}
+
+.content-combination-note {
+  margin-top: 14px !important;
+  padding: 9px;
+  border-radius: 9px;
+  background: #f1dfbe;
+}
+
+/* V36: the top-right Card Library control becomes the single Settings entry. */
+.v35-shell .card-library-trigger.settings-trigger {
+  width: 64px;
+  grid-template-columns: 22px 1fr;
+}
+
+.v35-shell .card-library-trigger.settings-trigger > span {
+  font-size: 17px;
+}
+
+.v35-shell .card-library-trigger.settings-trigger > small {
+  display: block;
+  font: 800 9px/1 "Noto Serif TC", sans-serif;
+}
+
+/* All draw configuration lives in the hidden Settings panel. */
+.v35-shell.setup-shell .setup-levels-block,
+.v35-shell.setup-shell .setup-modes-block,
+.v35-shell.setup-shell .selection-guide,
+.v35-shell.setup-shell .advanced-deck-choice {
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+.library-manager-tabs {
+  grid-template-columns: repeat(5, minmax(86px, 1fr));
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.library-manager-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.settings-group {
+  display: grid;
+  gap: 7px;
+  margin-top: 14px;
+}
+
+.settings-group > b {
+  font-size: 11px;
+}
+
+.settings-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+}
+
+.mode-setting-proxy {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.settings-choice-grid button[aria-pressed="true"] {
+  border-color: #6f2f27;
+  background: #6f2f27;
+  color: #fffaf0;
+}
+
+.settings-summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.settings-summary-grid article {
+  display: grid;
+  align-content: start;
+  gap: 7px;
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid rgba(184, 141, 90, .55);
+  border-radius: 12px;
+  background: #fffdf5;
+}
+
+.settings-summary-grid small {
+  color: #965543;
+  font: 800 8px/1 Georgia, serif;
+  letter-spacing: .12em;
+}
+
+.settings-summary-grid b {
+  min-height: 34px;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.settings-summary-grid button {
+  min-height: 34px;
+  padding: 5px;
+  font-size: 9px;
+}
+
+/* iPhone Photos-style single-card picker. */
+.photo-card-picker,
+.artwork-position-editor {
+  position: fixed;
+  z-index: 5000;
+  inset: max(6px, env(safe-area-inset-top))
+    max(6px, env(safe-area-inset-right))
+    max(6px, env(safe-area-inset-bottom))
+    max(6px, env(safe-area-inset-left));
+  display: grid;
+  width: min(540px, calc(100vw - 12px));
+  max-height: 900px;
+  margin: auto;
+  overflow: hidden;
+  border: 1px solid #c8c8cc;
+  border-radius: 20px;
+  background: #f7f7f9;
+  color: #111;
+  box-shadow: 0 24px 90px rgba(0, 0, 0, .46);
+  font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", sans-serif;
+}
+
+.photo-card-picker {
+  grid-template-rows: auto auto auto minmax(0, 1fr);
+}
+
+.photo-card-picker > header,
+.artwork-position-editor > header {
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1fr) 70px;
+  align-items: center;
+  gap: 6px;
+  min-height: 56px;
+  padding: 5px 8px;
+  border-bottom: 1px solid #d6d6da;
+  background: rgba(250, 250, 252, .95);
+}
+
+.photo-card-picker > header div,
+.artwork-position-editor > header div {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  text-align: center;
+}
+
+.photo-card-picker > header b,
+.artwork-position-editor > header b {
+  font-size: 16px;
+}
+
+.photo-card-picker > header small,
+.artwork-position-editor > header small {
+  max-width: 100%;
+  color: #6d6d72;
+  font-size: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.photo-card-picker > header button,
+.artwork-position-editor > header button {
+  min-height: 38px;
+  border: 0;
+  background: transparent;
+  color: #007aff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.photo-card-picker > header button[disabled] {
+  color: #a6a6aa;
+}
+
+.photo-picker-albums {
+  display: flex;
+  gap: 7px;
+  padding: 8px;
+  overflow-x: auto;
+  border-bottom: 1px solid #dedee2;
+  background: #fff;
+}
+
+.photo-picker-albums button {
+  flex: none;
+  min-height: 34px;
+  border: 0;
+  border-radius: 18px;
+  background: #ececf0;
+  color: #222;
+  padding: 6px 12px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.photo-picker-albums button[aria-pressed="true"] {
+  background: #111;
+  color: #fff;
+}
+
+.photo-picker-summary {
+  padding: 7px 12px;
+  background: #fff;
+  color: #666;
+  font-size: 10px;
+}
+
+.photo-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-content: start;
+  gap: 3px;
+  min-height: 0;
+  padding: 3px;
+  overflow-y: auto;
+  background: #fff;
+  overscroll-behavior: contain;
+}
+
+.photo-picker-tile {
+  position: relative;
+  aspect-ratio: 1;
+  min-width: 0;
+  border: 0;
+  background: #e8e3d8;
+  padding: 0;
+  overflow: hidden;
+}
+
+.photo-picker-tile img {
+  object-fit: contain;
+  object-position: 50% 50%;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.photo-picker-tile span {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  color: #fff;
+  background: linear-gradient(transparent, rgba(0, 0, 0, .75));
+  padding: 18px 5px 5px;
+  font-size: 9px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.photo-picker-tile i {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: none;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #007aff;
+  color: #fff;
+  font: 800 14px/1 sans-serif;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, .4);
+}
+
+.photo-picker-tile[aria-pressed="true"] {
+  box-shadow: inset 0 0 0 4px #007aff;
+}
+
+.photo-picker-tile[aria-pressed="true"] i {
+  display: grid;
+}
+
+/* Never crop source artwork; preserve both edges and the complete Taiwan mark. */
+.v35-shell .mythic-art-frame img,
+.v35-shell .keepsake-art img,
+.v35-shell .artwork-picker img,
+.v35-shell .artwork-candidate-fan img,
+.v35-shell .taiwan-portrait-safe .mythic-art-frame img,
+.v35-shell .keepsake-canvas.taiwan-portrait-safe .keepsake-art img {
+  object-fit: contain !important;
+  object-position: var(--portrait-position, 50% 50%) !important;
+  transform: scale(var(--artwork-zoom, 1)) !important;
+  transform-origin: var(--artwork-origin, 50% 50%) !important;
+  background: #15232c;
+}
+
+.v35-shell .game-card-block .mythic-card {
+  position: relative;
+}
+
+.artwork-position-editor {
+  grid-template-rows: auto minmax(0, 1fr) auto auto auto;
+}
+
+.artwork-editor-preview {
+  position: relative;
+  min-height: 0;
+  margin: 12px;
+  border: 2px solid #a87943;
+  border-radius: 12px;
+  background: #15232c;
+  overflow: hidden;
+}
+
+.artwork-editor-preview img {
+  object-fit: contain;
+  object-position: 50% 50%;
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform-origin: 50% 50%;
+}
+
+.composition-grid {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(
+      to right,
+      transparent calc(33.333% - .5px),
+      rgba(255, 255, 255, .82) calc(33.333% - .5px),
+      rgba(255, 255, 255, .82) calc(33.333% + .5px),
+      transparent calc(33.333% + .5px),
+      transparent calc(66.666% - .5px),
+      rgba(255, 255, 255, .82) calc(66.666% - .5px),
+      rgba(255, 255, 255, .82) calc(66.666% + .5px),
+      transparent calc(66.666% + .5px)
+    ),
+    linear-gradient(
+      to bottom,
+      transparent calc(33.333% - .5px),
+      rgba(255, 255, 255, .82) calc(33.333% - .5px),
+      rgba(255, 255, 255, .82) calc(33.333% + .5px),
+      transparent calc(33.333% + .5px),
+      transparent calc(66.666% - .5px),
+      rgba(255, 255, 255, .82) calc(66.666% - .5px),
+      rgba(255, 255, 255, .82) calc(66.666% + .5px),
+      transparent calc(66.666% + .5px)
+    );
+  filter: drop-shadow(0 0 1px rgba(0, 0, 0, .72));
+}
+
+.composition-grid-toggle {
+  position: absolute;
+  z-index: 3;
+  top: 9px;
+  right: 9px;
+  min-height: 30px;
+  border: 1px solid rgba(255, 255, 255, .82);
+  border-radius: 16px;
+  background: rgba(0, 0, 0, .7);
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 10px;
+  font-weight: 800;
+  backdrop-filter: blur(8px);
+}
+
+.composition-grid-toggle[aria-pressed="false"] {
+  background: rgba(255, 255, 255, .88);
+  color: #222;
+}
+
+/* One card-artwork area: choose first, then adjust without covering the card. */
+.artwork-tools-combined > div:first-child {
+  grid-template-columns: minmax(0, 1fr) auto auto;
+}
+
+/* Before drawing, keep card and question choices behind one compact control. */
+.v35-shell .artwork-candidate-fan.compact-draw-settings {
+  height: 58px;
+  padding: 6px;
+  overflow: hidden;
+}
+
+.v35-shell .artwork-candidate-fan.compact-draw-settings > div {
+  display: none !important;
+}
+
+.compact-draw-settings-button {
+  width: 100%;
+  height: 100%;
+  min-height: 44px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--setup-caramel-deep, #8f6740);
+  border-radius: 10px;
+  background: linear-gradient(145deg, #fff9ec, #eddbbd);
+  color: var(--setup-espresso, #3f2a1d);
+  padding: 6px 11px;
+  text-align: left;
+}
+
+.compact-draw-settings-button span,
+.compact-draw-settings-button b,
+.compact-draw-settings-button small {
+  display: block;
+}
+
+.compact-draw-settings-button b {
+  font: 800 12px/1.25 "Noto Serif TC", serif;
+}
+
+.compact-draw-settings-button small {
+  margin-top: 2px;
+  color: var(--setup-muted-brown, #77634f);
+  font: 700 8px/1.3 sans-serif;
+}
+
+.compact-draw-settings-button i {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--setup-navy-deep, #071824);
+  color: var(--setup-paper, #fff8e9);
+  font-style: normal;
+  font-size: 15px;
+}
+
+/* Make the header A− / A+ controls visibly scale the card text. */
+.v35-shell .game-card-block .mythic-card-header h2 {
+  font-size: calc(20px * var(--reader-font-scale, 1));
+}
+
+.v35-shell .game-card-block .mythic-card-header small {
+  font-size: calc(7px * var(--reader-font-scale, 1));
+}
+
+.v35-shell .game-card-block .mythic-prompt-meta b {
+  font-size: calc(9px * var(--reader-font-scale, 1));
+}
+
+.v35-shell .font-size-control::after {
+  content: attr(data-font-percent) "%";
+  min-width: 28px;
+  color: var(--setup-gold, #d5b77a);
+  padding-right: 4px;
+  font: 700 7px/1 Georgia, serif;
+  text-align: center;
+}
+
+.artwork-tools-combined .inline-artwork-adjust,
+.artwork-tools-combined .inline-artwork-reselect,
+.artwork-control-panel > button {
+  min-height: 30px;
+  border: 1px solid var(--setup-caramel-deep, #8f6740);
+  border-radius: 9px;
+  background: var(--setup-navy-deep, #071824);
+  color: var(--setup-paper, #fff8e9);
+  padding: 5px 9px;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.artwork-control-panel {
+  z-index: 14;
+  position: absolute;
+  top: 718px;
+  left: 14px;
+  width: 402px;
+  min-height: 70px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--setup-caramel, #b58a55);
+  background: linear-gradient(
+    145deg,
+    var(--setup-cream, #fff8e8),
+    var(--setup-cream-deep, #f2e2c5)
+  );
+  color: var(--setup-espresso, #3f2a1d);
+  padding: 8px 10px;
+}
+
+.artwork-control-copy {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  align-items: center;
+  gap: 9px;
+}
+
+.artwork-control-copy img {
+  width: 48px;
+  height: 52px;
+  object-fit: contain;
+  background: #15232c;
+}
+
+.artwork-control-copy span,
+.artwork-control-copy b,
+.artwork-control-copy small {
+  min-width: 0;
+  display: block;
+}
+
+.artwork-control-copy b {
+  font-size: 10px;
+  line-height: 1.35;
+}
+
+.artwork-control-copy small {
+  margin-top: 3px;
+  color: var(--setup-muted-brown, #806a59);
+  font-size: 8px;
+}
+
+/* Compact language dropdown, ready for additional languages later. */
+.v35-shell .language-switch > button {
+  display: none !important;
+}
+
+.v35-shell .language-switch {
+  min-width: 116px;
+  min-height: 40px;
+  padding: 3px 7px;
+}
+
+.v35-shell .language-select {
+  appearance: auto;
+  width: 100%;
+  min-height: 32px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  padding: 0 3px;
+  font: 700 10px/1.3 "Noto Sans TC", sans-serif;
+}
+
+.artwork-editor-controls {
+  display: grid;
+  gap: 10px;
+  padding: 0 14px 10px;
+}
+
+.artwork-editor-controls label {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.artwork-editor-controls input {
+  grid-column: 1 / -1;
+  width: 100%;
+  accent-color: #007aff;
+}
+
+.artwork-position-editor > p {
+  margin: 0 14px 10px;
+  color: #666;
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.editor-reset {
+  min-height: 42px;
+  margin: 0 14px 14px;
+  border: 1px solid #b8b8bc;
+  border-radius: 11px;
+  background: #fff;
+  color: #222;
+  font-weight: 700;
+}
+
+.saved-position-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.saved-position-list article {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  padding: 9px;
+  border: 1px solid rgba(184, 141, 90, .5);
+  border-radius: 10px;
+  background: #fffdf5;
+}
+
+.saved-position-list article div {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.saved-position-list article b {
+  font-size: 11px;
+}
+
+.saved-position-list article small {
+  color: #806a59;
+  font-size: 8px;
+}
+
+.saved-position-list article button {
+  min-height: 32px;
+  padding: 5px 8px;
+}
+
+@media (max-width: 390px) {
+  .v35-shell .selection-guide-row {
+    grid-template-columns: 96px minmax(0, 1fr) minmax(0, 1fr);
+  }
+}

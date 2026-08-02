@@ -1,5 +1,13 @@
 # Changelog / 變更紀錄
 
+## 2026-08-02 — v39 full-width mobile modes and direct keepsake / 全寬手機模式與紀念卡
+
+- Replaced mobile canvas scaling with a responsive full-width, one-viewport layout to eliminate right-side blank space on current iPhone sizes.
+- Replaced the visible settings label with an accessible icon-only three-line menu.
+- Added three mobile entry choices: Encounter Card, Direct Keepsake, and Truth or Dare.
+- Added a privacy-safe Direct Keepsake maker with governed artwork or local image upload, library/custom blessing, preview, and PNG download/share.
+- Preserved the desktop studio, independent artwork/question selection, mandatory game blessings, artwork adjustment, offline behavior, and no-backend privacy boundary.
+
 ## 2026-08-01 — v38 one-viewport mobile fit / 手機單頁適配
 
 - Replaced the mobile reflow branch with visual-viewport scaling so the complete 430 × 932 setup and draw canvases stay visible without document scrolling or horizontal clipping.

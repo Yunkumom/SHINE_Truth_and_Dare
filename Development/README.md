@@ -1,8 +1,8 @@
 # Development / 開發資料
 
-This directory contains preserved v18–v37 source lines and the current Encounter Cards v38 source line. Historical v17 source, older completed plans, old-version builders, imported mobile Work source, and generated dependencies remain recoverable under `../_pending/`.
+This directory contains preserved v18–v38 source lines and the current Encounter Cards v39 source line. Historical v17 source, older completed plans, old-version builders, imported mobile Work source, and generated dependencies remain recoverable under `../_pending/`.
 
-此目錄保留 v18–v37 source 與目前作用中的 Encounter Cards v38 source。v17 歷史 source、舊版計畫、builder、手機 Work 原始資料與可重建依賴仍可由 `../_pending/` 回復。
+此目錄保留 v18–v38 source 與目前作用中的 Encounter Cards v39 source。v17 歷史 source、舊版計畫、builder、手機 Work 原始資料與可重建依賴仍可由 `../_pending/` 回復。
 
 ## Structure / 結構
 
@@ -29,7 +29,8 @@ Development/
 ├── Source/Main-App-v35/       # Current entrance card-library release
 ├── Source/Main-App-v36/       # Preserved mobile Work integration release
 ├── Source/Main-App-v37/       # Preserved compact desktop studio release
-├── Source/Main-App-v38/       # Current one-viewport mobile fit release
+├── Source/Main-App-v38/       # Preserved one-viewport mobile fit release
+├── Source/Main-App-v39/       # Current full-width mobile modes and keepsake release
 ├── Source/Public-Web/v2/      # Preserved Public v2 source recipe
 ├── Source/Public-Web/v3/      # Preserved Public v3 source recipe
 ├── Source/Public-Web/v4/      # Preserved Public v4 source recipe
@@ -48,8 +49,9 @@ Development/
 ├── Source/Public-Web/v18/     # Current v35 public recipe
 ├── Source/Public-Web/v19/     # Preserved v36 public recipe
 ├── Source/Public-Web/v20/     # Preserved v37 public recipe
-├── Source/Public-Web/v21/     # Current v38 public recipe
-├── Automation/Scripts/        # Versioned v18-v38 builders and exporters
+├── Source/Public-Web/v21/     # Preserved v38 public recipe
+├── Source/Public-Web/v22/     # Current v39 public recipe
+├── Automation/Scripts/        # Versioned v18-v39 builders and exporters
 ├── Automation/Tools/          # Local desktop launcher server
 ├── Tests/                     # Current structure and release contracts
 └── Documentation/             # Current product and interaction contracts
@@ -74,6 +76,8 @@ Development/
 | `Documentation/V36_MOBILE_WORK_INTEGRATION_PLAN.md` | Test-first v36 implementation, archive, and release plan. / 測試優先的 v36 實作、封存與發布計畫。 |
 | `Documentation/V37_DESKTOP_STUDIO_DESIGN.md` | Approved fixed three-column desktop studio and compact editor contract. / 已核准固定三欄桌面工作室與精簡編輯器合約。 |
 | `Documentation/V37_DESKTOP_STUDIO_PLAN.md` | Test-first v37 implementation, browser measurement, and release plan. / 測試優先的 v37 實作、瀏覽器量測與發布計畫。 |
+| `Documentation/V39_MOBILE_MODES_AND_KEEPSAKE_DESIGN.md` | Approved full-width mobile, mode menu, and direct keepsake contract. / 已核准的手機全寬、模式入口與直接紀念卡合約。 |
+| `Documentation/V39_MOBILE_MODES_AND_KEEPSAKE_PLAN.md` | Test-first v39 implementation, release, and verification plan. / 測試優先的 v39 實作、發布與驗證計畫。 |
 | `Documentation/V20_VISUAL_DESIGN.md` | Approved v16-inspired entrance, card, artwork, and centering design contract. / 已核准的 v20 視覺合約。 |
 | `Documentation/V20_IMPLEMENTATION_PLAN.md` | Testable v20 source, asset, release, and validation plan. / 可驗證的 v20 實作計畫。 |
 | `Documentation/V21_TAIWAN_REVEAL_DESIGN.md` | Approved long-press timing, locator, hotspot, motion, and accessibility contract. / 已核准的 v21 長按、定位、動畫與無障礙合約。 |
@@ -495,7 +499,7 @@ Existing v15–v26 generated outputs are preserved. Do not rerun an exporter to 
 
 ## v38 Mobile Viewport Fit / v38 手機單頁適配
 
-- `Source/Main-App-v38/` — current authored React/TypeScript line and verified v38 PWA output.
+- `Source/Main-App-v38/` — preserved authored React/TypeScript line and verified v38 PWA output.
 - `Source/Main-App-v38/src/lib/viewport-scale.ts` — fits the complete 430 × 932 canvas to the live mobile visual viewport.
 - `Source/Main-App-v38/src/components/ArtworkAdjuster.tsx` — adds draft-based Cancel/Save, a nine-square grid, extended position ranges, and 240% zoom.
 - `Source/Main-App-v38/src/styles/v38.css` — prevents document scrolling and horizontal clipping while bounding revealed-card controls.
@@ -504,5 +508,19 @@ Existing v15–v26 generated outputs are preserved. Do not rerun an exporter to 
 - `Automation/Scripts/export-standalone-v38.mjs` — creates immutable `Apps/Standalone/encounter_cards_v38.html`.
 - `Automation/Scripts/finalize-public-v21.mjs` — creates immutable `Apps/Public-Web/v21/` from verified v38 dist.
 - `Tests/validate_v38.ps1` — verifies mobile fit, artwork adjustment, privacy, release hash, launcher, and Pages boundaries.
+
+## v39 Full-width Mobile Modes and Direct Keepsake / v39 全寬手機模式與直接紀念卡
+
+- `Source/Main-App-v39/` — current authored React/TypeScript line and verified v39 PWA output.
+- `Source/Main-App-v39/src/App.tsx` — routes the three mobile experiences while retaining the governed encounter engine and desktop studio.
+- `Source/Main-App-v39/src/components/ModeHome.tsx` — presents Encounter Card, Direct Keepsake, and Truth or Dare as one-tap choices.
+- `Source/Main-App-v39/src/components/DirectKeepsake.tsx` — combines governed artwork or local upload with library/custom blessing and preview/export controls.
+- `Source/Main-App-v39/src/lib/direct-keepsake.ts` — produces a 1260 × 1760 contain-fit PNG and uses the existing download/share delivery path.
+- `Source/Main-App-v39/src/styles/v39.css` — owns full-width mobile reflow, equal edge insets, one-viewport fitting, icon-only menu, and keepsake surfaces.
+- `Source/Public-Web/v22/README.md` — v39 to Public Web v22 release recipe.
+- `Automation/Scripts/finalize-pwa-v39.mjs` — finalizes the v39 offline precache.
+- `Automation/Scripts/export-standalone-v39.mjs` — creates immutable `Apps/Standalone/encounter_cards_v39.html`.
+- `Automation/Scripts/finalize-public-v22.mjs` — creates immutable `Apps/Public-Web/v22/` from verified v39 dist.
+- `Tests/validate_v39.ps1` — verifies full-width mobile modes, direct keepsake, privacy, release hash, launcher, and Pages boundaries.
 - `Documentation/V33_TAIWAN_ZODIAC_EXACT_CHOICE_DESIGN.md` — approved artwork, collection, exact-choice, privacy, and growth design.
 - `Documentation/V33_TAIWAN_ZODIAC_EXACT_CHOICE_PLAN.md` — test-first generation, implementation, and publication plan.

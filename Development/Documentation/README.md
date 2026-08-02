@@ -1,6 +1,6 @@
 # Documentation / 文件
 
-This directory contains current product and interaction contracts through the approved v38 mobile viewport-fit release. Older completed designs, implementation plans, and publication history are recoverable under `_pending/Development-simplification_2026-07-19/Development/Documentation/`.
+This directory contains current product and interaction contracts through the approved v39 mobile modes and direct keepsake release. Older completed designs, implementation plans, and publication history are recoverable under `_pending/Development-simplification_2026-07-19/Development/Documentation/`.
 
 - `V31_MILK_TEA_SETUP_DESIGN.md` defines the approved unified palette and no-clipping setup contract.
 - `V31_MILK_TEA_SETUP_PLAN.md` records the test-first implementation, browser measurements, release, and publication checkpoints.
@@ -18,8 +18,10 @@ This directory contains current product and interaction contracts through the ap
 - `V37_DESKTOP_STUDIO_PLAN.md` records the test-first v37 implementation, browser measurement, release, and verification checkpoints.
 - `V38_MOBILE_VIEWPORT_FIT_DESIGN.md` defines one-viewport mobile scaling, bounded draw controls, and extended artwork adjustment.
 - `V38_MOBILE_VIEWPORT_FIT_PLAN.md` records the test-first v38 implementation, release, and verification checkpoints.
+- `V39_MOBILE_MODES_AND_KEEPSAKE_DESIGN.md` defines full-width mobile reflow, the three-mode home, icon-only menu, and direct keepsake contract.
+- `V39_MOBILE_MODES_AND_KEEPSAKE_PLAN.md` records the test-first v39 implementation, release, and verification checkpoints.
 
-此處保留目前有效的產品／互動合約至已核准的 v38 手機單頁適配版本。更早的設計、計畫與發布歷史可在 `_pending/Development-simplification_2026-07-19/Development/Documentation/` 回復。
+此處保留目前有效的產品／互動合約至已核准的 v39 手機模式與直接紀念卡版本。更早的設計、計畫與發布歷史可在 `_pending/Development-simplification_2026-07-19/Development/Documentation/` 回復。
 
 The purpose of every retained document is listed in `Development/README.md`.
 
