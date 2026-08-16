@@ -1,0 +1,265 @@
+# Changelog / 變更紀錄
+
+## 2026-08-16 — v46 GitHub Lite promotion / v46 GitHub Lite 升級
+
+- Preserved the supplied 200-file, 39 MB GitHub Lite package under `_pending/` with deterministic inventory SHA-256 `673a023f20c9ac2a8c7084a216937a71f256379d68d8ec883f87bef74e40f480`.
+- Promoted `Development/Source/Main-App-v46/` as the current Sites/Vinext application while keeping v15–v39 outputs immutable and v39 as the standalone fallback.
+- Normalized active labels, routes, storage keys, PNG exports, package metadata, manifest, service worker, and generated browser output to v46.
+- Added a source-first `/v46/` build and complete 50-URL precache before every Sites build.
+- Excluded unused ChatGPT-auth, D1, Drizzle, and example capability from the active line; D1 and R2 remain disabled.
+- Verified 42 governed artworks, 62 SHINE question-book records, the Sites Worker build, three rendered-route tests, and lint with seven inherited `<img>` optimization warnings and zero errors.
+- Archived the verified dependency and build-cache state under `_pending/v46-generated-development-state_2026-08-16/` so active Development remains clean.
+- No remote, push, publication, or deployment was performed.
+
+- 將提供的 200 檔、39 MB GitHub Lite 套件保存於 `_pending/`，deterministic inventory SHA-256 為 `673a023f20c9ac2a8c7084a216937a71f256379d68d8ec883f87bef74e40f480`。
+- 將 `Development/Source/Main-App-v46/` 升級為目前 Sites／Vinext 應用，同時保持 v15–v39 outputs 不可變，並以 v39 作為 standalone 備援。
+- 將作用中標籤、routes、storage keys、PNG exports、package metadata、manifest、service worker 與生成 browser output 統一為 v46。
+- 新增 source-first `/v46/` build，並在每次 Sites build 前完成 50 URL precache。
+- 將未使用的 ChatGPT-auth、D1、Drizzle 與 example 能力排除於作用中版本；D1 與 R2 維持停用。
+- 驗證 42 張受治理 artwork、62 筆 SHINE 題庫、Sites Worker build、三項 rendered-route tests；lint 有七項繼承的 `<img>` optimization warnings，零 errors。
+- 將已驗證的依賴與建置 cache 封存至 `_pending/v46-generated-development-state_2026-08-16/`，讓作用中的 Development 維持整潔。
+- 未執行 remote、push、發布或部署。
+
+## 2026-08-16 — Workspace restoration and product separation / 工作區復原與產品分離
+
+- Restored the governed Encounter Cards repository to `products/truth-or-dare` as a product independent from Social Interaction Games.
+- Adopted the standard English workspace name Truth or Dare and the Traditional Chinese name 真心話大冒險.
+- Preserved reusable card-face masters, provenance, current v39 source, immutable v15–v39 releases, public artifacts, and recoverable non-generated history.
+- Excluded Git metadata, dependencies, caches, generated dependency states, the redundant nested v39 snapshot, secret-pattern files, and the owner-private blueprint.
+- Kept the original `_trash/0814/Truth and Dare` source unchanged and retained legacy launcher, GitHub, and publication identifiers for compatibility.
+
+## 2026-08-02 — v39 full-width mobile modes and direct keepsake / 全寬手機模式與紀念卡
+
+- Replaced mobile canvas scaling with a responsive full-width, one-viewport layout to eliminate right-side blank space on current iPhone sizes.
+- Replaced the visible settings label with an accessible icon-only three-line menu.
+- Added three mobile entry choices: Encounter Card, Direct Keepsake, and Truth or Dare.
+- Added a privacy-safe Direct Keepsake maker with governed artwork or local image upload, library/custom blessing, preview, and PNG download/share.
+- Preserved the desktop studio, independent artwork/question selection, mandatory game blessings, artwork adjustment, offline behavior, and no-backend privacy boundary.
+
+## 2026-08-01 — v38 one-viewport mobile fit / 手機單頁適配
+
+- Replaced the mobile reflow branch with visual-viewport scaling so the complete 430 × 932 setup and draw canvases stay visible without document scrolling or horizontal clipping.
+- Kept revealed-card reselect and artwork-adjust controls inside both canvas edges.
+- Added draft-based Cancel/Save artwork editing, a nine-square grid, X −50…50%, Y −60…60%, and 100…240% zoom; saved offsets now visibly transform the card image.
+- Preserved the v37 desktop studio and all privacy, mandatory-blessing, offline, and independent artwork/question contracts.
+- Created immutable standalone v38 and Public Web v21 and advanced the launcher and Node 26 Pages workflow.
+
+## 2026-07-30 — v37 compact desktop studio / 精簡桌面工作室
+
+- Rebuilt desktop Settings as a fixed three-column studio with the compact layout editor at far left, a larger centre authoring preview, and an inert phone preview at far right.
+- Replaced the large top mode bar with small vertical bookmark tabs in a reserved centre-column rail that never overlaps the editor.
+- Split editor controls into Layout, Card, History, and Data categories so every category fits at 1366 × 768 without scrolling.
+- Kept Test mode as one fully interactive phone simulation and preserved mobile, privacy, card, blessing, export, sharing, and offline behavior.
+- Created immutable standalone v37 and Public Web v20 and updated the launcher and Node 26 Pages workflow.
+
+## 2026-07-30 — v36 mobile ChatGPT Work integration / 手機 Work 整合
+
+- Integrated the supplied mobile ChatGPT Work settings into a new authored React/TypeScript v36 line while retaining v35 unchanged.
+- Added accessible five-tab settings, the governed 42-artwork photo grid, independent exact artwork/question choice, session-only custom and disabled questions, card-content controls, and per-artwork focus/zoom.
+- Kept blessings mandatory and kept personal/user-authored question state out of persistence, logs, analytics, networking, and backend storage.
+- Created immutable standalone v36 and Public Web v19, updated the loopback launcher and GitHub Pages workflow, and locked the v36 standalone SHA-256.
+- Archived the intact 72-file mobile Work package to `_pending/Encounter_Cards_v11_Source_2026-07-30/` after matching aggregate inventory verification.
+
+## 2026-07-29 — v35 entrance card library / 入口完整卡庫
+
+- Added a hidden-in-plain-sight list control to the setup header and a 42-card, full-card browsing library.
+- Added collection filters, three-card virtualization, natural wrap-around horizontal swipe, arrow controls, keyboard navigation, modal focus, and reduced-motion behavior.
+- Kept exact artwork choice independent from question choice; preview questions are deterministic and every preview includes a blessing.
+- Created immutable standalone v35 and Public Web v18, updated the desktop launcher and Pages recipe, and retained v15–v34 unchanged.
+
+## 2026-07-29 — v34 Taiwan Zodiac Local Stories / 台灣星座地方故事
+
+- Preserved all twelve v33 classical personified zodiac images as the selectable `taiwan-zodiac-classic` backup series; no generated image was removed.
+- Generated twelve original 1024 × 1536 Local Stories masters with expanded scene safety, complete Taiwan silhouettes, and zodiac-led contemporary Taiwanese compositions.
+- Added bilingual Taiwan-feature labels and educational descriptions to both zodiac series.
+- Added an explicit hidden collection-version selector, richer artwork cards, compact card-face feature notes, and 42 total governed artwork faces.
+- Created immutable standalone v34 and Public Web v17, updated the desktop launcher and Pages recipe, and retained v15–v33 unchanged.
+- No push or deployment was performed in this change.
+
+## 2026-07-28 — v33 Taiwan Astral Guardians and independent exact choice
+
+- Generated, visually reviewed, and governed twelve original 1024 × 1536 Taiwan zodiac masters with extra scene, complete head ornaments, Taiwanese locations, and complete centrally safe Taiwan silhouettes.
+- Added a country/culture-ready zodiac asset hierarchy, contact sheet, provenance manifest, and twelve optimised v33 WebP runtime copies.
+- Kept random artwork and questions as the default while adding a collapsed session-only panel for collection choice, exact artwork, question search, and exact eligible question selection.
+- Kept artwork, question, and mandatory blessing independent; ineligible exact questions safely fall back to the current level/mode pool.
+- Created standalone v33, Public Web v16, versioned builders, 103 passing tests, deterministic validation, launcher updates, and GitHub Pages deployment configuration.
+
+## 2026-07-28 — v32 desktop modes, stable editing, and governed deck choice
+
+- Split desktop into Settings and Test modes; kept mobile as a clean play-only 430 × 932 experience.
+- Made direct layout manipulation opt-in, scale-aware, and safe around buttons, inputs, links, and other controls.
+- Added no-clipping typography contracts for setup, deity headers, question/blessing panels, and keepsakes.
+- Added a collapsed advanced entry picker, specific-artwork locking with independent random questions/blessings, and a three-face favorite picker before reveal.
+- Registered Taiwan astral, world deity, and world zodiac families as planned and unavailable until governed assets are approved.
+- Created standalone v32, Public Web v15, versioned automation, focused tests, documentation, launcher/Pages updates, and deterministic validation.
+
+## 2026-07-27 — v31 milk-tea setup and safe headings
+
+- Replaced black/navy setup and desktop editing surfaces with a unified milk-tea, cream, caramel, espresso, and muted-gold palette.
+- Increased the default familiarity and card-type block heights and made bilingual legends static in-flow title rows.
+- Added deterministic CSS contracts and browser measurements proving every setup label fits at 430 × 932.
+- Created standalone v31, Public Web v14, versioned automation, documentation, and focused validation.
+
+## 2026-07-27 — v30 portrait-safe deity artwork regeneration
+
+- Generated and visually reviewed 18 new 1024 × 1536 deity masters using the project-owned Baosheng Dadi composition as style/safety reference.
+- Rejected and regenerated one Guan Sheng Dijun variant whose first Taiwan motif fell below the card-safe crop.
+- Added high-quality WebP runtime derivatives, per-artwork focal points, and aligned glowing Taiwan locators without changing v29 behavior.
+- Created standalone v30, Public Web v13, versioned automation, provenance, documentation, and focused validation.
+
+
+## 2026-07-27 — v29 readable adjustable card text
+
+- Increased default question and blessing text scales by 20% and 25%.
+- Added independent numeric and slider controls with a safe 0.9–1.8 range.
+- Synchronized typography across the draw card, phone preview, keepsake, and PNG output, with wrapping and bounded scrolling for long copy.
+- Created standalone v29, Public Web v12, versioned automation, documentation, and focused validation.
+
+## 2026-07-26 — v28 Baosheng Dadi safe artwork
+
+- Generated a new project-owned, wide environmental portrait of Baosheng Dadi in the rainy apothecary style.
+- Preserved generous headroom around the complete crown and added more surrounding scene than the card crop displays.
+- Placed a complete turquoise Taiwan enamel on the medicine mortar and recalibrated the long-press coastline locator.
+- Created standalone v28, Public Web v11, versioned automation, documentation, and focused validation.
+
+## 2026-07-26 — v27 physical-ratio phone frame and card editor
+
+- Added a 445 × 932 desktop iPhone Pro Max chassis derived from the supplied 78.0 × 163.4 mm ratio while preserving the 430 × 932 mobile canvas.
+- Added privacy-safe per-artwork crop/zoom and complete blessing typography/geometry controls.
+- Synchronized settings across draw cards, keepsake preview, phone preview, and PNG export.
+- Created standalone v27, Public Web v10, versioned automation, documentation, and focused validation.
+
+## 2026-07-24 — v25 desktop workspace and portrait-safe framing
+
+- Added a desktop two-column studio on every screen: enlarged interactive workbench and parameters on the left, synchronized 430 × 932 phone preview on the right.
+- Preserved the mobile single-column experience and v16-inspired visual language.
+- Added shared focal cover geometry for all 18 deity artworks so browser and downloaded PNG cards retain faces and headwear.
+- Narrowed the deity title band, enlarged artwork, and created standalone v25 / Public Web v8.
+
+## 2026-07-23 — v24 glowing Taiwan coastline / v24 台灣海岸線發光
+
+- Created v24 without modifying immutable v15–v23 releases.
+- Replaced the old symbol-like locator with a 44-point main-island coastline normalized from Natural Earth 1:10m map-unit geometry.
+- Added transparent broad-glow and crisp-coastline strokes; removed the solid fill, centre dot, oval halo, and radial disc.
+- Preserved long-press timing, keyboard parity, per-artwork placement and colours, reduced motion, privacy, and PNG-export exclusion.
+- Added standalone v24, Public Web v7, versioned builders, focused tests, release validation, documentation, and 430 × 932 browser regression.
+
+## 2026-07-22 — v23 precise Taiwan artwork / v23 精緻台灣圖像
+
+- Created v23 without modifying immutable v15–v22 releases.
+- Generated 18 project-owned high-resolution deity edits with clear, differently coloured Taiwan silhouettes inside the centred card-safe crop.
+- Added one shared 39-segment Taiwan SVG path, per-artwork colour/accent metadata, aligned 600 ms long-press/keyboard reveal, pulse, and reduced-motion fallback.
+- Added governed PNG sources, optimized WebP runtime copies, complete artwork mapping/provenance, crop regression coverage, standalone v23, Public Web v6, and versioned automation.
+- Updated launcher, GitHub Pages workflow, product contracts, public reconstruction blueprint, v23 validator, and repository validator.
+
+## 2026-07-22 — v22 editable layout and swipe deck / v22 可編輯版面與滑動牌堆
+
+- Created v22 without modifying immutable v15–v21 releases.
+- Added setup/game/keepsake direct layout editing with drag, resize, precise numeric controls, grid snapping, twenty-step undo/redo, reset, and privacy-safe JSON import/export.
+- Moved Begin to the setup bottom, enlarged the mobile card to 402 × 562, and implemented thresholded swipe-up draw, spring return, automatic flip, duplicate prevention, and bottom fallback controls.
+- Added a 63:88 keepsake preview and 1260 × 1760 PNG with mandatory blessing and independently optional participant rows.
+- Preserved the 18 hidden-Taiwan hotspots, artwork hold isolation, independent encounter composition, privacy boundary, and centered desktop frame.
+- Added 59 automated tests, v22/PWA/standalone/Public Web v5 automation, immutable release hash validation, and updated launcher/Pages contracts.
+
+## 2026-07-22 — v21 hidden Taiwan reveal / v21 藏台灣揭示
+
+- Created v21 without modifying immutable v15–v20 releases and preserved the v16-inspired v20 visual hierarchy.
+- Added distinct hotspot metadata to all 18 deity artworks so every hidden Taiwan motif has its own reveal location.
+- Added a 600 ms press-and-hold interaction, blinking gold Taiwan outline and halo, 3-second post-release visibility, pointer-movement cancellation, and Enter/Space keyboard parity.
+- Isolated artwork long press from card-draw gestures, respected reduced-motion preferences, and excluded the runtime locator from commemorative PNG export.
+- Added 32 automated tests, v21/PWA/standalone/Public Web v4 automation, immutable release hash validation, and updated the Windows launcher and GitHub Pages workflow.
+
+## 2026-07-22 — v20 v16 visual restoration / v20 v16 視覺回歸
+
+- Created new immutable v20 source and outputs without modifying v15–v19.
+- Restored the v16-style entrance hierarchy, premium navy/gold/ivory setup sheet, and mythic collectible-card presentation.
+- Added nine new deity action/pose artworks for 18 total; each variant hides a Taiwan motif in a physical detail.
+- Made question, artwork, and blessing independent random selections while guaranteeing a blessing on every visible and exported keepsake.
+- Corrected desktop scaling to anchor the complete phone frame at the exact viewport center and verified four desktop sizes plus 430×932 mobile.
+- Added Public Web v3, v20 automation/validation, desktop PNG-download regression coverage, and indexed recoverable pre-release checkpoints.
+
+## 2026-07-22 — v19 publication handoff completion / v19 發布交接完成
+
+- Corrected active documentation, human references, reconstruction paths, and normal commands from v18/unpublished wording to the verified v19 release.
+- Recorded the successful GitHub Pages deployment and canonical public URL.
+- Added the human-authored v19 Developer Academy reference and retained the duplicate legacy pending index as a clearly named historical snapshot.
+- Recorded the repository rule that main-program behavior changes must be committed, preserve at least three working versions, and archive older versions under `_pending/`.
+- Added cross-platform Git attributes so Windows checkouts preserve immutable release and generated-output hashes byte-for-byte.
+
+## 2026-07-19 — v19 Taiwan deity card release / v19 台灣神祇相遇卡
+
+- Added nine project-owned high-resolution deity portraits under `Assets/Deities/`, each integrating Taiwan's silhouette into the scene.
+- Built immutable Encounter Cards v19 with separate artwork and question panels, embedded offline artwork, and 1080 × 1620 PNG download/share output.
+- Added Public Web v2, GitHub Pages automation, v19 validation, and a v19 desktop launcher target.
+- Preserved the unpublished first build with non-embedded artwork under `_pending/`.
+
+## 2026-07-19 — Conservative Development simplification / 保守精簡 Development
+
+- Reduced active Development to the current v18 source, its two release scripts, loopback launcher helper, three current validators, and five core product-contract documents.
+- Moved v17 source, unpublished Public Web source, legacy tools/tests, completed designs/plans, redundant folder READMEs, v18 dependencies, and TypeScript caches intact to `_pending/Development-simplification_2026-07-19/`.
+- Rewrote `Development/README.md` as a file-by-file explanation of every meaningful retained Development artifact.
+- Updated the desktop launcher from the preserved v16 artifact to the current v18 standalone release using a RED/GREEN contract check.
+- Preserved immutable v15–v18 releases; no content was permanently deleted, pushed, published, or deployed.
+
+## 2026-07-19 — Unpublished public output moved to pending / 未發布公開成品移入待確認區
+
+- Moved the complete unpublished `Apps/Public-Web/` tree to `_pending/Apps-Public-Web_2026-07-19/` without changing its 19 files.
+- Kept `Development/Source/Public-Web/v1/` and the approved build pipeline available for a future explicitly approved rebuild or publication.
+- Updated the pending index, directory guide, operational status, reconstruction blueprint, human system map, and validators to reflect that the output is not an active app.
+- No public v1 content was permanently deleted, pushed, or deployed.
+
+## 2026-07-19 — v18 desktop-fit standalone
+
+- Added Encounter Cards v18 as a new standalone and PWA source line; v15–v17 remain unchanged.
+- Added viewport-aware whole-phone scaling so a 430 × 932 interface fits a desktop browser viewport without page scrolling.
+- Verified desktop controls in a real browser and added v18 contract validation.
+
+## 2026-07-19 — Root governance directories / 根層治理目錄
+
+- Established `_meta/`, `_agent/`, `_human/`, and `_pending/` as mandatory root-level repository directories.
+- Moved existing governance, Agent, Skill, human-reference, and pending content into the new canonical paths without changing product releases.
+- Defined `_pending/` as the recoverable temporary holding area for files proposed for deletion; every item remains indexed until explicit human approval.
+- Updated repository validators, operational documentation, and the public reconstruction blueprint for the new paths.
+- Moved the owner-private blueprint without reading or exposing its content and kept its new path ignored by Git.
+
+## 2026-07-19 — Three-category repository reorganization / 三分類資料夾重整
+
+- Reorganized the root around `Apps/`, `Assets/`, and `Development/` while keeping only required entry and GitHub files beside them.
+- Added root `GUIDE.md` plus local folder annotations for human-maintained organizational directories.
+- Relocated standalone/public outputs, source, automation, tests, documentation, governance, human references, and pending artifacts without permanently deleting project content.
+- Verified 57 preserved/versioned baseline files byte-for-byte after relocation and updated launcher, build, validation, and workflow paths.
+- Centralized asset licence and provenance records under `Assets/Catalog/`.
+
+## 2026-07-19
+
+- Implemented the approved immutable GitHub Pages v1 line under `pages-src/v1/` and `site/v1/` without modifying v15, v16, v17, or the desktop launcher.
+- Preserved the recovered v16 card hierarchy and drag/keyboard/completion interactions; added responsive phone, tablet, and balanced three-column desktop layouts.
+- Statically recovered the 12 complete original v16 card records without executing the packaged bundle and added 6 sourced Taiwan plus 6 sourced Australia cards.
+- Added 12 original navy/gold WebP illustrations, cultural-safety/source records, PNG Web Share/download fallback, tests, immutable manifest, and least-privilege GitHub Pages workflow.
+- Preserved v15 and v16 and established v17 as the modular release.
+- Added React 19, TypeScript, Vite, Vitest, ESLint, 60 bilingual cards, Level 5 soft gate, accessible draw controls, PNG/share fallback, and iPhone-first presentation.
+- Added installable PWA metadata, a deterministic complete precache, offline-ready status, and standalone v17 export.
+- Added PWA/asset documentation, human system map, quick-fix guide, focused v17 validation, and dependency audit evidence.
+- Corrected and regression-tested standalone script escaping, replacement-token handling, and module execution order; retained all failed intermediates under `_pending/`.
+- No push, tag, release, hosting, or deployment was performed.
+- Verified standalone v17 SHA-256: `832CDC71A4BD41E3685381D1E0094A47371F8B558D51EE23F0279C2702440FAA`.
+
+## 2026-07-18
+
+- Built Encounter Cards v16 with a 430 × 932 iPhone Pro Max layout contract and centered desktop phone frame.
+- Added a one-click Windows launcher and loopback-only HTTP server helper on port 8765.
+- Extracted five embedded JavaScript modules so nested imports resolve through a hierarchical HTTP origin.
+- Preserved React hydration compatibility by keeping the original document-node structure and synchronizing RSC viewport metadata.
+- Added RED/GREEN v16 contract tests and verified language, level, mode, and Begin interactions in a real browser.
+- Hardened the deterministic builder so it restores a missing extracted module even when the v16 HTML already matches.
+- Moved and indexed two failed intermediate v16 builds under `_pending/` instead of deleting them.
+- Corrected the project identity so Truth and Dare represents the Encounter Cards game.
+- Added the supplied Encounter Cards v15 packaged application as an immutable product baseline.
+- Added product, architecture, animation, and card-content specifications.
+- Updated governance, reconstruction, privacy, handoff, and validation documentation for the actual product.
+- Reclassified the v18 Agent handoff HTML as a supporting human-facing reference.
+- Created the Truth and Dare local project repository.
+- Added the required bilingual governance and navigation files.
+- Preserved the supplied SHINE AI OS Agent Handoff v18 standalone website.
+- Added deterministic repository structure, privacy, and HTML validation.
+- Documented the active `owner_private_blueprint.md` naming rule and the historical v18 terminology difference.

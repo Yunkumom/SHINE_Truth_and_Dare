@@ -1,0 +1,97 @@
+/* V41 mobile card centering hotfix. The hosted V40 bundle stays immutable;
+   this final stylesheet corrects every card surface without changing data. */
+
+html,
+body,
+#root,
+.viewport-stage,
+.phone-fit-stage,
+.app-shell {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+@media (max-width: 1099px) {
+  .v40-shell .game-card-block {
+    right: auto !important;
+    left: 50% !important;
+    width: auto !important;
+    height: min(584px, calc(100dvh - 224px)) !important;
+    max-width: calc(100% - 18px) !important;
+    max-height: none !important;
+    aspect-ratio: 63 / 88 !important;
+    padding-inline: 0 !important;
+    transform: translateX(-50%) !important;
+    transform-origin: center !important;
+  }
+
+  .v40-shell .game-card-block > .v32-deck,
+  .v40-shell .card-stack,
+  .v40-shell .encounter-card,
+  .v40-shell .mythic-card {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    aspect-ratio: 63 / 88 !important;
+    margin-inline: auto !important;
+  }
+
+  .v40-shell .artwork-control-panel.compact-card-controls {
+    height: 48px !important;
+    min-height: 48px !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 6px !important;
+    padding: 4px !important;
+  }
+
+  .v40-shell .game-card-block .stack-one {
+    transform: translateY(5px) scale(.995) !important;
+  }
+
+  .v40-shell .game-card-block .stack-two {
+    transform: translateY(10px) scale(.99) !important;
+  }
+
+  .v40-shell .game-card-block .stack-three {
+    transform: translateY(15px) scale(.985) !important;
+  }
+
+  .v40-shell .game-actions-block,
+  .v40-shell .game-toolbar-block,
+  .v40-shell .artwork-control-panel,
+  .v40-shell .compact-draw-settings {
+    margin-inline: auto !important;
+  }
+
+  .v40-shell .direct-keepsake-preview,
+  .v40-shell .artwork-editor-preview,
+  .v40-shell .card-library-card {
+    justify-self: center !important;
+    margin-inline: auto !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .v40-shell.keepsake-shell {
+    background: radial-gradient(circle at 50% 35%, #16384b 0, #04121b 68%, #01080c 100%) !important;
+  }
+
+  .v40-shell .keepsake-canvas {
+    right: auto !important;
+    left: 50% !important;
+    width: 430px !important;
+    height: 932px !important;
+    overflow: hidden !important;
+    transform: translateX(-50%) scale(calc((100vw - 16px) / 430px)) !important;
+    transform-origin: top center !important;
+  }
+}
+
+/* Fallbacks for browsers without typed CSS division. */
+@supports not (scale: calc(100vw / 430px)) {
+  @media (max-width: 430px) { .v40-shell .keepsake-canvas { transform: translateX(-50%) scale(.96) !important; } }
+  @media (max-width: 410px) { .v40-shell .keepsake-canvas { transform: translateX(-50%) scale(.91) !important; } }
+  @media (max-width: 390px) { .v40-shell .keepsake-canvas { transform: translateX(-50%) scale(.87) !important; } }
+  @media (max-width: 370px) { .v40-shell .keepsake-canvas { transform: translateX(-50%) scale(.82) !important; } }
+  @media (max-width: 350px) { .v40-shell .keepsake-canvas { transform: translateX(-50%) scale(.78) !important; } }
+}

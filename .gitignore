@@ -1,0 +1,138 @@
+# Environment secrets
+.env
+.env.*
+!.env.example
+!.env.sample
+*.local
+*.local.*
+
+# Private local-only blueprint
+_meta/owner_private_blueprint.md
+_meta/private_blueprint.md
+_meta/*private*blueprint*.md
+
+# Secrets and credentials
+secrets/
+credentials/
+credentials.json
+service-account*.json
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+id_rsa
+id_rsa.*
+id_ed25519
+id_ed25519.*
+
+# Local databases and runtime data
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.sqlite-*
+*.mdb
+*.accdb
+
+# Private local data
+_private/
+_local/
+
+# Private Agent memory
+_agent/memory/private/
+
+# Temporary files
+*.log
+logs/
+.cache/
+tmp/
+temp/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.temp
+*.tsbuildinfo
+
+# Web build caches and generated output
+Development/Source/Main-App-v18/node_modules/
+Development/Source/Main-App-v18/coverage/
+Development/Source/Main-App-v18/*.tsbuildinfo
+Development/Source/Main-App-v18/vite.config.js
+Development/Source/Main-App-v18/vite.config.d.ts
+Development/Source/Main-App-v19/node_modules/
+Development/Source/Main-App-v19/coverage/
+Development/Source/Main-App-v19/*.tsbuildinfo
+Development/Source/Main-App-v19/vite.config.js
+Development/Source/Main-App-v19/vite.config.d.ts
+Development/Source/Main-App-v19/public/assets/deities/
+
+# Editors, dependencies, tests, and generated builds
+.idea/
+.vscode/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+node_modules/
+.npm/
+.pnpm-store/
+dist/
+build/
+coverage/
+
+# Authored Sites build plugin for the governed v46 source
+!Development/Source/Main-App-v46/build/
+!Development/Source/Main-App-v46/build/sites-vite-plugin.ts
+
+# Recoverable v25 local generated state; keep only its annotation in Git
+_pending/v25-generated-development-state_2026-07-24/*
+!_pending/v25-generated-development-state_2026-07-24/README.md
+
+# Recoverable v26 local generated state; keep only its annotation in Git
+_pending/v26-generated-development-state_2026-07-26/*
+!_pending/v26-generated-development-state_2026-07-26/README.md
+
+# Recoverable v33 dependency/cache state; keep only its annotation in Git
+_pending/v33-generated-development-state_2026-07-28/*
+!_pending/v33-generated-development-state_2026-07-28/README.md
+
+# Unpublished v33 browser-QA builds are local evidence; keep only their annotation in Git
+_pending/v33-preverification-build_2026-07-28/*
+!_pending/v33-preverification-build_2026-07-28/README.md
+
+# Recoverable v34 dependency/cache state; keep only its annotation in Git
+_pending/v34-generated-development-state_2026-07-29/*
+!_pending/v34-generated-development-state_2026-07-29/README.md
+
+# Unpublished v34 crop-QA build is local evidence; keep only its annotation in Git
+_pending/v34-preverification-build_2026-07-29/*
+!_pending/v34-preverification-build_2026-07-29/README.md
+
+# Recoverable v36 dependency/cache state; keep only its annotation in Git
+_pending/v36-generated-development-state_2026-07-30/*
+!_pending/v36-generated-development-state_2026-07-30/README.md
+
+# Unpublished v36 verification checkpoints are local evidence; keep only their annotation in Git
+_pending/v36-preverification-build_2026-07-30/*
+!_pending/v36-preverification-build_2026-07-30/README.md
+
+# Mobile Work archive deployment/account configuration stays local and unread
+_pending/Encounter_Cards_v11_Source_2026-07-30/.npmrc
+_pending/Encounter_Cards_v11_Source_2026-07-30/.openai/
+
+# Preserved v46 intake account/deployment-adjacent configuration stays local
+_pending/SHINE_Truth_and_Dare_v46_GitHub_Lite_2026-08-16/.npmrc
+_pending/SHINE_Truth_and_Dare_v46_GitHub_Lite_2026-08-16/.openai/
+
+# v46 active-line exclusion copies are local recoverable evidence
+_pending/v46-active-line-exclusions_2026-08-16/*
+
+# Recoverable v46 dependency/cache state; keep only its annotation in Git
+_pending/v46-generated-development-state_2026-08-16/*
+!_pending/v46-generated-development-state_2026-08-16/README.md
+
+# Recoverable v35 dependency/cache state; keep only its annotation in Git
+_pending/v35-generated-development-state_2026-07-29/*
+!_pending/v35-generated-development-state_2026-07-29/README.md

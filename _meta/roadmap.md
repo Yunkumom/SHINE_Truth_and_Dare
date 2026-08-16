@@ -1,0 +1,263 @@
+# Roadmap / 路線圖
+
+## Phase 26 — v46 GitHub Lite promotion and Sites integration
+
+- [x] Preserve the supplied 200-file GitHub Lite intake with a deterministic inventory digest.
+- [x] Promote a governed `Development/Source/Main-App-v46/` Sites/Vinext line while preserving v15–v39 releases.
+- [x] Normalize active routes, visible labels, storage keys, exports, manifest, service worker, and package identity to v46.
+- [x] Generate `/v46/` from authored encounter source before the Sites build and precache all 50 browser URLs.
+- [x] Keep authentication, accounts, D1, R2, Drizzle, analytics, and backend persistence outside the active product boundary.
+- [x] Verify 42 artworks, 62 SHINE question-book records, the Sites Worker artifact, lint, and rendered routes.
+- [ ] Complete physical iPhone and desktop browser regression for `/mobile`, `/studio`, sharing, installation, and offline update.
+
+## Phase 26 — v46 GitHub Lite 升級與 Sites 整合
+
+- [x] 以 deterministic inventory digest 保存提供的 200 檔 GitHub Lite intake。
+- [x] 升級受治理的 `Development/Source/Main-App-v46/` Sites／Vinext line，同時保留 v15–v39 releases。
+- [x] 將作用中 routes、可見標籤、storage keys、exports、manifest、service worker 與 package identity 統一為 v46。
+- [x] 在 Sites build 前由人工維護 encounter source 生成 `/v46/`，並預快取全部 50 個 browser URLs。
+- [x] 將 authentication、帳號、D1、R2、Drizzle、analytics 與 backend persistence 排除於作用中產品邊界之外。
+- [x] 驗證 42 張 artwork、62 筆 SHINE 題庫、Sites Worker artifact、lint 與 rendered routes。
+- [ ] 完成 `/mobile`、`/studio`、分享、安裝與離線更新的實體 iPhone 及 desktop browser regression。
+
+## Phase 25 — v39 full-width mobile modes and direct keepsake
+
+- [x] Replace mobile canvas shrinking with a full-width, one-viewport reflow across current iPhone sizes.
+- [x] Replace the visible Settings label with an accessible icon-only three-line menu.
+- [x] Add Encounter Card, Direct Keepsake, and Truth or Dare entry modes.
+- [x] Add memory-only image upload, governed artwork choice, library/custom blessing, and local PNG download/share for Direct Keepsake.
+- [x] Verify 132 automated tests, typecheck, lint, and production build.
+- [ ] Complete physical iPhone Safari/Chrome regression and verify GitHub Pages deployment.
+
+## Phase 24 — v38 one-viewport mobile fit
+
+- [x] Fit the complete 430 × 932 mobile setup and draw canvases inside the live visual viewport without page scrolling.
+- [x] Prevent header, form, card, and revealed-artwork controls from clipping horizontally.
+- [x] Add a nine-square artwork grid, explicit Cancel/Save, extended vertical movement, and 240% zoom.
+- [x] Verify 126 automated tests, typecheck, lint, production build, standalone v38, and Public Web v21.
+- [ ] Complete physical iPhone Safari/Chrome regression for browser-chrome resize, gestures, Share Sheet, installation, and offline update.
+
+## Phase 23 — v37 compact desktop studio
+
+- [x] Fix the layout editor to the far-left desktop column and separate mode controls into a compact reserved bookmark rail.
+- [x] Add Layout, Card, History, and Data editor categories so every control group fits without editor scrolling.
+- [x] Enlarge the centre authoring preview and keep an inert phone preview on the far right.
+- [x] Preserve one fully interactive phone simulation in Test mode and session state across mode changes.
+- [x] Verify zero page/editor overflow and no control overlap at 1366 × 768, then create standalone v37 and Public Web v20.
+- [ ] Complete physical iPhone and additional desktop-browser regression.
+
+## Phase 22 — v36 mobile ChatGPT Work integration
+
+- [x] Promote the supplied mobile Work package into a governed v36 authored source line without modifying v35.
+- [x] Add five-tab mobile settings, all 42 artwork faces, exact selection, session-only question management, and per-artwork adjustment.
+- [x] Preserve mandatory blessings and prohibit persistent custom/disabled/exact question state.
+- [x] Create standalone v36 and Public Web v19, then update the launcher and Pages workflow to Node 26.
+- [x] Preserve the original 72-file Work package under `_pending/Encounter_Cards_v11_Source_2026-07-30/` with matching inventory hash.
+- [ ] Complete physical iPhone Share Sheet, installation, offline-update, gesture-feel, and PNG regression.
+
+## Phase 21 — v35 entrance card library
+
+- [x] Add a discreet entrance list control that opens the complete 42-card library.
+- [x] Render full commemorative-style card previews with independent deterministic question and mandatory blessing copy.
+- [x] Add collection filters, wrap-around horizontal swipe, previous/next buttons, and keyboard navigation.
+- [x] Keep the selected artwork independent from question selection and session-only.
+- [x] Create standalone v35 and Public Web v18 without modifying v34.
+- [ ] Complete physical iPhone swipe-feel, crop, Share Sheet, installation, and offline-update regression.
+
+## Phase 20 — v34 Taiwan Zodiac Local Stories and version choice
+
+- [x] Preserve all twelve v33 personified zodiac guardians as a selectable classic backup version.
+- [x] Generate twelve new 2:3 Local Stories masters with wider composition, complete Taiwan silhouettes, and modern Taiwanese cultural framing.
+- [x] Add bilingual short feature labels and educational descriptions for all zodiac artwork.
+- [x] Expose an explicit collection-version step before exact artwork choice while keeping random as the default.
+- [x] Create standalone v34 and Public Web v17 without modifying v33.
+- [ ] Complete physical iPhone crop, long-press locator, Share Sheet, installation, and offline-update regression across all 42 artworks.
+
+## Phase 19 — v33 Taiwan zodiac and independent exact choice
+
+- [x] Define a reusable country/culture asset contract and Taiwan Astral Guardian visual system.
+- [x] Generate and inspect twelve 1024 × 1536 portrait-safe Taiwan zodiac masters with complete Taiwan silhouettes.
+- [x] Publish two available collections containing 30 independent artwork faces.
+- [x] Keep random artwork/questions as default and add session-only exact artwork/question controls with search.
+- [x] Preserve independent mandatory blessings and safe fallback when an exact question becomes ineligible.
+- [x] Create standalone v33 and Public Web v16 without modifying v32.
+- [ ] Complete physical iPhone installation, offline update, Share Sheet, and 30-artwork gesture regression.
+
+## Phase 18 — v32 desktop modes, stable editing, and deck choice
+
+- [x] Separate desktop Settings and Test modes while keeping mobile play-only.
+- [x] Disable direct manipulation by default, make it scale-aware, and exclude interactive controls from drag starts.
+- [x] Guarantee non-clipping setup and deity-card typography at 430 × 932.
+- [x] Add collapsed advanced entry choice, specific-artwork locking, and three favorite faces before reveal.
+- [x] Register Taiwan astral, world deity, and world zodiac collections as governed planned families without unapproved assets.
+- [x] Create standalone v32 and Public Web v15 without modifying v31.
+- [ ] Complete physical iPhone installation, offline update, Share Sheet, and gesture regression.
+
+## Phase 17 — v31 milk-tea setup and safe headings
+
+- [x] Replace black/navy setup and editing surfaces with one pale milk-tea visual family.
+- [x] Reserve in-flow bilingual title rows for setup, familiarity, and card-type headings.
+- [x] Verify every setup label fits at 430 × 932 and in the desktop workbench.
+- [x] Create standalone v31 and Public Web v14 without modifying v30.
+
+## Phase 16 — v30 portrait-safe artwork regeneration
+
+- [x] Generate 18 expanded 2:3 masters with complete face/crown clearance.
+- [x] Keep every embedded Taiwan inside the central card crop and align the canonical reveal locator.
+- [x] Preserve v29 interaction, typography, privacy and export behavior in a new v30 line.
+- [x] Browser-rotate through all 18 runtime assets and inspect the three highest-risk crops.
+- [x] Create standalone v30 and Public Web v13 without modifying v29.
+
+
+## Phase 15 — v29 readable adjustable card text
+
+- [x] Increase default question and blessing text scales to 1.2 and 1.25.
+- [x] Add independent number and range controls normalized to 0.9–1.8.
+- [x] Synchronize typography across game, phone preview, keepsake, and PNG export.
+- [x] Create v29 source, standalone v29, and Public Web v12 without modifying v28.
+- [ ] Complete physical iPhone readability, Share Sheet, installation, and offline-update regression.
+
+## Phase 14 — v28 Baosheng Dadi safe artwork
+
+- [x] Regenerate the Baosheng Dadi apothecary artwork with a wider source composition and complete crown clearance.
+- [x] Keep the complete Taiwan enamel inside the central card-safe crop.
+- [x] Recalibrate the default portrait focus and long-press coastline locator.
+- [x] Create v28 source, standalone v28, and Public Web v11 without modifying v27.
+- [ ] Complete physical iPhone comparison of the baked Taiwan enamel and glowing coastline.
+
+## Phase 9 — v27 physical-ratio frame and card presentation editor
+
+- [x] Preserve the 430 × 932 mobile canvas inside a desktop-only 445 × 932 iPhone Pro Max frame derived from 78.0 × 163.4 mm.
+- [x] Add per-artwork focus/zoom and shared artwork-height controls.
+- [x] Add blessing font, line-height, height, padding, and position controls with privacy-safe persistence.
+- [x] Synchronize interactive card, keepsake, desktop phone preview, and PNG presentation.
+- [x] Build standalone v27 and Public Web v10 with deterministic validation.
+- [ ] Complete physical iPhone and multi-browser regression after deployment.
+
+## Phase 8 — v25 desktop studio / v25 桌面工作區
+
+- [x] Add synchronized desktop workbench and 430 × 932 phone preview on all screens.
+- [x] Preserve the single-column mobile interaction.
+- [x] Add portrait-safe focus metadata shared by browser and PNG export.
+- [x] Narrow the deity title band and enlarge artwork.
+- [ ] Complete physical iPhone and multi-desktop-browser regression after Pages deployment.
+
+## Phase 1 — v15 Preservation / v15 保存
+
+- [x] Establish the required governance structure.
+- [x] Preserve Encounter Cards v15 byte-for-byte as the executable baseline.
+- [x] Document product behavior, packaged architecture, animation requirements, and card-content boundaries.
+- [x] Retain the v18 Agent handoff guide as a supporting reference.
+
+## Phase 2 — v15 Verification / v15 驗證
+
+- [x] Create v16 with extracted HTTP modules and a one-click loopback desktop launcher.
+- [x] Verify language, level, mode, and Begin controls in a real browser with zero console errors.
+- [x] Verify 430 × 932 iPhone Pro Max geometry and centered 430 px desktop framing.
+- [ ] Verify drag, continuous flip, discard, bilingual layout, PNG creation, and iPhone sharing.
+- [ ] Review Level 5 age gating, content safety, and privacy wording.
+- [ ] Inventory artwork sources, licenses, and attribution requirements.
+
+## Phase 3 — Maintainable Source / 可維護原始碼
+
+- [x] Confirm the original modular source is unavailable in the workspace and Git history.
+- [x] Approve and create a test-first React, TypeScript, and Vite reconstruction as v17.
+- [x] Separate card data, language content, age gate, preferences, selection, export, and UI state.
+- [ ] Preserve v15 as the immutable regression reference.
+
+## Phase 4 — PWA and Portable Release / PWA 與可攜 Release
+
+- [x] Create the v17 manifest, versioned service worker, complete build precache, and offline-ready status.
+- [x] Create the deterministic standalone v17 exporter.
+- [ ] Complete physical iPhone install, offline, gesture, PNG, and Share Sheet verification.
+
+## Phase 4.1 — Desktop-fit v18 / 桌面適配 v18
+
+- [x] Create v18 as a new immutable release without editing v15–v17.
+- [x] Preserve the 430 × 932 mobile frame and scale the complete shell down on desktop.
+- [x] Verify desktop mouse interaction through setup, card draw, and next-card controls.
+- [ ] Complete physical desktop/browser and iPhone regression for v18.
+
+## Phase 5 — Optional Publication / 選用發布
+
+- [x] Approve and build the v16 iPhone Pro Max edition.
+- [ ] Complete tests, privacy review, accessibility review, and production build.
+- [ ] Approve GitHub publication and environment-specific dev deployment separately.
+
+## Phase 6 — Clean Repository Structure / 精簡 Repository 結構
+
+- [x] Organize the root around `Apps/`, `Assets/`, and `Development/`.
+- [x] Add the canonical annotated `GUIDE.md` and local organizational README files.
+- [x] Move preserved releases byte-for-byte and update executable/build/test paths.
+- [x] Complete final full-build and desktop-browser regression from the new paths.
+- [ ] Complete physical-device testing from the new paths.
+
+## Phase 6.1 — Simplified Active Development / 精簡作用中開發
+
+- [x] Preserve the v18 source line and maintain v19 as the current active source under Development.
+- [x] Move v17, unpublished Public Web, legacy tooling/tests, completed designs/plans, and generated dependencies to one indexed recoverable archive.
+- [x] Make `Development/README.md` explain every meaningful retained file.
+- [x] Point the desktop launcher and current validation contract to v18.
+- [ ] Complete physical-device regression; product changes after v19 require v20.
+
+## Phase 7 — Root Governance Contract / 根層治理合約
+
+- [x] Expose `_meta/`, `_agent/`, `_human/`, and `_pending/` as mandatory root directories.
+- [x] Define `_pending/` as the recoverable temporary holding area before deletion or human review.
+- [x] Move existing governance, human references, and pending artifacts without permanently deleting project content.
+- [ ] Obtain explicit authorization before inspecting or updating owner-private blueprint content.
+
+## Phase 8 — v19 Taiwan deity cards and publication / v19 台灣神祇卡與發布
+
+- [x] Add nine high-resolution AI-generated Taiwanese deity portraits with integrated Taiwan motifs.
+- [x] Keep artwork and question panels separate on-screen and in 1080 × 1620 PNG exports.
+- [x] Add desktop PNG download fallback and Public Web v2 output.
+- [x] Publish Public Web v2 through GitHub Pages and verify HTTP 200.
+- [ ] Complete physical iPhone Share Sheet and PWA installation regression.
+
+## Phase 9 — v20 v16 visual restoration / v20 v16 視覺回歸
+
+- [x] Create v20 without modifying v15–v19.
+- [x] Restore the v16 entrance hierarchy and premium navy/gold/ivory presentation.
+- [x] Add nine alternate deity poses for 18 total, with Taiwan motifs hidden in physical details.
+- [x] Independently compose question, deity image, and blessing while requiring every keepsake to include a blessing.
+- [x] Verify exact horizontal/vertical desktop centering at 1920×826, 1440×900, 1280×720, and 1024×768; verify 430×932 mobile geometry.
+- [x] Add explicit desktop PNG download fallback coverage and Public Web v3.
+- [ ] Complete physical iPhone Share Sheet, PWA install, offline-update, and gesture regression.
+
+## Phase 10 — v21 hidden Taiwan reveal / v21 藏台灣揭示
+
+- [x] Create v21 without modifying immutable v15–v20 releases.
+- [x] Register a distinct, bounded Taiwan hotspot for all 18 deity artworks.
+- [x] Reveal the location after a 600 ms artwork hold and retain the blinking gold locator for 3 seconds after release.
+- [x] Add Enter/Space parity, movement cancellation, gesture isolation, and reduced-motion fallback.
+- [x] Keep the reveal overlay out of commemorative PNG export and preserve mandatory blessings.
+- [x] Build standalone v21, Public Web v4, versioned automation, and deterministic release validation.
+- [ ] Complete physical iPhone hotspot-alignment, long-press, Share Sheet, PWA install, and offline-update regression.
+
+## Phase 11 — v22 editable layout and swipe deck / v22 可編輯版面與滑動牌堆
+
+- [x] Create v22 without modifying immutable v15–v21 releases.
+- [x] Add direct drag/resize, exact fields, grid snapping, twenty-step history, reset, and privacy-safe layout JSON across setup, game, and keepsake previews.
+- [x] Separate Begin from card modes, enlarge the game card to 402 × 562, and move fallback Draw/Next controls to the bottom.
+- [x] Add a one-to-one swipe-up deck with 22% commitment, spring return, flip reveal, duplicate prevention, and artwork hold isolation.
+- [x] Add a 63:88 keepsake preview/export with mandatory blessing and separately optional participant rows.
+- [x] Build standalone v22, Public Web v5, versioned automation, and deterministic release validation.
+- [ ] Complete physical iPhone editor, swipe feel, Share Sheet, install, and offline-update regression.
+
+## Phase 12 — v23 precise Taiwan artwork / v23 精緻台灣圖像
+
+- [x] Create v23 without modifying immutable v15–v22 releases.
+- [x] Replace all 18 runtime images with high-resolution edits containing a recognizable, differently coloured Taiwan silhouette inside the card-safe crop.
+- [x] Replace per-image approximation shapes with one detailed canonical Taiwan path and artwork-specific reveal colours.
+- [x] Centre game and keepsake image crops so the baked motif and long-press locator stay visible and aligned.
+- [x] Build standalone v23, Public Web v6, versioned automation, asset provenance, and deterministic validation.
+- [ ] Complete physical iPhone checks for all 18 long-press alignments, Share Sheet, install, and offline update.
+
+## Phase 13 — v24 glowing Taiwan coastline / v24 台灣海岸線發光
+
+- [x] Create v24 without modifying immutable v15–v23 releases.
+- [x] Replace the old filled locator, centre dot, and oval halo with a transparent dual-stroke coastline derived from Natural Earth geometry.
+- [x] Enlarge the reveal to 40 × 80 while preserving 600 ms hold, 3-second visibility, keyboard parity, hotspots, and reduced-motion support.
+- [x] Build standalone v24, Public Web v7, versioned automation, documentation, and deterministic validation.
+- [ ] Complete physical iPhone checks for all 18 coastline alignments, Share Sheet, install, and offline update.
