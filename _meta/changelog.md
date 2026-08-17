@@ -8,6 +8,16 @@
 - 使用既有公開 Sites project，將已驗證的 Encounter Cards v46 發布至 `https://encounter-cards-v40-review.kenimaster123.chatgpt.site`。
 - 保存並部署 Sites version 8；未啟用 analytics、帳號、D1、R2 或個資持久保存。
 
+## 2026-08-17 — v46 Firebase sandbox and share / v46 Firebase 測試與分享部署
+
+- Added governed Firebase Hosting configuration for dedicated `sandbox` and `share` targets.
+- Published the validated 50-file static v46 PWA to `https://shine-truth-or-dare-dev.web.app` and `https://shine-truth-or-dare-share.web.app`.
+- Verified both roots, manifests, and service workers over HTTPS; service workers return `Cache-Control: no-cache`.
+
+- 新增受治理的 Firebase Hosting 設定，使用專用 `sandbox` 與 `share` targets。
+- 將已驗證的 50 檔靜態 v46 PWA 發布至 `https://shine-truth-or-dare-dev.web.app` 與 `https://shine-truth-or-dare-share.web.app`。
+- 透過 HTTPS 驗證兩個 root、manifest 與 service worker；service worker 回傳 `Cache-Control: no-cache`。
+
 ## 2026-08-16 — v46 GitHub Lite promotion / v46 GitHub Lite 升級
 
 - Preserved the supplied 200-file, 39 MB GitHub Lite package under `_pending/` with deterministic inventory SHA-256 `673a023f20c9ac2a8c7084a216937a71f256379d68d8ec883f87bef74e40f480`.

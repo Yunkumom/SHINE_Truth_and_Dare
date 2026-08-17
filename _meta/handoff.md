@@ -13,6 +13,8 @@
 - Latest published GitHub Pages fallback: `Apps/Public-Web/v22/`
 - Local desktop URL: `http://127.0.0.1:8765/`
 - Current public v46 Sites URL: `https://encounter-cards-v40-review.kenimaster123.chatgpt.site`
+- Firebase sandbox URL: `https://shine-truth-or-dare-dev.web.app`
+- Firebase share URL: `https://shine-truth-or-dare-share.web.app`
 - Legacy GitHub Pages URL: `https://yunkumom.github.io/SHINE_Truth_and_Dare/`
 - Repository: `https://github.com/Yunkumom/SHINE_Truth_and_Dare`
 - v15–v39 standalone releases are immutable after release.
@@ -21,11 +23,11 @@
 
 The current application uses Sites/Vinext routes for the entry page, full-height mobile experience, and desktop studio. Both framed experiences load the generated `/v46/index.html` encounter PWA. The governed line contains 42 artworks and the 62-question SHINE book while preserving the v39 interaction, consent, mandatory-blessing, direct-keepsake, export, and offline contracts.
 
-The original GitHub Lite intake is preserved under `_pending/SHINE_Truth_and_Dare_v46_GitHub_Lite_2026-08-16/`. Mixed v40/v41 provenance remains there; active routes, storage keys, exports, and visible identity are v46. Unused authentication, D1, Drizzle, and starter examples are outside the active capability boundary. D1 and R2 remain disabled, and no deployment was performed.
+The original GitHub Lite intake is preserved under `_pending/SHINE_Truth_and_Dare_v46_GitHub_Lite_2026-08-16/`. Mixed v40/v41 provenance remains there; active routes, storage keys, exports, and visible identity are v46. Unused authentication, D1, Drizzle, and starter examples are outside the active capability boundary. D1 and R2 remain disabled. The Sites deployment serves the multi-route wrapper; both Firebase deployments serve the validated static v46 PWA directly.
 
 目前應用使用 Sites／Vinext routes 提供入口頁、全高手機體驗與電腦工作室；兩個框架體驗均載入生成的 `/v46/index.html` encounter PWA。受治理版本包含 42 張 artwork 與 62 題 SHINE 題庫，並保留 v39 互動、同意、必備祝福、直接紀念卡、輸出與離線合約。
 
-原始 GitHub Lite intake 保存於 `_pending/SHINE_Truth_and_Dare_v46_GitHub_Lite_2026-08-16/`。混合 v40／v41 來源紀錄保留於該處；作用中 routes、storage keys、exports 與可見識別皆為 v46。未使用的 authentication、D1、Drizzle 與 starter examples 位於作用中能力邊界之外；D1 與 R2 維持停用，且未執行部署。
+原始 GitHub Lite intake 保存於 `_pending/SHINE_Truth_and_Dare_v46_GitHub_Lite_2026-08-16/`。混合 v40／v41 來源紀錄保留於該處；作用中 routes、storage keys、exports 與可見識別皆為 v46。未使用的 authentication、D1、Drizzle 與 starter examples 位於作用中能力邊界之外；D1 與 R2 維持停用。Sites 部署提供多 route wrapper；兩個 Firebase 部署則直接提供已驗證的靜態 v46 PWA。
 
 ## Preserved v39 Contract / 保留的 v39 合約
 

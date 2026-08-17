@@ -69,6 +69,10 @@ powershell -ExecutionPolicy Bypass -File Development/Tests/validate_v38.ps1
 powershell -ExecutionPolicy Bypass -File Development/Tests/validate_v39.ps1
 node Development/Tests/validate_v46.mjs
 powershell -ExecutionPolicy Bypass -File Development/Tests/validate_repository.ps1
+
+# Firebase static v46 targets
+npx firebase-tools@15.27.0 deploy --only hosting:sandbox --project shine-sandbox-lab
+npx firebase-tools@15.27.0 deploy --only hosting:share --project shine-share-lab
 ```
 
 ## Predicted Next Work / 預測下一步

@@ -84,6 +84,7 @@ Development/
 | `Documentation/V39_MOBILE_MODES_AND_KEEPSAKE_PLAN.md` | Test-first v39 implementation, release, and verification plan. / 測試優先的 v39 實作、發布與驗證計畫。 |
 | `Documentation/V46_GITHUB_LITE_INTEGRATION_DESIGN.md` | Approved v46 promotion, provenance, Sites, privacy, and fallback design. / 已核准的 v46 升級、來源紀錄、Sites、隱私與備援設計。 |
 | `Documentation/V46_GITHUB_LITE_INTEGRATION_PLAN.md` | Test-first v46 intake preservation, normalization, build, governance, and verification plan. / 測試優先的 v46 intake 保存、統一、建置、治理與驗證計畫。 |
+| Root `firebase.json` and `.firebaserc` | Publish `Source/Main-App-v46/public/v46/` to the dedicated Firebase sandbox and share sites; they do not add runtime backend capability. / 將 `Source/Main-App-v46/public/v46/` 發布至專用 Firebase sandbox／share 網站；不新增 runtime backend 能力。 |
 | `Documentation/V20_VISUAL_DESIGN.md` | Approved v16-inspired entrance, card, artwork, and centering design contract. / 已核准的 v20 視覺合約。 |
 | `Documentation/V20_IMPLEMENTATION_PLAN.md` | Testable v20 source, asset, release, and validation plan. / 可驗證的 v20 實作計畫。 |
 | `Documentation/V21_TAIWAN_REVEAL_DESIGN.md` | Approved long-press timing, locator, hotspot, motion, and accessibility contract. / 已核准的 v21 長按、定位、動畫與無障礙合約。 |

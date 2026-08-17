@@ -25,6 +25,7 @@ Truth or Dare/
 │   └── Documentation/                       # product designs and plans
 ├── _meta/  _agent/  _human/
 ├── _pending/                                # preserved intake and recoverable history
+├── firebase.json  .firebaserc               # Firebase sandbox/share hosting targets
 ├── GUIDE.md  README.md  AGENTS.md
 └── Open Truth and Dare.cmd
 ```
@@ -59,7 +60,8 @@ v46 使用 Sites／Vinext 入口、手機 route 與電腦工作室包覆同一�
 5. Preserve the original v46 intake at `_pending/SHINE_Truth_and_Dare_v46_GitHub_Lite_2026-08-16/` with the digest recorded in `_pending/index.md`.
 6. Run `npm ci`, `npm test`, and `npm run lint` in `Development/Source/Main-App-v46/`.
 7. Run `node Development/Tests/validate_v46.mjs` and `Development/Tests/validate_repository.ps1` where PowerShell is available.
-8. Run `Open Truth and Dare.cmd` for the current Windows desktop experience. Use `Apps/Standalone/encounter_cards_v39.html` through the preserved loopback helper only as fallback.
-9. Create a new versioned source for behavior changes after v46. Do not overwrite v15–v39 releases or the preserved intake.
+8. Restore `firebase.json` and `.firebaserc` to publish the static `public/v46/` PWA to the dedicated `shine-sandbox-lab` and `shine-share-lab` hosting sites.
+9. Run `Open Truth and Dare.cmd` for the current Windows desktop experience. Use `Apps/Standalone/encounter_cards_v39.html` through the preserved loopback helper only as fallback.
+10. Create a new versioned source for behavior changes after v46. Do not overwrite v15–v39 releases or the preserved intake.
 
-Canonical repository: `https://github.com/Yunkumom/SHINE_Truth_and_Dare` (legacy external identifier retained for compatibility). No v46 deployment is implied by this blueprint.
+Canonical repository: `https://github.com/Yunkumom/SHINE_Truth_and_Dare` (legacy external identifier retained for compatibility). Current v46 deployments are recorded in `_meta/handoff.md`.

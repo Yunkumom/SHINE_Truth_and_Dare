@@ -16,7 +16,7 @@ function Assert-StructureCondition {
     Write-Host "FAIL: $Message" -ForegroundColor Red
 }
 
-$allowedRootEntries = @('.git', '.github', '.gitattributes', '.gitignore', 'AGENTS.md', 'Apps', 'Assets', 'Development', '_agent', '_human', '_meta', '_pending', 'GUIDE.md', 'HANDOFF.md', 'Open Truth and Dare.cmd', 'README.md', 'guide.html', 'index.md')
+$allowedRootEntries = @('.git', '.github', '.gitattributes', '.gitignore', '.firebaserc', 'firebase.json', 'AGENTS.md', 'Apps', 'Assets', 'Development', '_agent', '_human', '_meta', '_pending', 'GUIDE.md', 'HANDOFF.md', 'Open Truth and Dare.cmd', 'README.md', 'guide.html', 'index.md')
 $unexpectedRootEntries = Get-ChildItem -LiteralPath $projectRoot -Force | Where-Object { $_.Name -notin $allowedRootEntries } | Select-Object -ExpandProperty Name
 Assert-StructureCondition ($unexpectedRootEntries.Count -eq 0) 'Root contains only approved product, governance, and platform entries'
 
@@ -44,6 +44,8 @@ $requiredFiles = @(
 )
 $requiredFiles += @('Assets/Zodiac/Taiwan/v34-local-stories-masters/README.md', 'Development/Source/Main-App-v34/package.json', 'Development/Source/Main-App-v35/package.json', 'Development/Source/Main-App-v36/package.json', 'Development/Source/Main-App-v37/package.json', 'Development/Source/Main-App-v38/package.json', 'Development/Source/Main-App-v39/package.json', 'Development/Source/Public-Web/v17/README.md', 'Development/Source/Public-Web/v18/README.md', 'Development/Source/Public-Web/v19/README.md', 'Development/Source/Public-Web/v20/README.md', 'Development/Source/Public-Web/v21/README.md', 'Development/Source/Public-Web/v22/README.md', 'Development/Tests/validate_v34.ps1', 'Development/Tests/validate_v35.ps1', 'Development/Tests/validate_v36.ps1', 'Development/Tests/validate_v37.ps1', 'Development/Tests/validate_v38.ps1', 'Development/Tests/validate_v39.ps1', '_pending/v34-generated-development-state_2026-07-29/README.md', '_pending/v34-preverification-build_2026-07-29/README.md', '_pending/v35-generated-development-state_2026-07-29/README.md', '_pending/Encounter_Cards_v11_Source_2026-07-30/README.md', '_pending/v36-generated-development-state_2026-07-30/README.md', '_pending/v36-preverification-build_2026-07-30/README.md', '_pending/v37-generated-development-state_2026-07-30/README.md')
 $requiredFiles += @(
+    '.firebaserc',
+    'firebase.json',
     'Development/Source/Main-App-v46/package.json',
     'Development/Source/Main-App-v46/app/encounter/App.tsx',
     'Development/Source/Main-App-v46/public/v46/index.html',

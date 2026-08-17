@@ -8,6 +8,8 @@ This is the canonical repository map. Active Development contains preserved earl
 
 | Path | Purpose / 用途 |
 | --- | --- |
+| `.firebaserc` | Maps Firebase `sandbox` and `share` targets to their dedicated SHINE projects and sites. / 將 Firebase `sandbox`／`share` targets 對應至專用 SHINE projects 與網站。 |
+| `firebase.json` | Serves the validated static v46 PWA on both Firebase Hosting targets with offline-safe headers. / 以離線安全 headers 將已驗證的靜態 v46 PWA 發布至兩個 Firebase Hosting targets。 |
 | `Apps/` | Completed runnable releases. / 完成且可執行的 releases。 |
 | `Apps/Standalone/` | Immutable v15–v39 HTML releases plus v16 runtime assets. / 不可變 v15–v39 HTML 與 v16 runtime assets。 |
 | `Apps/Public-Web/v2/` | Preserved immutable v19-derived GitHub Pages release. / 保留的 v19 公開版。 |
@@ -166,6 +168,10 @@ npm test
 # Validate repository from the root
 node Development/Tests/validate_v46.mjs
 powershell -ExecutionPolicy Bypass -File Development/Tests/validate_repository.ps1
+
+# Publish the validated static v46 PWA to Firebase
+npx firebase-tools@15.27.0 deploy --only hosting:sandbox --project shine-sandbox-lab
+npx firebase-tools@15.27.0 deploy --only hosting:share --project shine-share-lab
 ```
 
 Existing v15–v39 release outputs are immutable. New product behavior after v46 requires a new version. Uncertain or proposed-deletion content must move to `_pending/` and be indexed; never permanently delete it without explicit human approval.

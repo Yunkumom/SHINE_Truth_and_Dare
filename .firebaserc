@@ -1,0 +1,23 @@
+{
+  "projects": {
+    "sandbox": "shine-sandbox-lab",
+    "share": "shine-share-lab"
+  },
+  "targets": {
+    "shine-sandbox-lab": {
+      "hosting": {
+        "sandbox": [
+          "shine-truth-or-dare-dev"
+        ]
+      }
+    },
+    "shine-share-lab": {
+      "hosting": {
+        "share": [
+          "shine-truth-or-dare-share"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

@@ -8,6 +8,8 @@ Truth or Dare（真心話大冒險）是雙語、iPhone 優先的對話卡牌遊
 
 - Double-click `Open Truth and Dare.cmd`; it restores locked dependencies when needed and opens the current v46 application at `127.0.0.1:8765`.
 - Current public v46 site: `https://encounter-cards-v40-review.kenimaster123.chatgpt.site`
+- Firebase sandbox: `https://shine-truth-or-dare-dev.web.app`
+- Firebase share: `https://shine-truth-or-dare-share.web.app`
 - Legacy GitHub Pages site: `https://yunkumom.github.io/SHINE_Truth_and_Dare/`
 - Current authored source: `Development/Source/Main-App-v46/`
 - Current verified Sites build: `Development/Source/Main-App-v46/dist/`
@@ -18,6 +20,10 @@ Truth or Dare（真心話大冒險）是雙語、iPhone 優先的對話卡牌遊
 - Current deity source artwork: `Assets/Deities/v30-safe-masters/`.
 - Complete Development file guide: `Development/README.md`
 - Recoverable retired development material: `_pending/Development-simplification_2026-07-19/`
+
+Firebase publication uses the root `firebase.json` and `.firebaserc`. Deploy `hosting:sandbox` to `shine-sandbox-lab` and `hosting:share` to `shine-share-lab`; both targets serve the validated static `public/v46/` PWA without enabling a backend or persistent personal-data storage.
+
+Firebase 發布使用根層 `firebase.json` 與 `.firebaserc`。`hosting:sandbox` 部署至 `shine-sandbox-lab`，`hosting:share` 部署至 `shine-share-lab`；兩者都提供已驗證的靜態 `public/v46/` PWA，不啟用 backend 或個資持久保存。
 
 ## Repository / Repository 結構
 

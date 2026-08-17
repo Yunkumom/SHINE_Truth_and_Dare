@@ -121,6 +121,16 @@ async function validate() {
   assert.match(launcher, /npm run build:encounter/)
   assert.match(launcher, /127\.0\.0\.1:8765/)
 
+  const firebase = JSON.parse(await readFile(join(repositoryRoot, 'firebase.json'), 'utf8'))
+  const firebaserc = JSON.parse(await readFile(join(repositoryRoot, '.firebaserc'), 'utf8'))
+  const firebaseTargets = Object.fromEntries(firebase.hosting.map((entry) => [entry.target, entry]))
+  assert.equal(firebaseTargets.sandbox.public, 'Development/Source/Main-App-v46/public/v46')
+  assert.equal(firebaseTargets.share.public, 'Development/Source/Main-App-v46/public/v46')
+  assert.equal(firebaserc.projects.sandbox, 'shine-sandbox-lab')
+  assert.equal(firebaserc.projects.share, 'shine-share-lab')
+  assert.deepEqual(firebaserc.targets['shine-sandbox-lab'].hosting.sandbox, ['shine-truth-or-dare-dev'])
+  assert.deepEqual(firebaserc.targets['shine-share-lab'].hosting.share, ['shine-truth-or-dare-share'])
+
   console.log('validate_v46: PASS')
   console.log(`recorded full intake SHA-256: ${recordedFullArchiveDigest}`)
   console.log(`verified non-sensitive intake SHA-256: ${expectedSafeArchiveDigest}`)
