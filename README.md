@@ -7,7 +7,8 @@ Truth or Dare（真心話大冒險）是雙語、iPhone 優先的對話卡牌遊
 ## Start / 開始
 
 - Double-click `Open Truth and Dare.cmd`; it restores locked dependencies when needed and opens the current v46 application at `127.0.0.1:8765`.
-- Public site: `https://yunkumom.github.io/SHINE_Truth_and_Dare/` (available after the Pages workflow completes).
+- Current public v46 site: `https://encounter-cards-v40-review.kenimaster123.chatgpt.site`
+- Legacy GitHub Pages site: `https://yunkumom.github.io/SHINE_Truth_and_Dare/`
 - Current authored source: `Development/Source/Main-App-v46/`
 - Current verified Sites build: `Development/Source/Main-App-v46/dist/`
 - Current generated encounter PWA: `Development/Source/Main-App-v46/public/v46/`

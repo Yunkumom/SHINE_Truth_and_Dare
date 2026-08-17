@@ -12,7 +12,8 @@
 - Latest standalone fallback: `Apps/Standalone/encounter_cards_v39.html`
 - Latest published GitHub Pages fallback: `Apps/Public-Web/v22/`
 - Local desktop URL: `http://127.0.0.1:8765/`
-- Public URL: `https://yunkumom.github.io/SHINE_Truth_and_Dare/`
+- Current public v46 Sites URL: `https://encounter-cards-v40-review.kenimaster123.chatgpt.site`
+- Legacy GitHub Pages URL: `https://yunkumom.github.io/SHINE_Truth_and_Dare/`
 - Repository: `https://github.com/Yunkumom/SHINE_Truth_and_Dare`
 - v15–v39 standalone releases are immutable after release.
 

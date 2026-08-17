@@ -1,5 +1,13 @@
 # Changelog / 變更紀錄
 
+## 2026-08-17 — v46 public Sites deployment / v46 公開 Sites 部署
+
+- Published the verified Encounter Cards v46 application to `https://encounter-cards-v40-review.kenimaster123.chatgpt.site` using the existing public Sites project.
+- Saved and deployed Sites version 8 without enabling analytics, accounts, D1, R2, or personal-data persistence.
+
+- 使用既有公開 Sites project，將已驗證的 Encounter Cards v46 發布至 `https://encounter-cards-v40-review.kenimaster123.chatgpt.site`。
+- 保存並部署 Sites version 8；未啟用 analytics、帳號、D1、R2 或個資持久保存。
+
 ## 2026-08-16 — v46 GitHub Lite promotion / v46 GitHub Lite 升級
 
 - Preserved the supplied 200-file, 39 MB GitHub Lite package under `_pending/` with deterministic inventory SHA-256 `673a023f20c9ac2a8c7084a216937a71f256379d68d8ec883f87bef74e40f480`.
