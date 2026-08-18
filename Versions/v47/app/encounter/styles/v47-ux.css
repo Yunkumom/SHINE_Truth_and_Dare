@@ -1,0 +1,353 @@
+/* V47 owner-approved UX contract: reserved mobile rows and a visual Mac studio. */
+
+.game-context-row,
+.game-primary-row {
+  display: contents;
+}
+
+.game-context-row {
+  position: relative;
+}
+
+.game-primary-row {
+  position: relative;
+}
+
+@media (max-width: 1099px) {
+  .v40-shell .game-mobile-flow {
+    position: absolute;
+    inset: 50px 0 0;
+    display: grid;
+    grid-template-areas: "status" "card" "context" "actions";
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto auto;
+    gap: 6px;
+    min-width: 0;
+    min-height: 0;
+    padding: 4px 10px max(7px, env(safe-area-inset-bottom));
+    overflow: hidden;
+  }
+
+  .v40-shell .game-mobile-flow > .game-toolbar-block {
+    grid-area: status;
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: 34px !important;
+    min-width: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+  }
+
+  .v40-shell .game-mobile-flow > .game-card-block {
+    grid-area: card;
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 0;
+    min-height: 0;
+    display: grid;
+    place-items: center;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
+    transform: none !important;
+    container-type: size;
+  }
+
+  .v40-shell .game-mobile-flow > .game-card-block > .v32-deck {
+    width: min(100cqw, calc(100cqh * .71591)) !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    margin: 0 auto !important;
+    aspect-ratio: 63 / 88 !important;
+  }
+
+  .v40-shell .game-context-row {
+    grid-area: context;
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 38px;
+  }
+
+  .v40-shell .game-primary-row {
+    grid-area: actions;
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 46px;
+  }
+
+  .v40-shell .game-context-row > .compact-draw-settings,
+  .v40-shell .game-context-row > .artwork-control-panel,
+  .v40-shell .game-primary-row > .game-actions-block {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 0;
+    margin: 0 !important;
+    transform: none !important;
+  }
+
+  .v40-shell .game-context-row > .compact-draw-settings {
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border: 1px solid #b58a55;
+    border-radius: 9px;
+    background: linear-gradient(145deg, #fff8e8, #eeddbf);
+    color: #3f2a1d;
+    padding: 4px 6px 4px 10px;
+  }
+
+  .v40-shell .compact-draw-settings span,
+  .v40-shell .compact-draw-settings b,
+  .v40-shell .compact-draw-settings small {
+    display: block;
+    min-width: 0;
+  }
+
+  .v40-shell .compact-draw-settings small {
+    color: #806a59;
+    font: 6px/1.2 Georgia, serif;
+    letter-spacing: .1em;
+  }
+
+  .v40-shell .compact-draw-settings b {
+    margin-top: 2px;
+    font: 700 9px/1.2 "Noto Sans TC", sans-serif;
+  }
+
+  .v40-shell .compact-draw-settings button {
+    flex: none;
+    min-height: 28px;
+    border: 1px solid #9c7144;
+    border-radius: 7px;
+    background: #fff9ed;
+    color: #3f2a1d;
+    padding: 3px 9px;
+    font-size: 9px;
+    font-weight: 700;
+  }
+
+  .v40-shell .game-primary-row > .game-actions-block,
+  .v40-shell .game-primary-row .game-actions,
+  .v40-shell .game-primary-row .game-actions button {
+    min-height: 46px;
+  }
+
+  .v40-shell .game-toolbar button {
+    min-height: 30px;
+    padding: 3px 9px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 1099px) and (max-height: 760px) {
+  .v40-shell .game-mobile-flow {
+    grid-template-rows: 30px minmax(0, 1fr) 34px 42px;
+    gap: 4px;
+    padding-inline: 7px;
+  }
+
+  .v40-shell .game-mobile-flow > .game-toolbar-block,
+  .v40-shell .game-context-row,
+  .v40-shell .game-context-row > .compact-draw-settings {
+    min-height: 0;
+    height: 100% !important;
+  }
+
+  .v40-shell .game-primary-row,
+  .v40-shell .game-primary-row > .game-actions-block,
+  .v40-shell .game-primary-row .game-actions,
+  .v40-shell .game-primary-row .game-actions button {
+    min-height: 42px;
+    height: 42px !important;
+  }
+}
+
+@media (min-width: 1100px) {
+  .desktop-viewport {
+    padding: 12px;
+  }
+
+  .desktop-workspace {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 172px minmax(480px, 1fr) 324px;
+    grid-template-rows: 58px minmax(0, 1fr);
+    grid-template-areas:
+      "toolbar toolbar toolbar"
+      "screens canvas inspector";
+    gap: 12px;
+    overflow: hidden;
+  }
+
+  .desktop-studio-toolbar {
+    grid-area: toolbar;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) auto auto;
+    align-items: center;
+    gap: 18px;
+    border: 1px solid #b58a5566;
+    border-radius: 14px;
+    background: #fff8e9e8;
+    color: var(--setup-espresso);
+    padding: 7px 10px 7px 16px;
+    box-shadow: 0 8px 24px #76533320;
+  }
+
+  .desktop-studio-toolbar b,
+  .desktop-studio-toolbar small {
+    display: block;
+  }
+
+  .desktop-studio-toolbar b {
+    font-size: 15px;
+  }
+
+  .desktop-studio-toolbar small {
+    margin-top: 2px;
+    color: var(--setup-muted-brown);
+    font: 7px/1.2 Georgia, serif;
+    letter-spacing: .13em;
+  }
+
+  .studio-device-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .studio-device-status span {
+    border: 1px solid #b58a5555;
+    border-radius: 999px;
+    background: var(--setup-cream);
+    padding: 5px 9px;
+    color: var(--setup-muted-brown);
+    font-size: 9px;
+    font-weight: 700;
+  }
+
+  .desktop-studio-toolbar .desktop-mode-switch.desktop-mode-bookmark-tabs {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex-direction: initial;
+    width: 186px;
+    padding: 3px;
+    transform: none;
+    border-radius: 10px;
+    box-shadow: none;
+  }
+
+  .desktop-studio-toolbar .desktop-mode-bookmark-tabs button {
+    min-height: 38px;
+    border-radius: 7px;
+    padding: 4px 8px;
+  }
+
+  .owner-studio-screen-nav {
+    grid-area: screens;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    border: 1px solid #b58a5555;
+    border-radius: 14px;
+    background: #fff8e9d9;
+    padding: 14px 10px;
+    color: var(--setup-espresso);
+  }
+
+  .owner-studio-screen-nav > strong,
+  .owner-studio-screen-nav > small {
+    padding-inline: 4px;
+  }
+
+  .owner-studio-screen-nav > small {
+    margin-top: -5px;
+    color: var(--setup-muted-brown);
+    font: 7px Georgia, serif;
+    letter-spacing: .14em;
+  }
+
+  .owner-studio-screen-nav button {
+    min-height: 58px;
+    border: 1px solid #b58a5544;
+    border-radius: 10px;
+    background: var(--setup-cream);
+    color: var(--setup-espresso);
+    padding: 8px 10px;
+    text-align: left;
+  }
+
+  .owner-studio-screen-nav button span,
+  .owner-studio-screen-nav button small {
+    display: block;
+  }
+
+  .owner-studio-screen-nav button small {
+    margin-top: 4px;
+    color: var(--setup-muted-brown);
+    font: 7px Georgia, serif;
+    letter-spacing: .12em;
+  }
+
+  .owner-studio-screen-nav button.active {
+    border-color: var(--setup-caramel-deep);
+    background: var(--setup-caramel);
+    color: var(--setup-cream);
+    box-shadow: 0 7px 16px #7653332e;
+  }
+
+  .owner-studio-screen-nav button.active small {
+    color: #fff1d5;
+  }
+
+  .desktop-center-stage {
+    grid-area: canvas;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    border-radius: 16px;
+  }
+
+  .owner-studio-inspector {
+    grid-area: inspector;
+    min-width: 0;
+    min-height: 0;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .owner-studio-inspector .layout-editor.is-docked {
+    height: 100%;
+    overflow: auto;
+  }
+
+  .desktop-test-stage {
+    height: 100%;
+  }
+}
+
+@media (min-width: 1100px) and (max-width: 1260px) {
+  .desktop-workspace {
+    grid-template-columns: 142px minmax(430px, 1fr) 290px;
+  }
+
+  .studio-device-status span:nth-child(2),
+  .studio-device-status span:nth-child(3) {
+    display: none;
+  }
+}
