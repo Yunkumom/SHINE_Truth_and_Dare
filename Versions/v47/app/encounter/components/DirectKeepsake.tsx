@@ -69,7 +69,7 @@ export default function DirectKeepsake({ language, artworks, collections, blessi
       <article className="direct-keepsake-preview taiwan-meander">
         <div className="direct-keepsake-title"><span><b>{imageName}</b></span><i>✦</i></div>
         <div className="direct-keepsake-image card-artwork-viewport"><img src={imageSrc} alt={previewAlt} style={photoStyle} /></div>
-        <div className="direct-keepsake-blessing"><small>給這次相遇的祝福 · BLESSING</small><p>{blessingText || '在這裡寫下想送出的祝福。'}</p></div>
+        <div className="direct-keepsake-blessing"><small>給今天的祝福 · BLESSING</small><p>{blessingText || '在這裡寫下想送出的祝福。'}</p></div>
       </article>
       <div className="direct-keepsake-controls">
         <div className="direct-photo-actions">

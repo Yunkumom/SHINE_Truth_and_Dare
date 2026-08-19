@@ -111,7 +111,7 @@ export async function createCardPng(composition: EncounterComposition, language:
   const blessingHeight = blessingStyle.height * blessingScale
   const blessingPadding = blessingStyle.padding * blessingScale
   context.fillStyle = '#efe0bd'; context.fillRect(blessingX, blessingY, blessing.width, blessingHeight)
-  context.fillStyle = '#9a4a3b'; context.font = `700 ${20 * blessingStyle.fontScale}px system-ui`; context.fillText('給這次相遇的祝福 · BLESSING', blessingX + blessingPadding, blessingY + 31 * blessingStyle.lineHeight)
+  context.fillStyle = '#9a4a3b'; context.font = `700 ${20 * blessingStyle.fontScale}px system-ui`; context.fillText('給今天的祝福 · BLESSING', blessingX + blessingPadding, blessingY + 31 * blessingStyle.lineHeight)
   context.fillStyle = '#291c16'
   drawPanelText(context, lines.blessing, blessingX + 360, blessingY + 31 * blessingStyle.lineHeight, blessing.width - 398 - blessingPadding, `600 ${23 * blessingStyle.fontScale}px serif`, 30 * blessingStyle.lineHeight)
 
