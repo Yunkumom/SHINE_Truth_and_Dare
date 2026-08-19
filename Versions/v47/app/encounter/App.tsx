@@ -5,6 +5,7 @@ import DirectKeepsake from './components/DirectKeepsake'
 import LayoutEditor from './components/LayoutEditor'
 import ModeHome from './components/ModeHome'
 import MobileSettings from './components/MobileSettings'
+import PostDrawKeepsake from './components/PostDrawKeepsake'
 import SwipeDeck from './components/SwipeDeck'
 import TaiwanReveal from './components/TaiwanReveal'
 import TaiwanFoodJourney from './components/TaiwanFoodJourney'
@@ -17,7 +18,7 @@ import { SHINE_DEPTHS } from './data/shine-question-book'
 import { isAdultOn } from './lib/age-gate'
 import { DEITY_ART } from './lib/deity-art'
 import { ALL_ARTWORKS } from './lib/artwork-catalog'
-import { selectBlessing } from './lib/encounter'
+import { artworkTitle, themedBlessingForArtwork } from './lib/artwork-copy'
 import { resolvePreferredArtwork } from './lib/artwork-selection'
 import { resolveManagedQuestion } from './lib/question-manager'
 import { loadLanguage, loadFontScale, saveFontScale, saveLanguage } from './lib/preferences'
@@ -52,23 +53,16 @@ function CardText({ card, language }: { card: Card, language: Language }) {
   return <div className="mythic-question">{card.zhTitle && <em className="mythic-question-title">{language === 'en' ? card.enTitle : language === 'bilingual' ? `${card.zhTitle} · ${card.enTitle}` : card.zhTitle}</em>}{language !== 'en' && <p lang="zh-Hant">{card.zh}</p>}{language !== 'zh' && <small className={language === 'en' ? 'english-primary' : ''} lang="en">{card.en}</small>}</div>
 }
 
+function CardQuestionOnly({ card, language }: { card: Card, language: Language }) {
+  return <div className="mythic-question question-only">{language !== 'en' && <p lang="zh-Hant">{card.zh}</p>}{language !== 'zh' && <small className={language === 'en' ? 'english-primary' : ''} lang="en">{card.en}</small>}</div>
+}
+
 function questionMeta(card: Card) {
   return card.depth ? `${SHINE_DEPTHS[card.depth].symbol} · ${card.kind === 'activity' ? 'ACTIVITY' : 'QUESTION'}` : `L${card.level} · ${card.mode.toUpperCase()}`
 }
 
-function BlessingText({ encounter, language }: { encounter: EncounterComposition, language: Language }) {
-  return <div className="mythic-blessing"><span>給這次相遇的祝福 · BLESSING</span>{language !== 'en' && <p lang="zh-Hant">{encounter.blessing.zh}</p>}{language !== 'zh' && <small className={language === 'en' ? 'english-primary' : ''} lang="en">{encounter.blessing.en}</small>}</div>
-}
-
-function localizedFeature(artwork: EncounterComposition['artwork'], language: Language) {
-  if (!artwork.featureLabel) return ''
-  if (language === 'en') return artwork.featureLabel.en
-  if (language === 'bilingual') return `${artwork.featureLabel.zh} · ${artwork.featureLabel.en}`
-  return artwork.featureLabel.zh
-}
-
 const previewEncounter: EncounterComposition = { card: cards[0], artwork: DEITY_ART[0], blessing: blessings[0] }
-const initialManagerState: SessionQuestionManagerState = { disabledQuestionIds: [], customQuestions: [], selectedQuestionId: null, enabledQuestionPackIds: [...ALL_QUESTION_PACK_IDS], drawnQuestionIds: [], showRealYou: true, showQuestion: true }
+const initialManagerState: SessionQuestionManagerState = { disabledQuestionIds: [], customQuestions: [], selectedQuestionId: null, enabledQuestionPackIds: [...ALL_QUESTION_PACK_IDS], drawnQuestionIds: [], showRealYou: false, showQuestion: true, showCardMeta: false, showBlessing: false, showFeatureNote: false }
 
 export default function App() {
   const [language, setLanguage] = useState<Language>(() => loadLanguage())
@@ -141,12 +135,26 @@ export default function App() {
     const artwork = artworkId
       ? resolvePreferredArtwork({ mode: 'specific', collectionId: artworkPreference.collectionId, artworkId }, ARTWORK_COLLECTIONS, ALL_ARTWORKS, current?.artwork.id)
       : resolvePreferredArtwork(artworkPreference, ARTWORK_COLLECTIONS, ALL_ARTWORKS, current?.artwork.id)
-    const blessing = selectBlessing(blessings)
+    const blessing = themedBlessingForArtwork(artwork)
     setQuestionManager(manager => ({ ...manager, drawnQuestionIds: manager.selectedQuestionId ? manager.drawnQuestionIds : question.resetDrawHistory ? [card.id] : [...manager.drawnQuestionIds, card.id] }))
     setCurrent({ card, artwork, blessing }); setRevealed(true); setStatus(question.fallback ? '指定問題不符合目前等級或卡型，已安全改為隨機題目。 · Exact question was ineligible; a safe random question was used.' : language === 'en' ? `Revealed: ${card.en}` : `已翻開：${card.zh}`)
   }
+  function saveMobileSettings(preference: ArtworkPreference, manager: SessionQuestionManagerState) {
+    if (!current) return
+    const artworkChanged = JSON.stringify(preference) !== JSON.stringify(artworkPreference)
+    const questionChanged = manager.selectedQuestionId !== questionManager.selectedQuestionId || manager.disabledQuestionIds.join('|') !== questionManager.disabledQuestionIds.join('|') || manager.enabledQuestionPackIds.join('|') !== questionManager.enabledQuestionPackIds.join('|')
+    const artwork = artworkChanged ? resolvePreferredArtwork(preference, ARTWORK_COLLECTIONS, ALL_ARTWORKS, current.artwork.id) : current.artwork
+    const question = questionChanged ? resolveManagedQuestion({ base: governedQuestions, custom: manager.customQuestions, disabledQuestionIds: manager.disabledQuestionIds, enabledQuestionPackIds: manager.enabledQuestionPackIds, selectedQuestionId: manager.selectedQuestionId, drawnQuestionIds: manager.drawnQuestionIds, level, mode, previousId: current.card.id }).card : current.card
+    if (manager.selectedQuestionId) { setLevel(question.level); setMode(question.mode) }
+    setCurrent({ card: question, artwork, blessing: artworkChanged ? themedBlessingForArtwork(artwork) : current.blessing })
+    setRevealed(true)
+  }
   function chooseFontScale(nextValue: number) { const value = Math.max(.85, Math.min(1.25, Math.round(nextValue * 10) / 10)); setFontScale(value); saveFontScale(value) }
-  async function exportKeepsake() { setStatus(await shareOrDownload(encounter, language, participants, layoutHistory.present, presentation)) }
+  async function exportKeepsake(answerKeywords = '', blessing = encounter.blessing) { setStatus(await shareOrDownload({ ...encounter, blessing }, language, participants, layoutHistory.present, presentation, { answerKeywords })) }
+  function updateParticipant(role: ParticipantExchange['role'], patch: Partial<ParticipantExchange>) {
+    if (role === 'self') { if (patch.name !== undefined) setYourName(patch.name); if (patch.contact !== undefined) setYourContact(patch.contact); if (patch.include !== undefined) setIncludeYours(patch.include) }
+    else { if (patch.name !== undefined) setTheirName(patch.name); if (patch.contact !== undefined) setTheirContact(patch.contact); if (patch.include !== undefined) setIncludeTheirs(patch.include) }
+  }
   function goToSetup() { setPlaying(false); setKeepsakeOpen(false); setSettingsOpen(false); setArtworkAdjusterOpen(false); setMobileDestination('setup'); if (desktopMode === 'settings') { setEditorScreen('setup'); setSelectedBlock('hero') } }
   function goToModeHome() { goToSetup(); if (!desktopWorkspace) setMobileDestination('home') }
   function chooseTruthOrDare() { setMode('random'); goToSetup() }
@@ -156,7 +164,7 @@ export default function App() {
     return <EditableBlock key={`${screen}-${id}`} id={id} block={layoutHistory.present.screens[screen][id]} editing={editingActive && editorScreen === screen} selected={editingActive && editorScreen === screen && selectedBlock === id} directManipulation={directManipulation} canvasScale={desktopWorkspace ? desktopScales.workbench : 1} snap={snap} onSelect={() => setSelectedBlock(id)} onChange={patch => changeBlock(screen, id, patch)} className={className}>{children}</EditableBlock>
   }
   function header(screen: 'setup' | 'game') {
-    return block(screen, 'header', <header className="site-header"><button className="wordmark" type="button" onClick={goToModeHome} aria-label="返回模式選擇 · Back to modes"><span className="mark">✦</span><span>相遇卡 <small>ENCOUNTER CARDS · V47</small></span></button><div className="header-tools"><button type="button" className="card-library-trigger settings-trigger" aria-label="開啟設定 · Open settings" onClick={() => setSettingsOpen(true)}><span className="menu-icon" aria-hidden="true"><i /><i /><i /></span></button></div></header>, 'header-block')
+    return block(screen, 'header', <header className="site-header"><button className="wordmark" type="button" onClick={goToModeHome} aria-label="返回模式選擇 · Back to modes"><span className="mark">✦</span><span>TRUTH OR DARE</span></button><div className="header-tools"><button type="button" className="card-library-trigger settings-trigger" aria-label="開啟設定 · Open settings" onClick={() => setSettingsOpen(true)}><span className="menu-icon" aria-hidden="true"><i /><i /><i /></span></button></div></header>, 'header-block')
   }
 
   const artworkPresentation = presentationForArtwork(presentation, encounter.artwork.id)
@@ -203,7 +211,7 @@ export default function App() {
     {header('game')}
     <div className="game-mobile-flow">
       {block('game', 'toolbar', <div className="game-toolbar"><button onClick={goToSetup}>← {t.back}</button><div className="game-meta"><span>LEVEL {level}</span><span>{mode.toUpperCase()}</span><span>42 ARTWORKS</span></div></div>, 'game-toolbar-block')}
-      {block('game', 'card', <SwipeDeck key={current ? `${current.card.id}-${current.artwork.id}` : 'deck'} revealed={editingActive || revealed} onDraw={draw}><div className="card-face card-back"><img className="card-back-art" src={taiwanCardBack} alt="" draggable="false" /><div className="card-back-atmosphere" aria-hidden="true" /><div className="card-back-copy"><p>ENCOUNTER CARDS · V47</p><h2>相遇卡</h2><span>SWIPE UP TO DRAW · 向上滑動抽卡</span></div></div><div className="card-face card-front">{(current || editingActive) && <article className="mythic-card" data-testid="mythic-card" style={cardPresentationStyle}><div className="mythic-card-header"><div><span>護行之卡 · ENCOUNTER GUARDIAN</span><h2>{encounter.artwork.zhName}</h2><small>{encounter.artwork.enName}</small>{encounter.artwork.featureLabel && <small className="artwork-feature-note">台灣特色 · {localizedFeature(encounter.artwork, language)}</small>}</div><i>✦</i></div><div data-card-artwork><TaiwanReveal artwork={encounter.artwork} language={language}><img src={encounter.artwork.src} alt={`${encounter.artwork.zhName}・藏有台灣輪廓的卡面`} draggable="false" style={artworkStyle} /><div className="mythic-foil" /></TaiwanReveal></div><div className="mythic-text-panel">{questionManager.showRealYou && <div className="mythic-prompt-meta"><b>真正的你 · THE REAL YOU</b><span>{questionMeta(encounter.card)}</span></div>}{questionManager.showQuestion && <CardText card={encounter.card} language={language} />}<BlessingText encounter={encounter} language={language} /></div></article>}</div></SwipeDeck>, 'game-card-block')}
+      {block('game', 'card', <SwipeDeck key={current ? `${current.card.id}-${current.artwork.id}` : 'deck'} revealed={editingActive || revealed} onDraw={draw}><div className="card-face card-back"><img className="card-back-art" src={taiwanCardBack} alt="" draggable="false" /><div className="card-back-atmosphere" aria-hidden="true" /><div className="card-back-copy"><h2>TRUTH OR DARE</h2><span>SWIPE UP TO DRAW · 向上滑動抽卡</span></div></div><div className="card-face card-front">{(current || editingActive) && <article className="mythic-card" data-testid="mythic-card" style={cardPresentationStyle}><div className="mythic-card-header"><div><h2>{artworkTitle(encounter.artwork, language === 'en' ? 'en' : 'zh')}</h2></div><i>✦</i></div><div data-card-artwork><TaiwanReveal artwork={encounter.artwork} language={language}><img src={encounter.artwork.src} alt={`${encounter.artwork.zhName}・藏有台灣輪廓的卡面`} draggable="false" style={artworkStyle} /><div className="mythic-foil" /></TaiwanReveal></div><div className="mythic-text-panel"><CardQuestionOnly card={encounter.card} language={language} /></div></article>}</div></SwipeDeck>, 'game-card-block')}
       <div className="game-context-row">
         {!revealed && !editingActive && <div className="compact-draw-settings"><span><small>抽卡選項 · DRAW OPTIONS</small><b>LEVEL {level} · {mode.toUpperCase()}</b></span><button type="button" onClick={() => setSettingsOpen(true)}>變更 · Change</button></div>}
         {revealed && current && !editingActive && <section className="artwork-control-panel compact-card-controls" aria-label="Choose and adjust card"><button type="button" onClick={() => setSettingsOpen(true)}>重新選擇</button><button type="button" onClick={() => setArtworkAdjusterOpen(true)}>調整卡片</button></section>}
@@ -224,7 +232,9 @@ export default function App() {
   </section>
 
   const standardScreen = activeScreen === 'setup' ? setupScreen : activeScreen === 'game' ? gameScreen : keepsakeScreen
-  const specialMobileScreen = !desktopWorkspace && mobileDestination === 'home'
+  const specialMobileScreen = !desktopWorkspace && keepsakeOpen && current
+    ? <PostDrawKeepsake encounter={current} language={language} artworkStyle={artworkStyle} participants={participants} onParticipantChange={updateParticipant} onBack={() => setKeepsakeOpen(false)} onAdjustArtwork={() => setArtworkAdjusterOpen(true)} onDownload={async (answerKeywords, blessing) => exportKeepsake(answerKeywords, blessing)} />
+    : !desktopWorkspace && mobileDestination === 'home'
     ? <ModeHome language={language} onChooseKeepsake={() => { setPlaying(false); setKeepsakeOpen(false); setMobileDestination('keepsake-maker') }} onChooseTruthOrDare={chooseTruthOrDare} onChooseFoodJourney={chooseFoodJourney} />
     : !desktopWorkspace && mobileDestination === 'keepsake-maker'
       ? <DirectKeepsake language={language} artworks={ALL_ARTWORKS} collections={ARTWORK_COLLECTIONS} blessings={blessings} onBack={goToModeHome} onStatus={setStatus} />
@@ -233,7 +243,7 @@ export default function App() {
       : null
   const screen = specialMobileScreen ?? standardScreen
   const shellName = specialMobileScreen ? mobileDestination : activeScreen
-  const appShell = (preview = false) => <main className={`app-shell v32-shell v33-shell v34-shell v35-shell v37-shell v40-shell ${shellName}-shell${editingActive && !preview ? ' is-layout-editing' : ''}`} data-language={language} style={{ '--font-scale': fontScale, '--reader-font-scale': fontScale } as React.CSSProperties}>{screen}{!preview && !specialMobileScreen && <><MobileSettings open={settingsOpen} onClose={() => setSettingsOpen(false)} level={level} mode={mode} onLevelChange={chooseLevel} onModeChange={setMode} language={language} onLanguageChange={chooseLanguage} fontScale={fontScale} onFontScaleChange={chooseFontScale} artworks={ALL_ARTWORKS} collections={ARTWORK_COLLECTIONS} artworkPreference={artworkPreference} onArtworkPreferenceChange={setArtworkPreference} questions={governedQuestions} questionPacks={QUESTION_PACKS} manager={questionManager} onManagerChange={setQuestionManager} savedArtworkIds={Object.keys(presentation.artworkById)} onClearArtworkPosition={clearArtworkPresentation} />{artworkAdjusterOpen && <ArtworkAdjuster open encounter={encounter} language={language} manager={questionManager} value={presentation} onChange={value => setPresentation(normalizePresentation(value))} onClose={() => setArtworkAdjusterOpen(false)} />}</>}{!preview && <p className="sr-only" aria-live="polite">{status}</p>}</main>
+  const appShell = (preview = false) => <main className={`app-shell v32-shell v33-shell v34-shell v35-shell v37-shell v40-shell ${shellName}-shell${editingActive && !preview ? ' is-layout-editing' : ''}`} data-language={language} style={{ '--font-scale': fontScale, '--reader-font-scale': fontScale } as React.CSSProperties}>{screen}{!preview && <>{!specialMobileScreen && <MobileSettings key={settingsOpen ? 'settings-open' : 'settings-closed'} open={settingsOpen} onClose={() => setSettingsOpen(false)} level={level} mode={mode} onLevelChange={chooseLevel} onModeChange={setMode} language={language} onLanguageChange={chooseLanguage} fontScale={fontScale} onFontScaleChange={chooseFontScale} artworks={ALL_ARTWORKS} collections={ARTWORK_COLLECTIONS} artworkPreference={artworkPreference} onArtworkPreferenceChange={setArtworkPreference} questions={governedQuestions} questionPacks={QUESTION_PACKS} manager={questionManager} onManagerChange={setQuestionManager} onSave={saveMobileSettings} savedArtworkIds={Object.keys(presentation.artworkById)} onClearArtworkPosition={clearArtworkPresentation} />}{artworkAdjusterOpen && <ArtworkAdjuster open encounter={encounter} language={language} manager={questionManager} value={presentation} onChange={value => setPresentation(normalizePresentation(value))} onClose={() => setArtworkAdjusterOpen(false)} />}</>}{!preview && <p className="sr-only" aria-live="polite">{status}</p>}</main>
 
   const editorProps = { presentation, artworkId: encounter.artwork.id, onPresentationChange: (value: typeof presentation) => setPresentation(normalizePresentation(value)) }
 

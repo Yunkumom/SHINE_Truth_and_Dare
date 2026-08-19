@@ -351,3 +351,200 @@
     display: none;
   }
 }
+
+/* V47 approved compact home, tactile deck, and continuous keepsake surfaces. */
+.mode-home-intro {
+  padding: 14px 18px 12px;
+  text-align: left;
+}
+
+.mode-home-intro h1 {
+  max-width: none;
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.direct-keepsake-content {
+  padding-inline: 6px;
+}
+
+.taiwan-meander {
+  position: relative;
+  border-radius: 22px;
+  background-image:
+    linear-gradient(90deg, transparent 8px, rgba(154, 99, 62, .18) 8px 10px, transparent 10px),
+    linear-gradient(#efd6a5, #efd6a5);
+}
+
+.taiwan-meander::after {
+  content: "回  回  回  回  回  回  回  回  回  回  回  回";
+  position: absolute;
+  z-index: 5;
+  inset: 3px 7px auto;
+  height: 8px;
+  overflow: hidden;
+  color: rgba(116, 65, 31, .48);
+  font: 7px/1 serif;
+  letter-spacing: 3px;
+  pointer-events: none;
+}
+
+.direct-keepsake-preview {
+  grid-template-rows: 48px minmax(0, 1fr) auto;
+  border-radius: 22px;
+  padding: 8px;
+}
+
+.direct-keepsake-title,
+.direct-keepsake-image,
+.direct-keepsake-blessing {
+  border: 0;
+  border-radius: 11px;
+}
+
+.direct-keepsake-image {
+  margin-top: 5px;
+}
+
+.direct-keepsake-blessing {
+  min-height: 52px;
+  margin-top: 5px;
+  padding: 7px 9px;
+  overflow: visible;
+}
+
+.direct-keepsake-blessing p {
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.v32-deck .stack-card {
+  transform-origin: 50% 100%;
+  transition: transform .22s ease, opacity .22s ease;
+}
+
+.v32-deck .stack-one { transform: translateY(calc(4px + var(--swipe-progress, 0) * -2px)) scale(.995); }
+.v32-deck .stack-two { transform: translateY(calc(8px + var(--swipe-progress, 0) * -3px)) scale(.99); }
+.v32-deck .stack-three { transform: translateY(calc(12px + var(--swipe-progress, 0) * -4px)) scale(.985); }
+.swipe-card { filter: drop-shadow(0 calc(8px + var(--swipe-progress, 0) * 8px) 13px rgba(0, 0, 0, .34)); }
+
+.settings-draft-actions {
+  position: sticky;
+  z-index: 20;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: .8fr 1.4fr;
+  gap: 8px;
+  padding: 9px max(10px, env(safe-area-inset-right)) max(9px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+  border-top: 1px solid #b58a55;
+  background: rgba(255, 249, 237, .97);
+}
+
+.settings-draft-actions button {
+  min-height: 44px;
+  border: 1px solid #8a6239;
+  border-radius: 12px;
+  background: #fff8e9;
+  color: #3f2a1d;
+  font-weight: 800;
+}
+
+.settings-draft-actions button:last-child {
+  background: #102b3a;
+  color: #fff8e9;
+}
+
+.post-draw-keepsake {
+  position: absolute;
+  z-index: 120;
+  inset: 0;
+  display: grid;
+  grid-template-rows: 52px minmax(0, 1fr) 62px;
+  background: #061722;
+  color: #f8e7c5;
+  overflow: hidden;
+}
+
+.post-draw-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 7px 10px;
+  border-bottom: 1px solid #b58a55;
+}
+
+.post-draw-header button {
+  justify-self: start;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 11px;
+}
+
+.post-draw-scroll {
+  min-height: 0;
+  overflow-y: auto;
+  padding: 8px 6px 14px;
+}
+
+.post-draw-keepsake-card {
+  width: 100%;
+  overflow: hidden;
+  border: 5px solid #9a633e;
+  border-radius: 22px;
+  background: #efd6a5;
+  color: #2d1b12;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, .3);
+}
+
+.post-draw-keepsake-card > header,
+.post-draw-question,
+.post-draw-blessing,
+.post-draw-contact {
+  margin-inline: 8px;
+  border: 0;
+  border-top: 1px solid rgba(116, 65, 31, .34);
+  background: transparent;
+}
+
+.post-draw-keepsake-card > header {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 0;
+  padding: 11px 9px 7px;
+  font: 800 16px/1.2 "Noto Serif TC", serif;
+}
+
+.post-draw-keepsake-card > header i { color: #8e382e; font-style: normal; }
+.post-draw-art { margin: 0 8px; aspect-ratio: 1 / .82; overflow: hidden; border-radius: 12px; background: #102b3a; }
+.post-draw-art img { width: 100%; height: 100%; object-fit: cover; object-position: var(--portrait-position, 50% 50%); transform: scale(var(--artwork-zoom, 1)); transform-origin: var(--artwork-origin, 50% 50%); }
+.post-draw-question { padding: 10px 9px; }
+.post-draw-question small, .post-draw-blessing > span { color: #8e382e; font-size: 8px; font-weight: 800; letter-spacing: .08em; }
+.post-draw-question p { margin: 5px 0 9px; font: 800 16px/1.35 "Noto Serif TC", serif; }
+.post-draw-question label, .post-draw-blessing { display: grid; gap: 5px; }
+.post-draw-question input, .post-draw-blessing textarea, .post-draw-contact input { width: 100%; min-width: 0; border: 1px solid #b58a55; border-radius: 9px; background: rgba(255, 249, 237, .72); color: #2d1b12; padding: 8px; font-size: 11px; }
+.post-draw-blessing { padding: 9px; }
+.post-draw-blessing textarea { min-height: 48px; resize: vertical; }
+.post-draw-contact { padding: 8px 9px 10px; }
+.post-draw-contact summary { cursor: pointer; font-size: 11px; font-weight: 800; }
+.post-draw-contact > div { display: grid; gap: 8px; padding-top: 8px; }
+.post-draw-contact fieldset { min-width: 0; display: grid; gap: 6px; margin: 0; border: 0; padding: 0; }
+.post-draw-contact fieldset label { font-size: 10px; }
+.post-draw-adjust { width: 100%; min-height: 42px; margin-top: 8px; border: 1px solid #d4b579; border-radius: 11px; background: #102b3a; color: #fff8e9; font-weight: 800; }
+.post-draw-actions { display: grid; grid-template-columns: .7fr 1.5fr; gap: 8px; padding: 8px 10px max(8px, env(safe-area-inset-bottom)); border-top: 1px solid #b58a55; background: #fff8e9; }
+.post-draw-actions button { min-width: 0; border: 1px solid #8a6239; border-radius: 11px; background: #f4e3c4; color: #3f2a1d; font-weight: 800; }
+.post-draw-actions button:last-child { background: #102b3a; color: #fff8e9; }
+
+@media (prefers-reduced-motion: reduce) {
+  .swipe-card,
+  .swipe-card.is-returning,
+  .swipe-card.is-committing,
+  .v32-deck .stack-card {
+    transition: opacity .15s linear !important;
+    transform: none !important;
+  }
+}

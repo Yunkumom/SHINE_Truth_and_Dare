@@ -4,6 +4,61 @@ import test from "node:test";
 
 const source = (path) => readFile(new URL(path, import.meta.url), "utf8");
 
+test("v47 gives the direct keepsake preview the largest undistorted mobile layout", async () => {
+  const css = await source("../app/encounter/styles/v40.css");
+
+  assert.match(css, /\.direct-keepsake-canvas\s*\{[^}]*overflow-x:\s*hidden;[^}]*overflow-y:\s*auto;/s);
+  assert.match(css, /\.direct-keepsake-content\s*\{[^}]*min-height:\s*calc\(100% - 62px\);[^}]*height:\s*auto;/s);
+  assert.match(css, /\.direct-keepsake-preview\s*\{[^}]*width:\s*100%;[^}]*aspect-ratio:\s*63\s*\/\s*88;/s);
+  assert.doesNotMatch(css, /\.direct-keepsake-preview\s*\{[^}]*355px/s);
+});
+
+test("v47 implements the approved compact home and English-only gameplay brand", async () => {
+  const [home, app] = await Promise.all([source("../app/encounter/components/ModeHome.tsx"), source("../app/encounter/App.tsx")]);
+  assert.match(home, /破冰遊戲選擇/);
+  assert.doesNotMatch(home, /選擇這次想留下的方式|抽一張卡開始對話/);
+  assert.match(app, /TRUTH OR DARE/);
+  assert.doesNotMatch(app, /ENCOUNTER CARDS · V47|<h2>相遇卡<\/h2>/);
+});
+
+test("v47 has unique themed humorous blessings for all 42 governed artworks", async () => {
+  const copy = await source("../app/encounter/lib/artwork-copy.ts");
+  const themedSection = copy.split("const DEITY_MEANINGS")[0];
+  const entries = [...themedSection.matchAll(/'([^']+)':\s*\{\s*zh:\s*'([^']+)'/g)];
+  assert.equal(entries.length, 42);
+  assert.equal(new Set(entries.map(([, id]) => id)).size, 42);
+  assert.equal(new Set(entries.map(([, , zh]) => zh)).size, 42);
+  assert.match(copy, /保生大帝罩你，感冒看到你都自動繞路。/);
+  assert.match(copy, /健康守護/);
+});
+
+test("v47 keeps live play question-only and post-draw keepsakes editable but compact", async () => {
+  const [app, post] = await Promise.all([source("../app/encounter/App.tsx"), source("../app/encounter/components/PostDrawKeepsake.tsx")]);
+  assert.match(app, /className="mythic-text-panel"><CardQuestionOnly/);
+  assert.doesNotMatch(app, /className="mythic-text-panel">[^<]*\{questionManager\.showRealYou/s);
+  for (const token of ["今天的題目", "回答關鍵字", "交換聯絡方式（選填）", "<details", "下載／分享紀念卡"]) assert.match(post, new RegExp(token));
+  assert.match(post, /memory-only-answer-keywords/);
+});
+
+test("v47 card and question choices are drafts until saved", async () => {
+  const settings = await source("../app/encounter/components/MobileSettings.tsx");
+  assert.match(settings, /draftArtworkPreference/);
+  assert.match(settings, /draftManager/);
+  assert.match(settings, /取消/);
+  assert.match(settings, /儲存並套用/);
+  assert.match(settings, /onSave/);
+});
+
+test("v47 uses tactile deck depth and seamless rounded card styling", async () => {
+  const [deck, css] = await Promise.all([source("../app/encounter/components/SwipeDeck.tsx"), source("../app/encounter/styles/v47-ux.css")]);
+  assert.match(deck, /stack-three/);
+  assert.match(deck, /--swipe-progress/);
+  assert.match(css, /taiwan-meander/);
+  assert.match(css, /prefers-reduced-motion:\s*reduce/);
+  assert.match(css, /post-draw-keepsake-card/);
+  assert.match(css, /border-radius/);
+});
+
 test("v47 reserves mobile rows so card controls never cover the card", async () => {
   const [app, css] = await Promise.all([
     source("../app/encounter/App.tsx"),
@@ -49,12 +104,12 @@ test("v47 defaults the live card to question-only while keepsakes retain blessin
   assert.match(app, /showCardMeta:\s*false/);
   assert.match(app, /showBlessing:\s*false/);
   assert.match(app, /showFeatureNote:\s*false/);
-  assert.match(app, /questionManager\.showBlessing\s*&&\s*<BlessingText/);
+  assert.doesNotMatch(app, /className="mythic-text-panel">[^<]*\{questionManager\.showBlessing/s);
   assert.match(app, /keepsake-blessing/);
   assert.match(types, /showCardMeta:\s*boolean/);
   assert.match(types, /showBlessing:\s*boolean/);
   assert.match(types, /showFeatureNote:\s*boolean/);
-  for (const label of ["真正的你", "等級與卡型", "祝福", "台灣特色"]) assert.match(settings, new RegExp(label));
+  assert.match(settings, /遊戲卡固定只顯示題目/);
 });
 
 test("v47 exposes the two-level quick deck selector beside the draw flow", async () => {
