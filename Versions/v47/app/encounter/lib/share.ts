@@ -134,7 +134,7 @@ interface ShareTarget {
 
 export async function deliverCardFile(file: File, target: ShareTarget = navigator): Promise<'shared' | 'downloaded' | 'cancelled'> {
   if (target.share && (!target.canShare || target.canShare({ files: [file] }))) {
-    try { await target.share({ files: [file], title: 'Encounter Cards V47' }); return 'shared' }
+    try { await target.share({ files: [file], title: 'TRUTH OR DARE · V47' }); return 'shared' }
     catch (error) { if (error instanceof DOMException && error.name === 'AbortError') return 'cancelled' }
   }
   const url = URL.createObjectURL(file)

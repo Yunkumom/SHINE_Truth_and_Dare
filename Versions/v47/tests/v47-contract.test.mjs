@@ -14,11 +14,13 @@ test("v47 gives the direct keepsake preview the largest undistorted mobile layou
 });
 
 test("v47 implements the approved compact home and English-only gameplay brand", async () => {
-  const [home, app, directExport, sharedExport] = await Promise.all([
+  const [home, app, directExport, sharedExport, html, manifest] = await Promise.all([
     source("../app/encounter/components/ModeHome.tsx"),
     source("../app/encounter/App.tsx"),
     source("../app/encounter/lib/direct-keepsake.ts"),
     source("../app/encounter/lib/share.ts"),
+    source("../app/encounter/index.html"),
+    source("../app/encounter/public/manifest.webmanifest"),
   ]);
   assert.match(home, /破冰遊戲選擇/);
   assert.doesNotMatch(home, /選擇這次想留下的方式|抽一張卡開始對話/);
@@ -26,6 +28,8 @@ test("v47 implements the approved compact home and English-only gameplay brand",
   assert.doesNotMatch(app, /ENCOUNTER CARDS · V47|<h2>相遇卡<\/h2>/);
   assert.doesNotMatch(app, /讓一次簡單的對話，成為值得收藏的相遇。|抽一張相遇卡|準備這次相遇/);
   assert.doesNotMatch(`${app}\n${directExport}\n${sharedExport}`, /相遇紀念卡|給這次相遇的祝福/);
+  assert.match(`${html}\n${manifest}\n${sharedExport}`, /TRUTH OR DARE · V47/);
+  assert.doesNotMatch(`${html}\n${manifest}\n${sharedExport}`, /Encounter Cards/);
 });
 
 test("v47 has unique themed humorous blessings for all 42 governed artworks", async () => {
