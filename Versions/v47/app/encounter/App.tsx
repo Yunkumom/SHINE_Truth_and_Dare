@@ -7,6 +7,7 @@ import ModeHome from './components/ModeHome'
 import MobileSettings from './components/MobileSettings'
 import SwipeDeck from './components/SwipeDeck'
 import TaiwanReveal from './components/TaiwanReveal'
+import TaiwanFoodJourney from './components/TaiwanFoodJourney'
 import taiwanCardBack from './assets/taiwan-card-back.png'
 import { blessings } from './data/blessings'
 import { cards } from './data/cards'
@@ -37,6 +38,7 @@ import './styles/v36.css'
 import './styles/v37.css'
 import './styles/v40.css'
 import './styles/v47-ux.css'
+import './styles/taiwan-food-journey.css'
 
 const copy = {
   zh: { heading: '讓一次簡單的對話，成為值得收藏的相遇。', subheading: 'Turn a simple conversation into a meeting worth keeping.', lead: '抽一張相遇卡，回答一個溫柔的問題，再把祝福送給今天認識的人。', leadEn: 'Draw a card, share an answer, and keep a blessing from today.', begin: '開始抽卡 · Begin', draw: '抽一張卡', next: '下一張', share: '製作紀念卡', back: '返回設定', install: 'iPhone：Safari → 分享 → 加入主畫面' },
@@ -94,7 +96,7 @@ export default function App() {
   const [desktopMode, setDesktopMode] = useState<'settings' | 'test'>('settings')
   const [directManipulation, setDirectManipulation] = useState(true)
   const [settingsOpen, setSettingsOpen] = useState(false)
-  const [mobileDestination, setMobileDestination] = useState<'home' | 'setup' | 'keepsake-maker'>('home')
+  const [mobileDestination, setMobileDestination] = useState<'home' | 'setup' | 'keepsake-maker' | 'food-journey'>('home')
   const [artworkAdjusterOpen, setArtworkAdjusterOpen] = useState(false)
   const [artworkPreference, setArtworkPreference] = useState<ArtworkPreference>({ mode: 'random', collectionId: DEFAULT_COLLECTION_ID })
   const [questionManager, setQuestionManager] = useState<SessionQuestionManagerState>(initialManagerState)
@@ -148,6 +150,7 @@ export default function App() {
   function goToSetup() { setPlaying(false); setKeepsakeOpen(false); setSettingsOpen(false); setArtworkAdjusterOpen(false); setMobileDestination('setup'); if (desktopMode === 'settings') { setEditorScreen('setup'); setSelectedBlock('hero') } }
   function goToModeHome() { goToSetup(); if (!desktopWorkspace) setMobileDestination('home') }
   function chooseTruthOrDare() { setMode('random'); goToSetup() }
+  function chooseFoodJourney() { setPlaying(false); setKeepsakeOpen(false); setSettingsOpen(false); setMobileDestination('food-journey') }
   function changeBlock(screen: LayoutScreen, id: string, patch: Partial<LayoutBlock>) { setLayoutHistory(history => applyLayoutChange(history, screen, id, patch)) }
   function block(screen: LayoutScreen, id: string, children: React.ReactNode, className = '') {
     return <EditableBlock key={`${screen}-${id}`} id={id} block={layoutHistory.present.screens[screen][id]} editing={editingActive && editorScreen === screen} selected={editingActive && editorScreen === screen && selectedBlock === id} directManipulation={directManipulation} canvasScale={desktopWorkspace ? desktopScales.workbench : 1} snap={snap} onSelect={() => setSelectedBlock(id)} onChange={patch => changeBlock(screen, id, patch)} className={className}>{children}</EditableBlock>
@@ -222,9 +225,11 @@ export default function App() {
 
   const standardScreen = activeScreen === 'setup' ? setupScreen : activeScreen === 'game' ? gameScreen : keepsakeScreen
   const specialMobileScreen = !desktopWorkspace && mobileDestination === 'home'
-    ? <ModeHome language={language} onChooseKeepsake={() => { setPlaying(false); setKeepsakeOpen(false); setMobileDestination('keepsake-maker') }} onChooseTruthOrDare={chooseTruthOrDare} />
+    ? <ModeHome language={language} onChooseKeepsake={() => { setPlaying(false); setKeepsakeOpen(false); setMobileDestination('keepsake-maker') }} onChooseTruthOrDare={chooseTruthOrDare} onChooseFoodJourney={chooseFoodJourney} />
     : !desktopWorkspace && mobileDestination === 'keepsake-maker'
       ? <DirectKeepsake language={language} artworks={ALL_ARTWORKS} collections={ARTWORK_COLLECTIONS} blessings={blessings} onBack={goToModeHome} onStatus={setStatus} />
+      : !desktopWorkspace && mobileDestination === 'food-journey'
+        ? <TaiwanFoodJourney language={language} onBack={goToModeHome} />
       : null
   const screen = specialMobileScreen ?? standardScreen
   const shellName = specialMobileScreen ? mobileDestination : activeScreen

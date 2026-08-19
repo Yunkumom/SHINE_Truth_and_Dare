@@ -1,0 +1,22 @@
+{
+  "collection": "taiwan-food-journey",
+  "version": 47,
+  "created": "2026-08-19",
+  "generator": "OpenAI built-in image generation tool",
+  "master": {
+    "path": "taiwan-food-journey-master-v47.png",
+    "format": "png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "dd661c3bf9445c168f63a1ba02ff034dd5243549774e6317fc6eeaeda87649c5"
+  },
+  "runtime": {
+    "path": "../../../../Versions/v47/app/encounter/assets/taiwan-food-journey-v47.webp",
+    "format": "webp",
+    "width": 1536,
+    "height": 1024,
+    "quality": 84,
+    "sha256": "d2923b6151a10c37588032ace2b717b67fca9b494d10e52e862dbe2005a0cae3"
+  },
+  "privacy": "No people, personal data, shop names, logos, or third-party source images."
+}
