@@ -5,6 +5,7 @@ import { calculateSwipePose, decideSwipeRelease } from '../lib/swipe-deck'
 interface SwipeDeckProps {
   revealed: boolean
   onDraw: () => void
+  onAdvance: () => void
   children: ReactNode
 }
 
@@ -17,7 +18,7 @@ interface GestureState {
 
 const IDLE_POSE = { x: 0, y: 0, rotation: 0, progress: 0 }
 
-export default function SwipeDeck({ revealed, onDraw, children }: SwipeDeckProps) {
+export default function SwipeDeck({ revealed, onDraw, onAdvance, children }: SwipeDeckProps) {
   const [pose, setPose] = useState(IDLE_POSE)
   const [returning, setReturning] = useState(false)
   const [committing, setCommitting] = useState(false)
@@ -61,7 +62,7 @@ export default function SwipeDeck({ revealed, onDraw, children }: SwipeDeckProps
       active.committed = true
       setCommitting(true)
       setPose(calculateSwipePose({ dx: event.clientX - active.startX, dy: -Math.max(rect.height || 562, 562), cardWidth: rect.width || 400, cardHeight: rect.height || 562 }))
-      commitTimer.current = window.setTimeout(onDraw, 180)
+      commitTimer.current = window.setTimeout(revealed ? onAdvance : onDraw, 180)
     } else if (decision === 'return') {
       setReturning(true)
       setPose(IDLE_POSE)

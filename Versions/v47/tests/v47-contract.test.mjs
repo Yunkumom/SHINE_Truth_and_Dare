@@ -70,6 +70,18 @@ test("v47 uses tactile deck depth and seamless rounded card styling", async () =
   assert.match(css, /border-radius/);
 });
 
+test("v47 resets a swiped revealed card to a face-down replacement deck", async () => {
+  const [app, deck] = await Promise.all([
+    source("../app/encounter/App.tsx"),
+    source("../app/encounter/components/SwipeDeck.tsx"),
+  ]);
+
+  assert.match(app, /function prepareNextDeck\(\)\s*\{[\s\S]*setCurrent\(null\);\s*setRevealed\(false\)/);
+  assert.match(app, /<SwipeDeck[\s\S]*onAdvance=\{prepareNextDeck\}/);
+  assert.match(deck, /onAdvance:\s*\(\)\s*=>\s*void/);
+  assert.match(deck, /revealed\s*\?\s*onAdvance\s*:\s*onDraw/);
+});
+
 test("v47 reserves mobile rows so card controls never cover the card", async () => {
   const [app, css] = await Promise.all([
     source("../app/encounter/App.tsx"),
