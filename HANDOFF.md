@@ -31,6 +31,12 @@ The root launchers read `Versions/releases.json` and open v46. They must not ope
 
 `HANDOFF.md` 是整理後且已核准之擁有者需求與後續執行指示的標準位置；內容必須明確、有順序、可驗證，並詳細到較弱模型也能在不猜測的情況下執行。`AGENTS.md` 僅保留基礎操作步驟、安全規則、閱讀順序、模型閘門、repository 結構與回覆規範，不記錄個別功能需求。
 
+### Approved Firebase deployment preference / 已核准 Firebase 部署偏好
+
+For future owner-approved Truth-or-Dare changes, deploy the validated scoped build directly to its configured Firebase Hosting target and report every resulting public URL; this standing preference does not authorize promotion of `latestVerified`, deployment to a different Firebase project or site, or changes to privacy, backend, analytics, or external accounts beyond the selected Hosting release.
+
+未來凡是擁有者已核准的 Truth-or-Dare 變更，請直接將已驗證且範圍明確的建置部署至其設定的 Firebase Hosting target，並回報所有產生的公開網址；此持續偏好不授權 promotion `latestVerified`、部署至不同 Firebase project 或 site，亦不授權變更隱私、backend、analytics 或選定 Hosting release 以外的外部帳號。
+
 Use the strongest available model for owner design discussions. After approval, record the decision and a complete implementation sequence here so execution can be delegated to a less capable model while preserving intent, constraints, exact files, checks, and upgrade conditions.
 
 與擁有者進行設計討論時使用目前最強模型。核准後，將決策與完整實作順序記錄於此，使能力較弱的模型仍能保留意圖、限制、精確檔案、檢查方式與升級條件來執行。
