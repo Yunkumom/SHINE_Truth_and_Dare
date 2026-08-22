@@ -31,6 +31,30 @@ The root launchers read `Versions/releases.json` and open v46. They must not ope
 
 `HANDOFF.md` 是整理後且已核准之擁有者需求與後續執行指示的標準位置；內容必須明確、有順序、可驗證，並詳細到較弱模型也能在不猜測的情況下執行。`AGENTS.md` 僅保留基礎操作步驟、安全規則、閱讀順序、模型閘門、repository 結構與回覆規範，不記錄個別功能需求。
 
+### Approved modular card-content architecture / 已核准的模組化卡片內容架構
+
+Treat the product as three independent reusable asset layers plus a generated card composition; do not merge an artwork theme, a question collection, or a visual card template into one inseparable card package.
+
+產品由三個彼此獨立且可重複使用的資產層，以及一個產生出的卡片組合構成；不得把圖片主題、問題集或視覺卡片模板綁成無法拆分的單一卡包。
+
+1. **Artwork Library / 圖庫** owns governed visual collections such as zodiac, deities, food, and animals, including stable artwork IDs, names, categories, masters, runtime derivatives, and provenance; artwork must remain reusable across different question sets and card designs.
+2. **Question Set / 問題集** owns continually extensible question collections, categories, language variants, levels, and prompt types; questions must remain independent of artwork and visual layout, with `Library/Questions/SHINE_QUESTION_BOOK.md` retained as the canonical owner-supplied question source where applicable.
+3. **Card Design / 卡片設計** owns presentation rules such as dimensions, front/back structure, typography, borders, spacing, artwork placement, and question placement; a card design must not own or duplicate the underlying artwork or question content.
+4. **Card Composition / 卡片組合** is the generated result of `one artwork reference + one question reference + one card-design reference`; it is an output or play-state object rather than a fourth reusable content library.
+5. Adding or revising an artwork library must not require copying or rewriting question sets or card designs; adding or revising a question set must not require duplicating artwork; adding or revising a card design must not alter governed artwork masters or canonical question text.
+6. Selection interfaces must expose the three concerns separately when users need control: choose an artwork library or artwork, choose a question set or question, and choose a card design; the resulting card preview or live card then renders the selected composition.
+7. Pairing policy may be random, owner-curated, or user-selected for a specific experience, but that policy belongs to composition or mode configuration and must not destroy the independence of the three asset layers.
+8. Future implementation should use stable references between layers, preserve Library-to-runtime image provenance, preserve canonical question ownership, and verify independence with at least one scenario in which the same artwork is used with two question sets and one scenario in which the same question is rendered with two card designs.
+
+1. **圖庫 / Artwork Library** 管理星座、神祇、美食、動物等受治理的視覺集合，以及穩定的圖片 ID、名稱、分類、master、runtime 衍生檔與來源紀錄；圖片必須能跨不同問題集與卡片設計重複使用。
+2. **問題集 / Question Set** 管理可持續增加的問題集合、分類、語言版本、等級與題型；問題必須獨立於圖片與視覺版面，適用時仍以 `Library/Questions/SHINE_QUESTION_BOOK.md` 作為擁有者提供問題的 canonical source。
+3. **卡片設計 / Card Design** 管理尺寸、正反面結構、字體、邊框、間距、圖片位置與問題位置等呈現規則；卡片設計不得擁有或複製底層圖片與問題內容。
+4. **卡片組合 / Card Composition** 是由 `一個圖片 reference + 一個問題 reference + 一個卡片設計 reference` 產生的結果；它是輸出或遊戲狀態物件，不是第四個可重複使用的內容庫。
+5. 新增或修改圖庫時，不得要求複製或重寫問題集與卡片設計；新增或修改問題集時，不得要求複製圖片；新增或修改卡片設計時，不得改動受治理的圖片 master 或 canonical 問題文字。
+6. 當使用者需要控制時，選擇介面必須分開呈現三個面向：選擇圖庫或圖片、選擇問題集或問題，以及選擇卡片設計；卡片預覽或實際遊戲卡再渲染所選的卡片組合。
+7. 特定體驗的配對方式可以是隨機、擁有者策展或使用者選擇，但該規則屬於卡片組合或模式設定，不得破壞三個資產層的獨立性。
+8. 未來實作應在各層之間使用穩定 reference、保留 Library-to-runtime 圖片來源追溯、保留 canonical 問題所有權，並至少驗證一個「同一圖片搭配兩個問題集」以及一個「同一問題使用兩種卡片設計」的獨立性情境。
+
 ### Approved Firebase deployment preference / 已核准 Firebase 部署偏好
 
 For future owner-approved Truth-or-Dare changes, deploy the validated scoped build directly to its configured Firebase Hosting target and report every resulting public URL; this standing preference does not authorize promotion of `latestVerified`, deployment to a different Firebase project or site, or changes to privacy, backend, analytics, or external accounts beyond the selected Hosting release.
