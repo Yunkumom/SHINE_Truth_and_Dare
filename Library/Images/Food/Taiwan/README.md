@@ -5,6 +5,7 @@
 - Governed master: `taiwan-food-journey-master-v47.png`
 - Runtime derivative: `../../../../Versions/v47/app/encounter/assets/taiwan-food-journey-v47.webp`
 - Manifest: `manifest.json`
+- Individual dish masters: `individual-v47/` (25 portrait PNG files with their own README and manifest)
 
 ## Provenance
 

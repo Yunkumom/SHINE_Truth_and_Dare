@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import type { KeyboardEvent } from 'react'
-import foodJourneyArt from '../assets/taiwan-food-journey-v47.webp'
+import { TAIWAN_FOOD_ART } from '../data/taiwan-food-art'
 import { TAIWAN_FOOD_CARDS, TAIWAN_FOOD_PROMPTS, TAIWAN_FOOD_REGIONS } from '../data/taiwan-food-cards'
 import type { Language, LocalizedFoodText, TaiwanFoodCard, TaiwanFoodRegion } from '../types'
 
@@ -49,6 +49,12 @@ function allergenText(id: string, language: Language) {
 function faceLabel(card: TaiwanFoodCard, flipped: boolean, language: Language) {
   if (language === 'en') return `${flipped ? 'Back' : 'Front'} of ${card.name.en}`
   return `${card.name.zh}${flipped ? '背面' : '正面'}`
+}
+
+function artworkAlt(card: TaiwanFoodCard, language: Language) {
+  if (language === 'en') return `Watercolor travel-journal illustration of ${card.name.en}`
+  if (language === 'zh') return `${card.name.zh}水彩旅行誌插畫`
+  return `${card.name.zh}水彩旅行誌插畫 · Watercolor travel-journal illustration of ${card.name.en}`
 }
 
 export default function TaiwanFoodJourney({ language, onBack }: TaiwanFoodJourneyProps) {
@@ -122,7 +128,7 @@ export default function TaiwanFoodJourney({ language, onBack }: TaiwanFoodJourne
         <div role="button" tabIndex={0} className="food-card-flip" aria-label={faceLabel(current, flipped, language)} aria-pressed={flipped} onClick={toggleCardFace} onKeyDown={handleCardKeyDown}>
           <article className="food-card-face food-card-front" aria-hidden={flipped}>
             <div className="food-card-art">
-              <img src={foodJourneyArt} alt="台灣地方美食水彩旅行誌 · Illustrated Taiwan food travel journal" draggable="false" />
+              <img src={TAIWAN_FOOD_ART[current.id]} alt={artworkAlt(current, language)} draggable="false" />
               <span className="food-region-ribbon">{region.zh} · {region.en}</span>
             </div>
             <div className="food-card-front-copy">
@@ -158,7 +164,7 @@ export default function TaiwanFoodJourney({ language, onBack }: TaiwanFoodJourne
     <section className="print-only-food-deck" aria-hidden="true">
       {TAIWAN_FOOD_CARDS.map(card => <div className="food-print-pair" data-region={card.region} key={card.id}>
         <article className="food-print-card food-print-front">
-          <img src={foodJourneyArt} alt="" />
+          <img src={TAIWAN_FOOD_ART[card.id]} alt="" />
           <span>{TAIWAN_FOOD_REGIONS[card.region].zh} · {TAIWAN_FOOD_REGIONS[card.region].en}</span>
           <h2>{card.name.zh}</h2><h3>{card.name.en}</h3><p>{card.place.zh} · {card.place.en}</p><small>{String(card.number).padStart(2, '0')} / 25</small>
         </article>

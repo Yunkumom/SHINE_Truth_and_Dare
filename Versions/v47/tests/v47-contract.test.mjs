@@ -222,3 +222,36 @@ test("v47 Taiwan food cards preserve 63 by 88 ratio and accessible print styling
   assert.match(css, /--food-trim-height:\s*88mm/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
 });
+
+test("v47 human-nature collection adds 20 bilingual philosophy scenarios", async () => {
+  const [data, canonical, runtimeMarkdown] = await Promise.all([
+    source("../app/encounter/data/shine-question-book.ts"),
+    source("../../../Library/Questions/SHINE_QUESTION_BOOK.md"),
+    source("../app/encounter/assets/questions/SHINE_QUESTION_BOOK.md"),
+  ]);
+  assert.equal([...data.matchAll(/number:\s*\d+/g)].length, 82);
+  for (let number = 63; number <= 82; number += 1) {
+    assert.match(data, new RegExp(`number: ${number},`));
+  }
+  for (const theme of ["TROLLEY", "SELF-SACRIFICE", "GHOSTS", "FREE WILL"]) {
+    assert.match(data, new RegExp(theme));
+  }
+  assert.match(canonical, /共 82 張不重複卡片/);
+  assert.match(canonical, /列車難題/);
+  assert.match(canonical, /你相信有鬼嗎/);
+  assert.equal(canonical, runtimeMarkdown);
+});
+
+test("v47 individual food art maps every dish to a separate bundled image", async () => {
+  const [art, journey] = await Promise.all([
+    source("../app/encounter/data/taiwan-food-art.ts"),
+    source("../app/encounter/components/TaiwanFoodJourney.tsx"),
+  ]);
+  assert.equal([...art.matchAll(/import food\d{2} from '\.\.\/assets\/food-v47\//g)].length, 25);
+  const mappedIds = [...art.matchAll(/'food-[^']+':\s*food\d{2}/g)];
+  assert.equal(mappedIds.length, 25);
+  assert.equal(new Set(mappedIds.map(([mapping]) => mapping)).size, 25);
+  assert.match(journey, /TAIWAN_FOOD_ART\[current\.id\]/);
+  assert.match(journey, /TAIWAN_FOOD_ART\[card\.id\]/);
+  assert.doesNotMatch(journey, /taiwan-food-journey-v47\.webp/);
+});
