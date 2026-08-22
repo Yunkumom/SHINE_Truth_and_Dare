@@ -51,3 +51,11 @@ export const TAIWAN_FOOD_ART: Readonly<Record<string, string>> = {
   'art-food-offshore-kinmen-peanut-candy': food24,
   'art-food-offshore-matsu-fish-noodles': food25,
 }
+
+export const TAIWAN_FOOD_ART_FOCUS: Readonly<Record<string, { x: number, y: number }>> = {
+  'art-food-north-beef-noodles': { x: 50, y: 44 },
+}
+
+export function taiwanFoodArtworkFocus(id: string) {
+  return TAIWAN_FOOD_ART_FOCUS[id] ?? { x: 50, y: 50 }
+}

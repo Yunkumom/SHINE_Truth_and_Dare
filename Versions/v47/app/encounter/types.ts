@@ -171,7 +171,7 @@ export interface TaiwanFoodCardCompositionSpec {
 export interface TaiwanFoodCardComposition {
   id: string
   subject: TaiwanFoodSubject
-  artwork: { id: string, src: string }
+  artwork: { id: string, src: string, focus: { x: number, y: number } }
   story: TaiwanFoodStory
   question: TaiwanFoodQuestion
   spicyQuestion: TaiwanFoodQuestion

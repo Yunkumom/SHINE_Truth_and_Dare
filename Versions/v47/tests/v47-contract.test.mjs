@@ -260,9 +260,11 @@ test("v47 human-nature collection adds 20 bilingual philosophy scenarios", async
 });
 
 test("v47 individual food art maps every dish to a separate bundled image", async () => {
-  const [art, journey] = await Promise.all([
+  const [art, compositions, journey, css] = await Promise.all([
     source("../app/encounter/data/taiwan-food-art.ts"),
+    source("../app/encounter/data/taiwan-food-compositions.ts"),
     source("../app/encounter/components/TaiwanFoodJourney.tsx"),
+    source("../app/encounter/styles/taiwan-food-journey.css"),
   ]);
   assert.equal([...art.matchAll(/import food\d{2} from '\.\.\/assets\/food-v47\//g)].length, 25);
   const mappedIds = [...art.matchAll(/'art-food-[^']+':\s*food\d{2}/g)];
@@ -270,5 +272,10 @@ test("v47 individual food art maps every dish to a separate bundled image", asyn
   assert.equal(new Set(mappedIds.map(([mapping]) => mapping)).size, 25);
   assert.match(journey, /current\.artwork\.src/);
   assert.match(journey, /card\.artwork\.src/);
+  assert.match(art, /TAIWAN_FOOD_ART_FOCUS/);
+  assert.match(art, /'art-food-north-beef-noodles':\s*\{\s*x:\s*50,\s*y:\s*44\s*\}/);
+  assert.match(compositions, /focus:\s*TAIWAN_FOOD_ART_FOCUS\[id\]/);
+  assert.equal([...journey.matchAll(/style=\{artworkPosition\(/g)].length, 2);
+  assert.doesNotMatch(css, /data-region=.*food-card-art img/);
   assert.doesNotMatch(journey, /taiwan-food-journey-v47\.webp/);
 });

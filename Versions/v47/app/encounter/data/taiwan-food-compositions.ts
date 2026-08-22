@@ -1,4 +1,4 @@
-import { TAIWAN_FOOD_ART } from './taiwan-food-art'
+import { TAIWAN_FOOD_ART, TAIWAN_FOOD_ART_FOCUS, taiwanFoodArtworkFocus } from './taiwan-food-art'
 import { TAIWAN_FOOD_CARD_DESIGNS } from './taiwan-food-card-designs'
 import { TAIWAN_FOOD_QUESTIONS } from './taiwan-food-questions'
 import { TAIWAN_FOOD_QUESTION_SETS } from './taiwan-food-question-sets'
@@ -343,7 +343,7 @@ function requiredById<T extends { id: string }>(items: readonly T[], id: string,
 
 export function composeTaiwanFoodCard(spec: TaiwanFoodCardCompositionSpec): TaiwanFoodCardComposition {
   const presentation = resolveCardPresentationLayers(spec, {
-    artworks: Object.entries(TAIWAN_FOOD_ART).map(([id, src]) => ({ id, src })),
+    artworks: Object.entries(TAIWAN_FOOD_ART).map(([id, src]) => ({ id, src, focus: TAIWAN_FOOD_ART_FOCUS[id] ?? taiwanFoodArtworkFocus(id) })),
     questions: TAIWAN_FOOD_QUESTIONS,
     questionSets: TAIWAN_FOOD_QUESTION_SETS,
     cardDesigns: TAIWAN_FOOD_CARD_DESIGNS,

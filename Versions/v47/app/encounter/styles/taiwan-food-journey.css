@@ -171,11 +171,6 @@
 
 .food-card-art { position: relative; overflow: hidden; background: var(--food-paper-deep); }
 .food-card-art img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center; filter: saturate(.9) contrast(.96); }
-.food-card-stage[data-region="north"] .food-card-art img { object-position: 15% 18%; }
-.food-card-stage[data-region="central"] .food-card-art img { object-position: 72% 16%; }
-.food-card-stage[data-region="south"] .food-card-art img { object-position: 83% 62%; }
-.food-card-stage[data-region="east"] .food-card-art img { object-position: 30% 58%; }
-.food-card-stage[data-region="offshore"] .food-card-art img { object-position: 52% 88%; }
 .food-card-art::after { content: ""; position: absolute; inset: auto 0 0; height: 42%; background: linear-gradient(transparent, rgba(255, 248, 233, .96)); }
 .food-region-ribbon { position: absolute; z-index: 2; top: 13px; left: 13px; border: 1px solid rgba(255, 255, 255, .8); border-radius: 999px; background: color-mix(in srgb, var(--food-region) 88%, var(--food-ink)); color: white; padding: 5px 9px; font: 800 8px/1 Georgia, "Noto Sans TC", sans-serif; letter-spacing: .08em; box-shadow: 0 4px 12px rgba(23, 52, 72, .2); }
 

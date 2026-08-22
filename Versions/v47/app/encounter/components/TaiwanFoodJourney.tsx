@@ -58,6 +58,10 @@ function artworkAlt(card: TaiwanFoodCardComposition, language: Language) {
   return `${card.subject.name.zh}水彩旅行誌插畫 · Watercolor travel-journal illustration of ${card.subject.name.en}`
 }
 
+function artworkPosition(card: TaiwanFoodCardComposition) {
+  return { objectPosition: `${card.artwork.focus.x}% ${card.artwork.focus.y}%` }
+}
+
 export default function TaiwanFoodJourney({ language, onBack }: TaiwanFoodJourneyProps) {
   const [selectedRegion, setSelectedRegion] = useState<RegionChoice>('all')
   const [drawnIds, setDrawnIds] = useState<string[]>([TAIWAN_FOOD_COMPOSITIONS[0].id])
@@ -129,7 +133,7 @@ export default function TaiwanFoodJourney({ language, onBack }: TaiwanFoodJourne
         <div role="button" tabIndex={0} className="food-card-flip" aria-label={faceLabel(current, flipped, language)} aria-pressed={flipped} onClick={toggleCardFace} onKeyDown={handleCardKeyDown}>
           <article className="food-card-face food-card-front" aria-hidden={flipped}>
             <div className="food-card-art">
-              <img src={current.artwork.src} alt={artworkAlt(current, language)} draggable="false" />
+              <img src={current.artwork.src} alt={artworkAlt(current, language)} style={artworkPosition(current)} draggable="false" />
               <span className="food-region-ribbon">{region.zh} · {region.en}</span>
             </div>
             <div className="food-card-front-copy">
@@ -165,7 +169,7 @@ export default function TaiwanFoodJourney({ language, onBack }: TaiwanFoodJourne
     <section className="print-only-food-deck" aria-hidden="true">
       {TAIWAN_FOOD_COMPOSITIONS.map(card => <div className="food-print-pair" data-region={card.subject.region} key={card.id}>
         <article className="food-print-card food-print-front">
-          <img src={card.artwork.src} alt="" />
+          <img src={card.artwork.src} alt="" style={artworkPosition(card)} />
           <span>{TAIWAN_FOOD_REGIONS[card.subject.region].zh} · {TAIWAN_FOOD_REGIONS[card.subject.region].en}</span>
           <h2>{card.subject.name.zh}</h2><h3>{card.subject.name.en}</h3><p>{card.subject.place.zh} · {card.subject.place.en}</p><small>{String(card.subject.number).padStart(2, '0')} / 25</small>
         </article>
