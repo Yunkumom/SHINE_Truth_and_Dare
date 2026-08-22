@@ -164,20 +164,37 @@ test("v47 battle requests exclude personal and answer fields by contract", async
   assert.equal(JSON.parse(hosting).r2, null);
 });
 
-test("v47 Taiwan food deck contains 25 sourced cards across five balanced regions", async () => {
-  const data = await source("../app/encounter/data/taiwan-food-cards.ts");
-  const ids = [...data.matchAll(/id:\s*'food-[^']+'/g)];
+test("v47 Taiwan food assets stay independent and meet the 25-card content contract", async () => {
+  const [subjects, stories, questions, sets, designs, compositions, journey] = await Promise.all([
+    source("../app/encounter/data/taiwan-food-subjects.ts"),
+    source("../app/encounter/data/taiwan-food-stories.ts"),
+    source("../app/encounter/data/taiwan-food-questions.ts"),
+    source("../app/encounter/data/taiwan-food-question-sets.ts"),
+    source("../app/encounter/data/taiwan-food-card-designs.ts"),
+    source("../app/encounter/data/taiwan-food-compositions.ts"),
+    source("../app/encounter/components/TaiwanFoodJourney.tsx"),
+  ]);
+  const ids = [...subjects.matchAll(/id:\s*'food-[^']+'/g)];
   assert.equal(ids.length, 25);
   assert.equal(new Set(ids.map(([id]) => id)).size, 25);
   for (const region of ["north", "central", "south", "east", "offshore"]) {
-    assert.equal([...data.matchAll(new RegExp(`region: '${region}'`, "g"))].length, 5);
+    assert.equal([...subjects.matchAll(new RegExp(`region: '${region}'`, "g"))].length, 5);
   }
   for (const promptType of ["taste-talk", "food-dare", "travel-surprise"]) {
-    assert.match(data, new RegExp(`promptType: '${promptType}'`));
+    assert.match(questions, new RegExp(`promptType: '${promptType}'`));
   }
-  assert.equal([...data.matchAll(/spicy:\s*\{/g)].length, 25);
-  assert.equal([...data.matchAll(/allergens:\s*\[/g)].length, 25);
-  assert.equal([...data.matchAll(/sourceUrl:\s*'https:\/\/eng\.taiwan\.net\.tw\//g)].length, 25);
+  assert.equal([...subjects.matchAll(/allergens:\s*\[/g)].length, 25);
+  assert.equal([...stories.matchAll(/sourceUrl:\s*'https:\/\/eng\.taiwan\.net\.tw\//g)].length, 25);
+  assert.equal([...questions.matchAll(/audience:\s*'optional-spicy'/g)].length, 25);
+  assert.match(sets, /questionIds:/);
+  assert.doesNotMatch(sets, /text:\s*\{/);
+  assert.match(designs, /food-travel-journal-v47/);
+  assert.doesNotMatch(compositions, /(?:text|note|sourceUrl|imageSrc):\s*/);
+  assert.equal([...compositions.matchAll(/subjectId:\s*'food-[^']+'/g)].length, 25);
+  assert.match(compositions, /resolveTaiwanFoodComposition/);
+  assert.match(compositions, /composeTaiwanFoodCard/);
+  assert.match(journey, /TAIWAN_FOOD_COMPOSITIONS/);
+  assert.doesNotMatch(journey, /TAIWAN_FOOD_CARDS/);
 });
 
 test("v47 Taiwan food journey is a third memory-only home experience", async () => {
@@ -207,7 +224,7 @@ test("v47 Taiwan food journey supports region filtering, all prompt types, and p
   assert.match(journey, /aria-pressed/);
   assert.match(journey, /onKeyDown/);
   assert.match(journey, /aria-hidden=\{flipped\}/);
-  assert.match(journey, /language === 'en' \? current\.name\.en : current\.name\.zh/);
+  assert.match(journey, /language === 'en' \? current\.subject\.name\.en : current\.subject\.name\.zh/);
 });
 
 test("v47 Taiwan food cards preserve 63 by 88 ratio and accessible print styling", async () => {
@@ -248,10 +265,10 @@ test("v47 individual food art maps every dish to a separate bundled image", asyn
     source("../app/encounter/components/TaiwanFoodJourney.tsx"),
   ]);
   assert.equal([...art.matchAll(/import food\d{2} from '\.\.\/assets\/food-v47\//g)].length, 25);
-  const mappedIds = [...art.matchAll(/'food-[^']+':\s*food\d{2}/g)];
+  const mappedIds = [...art.matchAll(/'art-food-[^']+':\s*food\d{2}/g)];
   assert.equal(mappedIds.length, 25);
   assert.equal(new Set(mappedIds.map(([mapping]) => mapping)).size, 25);
-  assert.match(journey, /TAIWAN_FOOD_ART\[current\.id\]/);
-  assert.match(journey, /TAIWAN_FOOD_ART\[card\.id\]/);
+  assert.match(journey, /current\.artwork\.src/);
+  assert.match(journey, /card\.artwork\.src/);
   assert.doesNotMatch(journey, /taiwan-food-journey-v47\.webp/);
 });

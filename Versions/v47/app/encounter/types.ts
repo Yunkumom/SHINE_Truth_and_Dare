@@ -115,18 +115,66 @@ export interface LocalizedFoodText {
   en: string
 }
 
-export interface TaiwanFoodCard {
+export interface TaiwanFoodSubject {
   id: string
   number: number
   classic: boolean
   region: TaiwanFoodRegion
   place: LocalizedFoodText
   name: LocalizedFoodText
-  note: LocalizedFoodText
   flavors: { zh: string[], en: string[] }
   allergens: string[]
-  promptType: TaiwanFoodPromptType
-  prompt: LocalizedFoodText
-  spicy: LocalizedFoodText
+}
+
+export interface TaiwanFoodStory {
+  id: string
+  subjectId: string
+  text: LocalizedFoodText
   sourceUrl: string
+}
+
+export type TaiwanFoodQuestionAudience = 'standard' | 'optional-spicy'
+
+export interface TaiwanFoodQuestion {
+  id: string
+  promptType: TaiwanFoodPromptType
+  audience: TaiwanFoodQuestionAudience
+  text: LocalizedFoodText
+}
+
+export interface TaiwanFoodQuestionSet {
+  id: string
+  name: LocalizedFoodText
+  audience: TaiwanFoodQuestionAudience
+  questionIds: readonly string[]
+}
+
+export interface TaiwanFoodCardDesign {
+  id: string
+  name: LocalizedFoodText
+  aspectRatio: string
+  frontLayout: string
+  backLayout: string
+}
+
+export interface TaiwanFoodCardCompositionSpec {
+  id: string
+  subjectId: string
+  artworkId: string
+  storyId: string
+  questionId: string
+  spicyQuestionId: string
+  questionSetIds: readonly string[]
+  cardDesignId: string
+}
+
+export interface TaiwanFoodCardComposition {
+  id: string
+  subject: TaiwanFoodSubject
+  artwork: { id: string, src: string }
+  story: TaiwanFoodStory
+  question: TaiwanFoodQuestion
+  spicyQuestion: TaiwanFoodQuestion
+  questionSets: readonly TaiwanFoodQuestionSet[]
+  cardDesign: TaiwanFoodCardDesign
 }
