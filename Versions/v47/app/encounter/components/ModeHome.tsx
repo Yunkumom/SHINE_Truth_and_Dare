@@ -1,10 +1,9 @@
 import type { Language } from '../types'
+import SurfaceMenu from './SurfaceMenu'
+import type { SurfaceMenuNavigationProps } from './SurfaceMenu'
 
-interface ModeHomeProps {
+interface ModeHomeProps extends SurfaceMenuNavigationProps {
   language: Language
-  onChooseKeepsake: () => void
-  onChooseTruthOrDare: () => void
-  onChooseFoodJourney: () => void
 }
 
 const labels = {
@@ -16,15 +15,15 @@ const labels = {
   },
 }
 
-export default function ModeHome({ language, onChooseKeepsake, onChooseTruthOrDare, onChooseFoodJourney }: ModeHomeProps) {
+export default function ModeHome({ language, onChooseKeepsake, onChooseTruthOrDare, onChooseFoodJourney, ...navigation }: ModeHomeProps) {
   const text = language === 'en' ? labels.en : labels.zh
   return <section className="mode-home-canvas has-three-experiences" aria-label="選擇模式 · Choose an experience">
     <header className="mode-home-header">
       <div className="mode-home-brand"><span aria-hidden="true">✦</span><b>TRUTH OR DARE</b></div>
-      <span className="mode-home-step">01 / 03</span>
+      <SurfaceMenu {...navigation} onChooseKeepsake={onChooseKeepsake} onChooseTruthOrDare={onChooseTruthOrDare} onChooseFoodJourney={onChooseFoodJourney} />
     </header>
     <div className="mode-home-intro">
-      <h1>{text.title}</h1>
+      <h1>{text.title} · V47</h1>
     </div>
     <div className="experience-grid">
       <button type="button" className="experience-card is-primary" onClick={onChooseKeepsake}>

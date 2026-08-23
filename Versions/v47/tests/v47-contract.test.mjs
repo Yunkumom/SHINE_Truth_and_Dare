@@ -42,15 +42,34 @@ test("v47 keeps direct keepsake tools compact and exports true rounded PNG corne
     source("../app/encounter/lib/direct-keepsake.ts"),
   ]);
 
-  assert.match(component, /cardMenuOpen/);
-  assert.match(component, /<button[^\n]*aria-label="卡片工具 · Card tools"[^\n]*>☰<\/button>/);
-  assert.match(component, /className="direct-card-menu"[\s\S]*選擇卡片[\s\S]*上傳照片[\s\S]*調整圖片大小與位置/);
+  assert.match(component, /<SurfaceMenu[\s\S]*選擇卡片[\s\S]*上傳照片[\s\S]*調整圖片大小與位置[\s\S]*<\/SurfaceMenu>/);
   assert.doesNotMatch(component, /className="direct-photo-actions"/);
   assert.match(css, /\.direct-keepsake-preview\.taiwan-meander::after\s*\{[^}]*content:\s*none;/s);
   assert.match(css, /\.direct-keepsake-controls\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)\s+auto;/s);
   assert.match(directExport, /context\.clearRect\(0,\s*0,\s*canvas\.width,\s*canvas\.height\)/);
   assert.match(directExport, /drawRoundedPanel\(context,\s*layout\.card,\s*'#efd6a5',\s*66\)/);
   assert.doesNotMatch(directExport, /fillRect\(0,\s*0,\s*canvas\.width,\s*canvas\.height\)|strokeRect\(x,\s*25,\s*12,\s*12\)/);
+});
+
+test("v47 opens phone-first and offers one surface menu with a desktop showcase", async () => {
+  const [app, menu, home, direct, food, css] = await Promise.all([
+    source("../app/encounter/App.tsx"),
+    source("../app/encounter/components/SurfaceMenu.tsx"),
+    source("../app/encounter/components/ModeHome.tsx"),
+    source("../app/encounter/components/DirectKeepsake.tsx"),
+    source("../app/encounter/components/TaiwanFoodJourney.tsx"),
+    source("../app/encounter/styles/v47-ux.css"),
+  ]);
+
+  assert.match(app, /useState<SurfaceMode>\('phone'\)/);
+  assert.doesNotMatch(app, /setDesktopWorkspace\(!forcedMobileSurface\s*&&\s*window\.innerWidth\s*>=\s*1100\)/);
+  assert.match(app, /surfaceMode\s*===\s*'showcase'[\s\S]*desktop-showcase/);
+  assert.match(menu, /iPhone 17 Pro Max[\s\S]*桌面展示[\s\S]*進階工作室/);
+  assert.match(menu, /直接製作紀念卡[\s\S]*真心話大冒險[\s\S]*台灣美食旅行/);
+  assert.match(home, /title:\s*'破冰遊戲選擇'[\s\S]*title:\s*'CHOOSE AN ICEBREAKER'[\s\S]*<h1>\{text\.title\} · V47<\/h1>/);
+  assert.match(direct, /<SurfaceMenu[\s\S]*選擇卡片[\s\S]*上傳照片[\s\S]*調整圖片大小與位置/);
+  assert.match(food, /<SurfaceMenu[\s\S]*列印 25 張卡/);
+  assert.match(css, /\.desktop-showcase\s*\{[^}]*grid-template-columns:/s);
 });
 
 test("v47 implements the approved compact home and English-only gameplay brand", async () => {

@@ -7,8 +7,10 @@ import { DEFAULT_ARTWORK_PRESENTATION } from '../presentation/presentation-model
 import type { ArtworkPresentation } from '../presentation/presentation-model'
 import { adjustedPortraitFocus, portraitObjectPosition } from '../lib/portrait-focus'
 import { artworkTitle, themedBlessingForArtwork } from '../lib/artwork-copy'
+import SurfaceMenu from './SurfaceMenu'
+import type { SurfaceMenuNavigationProps } from './SurfaceMenu'
 
-interface DirectKeepsakeProps {
+interface DirectKeepsakeProps extends SurfaceMenuNavigationProps {
   language: Language
   artworks: readonly ArtworkVariant[]
   collections: readonly ArtworkCollection[]
@@ -17,10 +19,9 @@ interface DirectKeepsakeProps {
   onStatus: (message: string) => void
 }
 
-export default function DirectKeepsake({ language, artworks, collections, blessings, onBack, onStatus }: DirectKeepsakeProps) {
+export default function DirectKeepsake({ language, artworks, collections, blessings, onBack, onStatus, ...navigation }: DirectKeepsakeProps) {
   const [artwork, setArtwork] = useState<ArtworkVariant>(artworks[0])
   const [uploaded, setUploaded] = useState<{ url: string, name: string } | null>(null)
-  const [cardMenuOpen, setCardMenuOpen] = useState(false)
   const [pickerOpen, setPickerOpen] = useState(false)
   const [adjusterOpen, setAdjusterOpen] = useState(false)
   const [adjustment, setAdjustment] = useState<ArtworkPresentation>(DEFAULT_ARTWORK_PRESENTATION)
@@ -47,7 +48,6 @@ export default function DirectKeepsake({ language, artworks, collections, blessi
     const url = URL.createObjectURL(file)
     setUploaded(previous => { if (previous) URL.revokeObjectURL(previous.url); return { url, name: file.name } })
     setAdjustment(DEFAULT_ARTWORK_PRESENTATION)
-    setCardMenuOpen(false)
   }
 
   async function download() {
@@ -65,18 +65,17 @@ export default function DirectKeepsake({ language, artworks, collections, blessi
     <header className="direct-keepsake-header">
       <button type="button" onClick={onBack} aria-label="返回模式選擇 · Back to modes">←</button>
       <div><b>直接製作紀念卡</b><small>CREATE A KEEPSAKE</small></div>
-      <span>V47</span>
+      <SurfaceMenu {...navigation}>
+        <button type="button" role="menuitem" onClick={() => setPickerOpen(true)}>選擇卡片<small>CHOOSE CARD</small></button>
+        <label className="surface-menu-upload" role="menuitem">上傳照片<small>UPLOAD PHOTO</small><input type="file" accept="image/*" onChange={event => chooseUpload(event.target.files?.[0])} /></label>
+        <button type="button" role="menuitem" onClick={() => setAdjusterOpen(true)}>調整圖片大小與位置<small>ADJUST IMAGE</small></button>
+      </SurfaceMenu>
     </header>
     <div className="direct-keepsake-content">
       <article className="direct-keepsake-preview taiwan-meander">
         <div className="direct-keepsake-title">
           <span><b>{imageName}</b></span>
-          <button type="button" className="direct-card-menu-toggle" aria-label="卡片工具 · Card tools" aria-expanded={cardMenuOpen} aria-controls="direct-card-menu" onClick={() => setCardMenuOpen(value => !value)}>☰</button>
-          {cardMenuOpen && <div id="direct-card-menu" className="direct-card-menu" role="menu">
-            <button type="button" role="menuitem" onClick={() => { setCardMenuOpen(false); setPickerOpen(true) }}>選擇卡片</button>
-            <label className="direct-card-upload" role="menuitem">上傳照片<input type="file" accept="image/*" onChange={event => chooseUpload(event.target.files?.[0])} /></label>
-            <button type="button" role="menuitem" onClick={() => { setCardMenuOpen(false); setAdjusterOpen(true) }}>調整圖片大小與位置</button>
-          </div>}
+          <i aria-hidden="true">✦</i>
         </div>
         <div className="direct-keepsake-image card-artwork-viewport"><img src={imageSrc} alt={previewAlt} style={photoStyle} /></div>
         <div className="direct-keepsake-blessing"><small>給今天的祝福 · BLESSING</small><p>{blessingText || '在這裡寫下想送出的祝福。'}</p></div>

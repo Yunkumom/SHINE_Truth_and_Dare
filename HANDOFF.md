@@ -61,6 +61,12 @@ For future owner-approved Truth-or-Dare changes, deploy the validated scoped bui
 
 未來凡是擁有者已核准的 Truth-or-Dare 變更，請直接將已驗證且範圍明確的建置部署至其設定的 Firebase Hosting target，並回報所有產生的公開網址；此持續偏好不授權 promotion `latestVerified`、部署至不同 Firebase project 或 site，亦不授權變更隱私、backend、analytics 或選定 Hosting release 以外的外部帳號。
 
+### Approved phone-first and desktop showcase / 已核准手機優先與桌面展示
+
+Every fresh V47 load must open in the phone-first experience, including on desktop. The choice-page heading must visibly include `V47` beside `破冰遊戲選擇` or `CHOOSE AN ICEBREAKER`. The top-right hamburger owns display switching, experience navigation, and screen-specific tools such as choosing a card, uploading a photo, adjusting an image, changing draw settings, and printing the food deck. Desktop mode is a clean presentation showcase rather than an automatic editor; the existing owner studio remains available only as an advanced menu choice. Surface switching is session-only and must preserve current in-memory state without adding persistence, analytics, accounts, telemetry, or backend transmission. The approved design and plan are `Versions/v47/docs/designs/2026-08-23-phone-first-desktop-showcase.md` and `Versions/v47/docs/plans/2026-08-23-phone-first-desktop-showcase.md`.
+
+每次重新開啟 V47 都必須先顯示手機優先體驗，包含使用桌面電腦時；選擇頁標題必須在 `破冰遊戲選擇` 或 `CHOOSE AN ICEBREAKER` 旁清楚顯示 `V47`。右上角漢堡選單負責顯示模式切換、體驗導覽與目前畫面的工具，例如選擇卡片、上傳照片、調整圖片、變更抽卡設定及列印美食卡。桌面模式應為乾淨的展示介面，而不是自動進入編輯器；既有擁有者工作室只作為進階選單項目保留。顯示模式切換只存在目前 session，必須保留記憶體內狀態，且不得增加持久保存、analytics、帳號、telemetry 或 backend 傳輸。核准設計與計畫分別為 `Versions/v47/docs/designs/2026-08-23-phone-first-desktop-showcase.md` 與 `Versions/v47/docs/plans/2026-08-23-phone-first-desktop-showcase.md`。
+
 Use the strongest available model for owner design discussions. After approval, record the decision and a complete implementation sequence here so execution can be delegated to a less capable model while preserving intent, constraints, exact files, checks, and upgrade conditions.
 
 與擁有者進行設計討論時使用目前最強模型。核准後，將決策與完整實作順序記錄於此，使能力較弱的模型仍能保留意圖、限制、精確檔案、檢查方式與升級條件來執行。

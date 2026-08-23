@@ -55,10 +55,10 @@
 }
 
 .food-journey-header > div { min-width: 0; text-align: center; }
-.food-journey-header small,
-.food-journey-header h1 { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.food-journey-header small { color: #7f6854; font: 700 6px/1 Georgia, serif; letter-spacing: .15em; }
-.food-journey-header h1 { margin: 4px 0 0; color: var(--food-ink); font: 800 17px/1.05 "Noto Serif TC", Georgia, serif; }
+.food-journey-header > div small,
+.food-journey-header > div h1 { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.food-journey-header > div small { color: #7f6854; font: 700 6px/1 Georgia, serif; letter-spacing: .15em; }
+.food-journey-header > div h1 { margin: 4px 0 0; color: var(--food-ink); font: 800 17px/1.05 "Noto Serif TC", Georgia, serif; }
 
 .food-journey-back,
 .food-print-button {

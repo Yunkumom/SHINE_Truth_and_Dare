@@ -4,8 +4,10 @@ import { TAIWAN_FOOD_COMPOSITIONS } from '../data/taiwan-food-compositions'
 import { TAIWAN_FOOD_PROMPTS } from '../data/taiwan-food-questions'
 import { TAIWAN_FOOD_REGIONS } from '../data/taiwan-food-subjects'
 import type { Language, LocalizedFoodText, TaiwanFoodCardComposition, TaiwanFoodRegion } from '../types'
+import SurfaceMenu from './SurfaceMenu'
+import type { SurfaceMenuNavigationProps } from './SurfaceMenu'
 
-interface TaiwanFoodJourneyProps {
+interface TaiwanFoodJourneyProps extends SurfaceMenuNavigationProps {
   language: Language
   onBack: () => void
 }
@@ -62,7 +64,7 @@ function artworkPosition(card: TaiwanFoodCardComposition) {
   return { objectPosition: `${card.artwork.focus.x}% ${card.artwork.focus.y}%` }
 }
 
-export default function TaiwanFoodJourney({ language, onBack }: TaiwanFoodJourneyProps) {
+export default function TaiwanFoodJourney({ language, onBack, ...navigation }: TaiwanFoodJourneyProps) {
   const [selectedRegion, setSelectedRegion] = useState<RegionChoice>('all')
   const [drawnIds, setDrawnIds] = useState<string[]>([TAIWAN_FOOD_COMPOSITIONS[0].id])
   const [currentId, setCurrentId] = useState(TAIWAN_FOOD_COMPOSITIONS[0].id)
@@ -112,7 +114,9 @@ export default function TaiwanFoodJourney({ language, onBack }: TaiwanFoodJourne
     <header className="food-journey-header">
       <button type="button" className="food-journey-back" onClick={onBack} aria-label="返回模式選擇 · Back to modes">←</button>
       <div><small>TAIWAN TABLE ATLAS · 01</small><h1>{title}</h1></div>
-      <button type="button" className="food-print-button" onClick={() => window.print()} aria-label="列印 25 張卡 · Print 25 cards">⌁<span>{language === 'en' ? 'Print' : '列印'}</span></button>
+      <SurfaceMenu {...navigation}>
+        <button type="button" role="menuitem" onClick={() => window.print()}>列印 25 張卡<small>PRINT 25 CARDS</small></button>
+      </SurfaceMenu>
     </header>
 
     <div className="food-journey-toolbar">

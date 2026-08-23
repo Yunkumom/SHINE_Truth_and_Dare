@@ -7,6 +7,8 @@ import ModeHome from './components/ModeHome'
 import MobileSettings from './components/MobileSettings'
 import PostDrawKeepsake from './components/PostDrawKeepsake'
 import SwipeDeck from './components/SwipeDeck'
+import SurfaceMenu from './components/SurfaceMenu'
+import type { SurfaceMode, SurfaceMenuNavigationProps } from './components/SurfaceMenu'
 import TaiwanReveal from './components/TaiwanReveal'
 import TaiwanFoodJourney from './components/TaiwanFoodJourney'
 import taiwanCardBack from './assets/taiwan-card-back.png'
@@ -47,8 +49,6 @@ const copy = {
 }
 
 const levelLabels = [['初見', 'First meeting'], ['熟悉', 'Familiar'], ['朋友', 'Friends'], ['親近', 'Close'], ['親密 18+', 'Intimate 18+']] as const
-const forcedMobileSurface = new URLSearchParams(window.location.search).get('surface') === 'mobile'
-
 function CardText({ card, language }: { card: Card, language: Language }) {
   return <div className="mythic-question">{card.zhTitle && <em className="mythic-question-title">{language === 'en' ? card.enTitle : language === 'bilingual' ? `${card.zhTitle} · ${card.enTitle}` : card.zhTitle}</em>}{language !== 'en' && <p lang="zh-Hant">{card.zh}</p>}{language !== 'zh' && <small className={language === 'en' ? 'english-primary' : ''} lang="en">{card.en}</small>}</div>
 }
@@ -79,7 +79,7 @@ export default function App() {
   const [status, setStatus] = useState('')
   const [offlineReady, setOfflineReady] = useState(false)
   const [phoneScale, setPhoneScale] = useState(1)
-  const [desktopWorkspace, setDesktopWorkspace] = useState(() => !forcedMobileSurface && window.innerWidth >= 1100)
+  const [surfaceMode, setSurfaceMode] = useState<SurfaceMode>('phone')
   const [desktopScales, setDesktopScales] = useState(() => calculateDesktopScales(window.innerHeight))
   const [yourName, setYourName] = useState('')
   const [theirName, setTheirName] = useState('')
@@ -101,6 +101,7 @@ export default function App() {
   const [presentation, setPresentation] = useState(() => loadStoredPresentation())
   const t = language === 'en' ? copy.en : copy.zh
   const beginLabel = language === 'en' ? 'Begin Truth or Dare' : '開始真心話大冒險 · Begin'
+  const desktopWorkspace = surfaceMode === 'studio'
   const editingActive = desktopWorkspace && desktopMode === 'settings'
   const activeScreen: LayoutScreen = editingActive ? editorScreen : keepsakeOpen ? 'keepsake' : playing ? 'game' : 'setup'
   const encounter = current ?? previewEncounter
@@ -116,7 +117,6 @@ export default function App() {
       const width = viewport?.width ?? document.documentElement.clientWidth ?? window.innerWidth
       const height = viewport?.height ?? document.documentElement.clientHeight ?? window.innerHeight
       setPhoneScale(calculatePhoneScale({ width, height }))
-      setDesktopWorkspace(!forcedMobileSurface && window.innerWidth >= 1100)
       setDesktopScales(calculateDesktopScales(window.innerHeight))
     }
     const viewport = window.visualViewport
@@ -159,15 +159,17 @@ export default function App() {
     else { if (patch.name !== undefined) setTheirName(patch.name); if (patch.contact !== undefined) setTheirContact(patch.contact); if (patch.include !== undefined) setIncludeTheirs(patch.include) }
   }
   function goToSetup() { setPlaying(false); setKeepsakeOpen(false); setSettingsOpen(false); setArtworkAdjusterOpen(false); setMobileDestination('setup'); if (desktopMode === 'settings') { setEditorScreen('setup'); setSelectedBlock('hero') } }
-  function goToModeHome() { goToSetup(); if (!desktopWorkspace) setMobileDestination('home') }
+  function goToModeHome() { goToSetup(); setMobileDestination('home') }
+  function chooseDirectKeepsake() { setPlaying(false); setKeepsakeOpen(false); setSettingsOpen(false); setMobileDestination('keepsake-maker') }
   function chooseTruthOrDare() { setMode('random'); goToSetup() }
   function chooseFoodJourney() { setPlaying(false); setKeepsakeOpen(false); setSettingsOpen(false); setMobileDestination('food-journey') }
+  const surfaceNavigation: SurfaceMenuNavigationProps = { surfaceMode, onSurfaceModeChange: setSurfaceMode, onHome: goToModeHome, onChooseKeepsake: chooseDirectKeepsake, onChooseTruthOrDare: chooseTruthOrDare, onChooseFoodJourney: chooseFoodJourney }
   function changeBlock(screen: LayoutScreen, id: string, patch: Partial<LayoutBlock>) { setLayoutHistory(history => applyLayoutChange(history, screen, id, patch)) }
   function block(screen: LayoutScreen, id: string, children: React.ReactNode, className = '') {
     return <EditableBlock key={`${screen}-${id}`} id={id} block={layoutHistory.present.screens[screen][id]} editing={editingActive && editorScreen === screen} selected={editingActive && editorScreen === screen && selectedBlock === id} directManipulation={directManipulation} canvasScale={desktopWorkspace ? desktopScales.workbench : 1} snap={snap} onSelect={() => setSelectedBlock(id)} onChange={patch => changeBlock(screen, id, patch)} className={className}>{children}</EditableBlock>
   }
   function header(screen: 'setup' | 'game') {
-    return block(screen, 'header', <header className="site-header"><button className="wordmark" type="button" onClick={goToModeHome} aria-label="返回模式選擇 · Back to modes"><span className="mark">✦</span><span>TRUTH OR DARE</span></button><div className="header-tools"><button type="button" className="card-library-trigger settings-trigger" aria-label="開啟設定 · Open settings" onClick={() => setSettingsOpen(true)}><span className="menu-icon" aria-hidden="true"><i /><i /><i /></span></button></div></header>, 'header-block')
+    return block(screen, 'header', <header className="site-header"><button className="wordmark" type="button" onClick={goToModeHome} aria-label="返回模式選擇 · Back to modes"><span className="mark">✦</span><span>TRUTH OR DARE</span></button><SurfaceMenu {...surfaceNavigation}><button type="button" role="menuitem" onClick={() => setSettingsOpen(true)}>抽卡與顯示設定<small>SETTINGS</small></button>{screen === 'game' && current && <button type="button" role="menuitem" onClick={() => setArtworkAdjusterOpen(true)}>調整目前卡片<small>ADJUST CARD</small></button>}</SurfaceMenu></header>, 'header-block')
   }
 
   const artworkPresentation = presentationForArtwork(presentation, encounter.artwork.id)
@@ -215,10 +217,7 @@ export default function App() {
     <div className="game-mobile-flow">
       {block('game', 'toolbar', <div className="game-toolbar"><button onClick={goToSetup}>← {t.back}</button><div className="game-meta"><span>LEVEL {level}</span><span>{mode.toUpperCase()}</span><span>42 ARTWORKS</span></div></div>, 'game-toolbar-block')}
       {block('game', 'card', <SwipeDeck key={current ? `${current.card.id}-${current.artwork.id}` : 'deck'} revealed={editingActive || revealed} onDraw={draw} onAdvance={prepareNextDeck}><div className="card-face card-back"><img className="card-back-art" src={taiwanCardBack} alt="" draggable="false" /><div className="card-back-atmosphere" aria-hidden="true" /><div className="card-back-copy"><h2>TRUTH OR DARE</h2><span>SWIPE UP TO DRAW · 向上滑動抽卡</span></div></div><div className="card-face card-front">{(current || editingActive) && <article className="mythic-card" data-testid="mythic-card" style={cardPresentationStyle}><div className="mythic-card-header"><div><h2>{artworkTitle(encounter.artwork, language === 'en' ? 'en' : 'zh')}</h2></div><i>✦</i></div><div data-card-artwork><TaiwanReveal artwork={encounter.artwork} language={language}><img src={encounter.artwork.src} alt={`${encounter.artwork.zhName}・藏有台灣輪廓的卡面`} draggable="false" style={artworkStyle} /><div className="mythic-foil" /></TaiwanReveal></div><div className="mythic-text-panel"><CardQuestionOnly card={encounter.card} language={language} /></div></article>}</div></SwipeDeck>, 'game-card-block')}
-      <div className="game-context-row">
-        {!revealed && !editingActive && <div className="compact-draw-settings"><span><small>抽卡選項 · DRAW OPTIONS</small><b>LEVEL {level} · {mode.toUpperCase()}</b></span><button type="button" onClick={() => setSettingsOpen(true)}>變更 · Change</button></div>}
-        {revealed && current && !editingActive && <section className="artwork-control-panel compact-card-controls" aria-label="Choose and adjust card"><button type="button" onClick={() => setSettingsOpen(true)}>重新選擇</button><button type="button" onClick={() => setArtworkAdjusterOpen(true)}>調整卡片</button></section>}
-      </div>
+      <div className="game-context-row" />
       <div className="game-primary-row">{block('game', 'actions', <div className="game-actions"><button className="primary-button draw-button" aria-label={current ? t.next : t.draw} onClick={() => draw()}>{current ? t.next : t.draw}<i>→</i></button>{current && <button className="secondary-button" onClick={() => { setKeepsakeOpen(true); setEditorScreen('keepsake'); setSelectedBlock('card') }}>{t.share}</button>}</div>, 'game-actions-block')}</div>
     </div>
   </section>
@@ -236,13 +235,13 @@ export default function App() {
 
   const standardScreen = activeScreen === 'setup' ? setupScreen : activeScreen === 'game' ? gameScreen : keepsakeScreen
   const specialMobileScreen = !desktopWorkspace && keepsakeOpen && current
-    ? <PostDrawKeepsake encounter={current} language={language} artworkStyle={artworkStyle} participants={participants} onParticipantChange={updateParticipant} onBack={() => setKeepsakeOpen(false)} onAdjustArtwork={() => setArtworkAdjusterOpen(true)} onDownload={async (answerKeywords, blessing) => exportKeepsake(answerKeywords, blessing)} />
+    ? <PostDrawKeepsake encounter={current} language={language} artworkStyle={artworkStyle} participants={participants} onParticipantChange={updateParticipant} onBack={() => setKeepsakeOpen(false)} onAdjustArtwork={() => setArtworkAdjusterOpen(true)} onDownload={async (answerKeywords, blessing) => exportKeepsake(answerKeywords, blessing)} {...surfaceNavigation} />
     : !desktopWorkspace && mobileDestination === 'home'
-    ? <ModeHome language={language} onChooseKeepsake={() => { setPlaying(false); setKeepsakeOpen(false); setMobileDestination('keepsake-maker') }} onChooseTruthOrDare={chooseTruthOrDare} onChooseFoodJourney={chooseFoodJourney} />
+    ? <ModeHome language={language} {...surfaceNavigation} />
     : !desktopWorkspace && mobileDestination === 'keepsake-maker'
-      ? <DirectKeepsake language={language} artworks={ALL_ARTWORKS} collections={ARTWORK_COLLECTIONS} blessings={blessings} onBack={goToModeHome} onStatus={setStatus} />
+      ? <DirectKeepsake language={language} artworks={ALL_ARTWORKS} collections={ARTWORK_COLLECTIONS} blessings={blessings} onBack={goToModeHome} onStatus={setStatus} {...surfaceNavigation} />
       : !desktopWorkspace && mobileDestination === 'food-journey'
-        ? <TaiwanFoodJourney language={language} onBack={goToModeHome} />
+        ? <TaiwanFoodJourney language={language} onBack={goToModeHome} {...surfaceNavigation} />
       : null
   const screen = specialMobileScreen ?? standardScreen
   const shellName = specialMobileScreen ? mobileDestination : activeScreen
@@ -253,6 +252,22 @@ export default function App() {
   const desktopModeTabs = <div className="desktop-mode-switch desktop-mode-bookmark-tabs" role="group" aria-label="Desktop mode"><button type="button" aria-label="Settings mode" aria-pressed={desktopMode === 'settings'} className={desktopMode === 'settings' ? 'active' : ''} onClick={() => { setDesktopMode('settings'); setDirectManipulation(true) }}><span>編輯</span><small>EDIT</small></button><button type="button" aria-label="Test mode" aria-pressed={desktopMode === 'test'} className={desktopMode === 'test' ? 'active' : ''} onClick={() => { setDesktopMode('test'); setDirectManipulation(false) }}><span>測試</span><small>TEST</small></button></div>
   const studioScreens: Array<[LayoutScreen, string, string]> = [['setup', '入口設定', 'SETUP'], ['game', '抽卡畫面', 'DRAW'], ['keepsake', '紀念卡', 'KEEPSAKE']]
   const chooseStudioScreen = (nextScreen: LayoutScreen) => { setEditorScreen(nextScreen); setSelectedBlock(nextScreen === 'setup' ? 'hero' : 'card') }
+  const showcaseTitle = mobileDestination === 'keepsake-maker' ? '直接製作紀念卡' : mobileDestination === 'food-journey' ? '台灣美食旅行' : mobileDestination === 'setup' ? '真心話大冒險' : '破冰遊戲選擇'
+
+  if (surfaceMode === 'showcase') return <div className="viewport-stage desktop-showcase-viewport">
+    <div className="desktop-showcase" style={{ '--showcase-scale': desktopScales.workbench } as React.CSSProperties}>
+      <header className="desktop-showcase-header"><div><b>TRUTH OR DARE</b><small>DESKTOP SHOWCASE · V47</small></div><span>iPhone 17 Pro Max presentation</span></header>
+      <nav className="desktop-showcase-nav" aria-label="展示體驗 · Showcase experiences">
+        <strong>體驗選擇</strong><small>EXPERIENCES</small>
+        <button type="button" className={mobileDestination === 'home' ? 'active' : ''} onClick={goToModeHome}>首頁<span>HOME</span></button>
+        <button type="button" className={mobileDestination === 'keepsake-maker' ? 'active' : ''} onClick={chooseDirectKeepsake}>紀念卡<span>KEEPSAKE</span></button>
+        <button type="button" className={mobileDestination === 'setup' ? 'active' : ''} onClick={chooseTruthOrDare}>真心話大冒險<span>PLAY</span></button>
+        <button type="button" className={mobileDestination === 'food-journey' ? 'active' : ''} onClick={chooseFoodJourney}>台灣美食<span>FOOD JOURNEY</span></button>
+      </nav>
+      <section className="desktop-showcase-stage" aria-label="Desktop showcase interactive device"><div className="desktop-showcase-device"><div className="desktop-showcase-canvas">{appShell()}</div></div></section>
+      <aside className="desktop-showcase-context"><small>NOW SHOWING · V47</small><h1>{showcaseTitle}</h1><p>使用中央互動裝置完整展示手機體驗，左側快速切換內容，更多工具與顯示模式集中在右上角選單。</p><dl><div><dt>DEVICE</dt><dd>iPhone 17 Pro Max</dd></div><div><dt>CANVAS</dt><dd>430 × 932 governed</dd></div><div><dt>PRIVACY</dt><dd>Memory only</dd></div></dl><button type="button" onClick={() => setSurfaceMode('phone')}>回到手機介面 · PHONE</button><button type="button" onClick={() => setSurfaceMode('studio')}>進階工作室 · STUDIO</button></aside>
+    </div>
+  </div>
 
   if (desktopWorkspace) return <div className="viewport-stage desktop-viewport">
     {desktopMode === 'settings'
@@ -265,5 +280,5 @@ export default function App() {
       : <section className="desktop-test-stage" aria-label="Desktop interactive phone test" style={{ '--workbench-scale': desktopScales.workbench } as React.CSSProperties}><div className="desktop-test-mode-tabs">{desktopModeTabs}</div><div className="desktop-device-frame desktop-test-device"><div className="desktop-test-canvas">{appShell()}</div></div></section>}
   </div>
 
-  return <div className="viewport-stage v40-mobile-stage"><div className="phone-fit-stage" style={{ '--phone-scale': phoneScale } as React.CSSProperties}>{appShell()}</div></div>
+  return <div className="viewport-stage v40-mobile-stage phone-first-viewport"><div className="phone-fit-stage" style={{ '--phone-scale': phoneScale } as React.CSSProperties}>{appShell()}</div></div>
 }
