@@ -20,6 +20,21 @@ test("v47 balances the direct keepsake title and description default sizes", asy
   assert.match(css, /\.direct-keepsake-blessing p\s*\{[^}]*font-size:\s*14px;/s);
 });
 
+test("v47 keeps the direct keepsake preview and PNG composition visually aligned", async () => {
+  const [css, directExport] = await Promise.all([
+    source("../app/encounter/styles/v47-ux.css"),
+    source("../app/encounter/lib/direct-keepsake.ts"),
+  ]);
+
+  assert.match(css, /\.direct-keepsake-preview\s*\{[^}]*grid-template-rows:\s*48px\s+minmax\(0,\s*1fr\)\s+76px;/s);
+  assert.match(css, /\.direct-keepsake-blessing\s*\{[^}]*min-height:\s*76px;/s);
+  assert.match(directExport, /DIRECT_KEEPSAKE_LAYOUT\s*=\s*\{[^}]*titleHeight:\s*145,[^}]*blessingHeight:\s*230,/s);
+  assert.match(directExport, /drawRoundedPanel\(context,\s*layout\.title,[\s\S]*fitKeepsakeTitle\(context,\s*input\.imageName/);
+  assert.match(directExport, /drawImageCover\(context,\s*image,\s*layout\.artwork,[\s\S]*drawRoundedPanel\(context,\s*layout\.blessing/);
+  assert.match(directExport, /if\s*\(blessingLines\.length\s*>\s*3\)[\s\S]*slice\(0,\s*4\)/);
+  assert.doesNotMatch(directExport, /A MOMENT WORTH KEEPING|context\.fillText\('TRUTH OR DARE'/);
+});
+
 test("v47 implements the approved compact home and English-only gameplay brand", async () => {
   const [home, app, directExport, sharedExport, html, manifest] = await Promise.all([
     source("../app/encounter/components/ModeHome.tsx"),

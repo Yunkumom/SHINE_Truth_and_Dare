@@ -13,6 +13,16 @@ export interface DirectKeepsakeInput {
 }
 
 export const DIRECT_KEEPSAKE_CANVAS = { width: 1260, height: 1760 } as const
+export const DIRECT_KEEPSAKE_LAYOUT = {
+  borderWidth: 15,
+  padding: 24,
+  panelGap: 15,
+  titleHeight: 145,
+  blessingHeight: 230,
+  panelRadius: 33,
+} as const
+
+interface CanvasRect { x: number, y: number, width: number, height: number }
 
 function loadImage(src: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
@@ -30,19 +40,42 @@ export function resolveKeepsakeFocus(focus: { x: number, y: number }, adjustment
   }
 }
 
-function drawImageCover(context: CanvasRenderingContext2D, image: HTMLImageElement, x: number, y: number, width: number, height: number, input: DirectKeepsakeInput) {
+function roundedRectPath(context: CanvasRenderingContext2D, rect: CanvasRect, radius: number) {
+  const safeRadius = Math.min(radius, rect.width / 2, rect.height / 2)
+  context.beginPath()
+  context.moveTo(rect.x + safeRadius, rect.y)
+  context.arcTo(rect.x + rect.width, rect.y, rect.x + rect.width, rect.y + rect.height, safeRadius)
+  context.arcTo(rect.x + rect.width, rect.y + rect.height, rect.x, rect.y + rect.height, safeRadius)
+  context.arcTo(rect.x, rect.y + rect.height, rect.x, rect.y, safeRadius)
+  context.arcTo(rect.x, rect.y, rect.x + rect.width, rect.y, safeRadius)
+  context.closePath()
+}
+
+function drawRoundedPanel(context: CanvasRenderingContext2D, rect: CanvasRect, fill: string, radius = DIRECT_KEEPSAKE_LAYOUT.panelRadius) {
+  roundedRectPath(context, rect, radius)
+  context.fillStyle = fill
+  context.fill()
+}
+
+function drawImageCover(context: CanvasRenderingContext2D, image: HTMLImageElement, rect: CanvasRect, input: DirectKeepsakeInput) {
   const placement = calculateZoomedCoverPlacement(
     { width: image.naturalWidth, height: image.naturalHeight },
     resolveKeepsakeFocus(input.focus, input.adjustment),
-    { x, y, width, height },
+    rect,
     input.adjustment.zoom,
   )
   context.save()
-  context.beginPath()
-  context.rect(x, y, width, height)
+  roundedRectPath(context, rect, DIRECT_KEEPSAKE_LAYOUT.panelRadius)
   context.clip()
   context.drawImage(image, placement.x, placement.y, placement.width, placement.height)
   context.restore()
+}
+
+function fitKeepsakeTitle(context: Pick<CanvasRenderingContext2D, 'measureText'>, text: string, maxWidth: number) {
+  if (context.measureText(text).width <= maxWidth) return text
+  const characters = [...text]
+  while (characters.length && context.measureText(`${characters.join('')}…`).width > maxWidth) characters.pop()
+  return `${characters.join('')}…`
 }
 
 export function wrapKeepsakeText(context: Pick<CanvasRenderingContext2D, 'measureText'>, text: string, maxWidth: number) {
@@ -67,51 +100,63 @@ export async function createDirectKeepsakePng(input: DirectKeepsakeInput): Promi
   const context = canvas.getContext('2d')
   if (!context) throw new Error('Canvas is unavailable')
 
-  const background = context.createLinearGradient(0, 0, canvas.width, canvas.height)
-  background.addColorStop(0, '#f8e8ca')
-  background.addColorStop(.6, '#ddb882')
-  background.addColorStop(1, '#7a3f33')
-  context.fillStyle = background
-  context.fillRect(0, 0, canvas.width, canvas.height)
-  context.fillStyle = '#fff7e8'
-  context.fillRect(44, 44, 1172, 1672)
-  context.strokeStyle = '#9a6b3e'
-  context.lineWidth = 8
-  context.strokeRect(44, 44, 1172, 1672)
-
-  context.fillStyle = '#3d281c'
-  context.font = '700 54px serif'
-  context.fillText('TRUTH OR DARE', 92, 132)
-  context.fillStyle = '#9a6b3e'
-  context.font = '600 22px Georgia, serif'
-  context.fillText('A MOMENT WORTH KEEPING · V47', 94, 173)
-  context.textAlign = 'right'
-  context.font = '700 46px serif'
-  context.fillText('✦', 1164, 142)
-  context.textAlign = 'left'
-
-  context.fillStyle = '#112632'
-  context.fillRect(88, 218, 1084, 1010)
-  drawImageCover(context, image, 88, 218, 1084, 1010, input)
-  context.strokeStyle = '#9a6b3e'
-  context.lineWidth = 6
-  context.strokeRect(88, 218, 1084, 1010)
-
-  context.fillStyle = '#f3dfba'
-  context.fillRect(88, 1246, 1084, 382)
-  context.fillStyle = '#8a3f35'
-  context.font = '700 24px system-ui'
-  context.fillText('給今天的祝福 · BLESSING', 130, 1300)
-  context.fillStyle = '#2d2018'
-  context.font = '600 42px serif'
-  let y = 1370
-  for (const line of wrapKeepsakeText(context, input.blessing, 994).slice(0, 5)) {
-    context.fillText(line, 130, y)
-    y += 62
+  const { borderWidth, padding, panelGap, titleHeight, blessingHeight, panelRadius } = DIRECT_KEEPSAKE_LAYOUT
+  const panelInset = borderWidth + padding
+  const panelWidth = canvas.width - panelInset * 2
+  const contentHeight = canvas.height - panelInset * 2
+  const artworkHeight = contentHeight - titleHeight - blessingHeight - panelGap * 2
+  const layout = {
+    card: { x: borderWidth / 2, y: borderWidth / 2, width: canvas.width - borderWidth, height: canvas.height - borderWidth },
+    title: { x: panelInset, y: panelInset, width: panelWidth, height: titleHeight },
+    artwork: { x: panelInset, y: panelInset + titleHeight + panelGap, width: panelWidth, height: artworkHeight },
+    blessing: { x: panelInset, y: panelInset + titleHeight + panelGap * 2 + artworkHeight, width: panelWidth, height: blessingHeight },
   }
-  context.fillStyle = '#725339'
-  context.font = '500 21px system-ui'
-  context.fillText(input.imageName, 130, 1668)
+
+  context.fillStyle = '#efd6a5'
+  context.fillRect(0, 0, canvas.width, canvas.height)
+  roundedRectPath(context, layout.card, 66)
+  context.strokeStyle = '#9a633e'
+  context.lineWidth = borderWidth
+  context.stroke()
+
+  context.strokeStyle = 'rgba(116, 65, 31, .34)'
+  context.lineWidth = 3
+  for (let x = 42; x <= canvas.width - 52; x += 36) context.strokeRect(x, 25, 12, 12)
+
+  drawRoundedPanel(context, layout.title, '#f8e7c5')
+  context.fillStyle = '#3d281c'
+  context.font = '800 45px serif'
+  context.textBaseline = 'middle'
+  context.fillText(fitKeepsakeTitle(context, input.imageName, panelWidth - 150), layout.title.x + 30, layout.title.y + layout.title.height / 2)
+  context.textAlign = 'right'
+  context.fillStyle = '#8e382e'
+  context.font = '700 43px serif'
+  context.fillText('✦', layout.title.x + layout.title.width - 30, layout.title.y + layout.title.height / 2)
+  context.textAlign = 'left'
+  context.textBaseline = 'alphabetic'
+
+  drawRoundedPanel(context, layout.artwork, '#132a36')
+  drawImageCover(context, image, layout.artwork, input)
+
+  drawRoundedPanel(context, layout.blessing, '#f8e7c5', panelRadius)
+  context.fillStyle = '#8a3f35'
+  context.font = '800 21px system-ui'
+  context.fillText('給今天的祝福 · BLESSING', layout.blessing.x + 27, layout.blessing.y + 46)
+  context.fillStyle = '#2d2018'
+  context.font = '700 42px serif'
+  let blessingLines = wrapKeepsakeText(context, input.blessing, layout.blessing.width - 54)
+  let blessingLineHeight = 55
+  let y = layout.blessing.y + 105
+  if (blessingLines.length > 3) {
+    context.font = '700 36px serif'
+    blessingLines = wrapKeepsakeText(context, input.blessing, layout.blessing.width - 54)
+    blessingLineHeight = 40
+    y = layout.blessing.y + 95
+  }
+  for (const line of blessingLines.slice(0, 4)) {
+    context.fillText(line, layout.blessing.x + 27, y)
+    y += blessingLineHeight
+  }
 
   const blob = await new Promise<Blob>((resolve, reject) => canvas.toBlob(value => value ? resolve(value) : reject(new Error('PNG creation failed')), 'image/png'))
   return new File([blob], `keepsake-card-V47-${Date.now()}.png`, { type: 'image/png' })

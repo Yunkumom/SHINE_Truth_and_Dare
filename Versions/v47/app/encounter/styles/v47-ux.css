@@ -391,7 +391,7 @@
 }
 
 .direct-keepsake-preview {
-  grid-template-rows: 48px minmax(0, 1fr) auto;
+  grid-template-rows: 48px minmax(0, 1fr) 76px;
   border-radius: 22px;
   padding: 8px;
 }
@@ -412,7 +412,7 @@
 }
 
 .direct-keepsake-blessing {
-  min-height: 52px;
+  min-height: 76px;
   margin-top: 5px;
   padding: 7px 9px;
   overflow: visible;
