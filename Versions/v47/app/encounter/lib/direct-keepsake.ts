@@ -112,16 +112,12 @@ export async function createDirectKeepsakePng(input: DirectKeepsakeInput): Promi
     blessing: { x: panelInset, y: panelInset + titleHeight + panelGap * 2 + artworkHeight, width: panelWidth, height: blessingHeight },
   }
 
-  context.fillStyle = '#efd6a5'
-  context.fillRect(0, 0, canvas.width, canvas.height)
+  context.clearRect(0, 0, canvas.width, canvas.height)
+  drawRoundedPanel(context, layout.card, '#efd6a5', 66)
   roundedRectPath(context, layout.card, 66)
   context.strokeStyle = '#9a633e'
   context.lineWidth = borderWidth
   context.stroke()
-
-  context.strokeStyle = 'rgba(116, 65, 31, .34)'
-  context.lineWidth = 3
-  for (let x = 42; x <= canvas.width - 52; x += 36) context.strokeRect(x, 25, 12, 12)
 
   drawRoundedPanel(context, layout.title, '#f8e7c5')
   context.fillStyle = '#3d281c'

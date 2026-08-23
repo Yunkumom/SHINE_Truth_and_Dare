@@ -390,6 +390,10 @@
   pointer-events: none;
 }
 
+.direct-keepsake-preview.taiwan-meander::after {
+  content: none;
+}
+
 .direct-keepsake-preview {
   grid-template-rows: 48px minmax(0, 1fr) 76px;
   border-radius: 22px;
@@ -407,6 +411,61 @@
   font-size: 15px;
 }
 
+.direct-keepsake-title {
+  position: relative;
+}
+
+.direct-card-menu-toggle {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #8e382e;
+  font: 800 20px/1 sans-serif;
+}
+
+.direct-card-menu {
+  position: absolute;
+  z-index: 20;
+  top: 40px;
+  right: 0;
+  width: 190px;
+  display: grid;
+  gap: 4px;
+  padding: 6px;
+  border: 1px solid #9a633e;
+  border-radius: 11px;
+  background: rgba(255, 249, 237, .98);
+  box-shadow: 0 10px 24px rgba(70, 41, 19, .24);
+}
+
+.direct-card-menu button,
+.direct-card-upload {
+  position: relative;
+  min-height: 36px;
+  display: grid;
+  place-items: center start;
+  border: 0;
+  border-radius: 7px;
+  background: #f8e7c5;
+  color: #3f2a1d;
+  padding: 7px 9px;
+  font-size: 10px;
+  font-weight: 800;
+  text-align: left;
+}
+
+.direct-card-upload input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
 .direct-keepsake-image {
   margin-top: 5px;
 }
@@ -422,6 +481,30 @@
   margin-top: 4px;
   font-size: 14px;
   line-height: 1.3;
+}
+
+.direct-keepsake-controls {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 6px;
+  padding: 7px 8px;
+}
+
+.direct-blessing-select {
+  grid-column: 1;
+}
+
+.direct-keepsake-controls textarea {
+  grid-column: 1 / -1;
+}
+
+.direct-keepsake-controls .direct-download-button {
+  grid-column: 2;
+  min-width: 112px;
+  min-height: 42px;
+  padding-inline: 12px;
+  font-size: 10px;
+  white-space: nowrap;
 }
 
 .v32-deck .stack-card {

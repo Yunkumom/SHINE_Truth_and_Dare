@@ -35,6 +35,24 @@ test("v47 keeps the direct keepsake preview and PNG composition visually aligned
   assert.doesNotMatch(directExport, /A MOMENT WORTH KEEPING|context\.fillText\('TRUTH OR DARE'/);
 });
 
+test("v47 keeps direct keepsake tools compact and exports true rounded PNG corners", async () => {
+  const [component, css, directExport] = await Promise.all([
+    source("../app/encounter/components/DirectKeepsake.tsx"),
+    source("../app/encounter/styles/v47-ux.css"),
+    source("../app/encounter/lib/direct-keepsake.ts"),
+  ]);
+
+  assert.match(component, /cardMenuOpen/);
+  assert.match(component, /<button[^\n]*aria-label="卡片工具 · Card tools"[^\n]*>☰<\/button>/);
+  assert.match(component, /className="direct-card-menu"[\s\S]*選擇卡片[\s\S]*上傳照片[\s\S]*調整圖片大小與位置/);
+  assert.doesNotMatch(component, /className="direct-photo-actions"/);
+  assert.match(css, /\.direct-keepsake-preview\.taiwan-meander::after\s*\{[^}]*content:\s*none;/s);
+  assert.match(css, /\.direct-keepsake-controls\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)\s+auto;/s);
+  assert.match(directExport, /context\.clearRect\(0,\s*0,\s*canvas\.width,\s*canvas\.height\)/);
+  assert.match(directExport, /drawRoundedPanel\(context,\s*layout\.card,\s*'#efd6a5',\s*66\)/);
+  assert.doesNotMatch(directExport, /fillRect\(0,\s*0,\s*canvas\.width,\s*canvas\.height\)|strokeRect\(x,\s*25,\s*12,\s*12\)/);
+});
+
 test("v47 implements the approved compact home and English-only gameplay brand", async () => {
   const [home, app, directExport, sharedExport, html, manifest] = await Promise.all([
     source("../app/encounter/components/ModeHome.tsx"),
