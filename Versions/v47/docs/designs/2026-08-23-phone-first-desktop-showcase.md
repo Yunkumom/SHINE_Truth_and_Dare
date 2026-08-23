@@ -53,3 +53,16 @@ Acceptance additions:
 3. The controls panel has natural content height with no stretched empty region.
 4. Desktop phone mode can exceed 1× on a sufficiently large viewport, is capped at a tasteful presentation scale, remains centered, and preserves 430:932 proportions.
 5. Real-phone mode does not apply desktop enlargement and remains scroll-safe with browser chrome visible.
+
+## Approved menu, theme, language, and card-editor expansion — 2026-08-23
+
+The hamburger becomes a compact control center rather than a grid of large destinations. Display modes are one horizontally swipeable, scroll-snapping rail containing `iPhone 17 Pro Max`, `桌面展示`, and `進階功能`. Destinations live inside a collapsed disclosure whose summary identifies the current experience; opening it reveals a second horizontally swipeable, scroll-snapping rail. Both rails remain keyboard accessible and expose selected state.
+
+The same global menu includes two interface preferences:
+
+- `白天 · DAY` and `夜間 · NIGHT` provide an eye-comfort theme switch; this changes application chrome and controls but does not recolor the keepsake artwork or exported PNG.
+- A native language dropdown uses English for first use and currently offers English, 台灣繁中, and bilingual mode to preserve the product contract. The option registry is structured so Japanese, Korean, and Thai can be added later without redesigning the menu; unavailable languages are not shown as working choices.
+
+The direct-keepsake adjustment action opens one editor with `照片`, `版面`, and `文字` tabs. Photo retains X, Y, and zoom. Layout adds blessing-panel height; increasing it grows upward and reduces the image viewport while preserving the 63:88 card boundary. Text adds an editable current-card title, a font-family dropdown with `典藏故事書`, `溫暖楷體`, and `現代黑體`, plus separate title-size and blessing-size range controls. Changes remain draft-only until Save, Cancel discards them, Reset restores the selected artwork defaults, and saved values affect both the live preview and generated PNG for the current direct keepsake.
+
+All added state is local UI or local export state. Theme is session-only, existing language preference remains local-device only, direct-card edits remain component memory only, and no backend, analytics, telemetry, account, personal-data persistence, or runtime font download is introduced.

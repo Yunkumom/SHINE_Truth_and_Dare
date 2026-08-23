@@ -427,6 +427,8 @@
   padding: 4px 3px 9px;
 }
 
+.surface-menu-panel > * { min-width: 0; }
+
 .surface-menu-panel > header b { font: 900 13px/1 "Noto Serif TC", serif; }
 .surface-menu-panel > header small { color: #8a6239; font: 700 6px/1 Georgia, serif; letter-spacing: .12em; }
 
@@ -435,6 +437,72 @@
   grid-template-columns: 1fr 1fr;
   gap: 5px;
 }
+
+.surface-menu-display { display: block; min-width: 0; }
+.surface-menu-display > strong { display: block; margin-bottom: 5px; }
+
+.surface-menu-rail {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  padding: 1px 1px 5px;
+}
+
+.surface-menu-rail > button {
+  flex: 0 0 154px;
+  min-height: 48px;
+  scroll-snap-align: center;
+  border: 1px solid rgba(148, 100, 60, .38);
+  border-radius: 11px;
+  background: #f7e8cb;
+  color: #3f2a1d;
+  padding: 7px 9px;
+  font-size: 10px;
+  font-weight: 850;
+  text-align: left;
+}
+
+.surface-menu-rail > button small { display: block; margin-top: 3px; color: #886d55; font: 6px/1.15 Georgia, serif; letter-spacing: .08em; }
+.surface-menu-rail > button[aria-checked="true"],
+.surface-menu-rail > button[aria-current="page"] { border-color: #7f3d32; background: #7f3d32; color: #fff8e9; }
+.surface-menu-rail > button[aria-checked="true"] small,
+.surface-menu-rail > button[aria-current="page"] small { color: #f5dcb3; }
+
+.surface-menu-destinations {
+  border: 1px solid rgba(148, 100, 60, .28);
+  border-radius: 12px;
+  background: rgba(247, 232, 203, .62);
+  overflow: hidden;
+}
+
+.surface-menu-destinations summary {
+  min-height: 48px;
+  display: grid;
+  align-content: center;
+  gap: 3px;
+  cursor: pointer;
+  list-style: none;
+  padding: 8px 11px;
+}
+
+.surface-menu-destinations summary::-webkit-details-marker { display: none; }
+.surface-menu-destinations summary::after { content: "⌄"; grid-column: 2; grid-row: 1 / 3; align-self: center; font-size: 18px; }
+.surface-menu-destinations[open] summary::after { content: "⌃"; }
+.surface-menu-destinations summary span { color: #8a6239; font-size: 7px; font-weight: 800; letter-spacing: .12em; }
+.surface-menu-destinations summary b { font-size: 10px; }
+.surface-menu-destination-rail { border-top: 1px solid rgba(148, 100, 60, .2); padding: 7px; }
+
+.surface-menu-preferences { display: grid; gap: 7px; }
+.surface-theme-switch { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+.surface-theme-switch button { min-height: 38px; border: 1px solid rgba(148, 100, 60, .36); border-radius: 9px; background: #f7e8cb; color: #3f2a1d; font-size: 9px; font-weight: 850; }
+.surface-theme-switch button[aria-checked="true"] { border-color: #7f3d32; background: #7f3d32; color: #fff8e9; }
+.surface-menu-preferences label { display: grid; grid-template-columns: max-content minmax(0, 1fr); align-items: center; gap: 9px; color: #8a6239; font-size: 8px; font-weight: 850; }
+.surface-menu-preferences select { width: 100%; min-width: 0; min-height: 38px; border: 1px solid rgba(148, 100, 60, .4); border-radius: 9px; background: #fffaf0; color: #3f2a1d; padding: 6px 26px 6px 9px; font-size: 10px; }
 
 .surface-menu-section > strong {
   grid-column: 1 / -1;
@@ -546,9 +614,11 @@
 }
 
 .direct-keepsake-preview {
-  grid-template-rows: 48px minmax(0, 1fr) 76px;
+  grid-template-rows: 48px minmax(0, 1fr) var(--direct-blessing-height, 76px);
   border-radius: 22px;
   padding: 8px;
+  color: #3f2a1d;
+  font-family: var(--direct-card-font, Baskerville, "Songti TC", "Noto Serif TC", Georgia, serif);
 }
 
 .direct-keepsake-title,
@@ -559,7 +629,8 @@
 }
 
 .direct-keepsake-title b {
-  font-size: 15px;
+  font-family: inherit;
+  font-size: var(--direct-title-font-size, 15px);
 }
 
 .direct-keepsake-title {
@@ -630,9 +701,112 @@
 
 .direct-keepsake-blessing p {
   margin-top: 4px;
-  font-size: 14px;
+  color: #2d2018;
+  font-family: inherit;
+  font-size: var(--direct-blessing-font-size, 14px);
   line-height: 1.3;
 }
+
+.v40-shell .direct-card-editor {
+  position: absolute;
+  inset: 6px;
+  width: auto;
+  max-width: none;
+  max-height: none;
+  grid-template-rows: auto auto minmax(280px, 1fr) minmax(118px, auto) auto;
+}
+
+.direct-card-editor-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  padding: 7px 10px;
+  border-bottom: 1px solid #d6d6da;
+  background: #f7f7f9;
+}
+
+.direct-card-editor-tabs button {
+  min-height: 38px;
+  border: 1px solid #c5a16e;
+  border-radius: 9px;
+  background: #fffaf0;
+  color: #3f2a1d;
+  font-size: 9px;
+  font-weight: 850;
+}
+
+.direct-card-editor-tabs button[aria-pressed="true"] { border-color: #7f3d32; background: #7f3d32; color: #fff8e9; }
+
+.direct-editor-card {
+  width: min(260px, calc(100% - 24px));
+  height: auto;
+  min-height: 0;
+  max-height: calc(100% - 12px);
+  align-self: center;
+  justify-self: center;
+  margin: 6px 0;
+  aspect-ratio: 63 / 88;
+  border: 4px solid #9a633e;
+  background: #efd6a5;
+  padding: 6px;
+  box-shadow: 0 12px 28px rgba(70, 41, 19, .2);
+}
+
+.direct-editor-card .direct-keepsake-title { min-height: 0; }
+.direct-editor-card .direct-keepsake-image { min-height: 0; }
+.direct-editor-card .direct-keepsake-blessing { min-height: 0; overflow: hidden; }
+.direct-card-editor-controls { min-height: 0; overflow-y: auto; padding-top: 8px; }
+.direct-card-editor-controls input[type="text"],
+.direct-card-editor-controls select { grid-column: 1 / -1; width: 100%; min-width: 0; min-height: 38px; border: 1px solid #b58a55; border-radius: 9px; background: #fffaf0; color: #2d1b12; padding: 7px 9px; }
+
+.direct-card-editor > footer {
+  min-height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #d6d6da;
+  background: #f7f7f9;
+  padding: 6px 10px 9px;
+}
+
+.direct-card-editor > footer button {
+  min-height: 32px;
+  border: 1px solid #b58a55;
+  border-radius: 999px;
+  background: #fffaf0;
+  color: #3f2a1d;
+  padding: 5px 14px;
+  font-size: 9px;
+  font-weight: 850;
+}
+
+.app-shell[data-theme="night"] { color-scheme: dark; background: #111821; }
+.app-shell[data-theme="night"] .mode-home-canvas,
+.app-shell[data-theme="night"] .direct-keepsake-canvas,
+.app-shell[data-theme="night"] .food-journey-canvas { color: #f4e7d3; background: radial-gradient(circle at 50% 12%, #24303a, #111821 68%, #0a1016); }
+.app-shell[data-theme="night"] .mode-home-header,
+.app-shell[data-theme="night"] .direct-keepsake-header,
+.app-shell[data-theme="night"] .food-journey-header,
+.app-shell[data-theme="night"] .post-draw-header { border-color: #75634f; background: rgba(20, 28, 36, .96); color: #f4e7d3; }
+.app-shell[data-theme="night"] .mode-choice,
+.app-shell[data-theme="night"] .direct-keepsake-controls,
+.app-shell[data-theme="night"] .surface-menu-panel { border-color: #75634f; background: rgba(24, 33, 42, .98); color: #f4e7d3; }
+.app-shell[data-theme="night"] .surface-menu-destinations,
+.app-shell[data-theme="night"] .surface-menu-rail > button,
+.app-shell[data-theme="night"] .surface-theme-switch button { border-color: #75634f; background: #303942; color: #f4e7d3; }
+.app-shell[data-theme="night"] .surface-menu-preferences select,
+.app-shell[data-theme="night"] .direct-blessing-select select { border-color: #75634f; background: #151e27; color: #f4e7d3; }
+.app-shell[data-theme="night"] .surface-menu-rail > button[aria-checked="true"],
+.app-shell[data-theme="night"] .surface-menu-rail > button[aria-current="page"],
+.app-shell[data-theme="night"] .surface-theme-switch button[aria-checked="true"] { background: #9b5a4f; color: #fff8e9; }
+.app-shell[data-theme="night"] .direct-card-editor,
+.app-shell[data-theme="night"] .direct-card-editor-tabs,
+.app-shell[data-theme="night"] .direct-card-editor > footer { border-color: #4c5964; background: #151e27; color: #f4e7d3; }
+.app-shell[data-theme="night"] .direct-card-editor-tabs button,
+.app-shell[data-theme="night"] .direct-card-editor > footer button,
+.app-shell[data-theme="night"] .direct-card-editor-controls input[type="text"],
+.app-shell[data-theme="night"] .direct-card-editor-controls select { border-color: #75634f; background: #303942; color: #f4e7d3; }
+.app-shell[data-theme="night"] .direct-card-editor-tabs button[aria-pressed="true"] { background: #9b5a4f; color: #fff8e9; }
 
 .direct-keepsake-controls {
   grid-template-columns: 1fr;

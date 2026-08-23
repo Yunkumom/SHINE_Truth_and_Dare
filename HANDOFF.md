@@ -71,6 +71,10 @@ Direct-keepsake controls use two deliberate full-width rows: the blessing label 
 
 直接紀念卡控制區使用兩列完整寬度的排版：祝福語標籤與選擇器共用第一列，下載／分享獨立佔第二列；啟用自訂祝福時，文字欄位位於兩者之間。控制面板維持內容的自然高度，不得被拉伸成大片空白。實體手機保持全寬且可安全捲動，桌面手機模式則可在寬高皆容納時把完整 430 × 932 畫布放大至最高 1.2 倍，並保持精確手機比例與置中。
 
+The hamburger now keeps iPhone, desktop showcase, and advanced surfaces in a true horizontally scrollable snap rail; destinations are collapsed by default in a second snap rail; day/night appearance and an English-first language selector for English, Taiwan Traditional Chinese, and bilingual mode are global controls. The direct-keepsake editor has photo, layout, and typography tabs with adjustable blessing-panel height, editable title, three offline-safe font families, title and blessing size sliders, transactional Save/Cancel/Reset behavior, and matching PNG output; night mode changes application chrome but preserves the warm card palette. Japanese, Korean, and Thai remain future registry additions rather than exposed incomplete options.
+
+漢堡選單現在把 iPhone、桌面展示與進階介面放在真正可水平滑動並吸附的軌道中；前往目的地預設收合在第二條吸附軌道；白天／夜間外觀與英文優先、可切換英文、台灣繁中及中英雙語的語言選擇器皆為全域控制。直接紀念卡編輯器具有照片、版面與字體三個分頁，可調整祝福欄高度、編輯標題、選擇三種離線安全字體、滑動調整標題與祝福字級，並提供具交易性的儲存／取消／重設行為且同步至 PNG 輸出；夜間模式只改變應用程式介面，保留卡片的溫暖配色。日文、韓文與泰文保留為未來註冊表擴充，不提前顯示未完成選項。
+
 Use the strongest available model for owner design discussions. After approval, record the decision and a complete implementation sequence here so execution can be delegated to a less capable model while preserving intent, constraints, exact files, checks, and upgrade conditions.
 
 與擁有者進行設計討論時使用目前最強模型。核准後，將決策與完整實作順序記錄於此，使能力較弱的模型仍能保留意圖、限制、精確檔案、檢查方式與升級條件來執行。

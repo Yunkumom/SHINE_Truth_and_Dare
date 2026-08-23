@@ -3,6 +3,30 @@ import { deliverCardFile } from './share'
 import { calculateZoomedCoverPlacement } from './portrait-focus'
 import type { ArtworkPresentation } from '../presentation/presentation-model'
 
+export type DirectKeepsakeFontFamily = 'storybook' | 'warm' | 'modern'
+
+export interface DirectKeepsakeDesign {
+  title: string
+  fontFamily: DirectKeepsakeFontFamily
+  titleFontSize: number
+  blessingFontSize: number
+  blessingHeight: number
+}
+
+export const DEFAULT_DIRECT_KEEPSAKE_DESIGN: DirectKeepsakeDesign = {
+  title: '',
+  fontFamily: 'storybook',
+  titleFontSize: 15,
+  blessingFontSize: 14,
+  blessingHeight: 76,
+}
+
+export const DIRECT_KEEPSAKE_FONT_OPTIONS: ReadonlyArray<{ value: DirectKeepsakeFontFamily, label: string, css: string }> = [
+  { value: 'storybook', label: '典藏故事書 · Storybook', css: 'Baskerville, "Songti TC", "Noto Serif TC", Georgia, serif' },
+  { value: 'warm', label: '溫暖楷體 · Warm Script', css: '"Kaiti TC", BiauKai, "DFKai-SB", Georgia, serif' },
+  { value: 'modern', label: '現代黑體 · Modern Sans', css: '"Avenir Next", "PingFang TC", "Noto Sans TC", system-ui, sans-serif' },
+]
+
 export interface DirectKeepsakeInput {
   imageSrc: string
   imageName: string
@@ -10,6 +34,7 @@ export interface DirectKeepsakeInput {
   language: Language
   adjustment: ArtworkPresentation
   focus: { x: number, y: number }
+  design: DirectKeepsakeDesign
 }
 
 export const DIRECT_KEEPSAKE_CANVAS = { width: 1260, height: 1760 } as const
@@ -78,6 +103,11 @@ function fitKeepsakeTitle(context: Pick<CanvasRenderingContext2D, 'measureText'>
   return `${characters.join('')}…`
 }
 
+function fontForKeepsake(family: DirectKeepsakeFontFamily, weight: number, size: number) {
+  const stack = DIRECT_KEEPSAKE_FONT_OPTIONS.find(option => option.value === family)?.css ?? DIRECT_KEEPSAKE_FONT_OPTIONS[0].css
+  return `${weight} ${size}px ${stack}`
+}
+
 export function wrapKeepsakeText(context: Pick<CanvasRenderingContext2D, 'measureText'>, text: string, maxWidth: number) {
   const words = /\s/.test(text.trim()) ? text.trim().split(/\s+/) : [...text.trim()]
   const separator = /\s/.test(text.trim()) ? ' ' : ''
@@ -100,7 +130,11 @@ export async function createDirectKeepsakePng(input: DirectKeepsakeInput): Promi
   const context = canvas.getContext('2d')
   if (!context) throw new Error('Canvas is unavailable')
 
-  const { borderWidth, padding, panelGap, titleHeight, blessingHeight, panelRadius } = DIRECT_KEEPSAKE_LAYOUT
+  const responsiveLayout = {
+    ...DIRECT_KEEPSAKE_LAYOUT,
+    blessingHeight: Math.round(input.design.blessingHeight * 3),
+  }
+  const { borderWidth, padding, panelGap, titleHeight, blessingHeight, panelRadius } = responsiveLayout
   const panelInset = borderWidth + padding
   const panelWidth = canvas.width - panelInset * 2
   const contentHeight = canvas.height - panelInset * 2
@@ -121,9 +155,9 @@ export async function createDirectKeepsakePng(input: DirectKeepsakeInput): Promi
 
   drawRoundedPanel(context, layout.title, '#f8e7c5')
   context.fillStyle = '#3d281c'
-  context.font = '800 45px serif'
+  context.font = fontForKeepsake(input.design.fontFamily, 800, Math.round(input.design.titleFontSize * 3))
   context.textBaseline = 'middle'
-  context.fillText(fitKeepsakeTitle(context, input.imageName, panelWidth - 150), layout.title.x + 30, layout.title.y + layout.title.height / 2)
+  context.fillText(fitKeepsakeTitle(context, input.design.title || input.imageName, panelWidth - 150), layout.title.x + 30, layout.title.y + layout.title.height / 2)
   context.textAlign = 'right'
   context.fillStyle = '#8e382e'
   context.font = '700 43px serif'
@@ -137,19 +171,22 @@ export async function createDirectKeepsakePng(input: DirectKeepsakeInput): Promi
   drawRoundedPanel(context, layout.blessing, '#f8e7c5', panelRadius)
   context.fillStyle = '#8a3f35'
   context.font = '800 21px system-ui'
-  context.fillText('給今天的祝福 · BLESSING', layout.blessing.x + 27, layout.blessing.y + 46)
+  context.fillText(input.language === 'en' ? 'BLESSING' : '給今天的祝福 · BLESSING', layout.blessing.x + 27, layout.blessing.y + 46)
   context.fillStyle = '#2d2018'
-  context.font = '700 42px serif'
+  context.font = fontForKeepsake(input.design.fontFamily, 700, Math.round(input.design.blessingFontSize * 3))
   let blessingLines = wrapKeepsakeText(context, input.blessing, layout.blessing.width - 54)
-  let blessingLineHeight = 55
-  let y = layout.blessing.y + 105
-  if (blessingLines.length > 3) {
-    context.font = '700 36px serif'
+  let blessingLineHeight = Math.round(input.design.blessingFontSize * 3.8)
+  let y = layout.blessing.y + 102
+  const availableLines = Math.max(1, Math.floor((layout.blessing.height - 105) / blessingLineHeight) + 1)
+  if (blessingLines.length > availableLines) {
+    const compactSize = Math.max(30, Math.round(input.design.blessingFontSize * 2.55))
+    context.font = fontForKeepsake(input.design.fontFamily, 700, compactSize)
     blessingLines = wrapKeepsakeText(context, input.blessing, layout.blessing.width - 54)
-    blessingLineHeight = 40
-    y = layout.blessing.y + 95
+    blessingLineHeight = Math.round(compactSize * 1.16)
+    y = layout.blessing.y + 94
   }
-  for (const line of blessingLines.slice(0, 4)) {
+  const maxLines = Math.max(1, Math.floor((layout.blessing.height - (y - layout.blessing.y) - 18) / blessingLineHeight) + 1)
+  for (const line of blessingLines.slice(0, maxLines)) {
     context.fillText(line, layout.blessing.x + 27, y)
     y += blessingLineHeight
   }

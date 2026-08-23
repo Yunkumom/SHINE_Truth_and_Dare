@@ -78,3 +78,21 @@ Update `Versions/v47/app/encounter/App.tsx` to calculate desktop phone presentat
 ### Task 8 — prove real-phone and desktop behavior
 
 Run the focused contracts, lint, full V47 suite, production build, and root validator. Inspect direct keepsake at 430 × 932 and at a large desktop viewport, confirming full-width rows, no horizontal overflow, natural controls height, centered proportional desktop phone geometry, and a working download/share trigger. Commit only the scoped files, deploy to the approved Firebase share target, and verify the cache-busted public release without promoting `latestVerified`.
+
+## Follow-up plan — global controls and direct-card design editor
+
+### Task 9 — lock the approved menu and editor behavior with RED contracts
+
+Update `Versions/v47/tests/v47-contract.test.mjs` to require two horizontal scroll-snap rails, a collapsed destination disclosure, day/night controls, an English-first language dropdown retaining `zh`, `en`, and `bilingual`, an editor with photo/layout/text tabs, editable title, font-family selection, title and blessing size ranges, blessing-panel height adjustment, and preview-to-PNG design propagation. Run only the new contracts and record genuine RED failures before production changes.
+
+### Task 10 — implement the compact global control center
+
+Update `Versions/v47/app/encounter/components/SurfaceMenu.tsx`, `Versions/v47/app/encounter/App.tsx`, and `Versions/v47/app/encounter/styles/v47-ux.css`. Extend `SurfaceMenuNavigationProps` with active destination, language, language change, appearance theme, and theme change. Render the display and destination rails with selected semantics and scroll snapping, keep destinations inside a collapsed `details`, add the day/night switch and language `select`, default first use to English without overriding an existing saved choice, and apply night colors to application chrome without altering card/export colors.
+
+### Task 11 — implement one draft-based direct-card editor
+
+Update `Versions/v47/app/encounter/components/DirectKeepsake.tsx`, `Versions/v47/app/encounter/components/DirectPhotoAdjuster.tsx`, `Versions/v47/app/encounter/lib/direct-keepsake.ts`, and `Versions/v47/app/encounter/styles/v47-ux.css`. Define `DirectKeepsakeDesign` and governed font choices, hold title/font/font-size/panel-height edits in component memory, expose photo/layout/text tabs with Save/Cancel/Reset, use CSS variables so panel growth reduces artwork height inside the unchanged 63:88 card, and pass the exact saved design into PNG layout and canvas font calculations.
+
+### Task 12 — verify interaction, geometry, privacy, and delivery
+
+Run focused contracts, lint, `npm run test:v47`, `npm run build:encounter`, root `node Versions/validate-repository.mjs`, and `git diff --check`. In the browser, verify default English on clean local preference state, English/Traditional Chinese switching, day/night chrome, collapsed and swipeable rails, editor draft cancellation, saved title/font/size/panel changes, unchanged 63:88 geometry, zero horizontal overflow, and a download/share trigger. Commit only scoped files, deploy to the approved Firebase share target, verify current hashed assets and public HTTP 200, and do not promote `latestVerified`.

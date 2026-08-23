@@ -8,7 +8,7 @@ import MobileSettings from './components/MobileSettings'
 import PostDrawKeepsake from './components/PostDrawKeepsake'
 import SwipeDeck from './components/SwipeDeck'
 import SurfaceMenu from './components/SurfaceMenu'
-import type { SurfaceMode, SurfaceMenuNavigationProps } from './components/SurfaceMenu'
+import type { AppearanceMode, SurfaceMode, SurfaceMenuNavigationProps } from './components/SurfaceMenu'
 import TaiwanReveal from './components/TaiwanReveal'
 import TaiwanFoodJourney from './components/TaiwanFoodJourney'
 import taiwanCardBack from './assets/taiwan-card-back.png'
@@ -66,7 +66,7 @@ const initialManagerState: SessionQuestionManagerState = { disabledQuestionIds: 
 const DESKTOP_PHONE_MAX_SCALE = 1.2
 
 export default function App() {
-  const [language, setLanguage] = useState<Language>(() => loadLanguage())
+  const [language, setLanguage] = useState<Language>(() => localStorage.getItem('encounter-language') ? loadLanguage() : 'en')
   const [fontScale, setFontScale] = useState(() => loadFontScale())
   const [level, setLevel] = useState<Level>(1)
   const [mode, setMode] = useState<Mode>('random')
@@ -81,6 +81,7 @@ export default function App() {
   const [offlineReady, setOfflineReady] = useState(false)
   const [phoneScale, setPhoneScale] = useState(1)
   const [surfaceMode, setSurfaceMode] = useState<SurfaceMode>('phone')
+  const [appearanceMode, setAppearanceMode] = useState<AppearanceMode>('day')
   const [desktopScales, setDesktopScales] = useState(() => calculateDesktopScales(window.innerHeight))
   const [yourName, setYourName] = useState('')
   const [theirName, setTheirName] = useState('')
@@ -169,7 +170,7 @@ export default function App() {
   function chooseDirectKeepsake() { setPlaying(false); setKeepsakeOpen(false); setSettingsOpen(false); setMobileDestination('keepsake-maker') }
   function chooseTruthOrDare() { setMode('random'); goToSetup() }
   function chooseFoodJourney() { setPlaying(false); setKeepsakeOpen(false); setSettingsOpen(false); setMobileDestination('food-journey') }
-  const surfaceNavigation: SurfaceMenuNavigationProps = { surfaceMode, onSurfaceModeChange: setSurfaceMode, onHome: goToModeHome, onChooseKeepsake: chooseDirectKeepsake, onChooseTruthOrDare: chooseTruthOrDare, onChooseFoodJourney: chooseFoodJourney }
+  const surfaceNavigation: SurfaceMenuNavigationProps = { surfaceMode, onSurfaceModeChange: setSurfaceMode, activeDestination: mobileDestination, language, onLanguageChange: chooseLanguage, appearanceMode, onAppearanceModeChange: setAppearanceMode, onHome: goToModeHome, onChooseKeepsake: chooseDirectKeepsake, onChooseTruthOrDare: chooseTruthOrDare, onChooseFoodJourney: chooseFoodJourney }
   function changeBlock(screen: LayoutScreen, id: string, patch: Partial<LayoutBlock>) { setLayoutHistory(history => applyLayoutChange(history, screen, id, patch)) }
   function block(screen: LayoutScreen, id: string, children: React.ReactNode, className = '') {
     return <EditableBlock key={`${screen}-${id}`} id={id} block={layoutHistory.present.screens[screen][id]} editing={editingActive && editorScreen === screen} selected={editingActive && editorScreen === screen && selectedBlock === id} directManipulation={directManipulation} canvasScale={desktopWorkspace ? desktopScales.workbench : 1} snap={snap} onSelect={() => setSelectedBlock(id)} onChange={patch => changeBlock(screen, id, patch)} className={className}>{children}</EditableBlock>
@@ -251,7 +252,7 @@ export default function App() {
       : null
   const screen = specialMobileScreen ?? standardScreen
   const shellName = specialMobileScreen ? mobileDestination : activeScreen
-  const appShell = (preview = false) => <main className={`app-shell v32-shell v33-shell v34-shell v35-shell v37-shell v40-shell ${shellName}-shell${editingActive && !preview ? ' is-layout-editing' : ''}`} data-language={language} style={{ '--font-scale': fontScale, '--reader-font-scale': fontScale } as React.CSSProperties}>{screen}{!preview && <>{!specialMobileScreen && <MobileSettings key={settingsOpen ? 'settings-open' : 'settings-closed'} open={settingsOpen} onClose={() => setSettingsOpen(false)} level={level} mode={mode} onLevelChange={chooseLevel} onModeChange={setMode} language={language} onLanguageChange={chooseLanguage} fontScale={fontScale} onFontScaleChange={chooseFontScale} artworks={ALL_ARTWORKS} collections={ARTWORK_COLLECTIONS} artworkPreference={artworkPreference} onArtworkPreferenceChange={setArtworkPreference} questions={governedQuestions} questionPacks={QUESTION_PACKS} manager={questionManager} onManagerChange={setQuestionManager} onSave={saveMobileSettings} savedArtworkIds={Object.keys(presentation.artworkById)} onClearArtworkPosition={clearArtworkPresentation} />}{artworkAdjusterOpen && <ArtworkAdjuster open encounter={encounter} language={language} manager={questionManager} value={presentation} onChange={value => setPresentation(normalizePresentation(value))} onClose={() => setArtworkAdjusterOpen(false)} />}</>}{!preview && <p className="sr-only" aria-live="polite">{status}</p>}</main>
+  const appShell = (preview = false) => <main className={`app-shell v32-shell v33-shell v34-shell v35-shell v37-shell v40-shell ${shellName}-shell${editingActive && !preview ? ' is-layout-editing' : ''}`} data-language={language} data-theme={appearanceMode} style={{ '--font-scale': fontScale, '--reader-font-scale': fontScale } as React.CSSProperties}>{screen}{!preview && <>{!specialMobileScreen && <MobileSettings key={settingsOpen ? 'settings-open' : 'settings-closed'} open={settingsOpen} onClose={() => setSettingsOpen(false)} level={level} mode={mode} onLevelChange={chooseLevel} onModeChange={setMode} language={language} onLanguageChange={chooseLanguage} fontScale={fontScale} onFontScaleChange={chooseFontScale} artworks={ALL_ARTWORKS} collections={ARTWORK_COLLECTIONS} artworkPreference={artworkPreference} onArtworkPreferenceChange={setArtworkPreference} questions={governedQuestions} questionPacks={QUESTION_PACKS} manager={questionManager} onManagerChange={setQuestionManager} onSave={saveMobileSettings} savedArtworkIds={Object.keys(presentation.artworkById)} onClearArtworkPosition={clearArtworkPresentation} />}{artworkAdjusterOpen && <ArtworkAdjuster open encounter={encounter} language={language} manager={questionManager} value={presentation} onChange={value => setPresentation(normalizePresentation(value))} onClose={() => setArtworkAdjusterOpen(false)} />}</>}{!preview && <p className="sr-only" aria-live="polite">{status}</p>}</main>
 
   const editorProps = { presentation, artworkId: encounter.artwork.id, onPresentationChange: (value: typeof presentation) => setPresentation(normalizePresentation(value)) }
 

@@ -14,10 +14,14 @@ test("v47 gives the direct keepsake preview the largest undistorted mobile layou
 });
 
 test("v47 balances the direct keepsake title and description default sizes", async () => {
-  const css = await source("../app/encounter/styles/v47-ux.css");
+  const [css, directExport] = await Promise.all([
+    source("../app/encounter/styles/v47-ux.css"),
+    source("../app/encounter/lib/direct-keepsake.ts"),
+  ]);
 
-  assert.match(css, /\.direct-keepsake-title b\s*\{[^}]*font-size:\s*15px;/s);
-  assert.match(css, /\.direct-keepsake-blessing p\s*\{[^}]*font-size:\s*14px;/s);
+  assert.match(css, /\.direct-keepsake-title b\s*\{[^}]*font-size:\s*var\(--direct-title-font-size,\s*15px\);/s);
+  assert.match(css, /\.direct-keepsake-blessing p\s*\{[^}]*font-size:\s*var\(--direct-blessing-font-size,\s*14px\);/s);
+  assert.match(directExport, /DEFAULT_DIRECT_KEEPSAKE_DESIGN[\s\S]*titleFontSize:\s*15,[\s\S]*blessingFontSize:\s*14,/);
 });
 
 test("v47 keeps the direct keepsake preview and PNG composition visually aligned", async () => {
@@ -26,12 +30,12 @@ test("v47 keeps the direct keepsake preview and PNG composition visually aligned
     source("../app/encounter/lib/direct-keepsake.ts"),
   ]);
 
-  assert.match(css, /\.direct-keepsake-preview\s*\{[^}]*grid-template-rows:\s*48px\s+minmax\(0,\s*1fr\)\s+76px;/s);
+  assert.match(css, /\.direct-keepsake-preview\s*\{[^}]*grid-template-rows:\s*48px\s+minmax\(0,\s*1fr\)\s+var\(--direct-blessing-height,\s*76px\);/s);
   assert.match(css, /\.direct-keepsake-blessing\s*\{[^}]*min-height:\s*76px;/s);
   assert.match(directExport, /DIRECT_KEEPSAKE_LAYOUT\s*=\s*\{[^}]*titleHeight:\s*145,[^}]*blessingHeight:\s*230,/s);
-  assert.match(directExport, /drawRoundedPanel\(context,\s*layout\.title,[\s\S]*fitKeepsakeTitle\(context,\s*input\.imageName/);
+  assert.match(directExport, /drawRoundedPanel\(context,\s*layout\.title,[\s\S]*fitKeepsakeTitle\(context,\s*input\.design\.title\s*\|\|\s*input\.imageName/);
   assert.match(directExport, /drawImageCover\(context,\s*image,\s*layout\.artwork,[\s\S]*drawRoundedPanel\(context,\s*layout\.blessing/);
-  assert.match(directExport, /if\s*\(blessingLines\.length\s*>\s*3\)[\s\S]*slice\(0,\s*4\)/);
+  assert.match(directExport, /const availableLines[\s\S]*const maxLines[\s\S]*slice\(0,\s*maxLines\)/);
   assert.doesNotMatch(directExport, /A MOMENT WORTH KEEPING|context\.fillText\('TRUTH OR DARE'/);
 });
 
@@ -64,7 +68,7 @@ test("v47 opens phone-first and offers one surface menu with a desktop showcase"
   assert.match(app, /useState<SurfaceMode>\('phone'\)/);
   assert.doesNotMatch(app, /setDesktopWorkspace\(!forcedMobileSurface\s*&&\s*window\.innerWidth\s*>=\s*1100\)/);
   assert.match(app, /surfaceMode\s*===\s*'showcase'[\s\S]*desktop-showcase/);
-  assert.match(menu, /iPhone 17 Pro Max[\s\S]*桌面展示[\s\S]*進階工作室/);
+  assert.match(menu, /iPhone 17 Pro Max[\s\S]*桌面展示[\s\S]*進階功能/);
   assert.match(menu, /直接製作紀念卡[\s\S]*真心話大冒險[\s\S]*台灣美食旅行/);
   assert.match(home, /title:\s*'破冰遊戲選擇'[\s\S]*title:\s*'CHOOSE AN ICEBREAKER'[\s\S]*<h1>\{text\.title\} · V47<\/h1>/);
   assert.match(direct, /<SurfaceMenu[\s\S]*選擇卡片[\s\S]*上傳照片[\s\S]*調整圖片大小與位置/);
@@ -84,6 +88,45 @@ test("v47 gives real phones two keepsake action rows and proportionally enlarges
   assert.match(css, /\.direct-keepsake-controls \.direct-download-button\s*\{[^}]*grid-column:\s*1\s*\/\s*-1;[^}]*width:\s*100%;/s);
   assert.match(app, /DESKTOP_PHONE_MAX_SCALE\s*=\s*1\.2/);
   assert.match(app, /width\s*<\s*DESKTOP_BREAKPOINT[\s\S]*calculatePhoneScale\(\{\s*width,\s*height\s*\}\)[\s\S]*Math\.min\(DESKTOP_PHONE_MAX_SCALE,\s*availableWidth\s*\/\s*430,\s*availableHeight\s*\/\s*932\)/);
+});
+
+test("v47 menu uses swipe rails with collapsed destinations plus theme and language controls", async () => {
+  const [app, menu, css] = await Promise.all([
+    source("../app/encounter/App.tsx"),
+    source("../app/encounter/components/SurfaceMenu.tsx"),
+    source("../app/encounter/styles/v47-ux.css"),
+  ]);
+
+  assert.match(menu, /surface-menu-rail surface-menu-display-rail[\s\S]*iPhone 17 Pro Max[\s\S]*桌面展示[\s\S]*進階功能/);
+  assert.match(menu, /<details className="surface-menu-destinations">[\s\S]*<summary>[\s\S]*surface-menu-rail surface-menu-destination-rail/);
+  assert.match(menu, /白天 · DAY[\s\S]*夜間 · NIGHT/);
+  assert.match(menu, /<select[^>]*value=\{language\}[\s\S]*value="en"[\s\S]*value="zh"[\s\S]*value="bilingual"/);
+  assert.match(app, /localStorage\.getItem\('encounter-language'\)\s*\?\s*loadLanguage\(\)\s*:\s*'en'/);
+  assert.match(app, /useState<AppearanceMode>\('day'\)/);
+  assert.match(app, /data-theme=\{appearanceMode\}/);
+  assert.match(css, /\.surface-menu-rail\s*\{[^}]*overflow-x:\s*auto;[^}]*scroll-snap-type:\s*x mandatory;/s);
+  assert.match(css, /\.app-shell\[data-theme="night"\]/);
+});
+
+test("v47 direct editor controls title font sizes and blessing height in preview and PNG", async () => {
+  const [direct, adjuster, directExport, css] = await Promise.all([
+    source("../app/encounter/components/DirectKeepsake.tsx"),
+    source("../app/encounter/components/DirectPhotoAdjuster.tsx"),
+    source("../app/encounter/lib/direct-keepsake.ts"),
+    source("../app/encounter/styles/v47-ux.css"),
+  ]);
+
+  for (const token of ["照片 · PHOTO", "版面 · LAYOUT", "文字 · TYPE", "祝福欄高度", "卡片標題", "標題大小", "祝福大小", "字體風格"]) assert.match(adjuster, new RegExp(token));
+  assert.match(adjuster, /<select[^>]*value=\{draftDesign\.fontFamily\}[\s\S]*DIRECT_KEEPSAKE_FONT_OPTIONS\.map/);
+  assert.match(directExport, /value:\s*'storybook'[\s\S]*value:\s*'warm'[\s\S]*value:\s*'modern'/);
+  assert.match(direct, /DEFAULT_DIRECT_KEEPSAKE_DESIGN/);
+  assert.match(direct, /--direct-title-font-size[\s\S]*--direct-blessing-font-size[\s\S]*--direct-blessing-height[\s\S]*--direct-card-font/);
+  assert.match(direct, /downloadDirectKeepsake\(\{[^}]*design/s);
+  assert.match(directExport, /export interface DirectKeepsakeDesign/);
+  assert.match(directExport, /blessingHeight:\s*Math\.round\(input\.design\.blessingHeight\s*\*\s*3\)/);
+  assert.match(directExport, /context\.font\s*=\s*fontForKeepsake\(input\.design\.fontFamily/);
+  assert.match(css, /\.direct-keepsake-preview\s*\{[^}]*grid-template-rows:\s*48px\s+minmax\(0,\s*1fr\)\s+var\(--direct-blessing-height/s);
+  assert.match(css, /\.v40-shell \.direct-card-editor\s*\{[^}]*position:\s*absolute;[^}]*inset:\s*6px;[^}]*width:\s*auto;/s);
 });
 
 test("v47 implements the approved compact home and English-only gameplay brand", async () => {
