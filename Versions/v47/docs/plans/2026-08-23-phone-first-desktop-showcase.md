@@ -64,3 +64,17 @@ git diff --check
 ```
 
 Record focused pass counts, lint warnings, build assets, the known unrelated WIP failures, and physical-device limitations. Commit only scoped files. Deploy the validated build to the already approved Firebase Hosting share target and verify the public hashed assets and visible V47 heading; do not promote `latestVerified`.
+
+## Follow-up plan — direct-keepsake phone rows and desktop proportion
+
+### Task 6 — lock the reported geometry with RED contracts
+
+Update `Versions/v47/tests/v47-contract.test.mjs` with deterministic checks requiring a one-column direct-keepsake action grid, a full-width blessing row, a full-width download/share row, natural-height controls, and a desktop-only presentation scale that may exceed 1× without changing mobile behavior; run only the new contract and record the intended RED result.
+
+### Task 7 — implement the minimal responsive geometry
+
+Update `Versions/v47/app/encounter/App.tsx` to calculate desktop phone presentation scale from both visual-viewport dimensions with a restrained maximum while continuing to use the existing mobile scale below the desktop breakpoint. Update `Versions/v47/app/encounter/styles/v47-ux.css` so the direct-keepsake controls form two full-width rows, custom copy remains between them, and the content grid distributes remaining space without stretching the controls panel.
+
+### Task 8 — prove real-phone and desktop behavior
+
+Run the focused contracts, lint, full V47 suite, production build, and root validator. Inspect direct keepsake at 430 × 932 and at a large desktop viewport, confirming full-width rows, no horizontal overflow, natural controls height, centered proportional desktop phone geometry, and a working download/share trigger. Commit only the scoped files, deploy to the approved Firebase share target, and verify the cache-busted public release without promoting `latestVerified`.

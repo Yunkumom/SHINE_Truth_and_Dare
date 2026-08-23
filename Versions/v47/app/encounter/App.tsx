@@ -25,7 +25,7 @@ import { resolvePreferredArtwork } from './lib/artwork-selection'
 import { resolveManagedQuestion } from './lib/question-manager'
 import { loadLanguage, loadFontScale, saveFontScale, saveLanguage } from './lib/preferences'
 import { shareOrDownload } from './lib/share'
-import { calculateDesktopScales, calculatePhoneScale } from './lib/viewport-scale'
+import { calculateDesktopScales, calculatePhoneScale, DESKTOP_BREAKPOINT } from './lib/viewport-scale'
 import { portraitObjectPosition } from './lib/portrait-focus'
 import { adjustedPortraitFocus } from './lib/portrait-focus'
 import { applyLayoutChange, createLayoutHistory, loadStoredLayout, saveStoredLayout } from './layout/layout-model'
@@ -63,6 +63,7 @@ function questionMeta(card: Card) {
 
 const previewEncounter: EncounterComposition = { card: cards[0], artwork: DEITY_ART[0], blessing: blessings[0] }
 const initialManagerState: SessionQuestionManagerState = { disabledQuestionIds: [], customQuestions: [], selectedQuestionId: null, enabledQuestionPackIds: [...ALL_QUESTION_PACK_IDS], drawnQuestionIds: [], showRealYou: false, showQuestion: true, showCardMeta: false, showBlessing: false, showFeatureNote: false }
+const DESKTOP_PHONE_MAX_SCALE = 1.2
 
 export default function App() {
   const [language, setLanguage] = useState<Language>(() => loadLanguage())
@@ -116,7 +117,12 @@ export default function App() {
       const viewport = window.visualViewport
       const width = viewport?.width ?? document.documentElement.clientWidth ?? window.innerWidth
       const height = viewport?.height ?? document.documentElement.clientHeight ?? window.innerHeight
-      setPhoneScale(calculatePhoneScale({ width, height }))
+      const availableWidth = Math.max(0, width - 64)
+      const availableHeight = Math.max(0, height - 48)
+      const nextPhoneScale = width < DESKTOP_BREAKPOINT
+        ? calculatePhoneScale({ width, height })
+        : Math.min(DESKTOP_PHONE_MAX_SCALE, availableWidth / 430, availableHeight / 932)
+      setPhoneScale(Math.max(0, nextPhoneScale))
       setDesktopScales(calculateDesktopScales(window.innerHeight))
     }
     const viewport = window.visualViewport

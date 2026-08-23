@@ -45,7 +45,7 @@ test("v47 keeps direct keepsake tools compact and exports true rounded PNG corne
   assert.match(component, /<SurfaceMenu[\s\S]*選擇卡片[\s\S]*上傳照片[\s\S]*調整圖片大小與位置[\s\S]*<\/SurfaceMenu>/);
   assert.doesNotMatch(component, /className="direct-photo-actions"/);
   assert.match(css, /\.direct-keepsake-preview\.taiwan-meander::after\s*\{[^}]*content:\s*none;/s);
-  assert.match(css, /\.direct-keepsake-controls\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)\s+auto;/s);
+  assert.match(css, /\.direct-keepsake-controls\s*\{[^}]*grid-template-columns:\s*1fr;/s);
   assert.match(directExport, /context\.clearRect\(0,\s*0,\s*canvas\.width,\s*canvas\.height\)/);
   assert.match(directExport, /drawRoundedPanel\(context,\s*layout\.card,\s*'#efd6a5',\s*66\)/);
   assert.doesNotMatch(directExport, /fillRect\(0,\s*0,\s*canvas\.width,\s*canvas\.height\)|strokeRect\(x,\s*25,\s*12,\s*12\)/);
@@ -70,6 +70,20 @@ test("v47 opens phone-first and offers one surface menu with a desktop showcase"
   assert.match(direct, /<SurfaceMenu[\s\S]*選擇卡片[\s\S]*上傳照片[\s\S]*調整圖片大小與位置/);
   assert.match(food, /<SurfaceMenu[\s\S]*列印 25 張卡/);
   assert.match(css, /\.desktop-showcase\s*\{[^}]*grid-template-columns:/s);
+});
+
+test("v47 gives real phones two keepsake action rows and proportionally enlarges desktop phone mode", async () => {
+  const [app, css] = await Promise.all([
+    source("../app/encounter/App.tsx"),
+    source("../app/encounter/styles/v47-ux.css"),
+  ]);
+
+  assert.match(css, /\.direct-keepsake-content\s*\{[^}]*align-content:\s*space-between;/s);
+  assert.match(css, /\.direct-keepsake-controls\s*\{[^}]*grid-template-columns:\s*1fr;[^}]*align-self:\s*end;/s);
+  assert.match(css, /\.direct-blessing-select\s*\{[^}]*grid-column:\s*1\s*\/\s*-1;[^}]*grid-template-columns:\s*max-content\s+minmax\(0,\s*1fr\);/s);
+  assert.match(css, /\.direct-keepsake-controls \.direct-download-button\s*\{[^}]*grid-column:\s*1\s*\/\s*-1;[^}]*width:\s*100%;/s);
+  assert.match(app, /DESKTOP_PHONE_MAX_SCALE\s*=\s*1\.2/);
+  assert.match(app, /width\s*<\s*DESKTOP_BREAKPOINT[\s\S]*calculatePhoneScale\(\{\s*width,\s*height\s*\}\)[\s\S]*Math\.min\(DESKTOP_PHONE_MAX_SCALE,\s*availableWidth\s*\/\s*430,\s*availableHeight\s*\/\s*932\)/);
 });
 
 test("v47 implements the approved compact home and English-only gameplay brand", async () => {

@@ -67,6 +67,10 @@ Every fresh V47 load must open in the phone-first experience, including on deskt
 
 每次重新開啟 V47 都必須先顯示手機優先體驗，包含使用桌面電腦時；選擇頁標題必須在 `破冰遊戲選擇` 或 `CHOOSE AN ICEBREAKER` 旁清楚顯示 `V47`。右上角漢堡選單負責顯示模式切換、體驗導覽與目前畫面的工具，例如選擇卡片、上傳照片、調整圖片、變更抽卡設定及列印美食卡。桌面模式應為乾淨的展示介面，而不是自動進入編輯器；既有擁有者工作室只作為進階選單項目保留。顯示模式切換只存在目前 session，必須保留記憶體內狀態，且不得增加持久保存、analytics、帳號、telemetry 或 backend 傳輸。核准設計與計畫分別為 `Versions/v47/docs/designs/2026-08-23-phone-first-desktop-showcase.md` 與 `Versions/v47/docs/plans/2026-08-23-phone-first-desktop-showcase.md`。
 
+Direct-keepsake controls use two deliberate full-width rows: the blessing label and selector share the first row, while download/share occupies the second row; custom blessing text sits between them when enabled. The controls panel keeps natural content height instead of stretching into empty space. Real phones remain full-width and scroll-safe, while desktop phone mode may enlarge the complete 430 × 932 canvas up to 1.2× when both dimensions fit, preserving the exact phone proportion and centering.
+
+直接紀念卡控制區使用兩列完整寬度的排版：祝福語標籤與選擇器共用第一列，下載／分享獨立佔第二列；啟用自訂祝福時，文字欄位位於兩者之間。控制面板維持內容的自然高度，不得被拉伸成大片空白。實體手機保持全寬且可安全捲動，桌面手機模式則可在寬高皆容納時把完整 430 × 932 畫布放大至最高 1.2 倍，並保持精確手機比例與置中。
+
 Use the strongest available model for owner design discussions. After approval, record the decision and a complete implementation sequence here so execution can be delegated to a less capable model while preserving intent, constraints, exact files, checks, and upgrade conditions.
 
 與擁有者進行設計討論時使用目前最強模型。核准後，將決策與完整實作順序記錄於此，使能力較弱的模型仍能保留意圖、限制、精確檔案、檢查方式與升級條件來執行。
