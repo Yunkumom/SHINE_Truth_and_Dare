@@ -280,7 +280,7 @@ test("v47 Taiwan food journey is a third memory-only home experience", async () 
   assert.match(home, /台灣美食旅行/);
   assert.match(app, /food-journey/);
   assert.match(app, /<TaiwanFoodJourney/);
-  for (const token of ["全部地區", "辛辣題目", "全員同意", "翻到背面", "跳過不受罰", "window.print"] ) {
+  for (const token of ["全部地區", "辛辣題目", "全員同意", "翻開料理", "掀開介紹", "跳過不受罰", "window.print"] ) {
     assert.match(journey, new RegExp(token));
   }
   assert.doesNotMatch(journey, /localStorage|sessionStorage|fetch\(|XMLHttpRequest|analytics|contact|birthday/i);
@@ -296,8 +296,9 @@ test("v47 Taiwan food journey supports region filtering, all prompt types, and p
   assert.match(journey, /food-print-back/);
   assert.match(journey, /aria-pressed/);
   assert.match(journey, /onKeyDown/);
-  assert.match(journey, /aria-hidden=\{flipped\}/);
-  assert.match(journey, /language === 'en' \? current\.subject\.name\.en : current\.subject\.name\.zh/);
+  assert.match(journey, /aria-hidden=\{cardStage !== 'open'\}/);
+  assert.match(journey, /aria-expanded=\{cardStage === 'open'\}/);
+  assert.match(journey, /localize\(current\.subject\.name, language\)/);
 });
 
 test("v47 Taiwan food cards preserve 63 by 88 ratio and accessible print styling", async () => {
@@ -311,6 +312,31 @@ test("v47 Taiwan food cards preserve 63 by 88 ratio and accessible print styling
   assert.match(css, /--food-trim-width:\s*63mm/);
   assert.match(css, /--food-trim-height:\s*88mm/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
+});
+
+test("v47 three-stage Taiwan food card reveals utensils, dish, then lifted information", async () => {
+  const [journey, css] = await Promise.all([
+    source("../app/encounter/components/TaiwanFoodJourney.tsx"),
+    source("../app/encounter/styles/taiwan-food-journey.css"),
+  ]);
+  assert.match(journey, /type FoodCardStage = 'back' \| 'front' \| 'open'/);
+  assert.match(journey, /const \[cardStage, setCardStage\] = useState<FoodCardStage>\('back'\)/);
+  assert.match(journey, /back:\s*'front'[\s\S]*front:\s*'open'[\s\S]*open:\s*'back'/);
+  assert.ok([...journey.matchAll(/setCardStage\('back'\)/g)].length >= 2);
+  for (const token of ["food-card-utensil-back", "food-card-dish-cover", "food-card-information", "food-card-caption-rail", "food-card-fork", "food-card-spoon"]) {
+    assert.match(journey, new RegExp(token));
+  }
+  assert.match(journey, /aria-expanded=\{cardStage === 'open'\}/);
+  assert.match(journey, /aria-hidden=\{cardStage !== 'back'\}/);
+  assert.match(journey, /aria-hidden=\{cardStage === 'back'\}/);
+  assert.match(journey, /event\.key !== 'Enter' && event\.key !== ' '/);
+  assert.match(css, /\.food-card-dish-cover\s*\{[^}]*transform-origin:\s*top center/s);
+  assert.match(css, /\.food-card-shell\[data-stage="open"\][^{]*\.food-card-dish-cover\s*\{[^}]*rotateX\(-/s);
+  assert.match(css, /\.food-card-dish-cover img\s*\{[^}]*object-fit:\s*cover[^}]*object-position:\s*50% 0%/s);
+  assert.match(css, /\.food-card-caption-rail\s*\{/);
+  assert.match(css, /prefers-reduced-motion:\s*reduce[\s\S]*\.food-card-shell\[data-stage="open"\][^{]*\.food-card-dish-cover\s*\{[^}]*transform:\s*none/s);
+  assert.match(journey, /food-print-front/);
+  assert.match(journey, /food-print-back/);
 });
 
 test("v47 human-nature collection adds 20 bilingual philosophy scenarios", async () => {
