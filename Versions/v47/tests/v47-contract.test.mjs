@@ -13,6 +13,13 @@ test("v47 gives the direct keepsake preview the largest undistorted mobile layou
   assert.doesNotMatch(css, /\.direct-keepsake-preview\s*\{[^}]*355px/s);
 });
 
+test("v47 balances the direct keepsake title and description default sizes", async () => {
+  const css = await source("../app/encounter/styles/v47-ux.css");
+
+  assert.match(css, /\.direct-keepsake-title b\s*\{[^}]*font-size:\s*15px;/s);
+  assert.match(css, /\.direct-keepsake-blessing p\s*\{[^}]*font-size:\s*14px;/s);
+});
+
 test("v47 implements the approved compact home and English-only gameplay brand", async () => {
   const [home, app, directExport, sharedExport, html, manifest] = await Promise.all([
     source("../app/encounter/components/ModeHome.tsx"),

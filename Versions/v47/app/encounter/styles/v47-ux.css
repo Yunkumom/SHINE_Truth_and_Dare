@@ -403,6 +403,10 @@
   border-radius: 11px;
 }
 
+.direct-keepsake-title b {
+  font-size: 15px;
+}
+
 .direct-keepsake-image {
   margin-top: 5px;
 }
@@ -416,7 +420,7 @@
 
 .direct-keepsake-blessing p {
   margin-top: 4px;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.3;
 }
 
