@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "shine-truth-or-dare-dev",
+    "site": "shine-truth-or-dare-share",
     "public": "public/v47",
     "ignore": [
       "firebase.json",
@@ -51,5 +51,8 @@
         ]
       }
     ]
+  },
+  "database": {
+    "rules": "database.rules.json"
   }
 }

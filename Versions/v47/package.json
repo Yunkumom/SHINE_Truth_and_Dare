@@ -1,0 +1,46 @@
+{
+  "name": "encounter-cards-v47",
+  "version": "47.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "install:ci": "bash scripts/install-ci.sh",
+    "dev": "vite",
+    "build:encounter": "vite build --config vite.encounter.config.ts && node scripts/finalize-encounter.mjs",
+    "build": "bash scripts/build-verified.sh",
+    "start": "vinext start",
+    "test:v47": "node --test tests/v47-contract.test.mjs tests/artwork-selection.test.ts tests/battle-engine.test.ts tests/room-state.test.ts tests/undercover-engine.test.ts tests/undercover-contract.test.mjs",
+    "test": "npm run build && node --test tests/rendered-html.test.mjs",
+    "validate:artifact": "bash scripts/validate-artifact.sh",
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern public/v47"
+  },
+  "dependencies": {
+    "firebase": "^12.2.1",
+    "next": "16.2.6",
+    "qrcode": "^1.5.4",
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "1.37.1",
+    "@tailwindcss/postcss": "4.2.1",
+    "@types/node": "22.19.19",
+    "@types/qrcode": "^1.5.5",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "6.0.2",
+    "@vitejs/plugin-rsc": "0.5.26",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.2.6",
+    "react-server-dom-webpack": "19.2.6",
+    "tailwindcss": "4.2.1",
+    "typescript": "5.9.3",
+    "vinext": "0.0.50",
+    "vite": "8.0.13",
+    "wrangler": "4.92.0"
+  },
+  "type": "module",
+  "displayName": "Encounter Cards V47"
+}

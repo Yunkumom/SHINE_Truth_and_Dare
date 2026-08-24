@@ -4,7 +4,7 @@ import type { Language } from '../types'
 
 export type SurfaceMode = 'phone' | 'showcase' | 'studio'
 export type AppearanceMode = 'day' | 'night'
-export type SurfaceDestination = 'home' | 'keepsake-maker' | 'setup' | 'food-journey'
+export type SurfaceDestination = 'home' | 'keepsake-maker' | 'setup' | 'food-journey' | 'undercover'
 
 export interface SurfaceMenuNavigationProps {
   surfaceMode: SurfaceMode
@@ -18,6 +18,7 @@ export interface SurfaceMenuNavigationProps {
   onChooseKeepsake: () => void
   onChooseTruthOrDare: () => void
   onChooseFoodJourney: () => void
+  onChooseUndercover: () => void
 }
 
 interface SurfaceMenuProps extends SurfaceMenuNavigationProps {
@@ -29,9 +30,10 @@ const destinationLabels: Record<SurfaceDestination, string> = {
   'keepsake-maker': '直接製作紀念卡 · KEEPSAKE',
   setup: '真心話大冒險 · PLAY',
   'food-journey': '台灣美食旅行 · FOOD',
+  undercover: '誰是臥底 · UNDERCOVER',
 }
 
-export default function SurfaceMenu({ surfaceMode, onSurfaceModeChange, activeDestination, language, onLanguageChange, appearanceMode, onAppearanceModeChange, onHome, onChooseKeepsake, onChooseTruthOrDare, onChooseFoodJourney, children }: SurfaceMenuProps) {
+export default function SurfaceMenu({ surfaceMode, onSurfaceModeChange, activeDestination, language, onLanguageChange, appearanceMode, onAppearanceModeChange, onHome, onChooseKeepsake, onChooseTruthOrDare, onChooseFoodJourney, onChooseUndercover, children }: SurfaceMenuProps) {
   const [open, setOpen] = useState(false)
 
   function choose(action: () => void) {
@@ -60,6 +62,7 @@ export default function SurfaceMenu({ surfaceMode, onSurfaceModeChange, activeDe
           <button type="button" aria-current={activeDestination === 'keepsake-maker' ? 'page' : undefined} onClick={() => choose(onChooseKeepsake)}>直接製作紀念卡<small>KEEPSAKE</small></button>
           <button type="button" aria-current={activeDestination === 'setup' ? 'page' : undefined} onClick={() => choose(onChooseTruthOrDare)}>真心話大冒險<small>PLAY</small></button>
           <button type="button" aria-current={activeDestination === 'food-journey' ? 'page' : undefined} onClick={() => choose(onChooseFoodJourney)}>台灣美食旅行<small>FOOD</small></button>
+          <button type="button" aria-current={activeDestination === 'undercover' ? 'page' : undefined} onClick={() => choose(onChooseUndercover)}>誰是臥底<small>UNDERCOVER</small></button>
         </div>
       </details>
       <section className="surface-menu-preferences" aria-label="閱讀偏好 · Reading preferences">

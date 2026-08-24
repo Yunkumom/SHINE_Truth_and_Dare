@@ -15,12 +15,12 @@ const labels = {
   },
 }
 
-export default function ModeHome({ language, onChooseKeepsake, onChooseTruthOrDare, onChooseFoodJourney, ...navigation }: ModeHomeProps) {
+export default function ModeHome({ language, onChooseKeepsake, onChooseTruthOrDare, onChooseFoodJourney, onChooseUndercover, ...navigation }: ModeHomeProps) {
   const text = language === 'en' ? labels.en : labels.zh
-  return <section className="mode-home-canvas has-three-experiences" aria-label="選擇模式 · Choose an experience">
+  return <section className="mode-home-canvas has-four-experiences" aria-label="選擇模式 · Choose an experience">
     <header className="mode-home-header">
       <div className="mode-home-brand"><span aria-hidden="true">✦</span><b>TRUTH OR DARE</b></div>
-      <SurfaceMenu {...navigation} onChooseKeepsake={onChooseKeepsake} onChooseTruthOrDare={onChooseTruthOrDare} onChooseFoodJourney={onChooseFoodJourney} />
+      <SurfaceMenu {...navigation} onChooseKeepsake={onChooseKeepsake} onChooseTruthOrDare={onChooseTruthOrDare} onChooseFoodJourney={onChooseFoodJourney} onChooseUndercover={onChooseUndercover} />
     </header>
     <div className="mode-home-intro">
       <h1>{text.title} · V47</h1>
@@ -44,7 +44,13 @@ export default function ModeHome({ language, onChooseKeepsake, onChooseTruthOrDa
         <span><b>台灣美食旅行</b><small>TAIWAN FOOD JOURNEY</small></span>
         <i aria-hidden="true">→</i>
       </button>
+      <button type="button" className="experience-card undercover-entry-card" onClick={onChooseUndercover}>
+        <span className="experience-number">04</span>
+        <span className="experience-icon undercover-icon" aria-hidden="true">◐</span>
+        <span><b>誰是臥底</b><small>WHO IS THE UNDERCOVER</small></span>
+        <i aria-hidden="true">→</i>
+      </button>
     </div>
-    <p className="mode-home-privacy">所有內容只留在你的裝置 · Everything stays on your device</p>
+    <p className="mode-home-privacy">匿名房間資料兩小時失效 · Anonymous room data expires in two hours</p>
   </section>
 }

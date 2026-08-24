@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import EditableBlock from './components/EditableBlock'
 import ArtworkAdjuster from './components/ArtworkAdjuster'
 import DirectKeepsake from './components/DirectKeepsake'
@@ -42,6 +42,7 @@ import './styles/v37.css'
 import './styles/v40.css'
 import './styles/v47-ux.css'
 import './styles/taiwan-food-journey.css'
+import './styles/who-is-undercover.css'
 
 const copy = {
   zh: { heading: '一起玩一題吧。', subheading: 'ONE QUESTION, A GOOD START.', lead: '抽一張卡，輕鬆開始聊天；想留下今天的記憶時，再做成紀念卡。', leadEn: 'Draw a card, start an easy conversation, and save the moment if you wish.', begin: '開始真心話大冒險 · Begin', draw: '抽一張卡', next: '下一張', share: '製作紀念卡', back: '返回設定', install: 'iPhone：Safari → 分享 → 加入主畫面' },
@@ -64,6 +65,7 @@ function questionMeta(card: Card) {
 const previewEncounter: EncounterComposition = { card: cards[0], artwork: DEITY_ART[0], blessing: blessings[0] }
 const initialManagerState: SessionQuestionManagerState = { disabledQuestionIds: [], customQuestions: [], selectedQuestionId: null, enabledQuestionPackIds: [...ALL_QUESTION_PACK_IDS], drawnQuestionIds: [], showRealYou: false, showQuestion: true, showCardMeta: false, showBlessing: false, showFeatureNote: false }
 const DESKTOP_PHONE_MAX_SCALE = 1.2
+const WhoIsUndercover = lazy(() => import('./components/WhoIsUndercover'))
 
 export default function App() {
   const [language, setLanguage] = useState<Language>(() => localStorage.getItem('encounter-language') ? loadLanguage() : 'en')
@@ -92,7 +94,7 @@ export default function App() {
   const [desktopMode, setDesktopMode] = useState<'settings' | 'test'>('settings')
   const [directManipulation, setDirectManipulation] = useState(true)
   const [settingsOpen, setSettingsOpen] = useState(false)
-  const [mobileDestination, setMobileDestination] = useState<'home' | 'setup' | 'keepsake-maker' | 'food-journey'>('home')
+  const [mobileDestination, setMobileDestination] = useState<'home' | 'setup' | 'keepsake-maker' | 'food-journey' | 'undercover'>(() => new URLSearchParams(window.location.search).has('undercoverRoom') ? 'undercover' : 'home')
   const [artworkAdjusterOpen, setArtworkAdjusterOpen] = useState(false)
   const [artworkPreference, setArtworkPreference] = useState<ArtworkPreference>({ mode: 'random', collectionId: DEFAULT_COLLECTION_ID })
   const [questionManager, setQuestionManager] = useState<SessionQuestionManagerState>(initialManagerState)
@@ -170,7 +172,8 @@ export default function App() {
   function chooseDirectKeepsake() { setPlaying(false); setKeepsakeOpen(false); setSettingsOpen(false); setMobileDestination('keepsake-maker') }
   function chooseTruthOrDare() { setMode('random'); goToSetup() }
   function chooseFoodJourney() { setPlaying(false); setKeepsakeOpen(false); setSettingsOpen(false); setMobileDestination('food-journey') }
-  const surfaceNavigation: SurfaceMenuNavigationProps = { surfaceMode, onSurfaceModeChange: setSurfaceMode, activeDestination: mobileDestination, language, onLanguageChange: chooseLanguage, appearanceMode, onAppearanceModeChange: setAppearanceMode, onHome: goToModeHome, onChooseKeepsake: chooseDirectKeepsake, onChooseTruthOrDare: chooseTruthOrDare, onChooseFoodJourney: chooseFoodJourney }
+  function chooseUndercover() { setPlaying(false); setKeepsakeOpen(false); setSettingsOpen(false); setMobileDestination('undercover') }
+  const surfaceNavigation: SurfaceMenuNavigationProps = { surfaceMode, onSurfaceModeChange: setSurfaceMode, activeDestination: mobileDestination, language, onLanguageChange: chooseLanguage, appearanceMode, onAppearanceModeChange: setAppearanceMode, onHome: goToModeHome, onChooseKeepsake: chooseDirectKeepsake, onChooseTruthOrDare: chooseTruthOrDare, onChooseFoodJourney: chooseFoodJourney, onChooseUndercover: chooseUndercover }
   function changeBlock(screen: LayoutScreen, id: string, patch: Partial<LayoutBlock>) { setLayoutHistory(history => applyLayoutChange(history, screen, id, patch)) }
   function block(screen: LayoutScreen, id: string, children: React.ReactNode, className = '') {
     return <EditableBlock key={`${screen}-${id}`} id={id} block={layoutHistory.present.screens[screen][id]} editing={editingActive && editorScreen === screen} selected={editingActive && editorScreen === screen && selectedBlock === id} directManipulation={directManipulation} canvasScale={desktopWorkspace ? desktopScales.workbench : 1} snap={snap} onSelect={() => setSelectedBlock(id)} onChange={patch => changeBlock(screen, id, patch)} className={className}>{children}</EditableBlock>
@@ -249,6 +252,8 @@ export default function App() {
       ? <DirectKeepsake language={language} artworks={ALL_ARTWORKS} collections={ARTWORK_COLLECTIONS} blessings={blessings} onBack={goToModeHome} onStatus={setStatus} {...surfaceNavigation} />
       : !desktopWorkspace && mobileDestination === 'food-journey'
         ? <TaiwanFoodJourney language={language} onBack={goToModeHome} {...surfaceNavigation} />
+      : !desktopWorkspace && mobileDestination === 'undercover'
+        ? <Suspense fallback={<section className="undercover-canvas"><div className="undercover-waiting"><span className="undercover-pulse" />Connecting synchronized room…</div></section>}><WhoIsUndercover language={language} initialCode={new URLSearchParams(window.location.search).get('undercoverRoom') ?? ''} onBack={goToModeHome} {...surfaceNavigation} /></Suspense>
       : null
   const screen = specialMobileScreen ?? standardScreen
   const shellName = specialMobileScreen ? mobileDestination : activeScreen
@@ -259,7 +264,7 @@ export default function App() {
   const desktopModeTabs = <div className="desktop-mode-switch desktop-mode-bookmark-tabs" role="group" aria-label="Desktop mode"><button type="button" aria-label="Settings mode" aria-pressed={desktopMode === 'settings'} className={desktopMode === 'settings' ? 'active' : ''} onClick={() => { setDesktopMode('settings'); setDirectManipulation(true) }}><span>編輯</span><small>EDIT</small></button><button type="button" aria-label="Test mode" aria-pressed={desktopMode === 'test'} className={desktopMode === 'test' ? 'active' : ''} onClick={() => { setDesktopMode('test'); setDirectManipulation(false) }}><span>測試</span><small>TEST</small></button></div>
   const studioScreens: Array<[LayoutScreen, string, string]> = [['setup', '入口設定', 'SETUP'], ['game', '抽卡畫面', 'DRAW'], ['keepsake', '紀念卡', 'KEEPSAKE']]
   const chooseStudioScreen = (nextScreen: LayoutScreen) => { setEditorScreen(nextScreen); setSelectedBlock(nextScreen === 'setup' ? 'hero' : 'card') }
-  const showcaseTitle = mobileDestination === 'keepsake-maker' ? '直接製作紀念卡' : mobileDestination === 'food-journey' ? '台灣美食旅行' : mobileDestination === 'setup' ? '真心話大冒險' : '破冰遊戲選擇'
+  const showcaseTitle = mobileDestination === 'keepsake-maker' ? '直接製作紀念卡' : mobileDestination === 'food-journey' ? '台灣美食旅行' : mobileDestination === 'undercover' ? '誰是臥底' : mobileDestination === 'setup' ? '真心話大冒險' : '破冰遊戲選擇'
 
   if (surfaceMode === 'showcase') return <div className="viewport-stage desktop-showcase-viewport">
     <div className="desktop-showcase" style={{ '--showcase-scale': desktopScales.workbench } as React.CSSProperties}>
@@ -270,6 +275,7 @@ export default function App() {
         <button type="button" className={mobileDestination === 'keepsake-maker' ? 'active' : ''} onClick={chooseDirectKeepsake}>紀念卡<span>KEEPSAKE</span></button>
         <button type="button" className={mobileDestination === 'setup' ? 'active' : ''} onClick={chooseTruthOrDare}>真心話大冒險<span>PLAY</span></button>
         <button type="button" className={mobileDestination === 'food-journey' ? 'active' : ''} onClick={chooseFoodJourney}>台灣美食<span>FOOD JOURNEY</span></button>
+        <button type="button" className={mobileDestination === 'undercover' ? 'active' : ''} onClick={chooseUndercover}>誰是臥底<span>UNDERCOVER</span></button>
       </nav>
       <section className="desktop-showcase-stage" aria-label="Desktop showcase interactive device"><div className="desktop-showcase-device"><div className="desktop-showcase-canvas">{appShell()}</div></div></section>
       <aside className="desktop-showcase-context"><small>NOW SHOWING · V47</small><h1>{showcaseTitle}</h1><p>使用中央互動裝置完整展示手機體驗，左側快速切換內容，更多工具與顯示模式集中在右上角選單。</p><dl><div><dt>DEVICE</dt><dd>iPhone 17 Pro Max</dd></div><div><dt>CANVAS</dt><dd>430 × 932 governed</dd></div><div><dt>PRIVACY</dt><dd>Memory only</dd></div></dl><button type="button" onClick={() => setSurfaceMode('phone')}>回到手機介面 · PHONE</button><button type="button" onClick={() => setSurfaceMode('studio')}>進階工作室 · STUDIO</button></aside>
