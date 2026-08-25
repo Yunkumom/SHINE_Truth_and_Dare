@@ -14,6 +14,7 @@
     "test:v47": "node --test tests/v47-contract.test.mjs tests/artwork-selection.test.ts tests/battle-engine.test.ts tests/room-state.test.ts tests/undercover-engine.test.ts tests/undercover-contract.test.mjs",
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
     "validate:artifact": "bash scripts/validate-artifact.sh",
+    "verify:undercover-rules": "node scripts/verify-live-undercover-rules.mjs --project shine-share-lab",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern public/v47"
   },
   "dependencies": {

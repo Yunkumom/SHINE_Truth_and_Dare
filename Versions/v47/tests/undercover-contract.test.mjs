@@ -45,6 +45,20 @@ test('database rules isolate private assignments and preserve root denial', asyn
   assert.match(rules.undercoverRooms.$code['.read'], /members.*auth\.uid/)
 })
 
+test('deployed-rule verifier detects missing or changed Undercover namespaces', async () => {
+  const [{ assertUndercoverRulesMatch }, packageJson, canonical] = await Promise.all([
+    import('../scripts/verify-live-undercover-rules.mjs'),
+    source('../package.json').then(JSON.parse),
+    source('../database.rules.json').then(JSON.parse),
+  ])
+  assert.throws(
+    () => assertUndercoverRulesMatch({ rules: { '.read': false, '.write': false } }, canonical),
+    /undercoverRooms/,
+  )
+  assert.doesNotThrow(() => assertUndercoverRulesMatch(canonical, canonical))
+  assert.match(packageJson.scripts['verify:undercover-rules'], /verify-live-undercover-rules/)
+})
+
 test('QR codes are generated locally and invitations deep-link by room code', async () => {
   const [component, packageJson] = await Promise.all([
     source('../app/encounter/components/WhoIsUndercover.tsx'),

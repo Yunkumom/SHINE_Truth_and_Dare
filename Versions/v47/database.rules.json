@@ -27,14 +27,20 @@
           "$uid": {
             ".read": "auth != null && data.parent().parent().child('participants').child(auth.uid).exists()",
             ".write": "auth != null && (auth.uid === $uid || data.parent().parent().child('meta/hostUid').val() === auth.uid)",
-            ".validate": "newData.hasChildren(['uid','name','role','seat','online','lastSeen','reconnectToken']) && newData.child('uid').val() === $uid && newData.child('name').isString() && newData.child('name').val().length <= 30 && (newData.child('role').val() === 'host' || newData.child('role').val() === 'player' || newData.child('role').val() === 'spectator')"
+            ".validate": "newData.hasChildren(['uid','name','role','seat','online','lastSeen','reconnectToken']) && newData.child('uid').val() === $uid && newData.child('name').isString() && newData.child('name').val().length <= 30 && (newData.child('role').val() === 'host' || newData.child('role').val() === 'player' || newData.child('role').val() === 'spectator')",
+            "avatar": {
+              ".validate": "newData.hasChildren(['height','bodyBuild','presentation','hairStyle','skinTone','outfitColor']) && (newData.child('height').val() === 'short' || newData.child('height').val() === 'medium' || newData.child('height').val() === 'tall') && (newData.child('bodyBuild').val() === 'slim' || newData.child('bodyBuild').val() === 'balanced' || newData.child('bodyBuild').val() === 'broad' || newData.child('bodyBuild').val() === 'round') && (newData.child('presentation').val() === 'masculine' || newData.child('presentation').val() === 'feminine' || newData.child('presentation').val() === 'neutral') && (newData.child('hairStyle').val() === 'short' || newData.child('hairStyle').val() === 'long' || newData.child('hairStyle').val() === 'curly' || newData.child('hairStyle').val() === 'shaved') && (newData.child('skinTone').val() === 'porcelain' || newData.child('skinTone').val() === 'sand' || newData.child('skinTone').val() === 'honey' || newData.child('skinTone').val() === 'copper' || newData.child('skinTone').val() === 'umber' || newData.child('skinTone').val() === 'deep') && (newData.child('outfitColor').val() === 'coral' || newData.child('outfitColor').val() === 'teal' || newData.child('outfitColor').val() === 'violet' || newData.child('outfitColor').val() === 'sun' || newData.child('outfitColor').val() === 'navy' || newData.child('outfitColor').val() === 'leaf') && (!newData.child('vibe').exists() || newData.child('vibe').val() === 'friendly' || newData.child('vibe').val() === 'confident' || newData.child('vibe').val() === 'adventurous') && (!newData.child('outfitStyle').exists() || newData.child('outfitStyle').val() === 'civilian' || newData.child('outfitStyle').val() === 'military')"
+            }
           }
         },
         "joinRequests": {
           "$uid": {
             ".read": "auth != null && (auth.uid === $uid || data.parent().parent().child('meta/hostUid').val() === auth.uid)",
             ".write": "auth != null && (auth.uid === $uid || data.parent().parent().child('meta/hostUid').val() === auth.uid)",
-            ".validate": "!newData.exists() || (newData.child('uid').val() === $uid && newData.child('name').isString() && newData.child('name').val().length <= 30 && (newData.child('requestedRole').val() === 'player' || newData.child('requestedRole').val() === 'spectator'))"
+            ".validate": "!newData.exists() || (newData.child('uid').val() === $uid && newData.child('name').isString() && newData.child('name').val().length <= 30 && (newData.child('requestedRole').val() === 'player' || newData.child('requestedRole').val() === 'spectator'))",
+            "avatar": {
+              ".validate": "newData.hasChildren(['height','bodyBuild','presentation','hairStyle','skinTone','outfitColor']) && newData.child('skinTone').isString() && newData.child('outfitColor').isString() && (!newData.child('vibe').exists() || newData.child('vibe').val() === 'friendly' || newData.child('vibe').val() === 'confident' || newData.child('vibe').val() === 'adventurous') && (!newData.child('outfitStyle').exists() || newData.child('outfitStyle').val() === 'civilian' || newData.child('outfitStyle').val() === 'military')"
+            }
           }
         },
         "game": {
