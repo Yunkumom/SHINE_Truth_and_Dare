@@ -1,6 +1,7 @@
 import type { Language } from '../types'
 import SurfaceMenu from './SurfaceMenu'
 import type { SurfaceMenuNavigationProps } from './SurfaceMenu'
+import YunkumomMark from './YunkumomMark'
 
 interface ModeHomeProps extends SurfaceMenuNavigationProps {
   language: Language
@@ -19,7 +20,7 @@ export default function ModeHome({ language, onChooseKeepsake, onChooseTruthOrDa
   const text = language === 'en' ? labels.en : labels.zh
   return <section className="mode-home-canvas has-four-experiences" aria-label="選擇模式 · Choose an experience">
     <header className="mode-home-header">
-      <div className="mode-home-brand"><span aria-hidden="true">✦</span><b>TRUTH OR DARE</b></div>
+      <div className="mode-home-brand"><span><YunkumomMark /></span><b>Yunkumom</b></div>
       <SurfaceMenu {...navigation} onChooseKeepsake={onChooseKeepsake} onChooseTruthOrDare={onChooseTruthOrDare} onChooseFoodJourney={onChooseFoodJourney} onChooseUndercover={onChooseUndercover} />
     </header>
     <div className="mode-home-intro">

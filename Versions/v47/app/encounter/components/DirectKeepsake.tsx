@@ -80,7 +80,6 @@ export default function DirectKeepsake({ language, artworks, collections, blessi
       <article className="direct-keepsake-preview taiwan-meander" style={cardStyle} data-font-family={design.fontFamily}>
         <div className="direct-keepsake-title">
           <span><b>{design.title || imageName}</b></span>
-          <i aria-hidden="true">✦</i>
         </div>
         <div className="direct-keepsake-image card-artwork-viewport"><img src={imageSrc} alt={previewAlt} style={photoStyle} /></div>
         <div className="direct-keepsake-blessing"><small>{language === 'en' ? 'BLESSING' : '給今天的祝福 · BLESSING'}</small><p>{blessingText || (language === 'en' ? 'Write a blessing for this keepsake.' : '在這裡寫下想送出的祝福。')}</p></div>

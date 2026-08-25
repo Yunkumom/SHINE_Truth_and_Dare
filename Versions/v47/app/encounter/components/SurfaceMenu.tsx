@@ -45,8 +45,8 @@ export default function SurfaceMenu({ surfaceMode, onSurfaceModeChange, activeDe
     <button type="button" className="surface-menu-toggle" aria-label="開啟選單 · Open menu" aria-expanded={open} onClick={() => setOpen(value => !value)}>
       <span aria-hidden="true"><i /><i /><i /></span>
     </button>
-    {open && <div className="surface-menu-panel" role="menu" aria-label="TRUTH OR DARE · V47">
-      <header><b>TRUTH OR DARE</b><small>V47 · DISPLAY &amp; TOOLS</small></header>
+    {open && <div className="surface-menu-panel" role="menu" aria-label="Yunkumom · V47">
+      <header><b>Yunkumom</b><small>V47 · DISPLAY &amp; TOOLS</small></header>
       <section className="surface-menu-section surface-menu-display" aria-label="顯示模式 · Display mode">
         <strong>顯示模式 · DISPLAY</strong>
         <div className="surface-menu-rail surface-menu-display-rail" role="radiogroup" aria-label="顯示模式">

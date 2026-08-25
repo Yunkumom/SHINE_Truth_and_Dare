@@ -373,6 +373,13 @@
   z-index: 80;
 }
 
+.mode-home-brand > span svg,
+.wordmark .mark svg {
+  width: 31px;
+  height: 31px;
+  display: block;
+}
+
 .surface-menu-toggle {
   width: 42px;
   height: 42px;

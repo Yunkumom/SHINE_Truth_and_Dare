@@ -3,7 +3,7 @@ import type { TaiwanFoodPromptType, TaiwanFoodQuestion } from '../types'
 export const TAIWAN_FOOD_PROMPTS: Record<TaiwanFoodPromptType, { zh: string, en: string, icon: string }> = {
   'taste-talk': { zh: '味覺真心話', en: 'Taste Talk', icon: '◇' },
   'food-dare': { zh: '美食小挑戰', en: 'Food Dare', icon: '△' },
-  'travel-surprise': { zh: '旅行驚喜', en: 'Travel Surprise', icon: '✦' },
+  'travel-surprise': { zh: '旅行驚喜', en: 'Travel Surprise', icon: '?' },
 }
 
 export const TAIWAN_FOOD_QUESTIONS = [

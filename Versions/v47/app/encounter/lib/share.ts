@@ -87,7 +87,6 @@ export async function createCardPng(composition: EncounterComposition, language:
 
   context.fillStyle = '#f6dfad'; context.fillRect(header.x, header.y, header.width, header.height)
   context.fillStyle = '#171411'; context.font = '700 52px serif'; context.fillText(artworkTitle(artwork, language === 'en' ? 'en' : 'zh'), header.x + 42, header.y + 102)
-  context.textAlign = 'right'; context.fillStyle = '#8f2f28'; context.font = '600 27px system-ui'; context.fillText('✦', header.x + header.width - 48, header.y + 88); context.textAlign = 'left'
 
   context.fillStyle = '#07151d'; context.fillRect(art.x, art.y, art.width, art.height)
   drawImageCover(context, image, art.x, art.y, art.width, art.height, artworkFocus, artworkPresentation.zoom)
@@ -134,7 +133,7 @@ interface ShareTarget {
 
 export async function deliverCardFile(file: File, target: ShareTarget = navigator): Promise<'shared' | 'downloaded' | 'cancelled'> {
   if (target.share && (!target.canShare || target.canShare({ files: [file] }))) {
-    try { await target.share({ files: [file], title: 'TRUTH OR DARE · V47' }); return 'shared' }
+    try { await target.share({ files: [file], title: 'Yunkumom · V47' }); return 'shared' }
     catch (error) { if (error instanceof DOMException && error.name === 'AbortError') return 'cancelled' }
   }
   const url = URL.createObjectURL(file)

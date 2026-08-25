@@ -100,8 +100,8 @@ export default function MobileSettings({ open, onClose, level, mode, onLevelChan
   })
 
   if (!open) return null
-  return <section className="library-manager" role="dialog" aria-modal="true" aria-label="TRUTH OR DARE settings">
-    <header className="library-manager-header"><div><small>TRUTH OR DARE · V47</small><b>抽卡設定</b></div><button ref={closeButtonRef} type="button" onClick={onClose} aria-label="關閉設定">×</button></header>
+  return <section className="library-manager" role="dialog" aria-modal="true" aria-label="Yunkumom settings">
+    <header className="library-manager-header"><div><small>Yunkumom · V47</small><b>抽卡設定</b></div><button ref={closeButtonRef} type="button" onClick={onClose} aria-label="關閉設定">×</button></header>
     <nav className="library-manager-tabs" aria-label="設定分頁">{tabs.map(([value, label]) => <button type="button" key={value} aria-pressed={tab === value} onClick={() => setTab(value)}>{label}</button>)}</nav>
 
     {tab === 'general' && <section className="library-manager-panel">

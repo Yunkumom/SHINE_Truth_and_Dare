@@ -158,11 +158,6 @@ export async function createDirectKeepsakePng(input: DirectKeepsakeInput): Promi
   context.font = fontForKeepsake(input.design.fontFamily, 800, Math.round(input.design.titleFontSize * 3))
   context.textBaseline = 'middle'
   context.fillText(fitKeepsakeTitle(context, input.design.title || input.imageName, panelWidth - 150), layout.title.x + 30, layout.title.y + layout.title.height / 2)
-  context.textAlign = 'right'
-  context.fillStyle = '#8e382e'
-  context.font = '700 43px serif'
-  context.fillText('✦', layout.title.x + layout.title.width - 30, layout.title.y + layout.title.height / 2)
-  context.textAlign = 'left'
   context.textBaseline = 'alphabetic'
 
   drawRoundedPanel(context, layout.artwork, '#132a36')

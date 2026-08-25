@@ -129,23 +129,40 @@ test("v47 direct editor controls title font sizes and blessing height in preview
   assert.match(css, /\.v40-shell \.direct-card-editor\s*\{[^}]*position:\s*absolute;[^}]*inset:\s*6px;[^}]*width:\s*auto;/s);
 });
 
-test("v47 implements the approved compact home and English-only gameplay brand", async () => {
-  const [home, app, directExport, sharedExport, html, manifest] = await Promise.all([
+test("v47 presents Yunkumom branding without decorative stars while retaining the Truth-or-Dare mode", async () => {
+  const [home, app, menu, mark, direct, photoAdjuster, postDraw, artworkAdjuster, undercover, foodQuestions, directExport, sharedExport, html, manifest, icon192, icon512] = await Promise.all([
     source("../app/encounter/components/ModeHome.tsx"),
     source("../app/encounter/App.tsx"),
+    source("../app/encounter/components/SurfaceMenu.tsx"),
+    source("../app/encounter/components/YunkumomMark.tsx"),
+    source("../app/encounter/components/DirectKeepsake.tsx"),
+    source("../app/encounter/components/DirectPhotoAdjuster.tsx"),
+    source("../app/encounter/components/PostDrawKeepsake.tsx"),
+    source("../app/encounter/components/ArtworkAdjuster.tsx"),
+    source("../app/encounter/components/WhoIsUndercover.tsx"),
+    source("../app/encounter/data/taiwan-food-questions.ts"),
     source("../app/encounter/lib/direct-keepsake.ts"),
     source("../app/encounter/lib/share.ts"),
     source("../app/encounter/index.html"),
     source("../app/encounter/public/manifest.webmanifest"),
+    source("../app/encounter/public/assets/icons/icon-192.svg"),
+    source("../app/encounter/public/assets/icons/icon-512.svg"),
   ]);
   assert.match(home, /破冰遊戲選擇/);
   assert.doesNotMatch(home, /選擇這次想留下的方式|抽一張卡開始對話/);
-  assert.match(app, /TRUTH OR DARE/);
+  assert.match(`${home}\n${app}`, /YunkumomMark/);
+  assert.match(`${home}\n${app}\n${menu}`, /Yunkumom/);
+  assert.match(mark, /road moon and cloud/);
+  assert.match(home, /真心話大冒險[\s\S]*TRUTH OR DARE/);
+  assert.match(app, /<h2>TRUTH OR DARE<\/h2>/);
   assert.doesNotMatch(app, /ENCOUNTER CARDS · V47|<h2>相遇卡<\/h2>/);
   assert.doesNotMatch(app, /讓一次簡單的對話，成為值得收藏的相遇。|抽一張相遇卡|準備這次相遇/);
   assert.doesNotMatch(`${app}\n${directExport}\n${sharedExport}`, /相遇紀念卡|給這次相遇的祝福/);
-  assert.match(`${html}\n${manifest}\n${sharedExport}`, /TRUTH OR DARE · V47/);
+  assert.match(`${html}\n${manifest}\n${sharedExport}`, /Yunkumom · V47/);
   assert.doesNotMatch(`${html}\n${manifest}\n${sharedExport}`, /Encounter Cards/);
+  assert.match(`${icon192}\n${icon512}`, /stroke-linecap="round"/);
+  assert.doesNotMatch(`${icon192}\n${icon512}`, /M96 39 108 82 153 96|M256 104 288 219 408 256/);
+  assert.doesNotMatch(`${home}\n${app}\n${menu}\n${direct}\n${photoAdjuster}\n${postDraw}\n${artworkAdjuster}\n${undercover}\n${foodQuestions}\n${directExport}\n${sharedExport}`, /✦/);
 });
 
 test("v47 has unique themed humorous blessings for all 42 governed artworks", async () => {

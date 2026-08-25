@@ -44,7 +44,7 @@ export default function DirectPhotoAdjuster({ imageSrc, imageName, blessing, lan
       <button type="button" aria-pressed={tab === 'type'} onClick={() => setTab('type')}>文字 · TYPE</button>
     </nav>
     <article className="direct-editor-card direct-keepsake-preview" style={style} data-font-family={draftDesign.fontFamily}>
-      <div className="direct-keepsake-title"><span><b>{draftDesign.title || imageName}</b></span><i aria-hidden="true">✦</i></div>
+      <div className="direct-keepsake-title"><span><b>{draftDesign.title || imageName}</b></span></div>
       <div className="direct-keepsake-image card-artwork-viewport"><img src={imageSrc} alt={imageName} style={style} /><div className="composition-grid" aria-hidden="true" /></div>
       <div className="direct-keepsake-blessing"><small>{language === 'en' ? 'BLESSING' : '給今天的祝福 · BLESSING'}</small><p>{blessing}</p></div>
     </article>

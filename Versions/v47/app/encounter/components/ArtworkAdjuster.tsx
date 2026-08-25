@@ -88,7 +88,7 @@ export default function ArtworkAdjuster({ open, encounter, language, manager, va
     </nav>
     <div className="card-adjust-live-shell">
       <article className={`mythic-card card-adjust-live-preview${tab === 'layout' ? ' is-layout-guided' : ''}`} style={cardStyle} data-testid="card-adjust-live-preview">
-        <div className="mythic-card-header" data-adjust-box="標題"><div><h2>{artworkTitle(artwork, language === 'en' ? 'en' : 'zh')}</h2></div><i>✦</i></div>
+        <div className="mythic-card-header" data-adjust-box="標題"><div><h2>{artworkTitle(artwork, language === 'en' ? 'en' : 'zh')}</h2></div></div>
         <div className="mythic-art-frame" data-adjust-box="圖片"><img src={artwork.src} alt={artwork.zhName} style={imageStyle} />{tab === 'photo' && <div className="composition-grid" data-testid="artwork-grid" aria-hidden="true" />}</div>
         <div className="mythic-text-panel" data-adjust-box="文字">
           {manager.showQuestion && <div className="mythic-question" data-adjust-box="問題">{language !== 'en' && <p lang="zh-Hant">{encounter.card.zh}</p>}{language !== 'zh' && <small className={language === 'en' ? 'english-primary' : ''} lang="en">{encounter.card.en}</small>}</div>}
