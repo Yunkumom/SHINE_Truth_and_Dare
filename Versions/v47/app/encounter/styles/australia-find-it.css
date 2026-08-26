@@ -194,7 +194,8 @@
 .find-it-actions button small { display: block; margin-top: 2px; font-size: .5rem; letter-spacing: .1em; }
 .find-it-reveal { color: #173f3b; background: #e6b657; }
 .find-it-found { color: #fffaf0; background: #a94f35; }
-.find-it-actions .find-it-next { grid-column: 1 / -1; color: #fffaf0; background: #173f3b; }
+.find-it-actions .find-it-next { color: #fffaf0; background: #173f3b; }
+.find-it-postcard { color: #173f3b; background: #e6b657; }
 .find-it-next span { margin-left: 10px; }
 
 .find-it-privacy {

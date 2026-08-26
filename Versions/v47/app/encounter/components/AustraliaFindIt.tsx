@@ -6,6 +6,7 @@ import { drawFindItCard } from '../lib/australia-find-it-game'
 import SurfaceMenu from './SurfaceMenu'
 import type { SurfaceMenuNavigationProps } from './SurfaceMenu'
 import YunkumomMark from './YunkumomMark'
+import KeepsakePostcard from './KeepsakePostcard'
 
 interface AustraliaFindItProps extends SurfaceMenuNavigationProps {
   onBack: () => void
@@ -35,6 +36,7 @@ export default function AustraliaFindIt({ onBack, language, ...navigation }: Aus
   const [revealed, setRevealed] = useState(false)
   const [timerEnabled, setTimerEnabled] = useState(false)
   const [seconds, setSeconds] = useState(60)
+  const [postcardOpen, setPostcardOpen] = useState(false)
 
   useEffect(() => {
     if (!timerEnabled || revealed || seconds <= 0) return
@@ -68,6 +70,9 @@ export default function AustraliaFindIt({ onBack, language, ...navigation }: Aus
   const timerLabel = timerEnabled ? '關閉計時 · TIMER OFF' : '60 秒計時 · 60 SEC TIMER'
   const progress = `${String(current.number).padStart(2, '0')} / 50`
   const roundOver = revealed || (timerEnabled && seconds === 0)
+  const artworkSrc = australiaFindItArtwork(current.src)
+
+  if (postcardOpen) return <KeepsakePostcard cardId={current.id} imageSrc={artworkSrc} title={localized(current.title, language)} subtitle={localized(current.instruction, language)} language={language} onClose={() => setPostcardOpen(false)} />
 
   return <section className="australia-find-it-canvas" aria-label="大家來找碴 · Australia Find It">
     <header className="find-it-header">
@@ -91,7 +96,7 @@ export default function AustraliaFindIt({ onBack, language, ...navigation }: Aus
         <p>{localized(current.instruction, language)}</p>
       </div>
       <div className="find-it-art-frame">
-        <img src={australiaFindItArtwork(current.src)} alt={`${localized(current.title, language)} — ${localized(current.instruction, language)}`} draggable="false" />
+        <img src={artworkSrc} alt={`${localized(current.title, language)} — ${localized(current.instruction, language)}`} draggable="false" />
         {roundOver && <div className="find-it-answer" role="status">
           <small>答案 · ANSWER</small>
           {language !== 'en' && <p lang="zh-Hant">{current.answer.zh}</p>}
@@ -108,7 +113,7 @@ export default function AustraliaFindIt({ onBack, language, ...navigation }: Aus
     <div className="find-it-actions">
       {!roundOver
         ? <><button type="button" className="find-it-reveal" onClick={showAnswer}>揭曉答案<small>REVEAL ANSWER</small></button><button type="button" className="find-it-found" onClick={showAnswer}>找到了<small>FOUND IT</small></button></>
-        : <button type="button" className="find-it-next" onClick={nextCard}>下一張 · NEXT CARD <span>→</span></button>}
+        : <><button type="button" className="find-it-next" onClick={nextCard}>下一張<small>NEXT CARD</small></button><button type="button" className="find-it-postcard" onClick={() => setPostcardOpen(true)}>製作紀念明信片<small>MAKE POSTCARD</small></button></>}
     </div>
     <p className="find-it-privacy">不記名、不上傳，只在這一局使用 · MEMORY ONLY</p>
   </section>

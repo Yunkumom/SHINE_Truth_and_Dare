@@ -14,6 +14,13 @@ Scope: 50 cards · 50 張卡 · 25 hidden maps + 25 spot-the-difference pairs
 - Reveal / 揭曉：`揭曉答案 · REVEAL ANSWER`
 - Advance / 下一張：`找到了 · FOUND IT`
 - Timer / 計時：optional 60 seconds; local memory only / 可選 60 秒；只存在本機記憶體
+- Keepsake / 紀念禮物：`製作紀念明信片 · MAKE POSTCARD` after a round is revealed / 揭曉答案後可製作電子紀念明信片
+
+## Post-game gift / 遊戲後紀念禮物
+
+Every one of the 50 images can become the front of a two-sided electronic postcard. The complete artwork stays visible; the output composer adds the bilingual memory title and the governed Yunkumom signature without modifying the master. The postcard back provides optional recipient, sender, and message fields. Export produces separate 1800 × 1200 front and back PNG files for local share or download.
+
+全部 50 張圖片都可以成為雙面電子明信片的正面。完整原圖保持可見，輸出組合器只在不改動 master 的前提下加入雙語回憶標題與受治理的 Yunkumom 簽名。明信片背面提供選填的收件人、寄件人與留言欄，輸出正、背面各一張 1800 × 1200 PNG，供本機分享或下載。
 
 ## Cards 01–25 · Hidden Map / 第 01–25 張 · 藏地圖
 
@@ -85,7 +92,7 @@ Every paired master contains exactly five intended differences; the numbered ans
 
 ## Boundaries / 邊界
 
-- The game stays offline and memory-only; it collects no names, contacts, answers, analytics, accounts, telemetry, or uploads.
+- The game stays offline and memory-only. Optional postcard recipient, sender, and message text exists only while composing the local gift; it is never persisted or transmitted. The experience adds no contacts, analytics, accounts, telemetry, backend state, or uploads.
 - The images contain no generated writing, logos, franchise trade dress, or national flags used as decoration.
 - Environmental cues do not imitate Aboriginal or Torres Strait Islander art, protected motifs, sacred sites, ceremonial objects, or living artists.
 - Hidden-map cards require a recognisable Australia mainland plus Tasmania; vague shapes are not accepted as the map.

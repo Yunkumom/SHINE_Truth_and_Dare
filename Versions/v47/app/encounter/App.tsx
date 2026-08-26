@@ -46,6 +46,7 @@ import './styles/v47-ux.css'
 import './styles/taiwan-food-journey.css'
 import './styles/who-is-undercover.css'
 import './styles/australia-find-it.css'
+import './styles/keepsake-postcard.css'
 
 const copy = {
   zh: { heading: '一起玩一題吧。', subheading: 'ONE QUESTION, A GOOD START.', lead: '抽一張卡，輕鬆開始聊天；想留下今天的記憶時，再做成紀念卡。', leadEn: 'Draw a card, start an easy conversation, and save the moment if you wish.', begin: '開始真心話大冒險 · Begin', draw: '抽一張卡', next: '下一張', share: '製作紀念卡', back: '返回設定', install: 'iPhone：Safari → 分享 → 加入主畫面' },
