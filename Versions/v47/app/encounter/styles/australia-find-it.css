@@ -1,0 +1,237 @@
+.australia-find-it-canvas {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 430px;
+  height: 932px;
+  overflow: hidden;
+  padding: 18px 20px 14px;
+  color: #173f3b;
+  background:
+    radial-gradient(circle at 88% 8%, rgb(232 173 82 / 24%), transparent 26%),
+    linear-gradient(155deg, #f8f1df 0%, #f0e3c5 52%, #e8d5b4 100%);
+}
+
+.find-it-header {
+  display: grid;
+  grid-template-columns: 42px 1fr 42px;
+  align-items: center;
+  min-height: 42px;
+}
+
+.find-it-back,
+.find-it-header .surface-menu-toggle {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgb(23 63 59 / 24%);
+  border-radius: 50%;
+  color: inherit;
+  background: rgb(255 252 243 / 74%);
+}
+
+.find-it-back { font-size: 1.25rem; }
+.find-it-header .surface-menu { justify-self: end; }
+
+.find-it-brand {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-self: center;
+  font-size: .76rem;
+  letter-spacing: .08em;
+}
+
+.find-it-brand span { width: 26px; height: 26px; }
+
+.find-it-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin: 8px 0 7px;
+}
+
+.find-it-heading small {
+  font-size: .56rem;
+  font-weight: 800;
+  letter-spacing: .15em;
+}
+
+.find-it-heading h1 {
+  margin: 2px 0 0;
+  font-size: 1.55rem;
+  line-height: 1;
+  letter-spacing: .04em;
+}
+
+.find-it-heading p {
+  margin: 3px 0 0;
+  color: #a94f35;
+  font-size: .69rem;
+  font-weight: 900;
+  letter-spacing: .16em;
+}
+
+.find-it-kind {
+  padding: 5px 8px;
+  border: 1px solid rgb(169 79 53 / 35%);
+  border-radius: 999px;
+  color: #8c3e2b;
+  font-size: .52rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+  background: rgb(255 249 235 / 74%);
+}
+
+.find-it-mode-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  margin-bottom: 8px;
+}
+
+.find-it-mode-tabs button {
+  min-height: 40px;
+  padding: 5px 4px;
+  border: 1px solid rgb(23 63 59 / 18%);
+  border-radius: 10px;
+  color: #44645e;
+  background: rgb(255 252 243 / 65%);
+}
+
+.find-it-mode-tabs b,
+.find-it-mode-tabs small { display: block; }
+.find-it-mode-tabs b { font-size: .72rem; }
+.find-it-mode-tabs small { margin-top: 1px; font-size: .48rem; letter-spacing: .08em; }
+
+.find-it-mode-tabs button.active {
+  border-color: #173f3b;
+  color: #fffaf0;
+  background: #173f3b;
+  box-shadow: 0 4px 12px rgb(23 63 59 / 16%);
+}
+
+.find-it-card {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+  padding: 9px;
+  border: 1px solid rgb(72 54 33 / 20%);
+  border-radius: 18px;
+  background: #fffaf0;
+  box-shadow: 0 12px 28px rgb(80 55 28 / 16%);
+}
+
+.find-it-card-copy { min-height: 56px; padding: 1px 4px 7px; }
+.find-it-card-copy h2 { margin: 0; font-size: .98rem; }
+.find-it-card-copy p { margin: 3px 0 0; color: #5d6d67; font-size: .64rem; line-height: 1.3; }
+
+.find-it-art-frame {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: auto;
+  overflow: hidden;
+  aspect-ratio: 63 / 88;
+  border-radius: 11px;
+  background: #d8c9aa;
+}
+
+.find-it-art-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.find-it-answer {
+  position: absolute;
+  inset: auto 7px 7px;
+  max-height: 47%;
+  overflow: auto;
+  padding: 9px 10px;
+  border: 1px solid rgb(255 255 255 / 30%);
+  border-radius: 10px;
+  color: #fffaf0;
+  background: rgb(14 50 47 / 92%);
+  box-shadow: 0 6px 20px rgb(0 0 0 / 25%);
+}
+
+.find-it-answer small { font-size: .52rem; font-weight: 900; letter-spacing: .12em; }
+.find-it-answer p { margin: 4px 0 0; font-size: .61rem; line-height: 1.3; }
+
+.find-it-status-row {
+  display: grid;
+  grid-template-columns: 1fr 74px;
+  gap: 7px;
+  margin-top: 8px;
+}
+
+.find-it-status-row button,
+.find-it-status-row output {
+  display: grid;
+  place-items: center;
+  min-height: 34px;
+  border: 1px solid rgb(23 63 59 / 23%);
+  border-radius: 10px;
+  color: #173f3b;
+  font-size: .63rem;
+  font-weight: 800;
+  background: rgb(255 252 243 / 70%);
+}
+
+.find-it-status-row button.timer-active { color: #fffaf0; background: #a94f35; }
+.find-it-status-row output.timer-urgent { color: #fff; background: #a42f26; }
+
+.find-it-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-top: 7px; }
+.find-it-actions button {
+  min-height: 46px;
+  border: 0;
+  border-radius: 12px;
+  font-weight: 900;
+}
+
+.find-it-actions button small { display: block; margin-top: 2px; font-size: .5rem; letter-spacing: .1em; }
+.find-it-reveal { color: #173f3b; background: #e6b657; }
+.find-it-found { color: #fffaf0; background: #a94f35; }
+.find-it-actions .find-it-next { grid-column: 1 / -1; color: #fffaf0; background: #173f3b; }
+.find-it-next span { margin-left: 10px; }
+
+.find-it-privacy {
+  margin: 6px 0 0;
+  text-align: center;
+  color: #6d746d;
+  font-size: .52rem;
+  letter-spacing: .04em;
+}
+
+.mode-home-canvas.has-five-experiences .experience-grid { gap: 6px; }
+.mode-home-canvas.has-five-experiences .experience-card { min-height: 70px; }
+.experience-card.australia-find-it-entry-card {
+  border-color: #a66b2e;
+  background: linear-gradient(135deg, rgb(255 249 237 / 96%), rgb(235 218 167 / 92%));
+}
+.australia-find-it-icon { color: #a94f35; background: #f1d998; }
+
+[data-theme='night'] .australia-find-it-canvas {
+  color: #f4e8c9;
+  background: linear-gradient(155deg, #142d2b, #182421 58%, #2d241d);
+}
+
+[data-theme='night'] .find-it-card { background: #203532; }
+[data-theme='night'] .find-it-card-copy p { color: #c9cfbe; }
+
+@media (prefers-reduced-motion: reduce) {
+  .australia-find-it-canvas *,
+  .australia-find-it-canvas *::before,
+  .australia-find-it-canvas *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+}
+
+@media (max-height: 780px) {
+  .mode-home-canvas.has-five-experiences .experience-grid { gap: 4px; }
+  .mode-home-canvas.has-five-experiences .experience-card { min-height: 62px; }
+}

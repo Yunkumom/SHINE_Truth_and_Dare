@@ -1,0 +1,10 @@
+# Preserve verified releases, generated output, and master artwork byte-for-byte.
+Versions/v39/release/encounter_cards_v39.html -text
+Versions/v39/release/Public-Web-v22/** -text
+Versions/v39/dist/** -text
+Versions/v46/public/v46/** -text
+Versions/v46/dist/** -text
+Library/Images/**/*.png -text
+Library/Images/**/*.jpg -text
+Library/Images/**/*.jpeg -text
+Library/Images/**/*.webp -text

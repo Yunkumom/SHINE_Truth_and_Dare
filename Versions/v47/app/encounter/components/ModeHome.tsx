@@ -16,12 +16,12 @@ const labels = {
   },
 }
 
-export default function ModeHome({ language, onChooseKeepsake, onChooseTruthOrDare, onChooseFoodJourney, onChooseUndercover, ...navigation }: ModeHomeProps) {
+export default function ModeHome({ language, onChooseKeepsake, onChooseTruthOrDare, onChooseFoodJourney, onChooseUndercover, onChooseAustraliaFindIt, ...navigation }: ModeHomeProps) {
   const text = language === 'en' ? labels.en : labels.zh
-  return <section className="mode-home-canvas has-four-experiences" aria-label="選擇模式 · Choose an experience">
+  return <section className="mode-home-canvas has-five-experiences" aria-label="選擇模式 · Choose an experience">
     <header className="mode-home-header">
       <div className="mode-home-brand"><span><YunkumomMark /></span><b>Yunkumom</b></div>
-      <SurfaceMenu {...navigation} onChooseKeepsake={onChooseKeepsake} onChooseTruthOrDare={onChooseTruthOrDare} onChooseFoodJourney={onChooseFoodJourney} onChooseUndercover={onChooseUndercover} />
+      <SurfaceMenu {...navigation} language={language} onChooseKeepsake={onChooseKeepsake} onChooseTruthOrDare={onChooseTruthOrDare} onChooseFoodJourney={onChooseFoodJourney} onChooseUndercover={onChooseUndercover} onChooseAustraliaFindIt={onChooseAustraliaFindIt} />
     </header>
     <div className="mode-home-intro">
       <h1>{text.title} · V47</h1>
@@ -49,6 +49,12 @@ export default function ModeHome({ language, onChooseKeepsake, onChooseTruthOrDa
         <span className="experience-number">04</span>
         <span className="experience-icon undercover-icon" aria-hidden="true">◐</span>
         <span><b>誰是臥底</b><small>WHO IS THE UNDERCOVER</small></span>
+        <i aria-hidden="true">→</i>
+      </button>
+      <button type="button" className="experience-card australia-find-it-entry-card" onClick={onChooseAustraliaFindIt}>
+        <span className="experience-number">05</span>
+        <span className="experience-icon australia-find-it-icon" aria-hidden="true">⌕</span>
+        <span><b>大家來找碴</b><small>AUSTRALIA FIND IT</small></span>
         <i aria-hidden="true">→</i>
       </button>
     </div>
